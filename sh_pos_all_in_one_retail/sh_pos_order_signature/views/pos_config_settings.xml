@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="sh_pos_res_config_order_signature" model="ir.ui.view">
+        <field name="name">pos.config.settings.order.signature</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='accounting_section']" position="after">
+                <h3>POS Order Signature</h3>
+                <div class="row mt16 o_settings_container">
+                    <div id="category_reference" class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_enable_order_signature" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_enable_order_signature" />
+                            <div class="text-muted">
+                                Allow Signature in POS Order
+                            </div>
+                            <div class="content-group mt16" attrs="{'invisible': [('sh_enable_order_signature', '=', False)]}">
+                                <field name="sh_enable_name" style="width: 4%;" />
+                                <label for="sh_enable_name" style="font-weight: normal;" /><br />
+                                <field name="sh_enable_date" style="width: 4%;" />
+                                <label for="sh_enable_date" style="font-weight: normal;" /><br />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="category_reference" class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_display_signature_detail" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_display_signature_detail" />
+                            <div class="text-muted">
+                                Allow Display Signature Detail in POS Order Receipt
+                            </div>
+                            <div class="content-group mt16" attrs="{'invisible': [('sh_display_signature_detail', '=', False)]}">
+                                <field name="sh_display_signature" style="width: 4%;" />
+                                <label for="sh_display_signature" style="font-weight: normal;" /><br />
+                                <field name="sh_display_name" style="width: 4%;" />
+                                <label for="sh_display_name" style="font-weight: normal;" /><br />
+                                <field name="sh_display_date" style="width: 4%;" />
+                                <label for="sh_display_date" style="font-weight: normal;" /><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

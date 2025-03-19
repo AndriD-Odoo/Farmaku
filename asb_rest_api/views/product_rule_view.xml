@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_rule_sale_tree">
+            <field name="name">product.rule.sale.tree</field>
+            <field name="model">product.rule.sale</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="so_line_id"/>
+                    <field name="rule_type"/>
+                    <field name="code"/>
+                    <field name="latin_description"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_rule_sale_form">
+            <field name="name">product.rule.sale.form</field>
+            <field name="model">product.rule.sale</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="so_line_id"/>
+                                <field name="rule_type"/>
+                                <field name="code"/>
+                                <field name="latin_description"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_rule_sale_action">
+            <field name="name">Product Rule Sale</field>
+            <field name="res_model">product.rule.sale</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_product_rule_sale"
+            name="Product Rule Sale"
+            parent="asb_base_farmaku.menu_product_farmaku"
+            action="product_rule_sale_action"
+        />
+
+    </data>
+</odoo>

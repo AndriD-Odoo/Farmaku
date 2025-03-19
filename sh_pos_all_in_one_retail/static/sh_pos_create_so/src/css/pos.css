@@ -1,0 +1,5 @@
+.sh_pos_sale_order .so_name {
+    display: inline-block;
+    color: blue;
+    padding-left: 10px;
+}

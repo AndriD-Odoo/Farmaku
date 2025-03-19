@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="act_import_product" model="ir.actions.act_window">
+        <field name="name">Import Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">import.product</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_import_product" model="ir.ui.view">
+        <field name="name">Import Products</field>
+        <field name="model">import.product</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form string="Dummy account_move" version="7.0">
+                <p>
+                        Klik tombol di bawah untuk import data product.
+                </p>
+                <footer>
+                    <button string="Import" name="confirm_button" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- <menuitem id="menu_import" string="Import" parent="stock.menu_stock_config_settings" groups="stock.group_stock_manager" sequence="99"/> -->
+    <menuitem id="menu_import_product" parent="stock.menu_stock_config_settings" name="Import Products" action="act_import_product"/>
+
+</odoo>

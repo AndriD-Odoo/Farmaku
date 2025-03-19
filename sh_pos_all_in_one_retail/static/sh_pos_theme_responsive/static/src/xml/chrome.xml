@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-name="Chrome" t-inherit="point_of_sale.Chrome" t-inherit-mode="extension" owl="1">
+
+        
+
+		<xpath expr="//div[hasclass('pos-topheader')]" position="replace">
+			<div class="pos-topheader" t-att-class="{ oe_hidden: state.uiState !== 'READY' }">
+                <div t-if="tempScreen.isShown" class="block-top-header" />
+                <div class="pos-branding" t-if= "!env.isMobile">
+                    <img class="pos-logo" t-on-click="trigger('toggle-debug-widget')"
+                         src="/point_of_sale/static/src/img/logo.png" alt="Logo" />
+                    <CartIconButton t-if="env.isMobile" />
+                	<ProductIconButton t-if="env.isMobile" />
+                    <TicketButton isTicketScreenShown="isTicketScreenShown" />
+                </div>
+                <div class="pos-rightheader">
+                    <CartIconButton t-if="env.isMobile" />
+                	<ProductIconButton t-if="env.isMobile" />
+                    <TicketButton isTicketScreenShown="isTicketScreenShown" t-if="env.isMobile" />
+                    <div class="search-bar-portal" />
+                    <div class="status-buttons-portal" />
+                </div>
+            </div>
+		</xpath>
+        <xpath expr="//Portal" position="replace">
+            <Portal target="'.pos .status-buttons-portal'">
+                <div class="status-buttons">
+                    <t t-if="!env.isMobile">
+                        <CashierName />
+                    </t>
+                    <ShortcutListTips t-if="env.pos.config.sh_enable_shortcut"/>
+                    <OrderManagementButton t-if="env.pos.config.manage_orders" />
+                    <SaleDetailsButton t-if="env.pos.proxy.printer" />
+                    <ProxyStatus t-if="env.pos.config.use_proxy" />
+                    <ClientScreenButton t-if="clientScreenButtonIsShown" />
+                    <SyncNotification />
+                    <HeaderButton />
+                </div>
+            </Portal>
+        </xpath>
+	</t>
+	
+	<t t-name="ProductIconButton" owl="1">
+        <div class="oe_status sh_cart_management" t-on-click="onClick">
+            <div class="oe_icon oe_green">
+                <i class="fa fa-cube product_screen_show" aria-hidden="true"></i>
+            </div>
+        </div>
+    </t>
+	
+	<t t-name="CartIconButton" owl="1">
+        <div class="oe_status sh_product_management" t-on-click="onClick">
+            <div class="oe_icon oe_green">
+                <i class="fa fa-shopping-cart cart_screen_show" aria-hidden="true"></i>
+            </div>
+        </div>
+    </t>
+	
+</templates>

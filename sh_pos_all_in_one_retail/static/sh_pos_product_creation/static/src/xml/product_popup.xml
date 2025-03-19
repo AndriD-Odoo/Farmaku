@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="product_popup_template" xml:space="preserve">
+    <t t-name="Product_popup" owl="1">
+        <div role="dialog" class="modal-dialog sh_create_product_popup" style="tesxt-align: left !important;">
+            <div class="popup popup-alert create_product_popup" style="width: 600px;">
+                <header class="title product-title">
+                    Add Product
+                </header>
+
+                <main class="body pos_product_body">
+                    <input type="hidden" class="available_in_pos" value="True" />
+                    <div>
+                        <input style="width: 70%;" type="text" name="name" class="name" placeholder="Enter Name" />
+                    </div>
+                    <div style="margin: 10px 0px;">
+                        <div class="checkbox sh_custom_checkbox">
+                            <input style="width: 22px;" type="checkbox" id="sold" class="sold" />
+                            <label for="sold" class="chk_lbl">Can be Sold </label>
+                            <span class="checkbox-item sh_custom_checkbox">
+                                <input type="checkbox" style="width: 22px;" id="purchase" class="purchase" />
+                                <label for="purchase" class="chk_lbl">Can be Purchase </label>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="product-item">
+                        <div>
+                            <label>Product Type : </label>
+                            <select class="produc_type" style="height: 40px; width: 240px;">
+                                <option value="consu">Consumable</option>
+                                <option value="service">Service</option>
+                                <option value="product">Storable Product</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Product Category : </label>
+                            <select id="product_category" style="width: 200px;">
+                                <t t-foreach="env.pos.product_categorie" t-as="each_category">
+                                    <option t-att-id="each_category.id" t-att-value="each_category.id"><t t-esc="each_category.display_name" /></option>
+                                </t>
+                                <option class="create_category" value="newCategory"> Create New Category </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="pos-cat">
+                        <div>
+                            <label>Pos Category : </label>
+                            <select class="pos_category">
+                                <t t-foreach="env.pos.pos_category" t-as="each_pos_category">
+                                    <option t-att-id="each_pos_category.id" t-att-value="each_pos_category.id"> <t t-esc="each_pos_category.display_name" /> </option>
+                                </t>
+                            </select>
+                        </div>
+
+                        <div class="cat-create">
+                            <input type="text" class="category_name" placeholder="Enter Category Name" />
+                            <button id="add_category" t-on-click="addCategory" style="40px;">Create</button>
+                        </div>
+                    </div>
+                    <div class="internal-ref">
+                        <div>
+                            <label>Internal reference : </label>
+                            <input style="width: 70%;" type="text" class="reference" />
+                        </div>
+
+                        <div>
+                            <label>Barcode : </label>
+                            <input style="width: 70%;" type="text" class="barcode" />
+                        </div>
+                    </div>
+                    <div class="sale-cost">
+                        <div>
+                            <label>Sale Price : </label>
+                            <input style="width: 70%;" type="tel" id="price" />
+                        </div>
+                        <div>
+                            <label>Cost : </label>
+                            <input style="width: 70%;" type="text" id="cost" />
+                        </div>
+                    </div>
+                    <div>
+                        <label>Internal Notes : </label>
+                        <textarea style="width: 70%;" type="text" class="note" rows="3"></textarea>
+                    </div>
+                    <div class="barcode_content_part">
+                        <label>Barcodes : </label>
+                        <button id="sh_add_barcode" t-on-click="AddBarcode" style="margin: 5px 0px; background-color: #fff; border: none;font-size: 14px;">Add Barcode</button>
+                        <span class="sh_barcodes"></span>
+                        <span class="action_barcode">
+                            <span class="sh_remove_barcode fa fa-trash" t-on-click="sh_remove_barcode" style="padding: 10px; font-size: 20px;cursor: pointer;" />
+                            <span class="sh_save_barcode fa fa-save" t-on-click="sh_save_barcode" style="padding: 5px;cursor: pointer;" />
+                        </span>
+                        <div style='margin-top: 10px;font-size: 19px;' class="sh_barcode_ids">
+
+                        </div>
+                    </div>
+                </main>
+                <footer class="footer pos_product_footer">
+                    <div class="button Create" t-on-click="createProduct" style="background: #81c784; color: white;">
+                        Create
+                    </div>
+                    <div class="button cancel" t-on-click="cancelProduct">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+</templates>

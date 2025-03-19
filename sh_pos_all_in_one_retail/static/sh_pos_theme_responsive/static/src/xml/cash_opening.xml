@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    
+	<t t-name="CashBoxOpening" t-inherit="point_of_sale.CashBoxOpening" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[1]" position="attributes">
+			<attribute name="class">sh_cash_opening</attribute>
+		</xpath>
+		<xpath expr="//div[1]//h1[3]" position="attributes">
+			<attribute name="class">sh_notes</attribute>
+		</xpath>
+		<xpath expr="//div[1]//h1[1]" position="replace">
+			<h1>
+				<span>
+					Pos closed.
+				</span>
+				<span>
+					Set a cash opening
+				</span>
+
+			</h1>
+		</xpath>
+		<xpath expr="//input[hasclass('cashbox-input')]" position="replace">
+		</xpath>
+		<xpath expr="//span[hasclass('currencyCashBox')]" position="replace">
+		</xpath>
+		<xpath expr="//div[1]//h1[2]" position="replace">
+			<div class="sh_opening_amount"><h1>Opening amount:</h1>
+				<input name="cashBoxValue" class="cashbox-input" t-on-change="captureChange" t-att-value="defaultValue"/>
+				<span class="currencyCashBox" t-esc="symbol"/>
+			</div>
+		</xpath>
+		
+	</t>
+	
+</templates>

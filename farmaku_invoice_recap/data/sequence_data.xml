@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Define the sequence for settlement batches -->
+        <record id="sequence_settlement_batch" model="ir.sequence">
+            <field name="name">Settlement Batch Sequence</field>
+            <field name="code">farmaku.settlement.batch.sequence</field>
+            <field name="padding">2</field>
+            <field name="number_next_actual">1</field>
+        </record>
+    </data>
+</odoo>

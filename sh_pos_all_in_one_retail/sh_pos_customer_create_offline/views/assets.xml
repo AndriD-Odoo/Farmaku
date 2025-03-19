@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="sh_pos_customer_creation_offline_fronted_inherit" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_customer_create_offline/static/src/js/models.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_customer_create_offline/static/src/js/create_customer.js" />
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,123 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="category_farmaku_tree">
+            <field name="name">category.farmaku.tree</field>
+            <field name="model">category.farmaku</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="icon_url_path"/>
+                    <field name="image_url_path"/>
+                    <field name="is_show_homepage"/>
+                    <field name="category_key"/>
+                    <field name="meta_description"/>
+                    <field name="meta_keyword"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="category_farmaku_form">
+            <field name="name">category.farmaku.form</field>
+            <field name="model">category.farmaku</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="icon_url_path"/>
+                            <field name="image_url_path"/>
+                            <field name="is_show_homepage"/>
+                            <field name="category_key"/>
+                            <field name="meta_description"/>
+                            <field name="meta_keyword"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="category_farmaku_action">
+            <field name="name">Category Farmaku</field>
+            <field name="res_model">category.farmaku</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_category_farmaku"
+            name="Category Farmaku"
+            parent="menu_master_farmaku"
+            action="category_farmaku_action"
+        />
+
+        <record model="ir.ui.view" id="product_category_farmaku_tree">
+            <field name="name">product.category.farmaku.tree</field>
+            <field name="model">product.category.farmaku</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="category_id"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_category_farmaku_form">
+            <field name="name">product.category.farmaku.form</field>
+            <field name="model">product.category.farmaku</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="category_id"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_category_farmaku_action">
+            <field name="name">Product Category Farmaku</field>
+            <field name="res_model">product.category.farmaku</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_product_category_farmaku"
+            name="Product Category Farmaku"
+            parent="menu_master_farmaku"
+            action="product_category_farmaku_action"
+        />
+    </data>
+</odoo>

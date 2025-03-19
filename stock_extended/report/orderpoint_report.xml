@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="orderpoint_report_document">
+        <t t-call="base_extended.html_container">
+            <t t-set="o" t-value="o.with_context(lang=lang)"/>
+            <t t-call="base_extended.external_layout">
+                <div class="page">
+                    <br/>
+                    <form action="/reordering_rule/export_excel" method="get">
+                        <input type="hidden" name="wizard_id" t-att-value="o.id"/>
+                        <button type="submit" class="btn-primary">Export to Excel</button>
+                    </form>
+                    <br/>
+                    <h2><center>REORDERING RULES REPORT</center></h2>
+                    <div class="row">
+                        <div class="col-1" style="min-width:50mm;">Product</div>:<![CDATA[&nbsp;]]><span t-esc="o.get_field_string()[0]"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-1" style="min-width:50mm;">Brand</div>:<![CDATA[&nbsp;]]><span t-esc="o.get_field_string()[1]"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-1" style="min-width:50mm;">Dot Color</div>:<![CDATA[&nbsp;]]><span t-esc="o.get_field_string()[2]"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-1" style="min-width:50mm;">Warehouse</div>:<![CDATA[&nbsp;]]><span t-esc="o.get_field_string()[3]"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-1" style="min-width:50mm;">Move Categories</div>:<![CDATA[&nbsp;]]><span t-esc="o.get_field_string()[4]"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-1" style="min-width:50mm;">Product Display</div>:<![CDATA[&nbsp;]]><span t-esc="o.get_field_string()[5]"/>
+                    </div>
+                    <br/>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" style="min-width:200px;vertical-align:middle;"><center>Code</center></th>
+                                <th rowspan="2" style="min-width:300px;vertical-align:middle;"><center>Product</center></th>
+                                <th rowspan="2" style="min-width:150px;vertical-align:middle;"><center>Brand</center></th>
+                                <th rowspan="2" style="min-width:50px;vertical-align:middle;"><center>Dot</center></th>
+                                <t t-foreach="o.get_location_ids()" t-as="location">
+                                    <th style="border-right: 2px solid; border-color: black;" colspan="9"><center><span t-esc="location.display_name"/></center></th>
+                                </t>
+                            </tr>
+                            <tr>
+                                <t t-foreach="o.get_location_ids()" t-as="location2">
+                                    <th style="width: 70px;">Stock</th>
+                                    <th style="width: 70px;">W?</th>
+                                    <th style="width: 70px;">Min</th>
+                                    <th style="width: 70px;">L30D</th>
+                                    <th style="width: 70px;">L90D</th>
+                                    <th style="width: 70px;">A90D</th>
+                                    <th style="width: 70px;">Cat</th>
+                                    <th style="width: 70px;">TTB</th>
+                                    <th style="width: 70px; border-right: 2px solid; border-color: black;">RFQ</th>
+                                </t>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.get_data_for_qweb().items()" t-as="group">
+                                <tr>
+                                    <td style="border: 1px solid black;vertical-align:middle;">
+                                        <span t-esc="group[0][0]"/>
+                                    </td>
+                                    <td style="border: 1px solid black;vertical-align:middle;">
+                                        <span t-esc="group[0][1]"/>
+                                    </td>
+                                    <td style="border: 1px solid black;vertical-align:middle;">
+                                        <span t-esc="group[0][2].name"/>
+                                    </td>
+                                    <t t-if="group[0][4].name == 'Red'">
+                                        <td style="border: 1px solid black;background-color:#FF0000;"/>
+                                    </t>
+                                    <t t-elif="group[0][4].name == 'Green'">
+                                        <td style="border: 1px solid black;background-color:#008000;"/>
+                                    </t>
+                                    <t t-elif="group[0][4].name == 'Blue'">
+                                        <td style="border: 1px solid black;background-color:#0000FF;"/>
+                                    </t>
+                                    <t t-elif="group[0][4].name == 'Transparent'">
+                                        <td style="border: 1px solid black;background-color:#e8e5e5;"/>
+                                    </t>
+                                    <t t-else="">
+                                        <td style="border: 1px solid black;"/>
+                                    </t>
+                                    <t t-foreach="group[1]" t-as="data">
+                                        <t t-if="data.get('stock_lower_than_min_qty', False)">
+                                            <td class="text-right" style="border: 1px solid black;vertical-align:middle;background-color:#C3352B;color:#FFFFFF;">
+                                                <strong><span t-esc="data.get('stock', 0)"/></strong>
+                                            </td>
+                                        </t>
+                                        <t t-else="">
+                                            <td class="text-right" style="border: 1px solid black;vertical-align:middle;">
+                                                <strong><span t-esc="data.get('stock', 0)"/></strong>
+                                            </td>
+                                        </t>
+                                        <td style="border: 1px solid black;vertical-align:middle;">
+                                            <span t-esc="data.get('wajib', '')"/>
+                                        </td>
+                                        <td class="text-right" style="border: 1px solid black;vertical-align:middle;">
+                                            <span t-esc="data.get('min', 0)"/>
+                                        </td>
+                                        <td class="text-right" style="border: 1px solid black;vertical-align:middle;">
+                                            <span t-esc="data.get('l30d', 0)"/>
+                                        </td>
+                                        <td class="text-right" style="border: 1px solid black;vertical-align:middle;">
+                                            <span t-esc="data.get('l90d', 0)"/>
+                                        </td>
+                                        <td class="text-right" style="border: 1px solid black;vertical-align:middle;">
+                                            <span t-esc="data.get('a90d', 0)"/>
+                                        </td>
+                                        <td style="border: 1px solid black;vertical-align:middle;">
+                                            <span t-esc="data.get('category', '')"/>
+                                        </td>
+                                        <td class="text-right" style="border: 1px solid black;vertical-align:middle;">
+                                            <span t-esc="data.get('ttb', 0)"/>
+                                        </td>
+                                        <td class="text-right" style="border: 1px solid black; border-right: 2px solid black;vertical-align:middle;background-color:white;">
+                                            <span t-esc="data.get('rfq', 0)"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="orderpoint_report">
+        <t t-call="base_extended.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.env.user.lang"/>
+                <t t-call="stock_extended.orderpoint_report_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_orderpoint" model="ir.actions.report">
+        <field name="name">Reordering Rules Report</field>
+        <field name="model">orderpoint.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">stock_extended.orderpoint_report</field>
+        <field name="report_name">stock_extended.orderpoint_report</field>
+        <field name="binding_model_id" ref="model_orderpoint_report_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

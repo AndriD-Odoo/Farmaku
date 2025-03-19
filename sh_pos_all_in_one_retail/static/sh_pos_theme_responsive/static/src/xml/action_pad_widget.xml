@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-name="ActionpadWidget" t-inherit="point_of_sale.ActionpadWidget" t-inherit-mode="extension" owl="1">
+		<xpath expr="//button[hasclass('set-customer')]" position="replace">
+		</xpath>
+<!--		<xpath expr="//t[@t-esc='client.name']" position="after">-->
+<!--			<br/>-->
+<!--			<t t-if="client.mobile">-->
+<!--				<t t-esc="client.mobile" />-->
+<!--			</t>-->
+<!--		</xpath>-->
+		<xpath expr="//button[hasclass('pay')]" position="after">
+			<button class="button toggle" t-on-click="trigger('click-slide-down')">
+				<div class="slide_toggle_button">
+					<i class="fa fa-chevron-down" aria-hidden="true"></i>
+				</div>
+			</button>
+		</xpath>
+	</t>
+
+	<t t-name="NumpadWidget" t-inherit="point_of_sale.NumpadWidget" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('numpad')]" position="attributes">
+             <attribute name="class">numpad sh_product_numpad</attribute>
+        </xpath>
+		<xpath expr="//button[1]" position="replace">
+			<button class="input-button number-char" t-on-click="sendInput('1')">1</button>
+		</xpath>
+		<xpath expr="//button[2]" position="replace">
+			<button class="input-button number-char" t-on-click="sendInput('2')">2</button>
+		</xpath>
+		<xpath expr="//button[3]" position="replace">
+			<button class="input-button number-char" t-on-click="sendInput('3')">3</button>
+		</xpath>
+		<xpath expr="//button[4]" position="replace">
+			<button class="input-button number-char" t-on-click="sendInput('4')">4</button>
+		</xpath>
+		<xpath expr="//button[5]" position="replace">
+			<button class="input-button number-char" t-on-click="sendInput('5')">5</button>
+		</xpath>
+		<xpath expr="//button[6]" position="replace">
+			<button class="input-button number-char" t-on-click="sendInput('6')">6</button>
+		</xpath>
+		<xpath expr="//button[7]" position="replace">
+			<button class="input-button number-char" t-on-click="sendInput('7')">7</button>
+		</xpath>
+		<xpath expr="//button[8]" position="replace">
+			<button class="input-button number-char" t-on-click="sendInput('8')">8</button>
+		</xpath>
+		<xpath expr="//button[9]" position="replace">
+			<button class="input-button number-char" t-on-click="sendInput('9')">9</button>
+		</xpath>
+		<xpath expr="//button[10]" position="replace">
+			<button class="input-button number-char" t-on-click="sendInput('0')">0</button>
+		</xpath>
+		<xpath expr="//button[11]" position="replace">
+			<button class="input-button numpad-minus" t-on-click="sendInput('-')">+/-</button>
+		</xpath>
+		<xpath expr="//button[12]" position="replace">
+			<button class="input-button number-char" t-on-click="sendInput(decimalSeparator)">
+				<t t-esc="decimalSeparator" />
+			</button>
+		</xpath>
+		<xpath expr="//button[13]" position="replace">
+			<button class="mode-button" t-att-class="{'selected-mode': props.activeMode === 'quantity'}" t-on-click="changeMode('quantity')">Qty</button>
+		</xpath>
+		<xpath expr="//button[14]" position="replace">
+			<button class="mode-button" t-att-class="{
+	                        'selected-mode': props.activeMode === 'discount',
+	                        'disabled-mode': !hasManualDiscount
+	                    }" t-att-disabled="!hasManualDiscount" t-on-click="changeMode('discount')">Disc</button>
+		</xpath>
+		<xpath expr="//button[15]" position="replace">
+			<button class="mode-button" t-att-class="{
+	                    'selected-mode': props.activeMode === 'price',
+	                    'disabled-mode': !hasPriceControlRights
+	                }" t-att-disabled="!hasPriceControlRights" t-on-click="changeMode('price')">Price</button>
+		</xpath>
+		<xpath expr="//button[16]" position="replace">
+			<button class="input-button numpad-backspace" t-on-click="sendInput('Backspace')">
+					<img style="pointer-events: none;" src="/point_of_sale/static/src/img/backspace.png" width="24" height="21" alt="Backspace" />
+				</button>
+		</xpath>
+	</t>
+
+</templates>

@@ -1,0 +1,7 @@
+.coupon_for_mail_div{padding: 0px;width: 50%;margin: 0px auto !important;}
+.coupon_for_mail_div .email_header{background: #60bbbb;padding: 10px;font-weight: bold;text-align: center;color: #fff;font-size: 17px !important;}
+.coupon_for_mail_div .coupon_for_mail_inner_content{background: #e8e8e8;padding: 15px 14px 18px 14px;text-align: center;}
+.coupon_for_mail_div .coupon_for_mail_inner_content .coupon_for_mail_discount{color: #60bbbb;font-size: 22px;font-weight: bold;text-shadow: 1.5px 2px #b1dada;margin-bottom: 5px;}
+.coupon_for_mail_div .coupon_for_mail_inner_content .coupon_for_mail_code,
+.coupon_for_mail_div .coupon_for_mail_inner_content .coupon_for_mail_date,
+.coupon_for_mail_div .coupon_for_mail_inner_content .coupon_for_mail_desc{font-size: 14px;color: #7b7a7a;}

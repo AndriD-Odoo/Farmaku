@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id='template' xml:space="preserve">
+
+	<t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('before-footer')]" position="before">
+			<t t-if='env.pos.config.enable_weight and env.pos.config.product_weight_receipt'>
+				<div>
+                    Total Weight :
+					<t t-esc='env.pos.get_order().total_weight.toFixed(2)' />
+				</div>
+			</t>
+			<t t-if='env.pos.config.enable_volume and env.pos.config.product_volume_receipt'>
+				<div>
+                    Total Volume :
+					<t t-esc='env.pos.get_order().total_volume' />
+				</div>
+			</t>
+		</xpath>
+		<xpath expr="//div[hasclass('orderlines')]" position="replace">
+			<div class='orderlines'>
+				<t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
+					<t t-if='line.product_name == "Order line Section"'>
+						<t t-if='env.pos.config.enable_order_line_label_in_receipt and env.pos.config.enable_order_line_label  '>
+							<h5 class='line_label' style="width:100%;">
+								<span>
+									<t t-esc='env.pos.get_order().get_orderline_by_id(line.id)[0].add_section' />
+								</span>
+							</h5>
+						</t>
+					</t>
+					<t t-else="">
+						<t t-if="isSimple(line)">
+							<div>
+								<t t-esc="line.product_name_wrapped[0]" />
+								<span t-esc="env.pos.format_currency_no_symbol(line.price_display)" class="price_display pos-receipt-right-align"/>
+								<t t-if="line.line_discount">
+									<span class="discount_receipt">
+										<t t-foreach="line.line_discount" t-as="each_discount"> <t t-esc="each_discount" />, </t>
+									</span>
+								</t>
+							</div>
+							<div>
+								<WrappedProductNameLines line="line" />
+								<t t-if="env.pos.config.display_orderline_note_receipt">
+									<t t-if="line.line_note">
+										<div class="line_note_div">
+											<t t-esc="line.line_note" />
+										</div>
+									</t>
+								</t>
+								<div>
+									<t t-if='env.pos.config.enable_weight and env.pos.config.product_weight_receipt'>
+										<span class="sh_product_weight"> Weight: <t t-esc='line.weight' />
+										</span>
+									</t>
+									<t t-if='env.pos.config.enable_volume and env.pos.config.product_volume_receipt'>
+										<span class="sh_product_volume"> Volume: <t t-esc='line.volume' />
+										</span>
+									</t>
+								</div>
+
+							</div>
+
+						</t>
+						<t t-else="">
+							<div t-esc="line.product_name_wrapped[0]" />
+							<WrappedProductNameLines line="line" />
+
+							<t t-if="line.display_discount_policy == 'without_discount' and line.price != line.price_lst
+								and line.unit_name == line.secondary_unit_name">
+								<div class="pos-receipt-left-padding">
+									<s><t t-esc="env.pos.format_currency_no_symbol(line.price_lst)" /></s>
+	                                ->
+									<t t-esc="env.pos.format_currency_no_symbol(line.price)" />
+								</div>
+							</t>
+							<t t-elif="line.discount !== 0">
+								<div class="pos-receipt-left-padding">
+									<t t-if="env.pos.config.iface_tax_included === 'total'">
+										<t t-esc="env.pos.format_currency_no_symbol(line.price_with_tax_before_discount)"/>
+									</t>
+									<t t-else="">
+										<t t-esc="env.pos.format_currency_no_symbol(line.price)"/>
+									</t>
+								</div>
+							</t>
+							<t t-if="line.discount !== 0">
+								<div class="pos-receipt-left-padding">
+	                                Discount: <t t-esc="line.discount" />
+%
+								</div>
+							</t>
+							<div class="pos-receipt-left-padding">
+								<span style='padding-right: 2px;'>
+									<t t-esc="Math.round(line.quantity * Math.pow(10, env.pos.dp['Product Unit of Measure'])) / Math.pow(10, env.pos.dp['Product Unit of Measure'])"/> 
+								</span>
+								
+								<t t-if='env.pos.config.sh_enable_seconadry and env.pos.config.display_uom_in_receipt '>
+									<span>
+										<t t-if="line.secondary_unit_name">
+											<t t-esc='line.secondary_unit_name'></t>
+										</t>
+									</span>
+								</t>
+								<t t-else="">
+									<t t-if="line.unit_name !== 'Units'" t-esc="line.unit_name" />
+								</t>
+								<t t-if="env.pos.config.sh_dispaly_bag_qty">
+									<t t-if="line.bags">
+										<span class="baglabel"> (											<t t-esc="line.bags" />
+											<span class="bags">  Bags) </span>
+										</span>
+									</t>
+								</t>
+	                            x
+<!--								<div>-->
+									<!-- <t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)" /> -->
+								<t t-if='env.pos.config.enable_price_to_display and env.pos.config.sh_enable_seconadry'>
+									<t t-esc="env.pos.format_currency_no_symbol(line.unit_price)" />
+								</t>
+								<t t-else=''>
+									<t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)" />
+								</t>
+								<span class="price_display pos-receipt-right-align">
+									<t t-esc="env.pos.format_currency_no_symbol(line.price_display)" />
+								</span>
+<!--									<t t-if='env.pos.config.sh_enable_seconadry and env.pos.config.display_uom_in_receipt'>-->
+<!--										<t t-if="env.pos.config.enable_price_to_display and env.pos.config.sh_enable_seconadry">-->
+<!--											<t t-if="line.secondary_unit_name">-->
+<!--												/-->
+<!--												<span>-->
+<!--													<t t-esc='line.secondary_unit_name'></t>-->
+<!--												</span>-->
+<!--											</t>-->
+<!--										</t>-->
+<!--										<t t-else="">-->
+<!--											<t t-if="line.primary_unit_name">-->
+<!--												/-->
+<!--												<span>-->
+<!--													<t t-esc='line.primary_unit_name'></t>-->
+<!--												</span>-->
+<!--											</t>-->
+<!--										</t>-->
+<!--									</t>-->
+<!--									<t t-else="">-->
+<!--										/ -->
+<!--										<span style="padding-left: 3px">-->
+<!--											<t t-esc='line.primary_unit_name'></t>-->
+<!--										</span>-->
+<!--									</t>-->
+<!--								</div>-->
+								<t t-if="env.pos.config.display_orderline_note_receipt">
+									<t t-if="line.line_note">
+										<div class="line_note_div">
+											<t t-esc="line.line_note" />
+										</div>
+									</t>
+								</t>
+								<div>
+									<t t-if='env.pos.config.enable_weight and env.pos.config.product_weight_receipt'>
+										<span class="sh_product_weight"> Weight: <t t-esc='line.weight' />
+										</span>
+									</t>
+									<t t-if='env.pos.config.enable_volume and env.pos.config.product_volume_receipt'>
+										<span class="sh_product_volume"> Volume: <t t-esc='line.volume' />
+										</span>
+									</t>
+								</div>
+							</div>
+							<t t-if="line.line_discount">
+								<span class="discount_receipt">
+									<t t-foreach="line.line_discount" t-as="each_discount"> <t t-esc="each_discount" />, </t>
+								</span>
+							</t>
+						</t>
+						<t t-if="line.pack_lot_lines">
+							<div class="pos-receipt-left-padding">
+								<ul>
+									<t t-foreach="line.pack_lot_lines" t-as="lot">
+										<li>
+	                                        SN <t t-esc="lot.attributes['lot_name']"/>
+										</li>
+									</t>
+								</ul>
+							</div>
+						</t>
+					</t>
+				</t>
+			</div>
+		</xpath>
+	</t>
+</templates>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="get_product_wizard_form" model="ir.ui.view">
+            <field name="name">get.product.wizard</field>
+            <field name="model">sync.pharmacies.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group string="Get Product">
+                        <field name="page"/>
+                        <field name="item_per_page"/>
+                        <field name="search_product"/>
+                        <field name="product_ids" widget="many2many_tags"
+                        placeholder="to search specific product code, leave blank to search all"/>
+                        <field name="pharmacy_code"/>
+                    </group>
+                    <footer>
+                        <button name="get_product_wizard"
+                            string="Get Product"
+                            type="object"
+                            class="oe_highlight"
+                            />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_get_product" model="ir.actions.act_window">
+            <field name="name">Action Wizard Get Product</field>
+            <field name="res_model">sync.pharmacies.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="get_product_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="update_stock_wizard_form" model="ir.ui.view">
+            <field name="name">update_stock.wizard</field>
+            <field name="model">sync.pharmacies.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group string="Update Stock">
+                        <field name="pharmacy_code"/>
+                        <field name="product_ids" widget="many2many_tags"
+                        placeholder="to update specific product code, leave blank to update all product"/>
+                    </group>
+                    <footer>
+                        <button name="update_stock_wizard"
+                            string="Update Stock"
+                            type="object"
+                            class="oe_highlight"
+                            />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_update_stock" model="ir.actions.act_window">
+            <field name="name">Action Wizard Update Stock</field>
+            <field name="res_model">sync.pharmacies.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="update_stock_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="update_price_wizard_form" model="ir.ui.view">
+            <field name="name">update.price.wizard</field>
+            <field name="model">sync.pharmacies.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group string="Update Price">
+                        <field name="pharmacy_code"/>
+                        <field name="product_ids" widget="many2many_tags"
+                        placeholder="to update specific product code, leave blank to update all product"/>
+                    </group>
+                    <footer>
+                        <button name="update_price_wizard"
+                            string="Update Price"
+                            type="object"
+                            class="oe_highlight"
+                            />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_update_price" model="ir.actions.act_window">
+            <field name="name">Action Wizard Update Price</field>
+            <field name="res_model">sync.pharmacies.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="update_price_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="upload_product_wizard_form" model="ir.ui.view">
+            <field name="name">upload.product.wizard</field>
+            <field name="model">sync.pharmacies.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group string="Upload Product">
+                        <field name="csv_format" required="1"/>
+                        <field name="delimiter" required="1"/>
+                        <field name="row_start" required="1"/>
+                        <field name="worksheet_name"/>
+                    </group>
+                    <group string="File csv">
+                        <field name="file" filename="filename"/>
+                        <field name="filename" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button name="upload_product_wizard"
+                            string="Upload Product"
+                            type="object"
+                            class="oe_highlight"
+                            />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_upload_product" model="ir.actions.act_window">
+            <field name="name">Action Wizard Upload Product</field>
+            <field name="res_model">sync.pharmacies.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="upload_product_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="get_cancel_reason_form" model="ir.ui.view">
+            <field name="name">get.cancelreason.wizard</field>
+            <field name="model">sync.pharmacies.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group string="Get Cancel Reason">
+                    </group>
+                    <footer>
+                        <button name="get_cancel_reason"
+                            string="Get Cancel Reason"
+                            type="object"
+                            class="oe_highlight"
+                            />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_get_cancelreason" model="ir.actions.act_window">
+            <field name="name">Action Get Cancel Reason</field>
+            <field name="res_model">sync.pharmacies.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="get_cancel_reason_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem 
+            id="menu_connector_inventory"
+            name="Connector"
+            parent="stock.menu_stock_root"
+        />
+        <menuitem
+            id="submenu_get_product"
+            name="Get Product"
+            parent="menu_connector_inventory"
+            action="wizard_get_product"
+        />
+        <menuitem
+            id="submenu_update_stock"
+            name="Update Stock"
+            parent="menu_connector_inventory"
+            action="wizard_update_stock"
+        />
+        <!-- <menuitem
+            id="submenu_update_price"
+            name="Update Price"
+            parent="menu_connector_inventory"
+            action="wizard_update_price"
+        /> -->
+        <menuitem
+            id="submenu_upload_product"
+            name="Upload Product"
+            parent="menu_connector_inventory"
+            action="wizard_upload_product"
+        />
+        
+        <menuitem 
+            id="menu_connector_sale" 
+            name="Connector" 
+            parent="sale.sale_menu_root"/>
+
+        <menuitem
+            id="submenu_get_cancelreason"
+            name="Get Cancel Reason"
+            parent="menu_connector_sale"
+            action="wizard_get_cancelreason"
+        />
+    </data>
+</odoo>

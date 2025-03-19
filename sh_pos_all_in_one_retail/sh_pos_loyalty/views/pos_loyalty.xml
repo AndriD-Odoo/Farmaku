@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+         <record id="aspl_view_customer_form" model="ir.ui.view">
+            <field name="name">Customer Form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook>
+                    <page string = "Loyalty">
+                        <group>
+                            <field name = "sh_user_point"/>
+                            <field name = "sh_user_point_amount" readonly="1"/>
+                            <field name = "sh_expiry_date"/>
+                            <field name = "sh_loyalty_card_no"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="sh_pos_loyalty_details" model="ir.ui.view">
+            <field name="name">pos.config.settings.product.create.details</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='accounting_section']" position="after">
+                    <h3>Manage Coupon</h3>
+
+                    <div class="row mt16 o_settings_container">
+                        <div id="category_reference" class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="sh_enable_coupon" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="sh_enable_coupon" />
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Loyalty Programme</h3>
+
+                    <div class="row mt16 o_settings_container">
+                        <div id="category_reference" class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="sh_enable_loyalty" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="sh_enable_loyalty" />
+                            </div>
+                        </div>
+
+                        <div id="category_reference" class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('sh_enable_loyalty','!=',True)],'required': [('sh_enable_loyalty','=',True)]}">
+                            <div class="o_setting_left_pane">
+                                
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="sh_loyalty_rule" />
+                                <br/>
+                                <field name="sh_loyalty_rule" />
+                            </div>
+                        </div>
+                        <div id="category_reference" class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('sh_enable_loyalty','!=',True)],'required': [('sh_enable_loyalty','=',True)]}">
+                            <div class="o_setting_left_pane">
+                                
+                                <!-- <field name="iface_display_categ_images"/> -->
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="sh_loyalty_point_amount" />
+                                <br/>
+                                <field name="sh_loyalty_point_amount"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="sh_loyalty_tree" model="ir.ui.view">
+            <field name="name">Sh Loyalty tree</field>
+            <field name="model">sh.pos.loyalty</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="sh_loyalty_form" model="ir.ui.view">
+            <field name="name">Sh Loyalty form</field>
+            <field name="model">sh.pos.loyalty</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="sh_point_per_order" />
+                                <field name="sh_point_per_product" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name='sh_loyalty_rule'>
+                                     <form>
+                                        <group>
+                                            <group>
+                                                <field name="name" required="1" />
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <group>
+                                                <field name="sh_rule_type"/>
+                                            </group>
+                                            <group>
+                                                <field name='sh_category_ids' widget='many2many_tags' attrs="{'invisible': [('sh_rule_type','=','product')]}"/>
+                                                 <field name='sh_product_ids' widget='many2many_tags' attrs="{'invisible': [('sh_rule_type','=','category')]}" domain="[('available_in_pos', '=', 'true')]"/>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <group>
+                                                <field name="sh_point_per_product"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="sh_point_per_product"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name='sh_loyalty_reward'>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="name" required="1" />
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <group>
+                                                <field name="sh_reward_type"/>
+                                            </group>
+                                            <group>
+                                                <field name='sh_product_ids' widget='many2many_tag' attrs="{'invisible': [('sh_reward_type','=','discount')]}" domain="[('available_in_pos', '=', 'true')]"/>
+                                                <field name='sh_discount_percen' attrs="{'invisible':[('sh_reward_type','=','gift')]}"/>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <group>
+                                                <field name="sh_point_cost"/>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <group>
+                                                <field name="sh_minimum_point"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="sh_reward_type"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sh_coupon_tree" model="ir.ui.view">
+            <field name="name">Sh Coupon tree</field>
+            <field name="model">sh.pos.coupon</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="sh_coupon_form" model="ir.ui.view">
+            <field name="name">Sh Coupon form</field>
+            <field name="model">sh.pos.coupon</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_coupon_send" string="Send by Email" type="object" class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_pos_order" type="object"
+                                class="oe_stat_button" icon="fa-list">
+                                <div class="o_stat_info">
+                                    <field name="order_count" class="o_stat_value"/>
+                                    <span class="o_stat_text"> Orders</span>
+                                </div>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="sh_coupon_code"/>
+                                <field name='sh_coupon_for'/>
+                                <field name="sh_coupon_partner" attrs="{'invisible': [('sh_coupon_for','=','all')],'required': [('sh_coupon_for','!=','all')]}"/>
+                            </group>
+                            <group>
+                                <field name="sh_coupon_active"/>
+                                <field name='sh_coupon_expiry_date'/>
+                                <field name='sh_coupon_applicable_date'/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string = "General Info">
+                                <group string="Pricing">
+                                    <group>
+                                        <field name='sh_coupon_value'/>
+                                        <field name="sh_coupon_value_type"/>
+                                    </group>
+                                </group>
+                                <group string='Advanced Option'>
+                                    <group>
+                                        <field name="sh_coupon_type" widget="radio"/>
+                                        <field name="max_discount"/>
+                                    </group>
+                                    <group>
+                                        <field name="sh_minimum_cart_amount"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string = "General Info">
+                                <group string='Products'>
+                                    <group>
+                                        <field name="sh_product_filter"/>
+                                        <field name="sh_coupon_product_ids" widget="many2many_tags" attrs="{'invisible': [('sh_product_filter','!=','specific_product')],'required': [('sh_product_filter','=','specific_product')]}"  domain="[('available_in_pos', '=', 'true')]"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+                
+            </field>
+        </record>
+        
+        <record id="action_sh_loyalty_form" model="ir.actions.act_window">
+            <field name="name">Loyalty Programme</field>
+            <field name="res_model">sh.pos.loyalty</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_sh_coupon_form" model="ir.actions.act_window">
+            <field name="name">All Coupon</field>
+            <field name="res_model">sh.pos.coupon</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="pos_menu_loyalty_configuration"
+        name="Loyalty Programme"
+        parent="point_of_sale.menu_point_config_product"
+        sequence="12"
+        action="action_sh_loyalty_form"/>
+
+        <menuitem id="pos_menu_coupon_configuration"
+        name="All Coupon"
+        parent="point_of_sale.menu_point_config_product"
+        sequence="13"
+        action="action_sh_coupon_form"/>
+
+    </data>
+</odoo>

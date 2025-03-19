@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="ClientListScreen" t-inherit="point_of_sale.ClientListScreen" t-inherit-mode="extension">
+        <xpath expr="//table[hasclass('client-list')]//thead" position="replace">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th t-if="!env.isMobile">Address</th>
+                    <th>Phone</th>
+                    <th t-if="env.isMobile">ZIP8</th>
+                    <th>Email</th>
+                    <th>Point</th>
+                </tr>
+            </thead>
+        </xpath>
+    </t>
+
+    <t t-extend="OrderSummary" t-inherit="point_of_sale.OrderSummary" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('line')]" position="replace">
+
+            <div class="line sh_leftpane_loyalty_line">
+                <div class="entry total">
+                    <span class="badge">Total : </span>
+                    <span class="value">
+                        <t t-esc="props.total" />
+                    </span>
+                    <div t-if="props.tax" class="subentry">
+                        Taxes :
+                        <span class="value">
+                            <t t-esc="props.tax" />
+                        </span>
+                    </div>
+                </div>
+                <div class="summary clearfix sh_total_sec">
+                    <div class="line sh_left_line">
+                        <div class='entry point_total'>
+                            <span class="pre_define_point">
+                                <t t-if="props.pre_define_point">
+                                    <t t-esc="props.pre_define_point" />
+                                </t>
+                                <t t-else="">
+                                    0
+                                </t>
+                            </span>
+                            <div>+                                <span class="current_point">
+                                    <t t-if="props.current_point">
+                                        <t t-esc="props.current_point" />
+                                    </t>
+                                    <t t-else="">
+                                    0
+                                    </t>
+                                </span>
+                            </div>
+                            <div class="sh_border_bottom"></div>
+                            <div>
+                                <span class="total_point">
+                                    <t t-if="props.total_point">
+                                        <t t-esc="props.total_point" />
+                                    </t>
+                                    <t t-else="">
+                                    0
+                                    </t>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </xpath>
+    </t>
+
+    <t t-extend="OrderWidget" t-inherit="point_of_sale.OrderWidget" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('order')]" position="replace">
+            <div class="order">
+                <t t-if="orderlinesArray.length === 0">
+                    <div class='order-empty'>
+                        <i class='fa fa-shopping-cart' role="img" aria-label="Shopping cart" title="Shopping cart"/>
+                        <h1>This order is empty</h1>
+                    </div>
+                </t>
+                <t t-else="">
+                    <ul class="orderlines">
+                        <t t-foreach="orderlinesArray" t-as="orderline" t-key="orderline.id">
+                            <Orderline line="orderline" />
+                        </t>
+                    </ul>
+                    <OrderSummary total="state.total" tax="state.tax" pre_define_point="state.pre_define_point" current_point="state.current_point" total_point="state.total_point" />
+                </t>
+            </div>
+        </xpath>
+    </t>
+
+    <t t-extend="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('receipt-change')]" position="before">
+            <t t-if="env.pos.get_order().get_redeem_point()">
+                <div class=''>
+                    Redeem Loyalty Point
+                    <span t-esc='env.pos.get_order().get_redeem_point()' class="pos-receipt-right-align"/>
+                </div>
+                <div class=''>
+                    Redeem Loyalty amount
+                    <span t-esc='env.pos.format_currency(env.pos.get_order().get_redeem_point() * env.pos.config.sh_loyalty_point_amount)' class="pos-receipt-right-align"/>
+                </div>
+            </t>
+        </xpath>
+        <xpath expr="//div[hasclass('before-footer')]" position="before">
+            <t t-if="env.pos.config.sh_enable_loyalty">
+                <div class=''>
+                Earned Loyalty Point
+                    <span t-esc='env.pos.get_order().get_loyalty_point()' class="pos-receipt-right-align"/>
+                </div>
+            </t>
+            <t t-if="env.pos.get_order().applied_coupon">
+                <div class=''>
+                Coupon Code
+                    <span t-esc='env.pos.get_order().applied_coupon[0]' class="pos-receipt-right-align"/>
+                </div>
+                <div class=''>
+                Coupon Amount
+                    <span t-esc="env.pos.format_currency(env.pos.get_order().coupon_amount)" class="pos-receipt-right-align"/>
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+    <t t-extend="PaymentScreen" t-inherit="point_of_sale.PaymentScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('payment-buttons')]" position="inside">
+            <t t-if="env.pos.config.sh_enable_loyalty">
+                <div class='button sh_redeem_loyalty' t-on-click="redeemLoyaltyButton">
+                    Redeem Loyalty
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+
+    <t t-name="RedeemLoyaltyPopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog sh_loyalty_point_popup">
+            <div class="popup popup-text popup-lg product-configurator-popup select_receiver_popup sh_loyalty_redeem_popup">
+                <header class="title">
+                    Redeem Loyalty Points
+                </header>
+                <div class="main-body touch-scrollable scrollable-y note_body sh_main_body">
+                    <t t-if="env.pos.get_order().get_client()">
+                        <div class="d-flex">
+                            <div class="sh_total_points">  Total Points : 
+                                <t t-esc="env.pos.get_order().get_client().sh_user_point"/>
+                            </div>
+                            <div class="sh_loyalty_mthd">
+                                <span class="sh_span_loyalty_mthd">Used Method : </span>
+                                <select id="payment_method_selection">
+                                    <t t-foreach="env.pos.payment_methods" t-as="each_payment_method">
+                                        <option t-att-value = 'each_payment_method.id'>
+                                            <t t-esc="each_payment_method.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class='popup-input value active sh_popup_input_box'>
+                            <t t-esc="inputBuffer" />
+                        </div>
+                        <div class="popup-numpad">
+                            <button class="input-button number-char" t-on-mousedown.prevent="sendInput('1')">1</button>
+                            <button class="input-button number-char" t-on-mousedown.prevent="sendInput('2')">2</button>
+                            <button class="input-button number-char" t-on-mousedown.prevent="sendInput('3')">3</button>
+                            <t t-if="props.cheap">
+                                <button class="mode-button add" t-on-mousedown.prevent="sendInput('+1')">+1</button>
+                            </t>
+                            <t t-if="!props.cheap">
+                                <button class="mode-button add" t-on-mousedown.prevent="sendInput('+10')">+10</button>
+                            </t>
+                            <br />
+                            <button class="input-button number-char" t-on-mousedown.prevent="sendInput('4')">4</button>
+                            <button class="input-button number-char" t-on-mousedown.prevent="sendInput('5')">5</button>
+                            <button class="input-button number-char" t-on-mousedown.prevent="sendInput('6')">6</button>
+                            <t t-if="props.cheap">
+                                <button class="mode-button add" t-on-mousedown.prevent="sendInput('+2')">+2</button>
+                            </t>
+                            <t t-if="!props.cheap">
+                                <button class="mode-button add" t-on-mousedown.prevent="sendInput('+20')">+20</button>
+                            </t>
+                            <br />
+                            <button class="input-button number-char" t-on-mousedown.prevent="sendInput('7')">7</button>
+                            <button class="input-button number-char" t-on-mousedown.prevent="sendInput('8')">8</button>
+                            <button class="input-button number-char" t-on-mousedown.prevent="sendInput('9')">9</button>
+                            <button t-if="!props.isPassword" class="input-button number-char" t-on-mousedown.prevent="sendInput('-')">-</button>
+                            <br />
+                            <button class="input-button numpad-char" t-on-mousedown.prevent="sendInput('Delete')">C</button>
+                            <button class="input-button number-char" t-on-mousedown.prevent="sendInput('0')">0</button>
+                            <button class="input-button number-char dot" t-on-mousedown.prevent="sendInput(decimalSeparator)">
+                                <t t-esc="decimalSeparator" />
+                            </button>
+                            <button class="input-button numpad-backspace" t-on-mousedown.prevent="sendInput('Backspace')">
+                                <img style="pointer-events: none;" src="/point_of_sale/static/src/img/backspace.png" width="24" height="21" alt="Backspace" />
+                            </button>
+                            <br />
+                        </div>
+                    </t>
+                </div>
+                <footer class="footer sh_select_receiver_footer">
+                    <div class="button confirm" t-on-click="confirm">
+                        Done
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="RewardBtn" owl="1">
+        <div class="control-button" t-on-click="trigger('click-reward-btn')">
+            <a style="display: flex;align-items: center;" class="btn btn-primary">
+                <div class="sh_icon_img" style="margin-right: 10px;display: flex;">
+                    <!-- <img src="/sh_pos_all_in_one_retail/static/src/img/rewards.png" alt="Warehouse" style="height:18px;width:18px;" /> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 88 126.33">
+                        <path d="M71,7a44,44,0,1,0,44,44A44,44,0,0,0,71,7Zm0,84a40,40,0,1,1,40-40A40,40,0,0,1,71,91Zm0-76a36,36,0,1,0,36,36A36,36,0,0,0,71,15Zm0,68a32,32,0,1,1,32-32A32,32,0,0,1,71,83ZM51,91,37,123l11-4s3-2,4,0l6,8L70.5,95h4.57L73,99l11,28,6-7s1-3,4-1l11,4L90.43,90.49l3.67-2L111,126s1,3-3,3l-15-6-8,10a2.19,2.19,0,0,1-3-1L71,105,60,132s-1,3-4,0l-7-9-15,6s-4,1-3-3L48,88l3.43,2.42ZM89,46.82a1.63,1.63,0,0,0-.9-2.77L78.3,42.63a1.63,1.63,0,0,1-1.22-.89l-4.39-8.89a1.62,1.62,0,0,0-2.9,0L65.4,41.74a1.63,1.63,0,0,1-1.22.89l-9.81,1.42a1.63,1.63,0,0,0-.9,2.77l7.1,6.92A1.62,1.62,0,0,1,61,55.17l-1.68,9.77a1.62,1.62,0,0,0,2.35,1.71L70.49,62A1.61,1.61,0,0,1,72,62l8.77,4.61a1.62,1.62,0,0,0,2.35-1.71l-1.68-9.77a1.62,1.62,0,0,1,.47-1.43Zm-11.2,6.59a.22.22,0,0,0-.06.18L79.2,62a.2.2,0,0,1-.29.21l-7.57-4a.21.21,0,0,0-.19,0l-7.57,4a.21.21,0,0,1-.3-.21l1.45-8.43a.19.19,0,0,0-.06-.18l-6.13-6a.21.21,0,0,1,.12-.35l8.46-1.23a.19.19,0,0,0,.15-.11l3.79-7.67a.2.2,0,0,1,.36,0l3.79,7.67a.21.21,0,0,0,.15.11l8.47,1.23a.21.21,0,0,1,.11.35Z" transform="translate(-27 -7)" class=""></path>
+                    </svg>
+                </div>
+                <div class="sh_text_span">
+                    <span class="sh_control_btn_span">Reward</span>
+                </div>
+            </a>
+        </div>
+    </t>
+
+    <t t-name="RewardOptionPopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog sh_reward_popup">
+            <div class="popup popup-text popup-lg product-configurator-popup select_receiver_popup">
+                <header class="title">
+                    Select Reward
+                </header>
+                <div class="main-body touch-scrollable scrollable-y note_body sh_main_body">
+                    <div class="sh_label_radio">
+                        <input class="sh_rd_input" type="radio" id="gift_reward" name="reward" value="gift" />
+                        <label class="sh_rd_lbl" for="gift_reward">Gift</label>
+                        <input class="sh_rd_input" type="radio" id="discount_reward" name="reward" value="discount" />
+                        <label class="sh_rd_lbl" for="discount_reward">Discount</label>
+                    </div>
+                    <t t-if="env.pos.db.gift_reward">
+                        <div class="sh_reward_popup_selection">
+                            <select class="gift_selection">
+                                <t t-foreach="env.pos.db.gift_reward" t-as="each_gift">
+                                    <option t-att-value='each_gift.sh_product_ids[0]'>
+                                        <t t-esc="each_gift.sh_product_ids[1]"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </t>
+                </div>
+                <footer class="footer sh_reward_popup_footer">
+                    <div class="button confirm" t-on-click="confirm">
+                        Select
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="ManageCouponBtn" owl="1">
+        <div class="control-button" t-on-click="trigger('click-manage-coupon-btn')">
+            <a style="display: flex;" class="btn btn-primary">
+                <div class="sh_icon_img" style="display: flex;margin-right: 10px;align-items: center;">
+                    <!-- <img class="sh_mng_cpn_action_btn" src="/sh_pos_all_in_one_retail/static/src/img/manage_coupon.png" alt="Warehouse" style="height:18px;width:18px;" /> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 127.5 87">
+                        <path d="M134,52V27H7L6.5,51.5C22,57,21,71,21,71,20,86,7,89,7,89v25H134V89c-13-4-14-17-14-17C119,57,134,52,134,52ZM112,72s1,16,14,22v12H47v-2H39v2H15V94s14-6,14-21c0,0,2-18-14-26V35H39v2h8V35h79V47A26.26,26.26,0,0,0,112,72ZM100,56H65V48h35Zm0,17H65V65h35Zm0,17H65V82h35ZM47,49H39V42h8Zm0,13H39V55h8Zm0,12H39V67h8Zm0,12H39V79h8Zm0,12H39V91h8Z" transform="translate(-6.5 -27)" class=""></path>
+                    </svg>
+                </div>
+                <div class="sh_text_span">
+                    <span class="sh_control_btn_span">Manage Coupon</span>
+                </div>
+            </a>
+        </div>
+    </t>
+
+    <t t-name="ManageCouponPopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog sh_manage_coupon_popup">
+            <div class="popup popup-text popup-lg product-configurator-popup select_receiver_popup">
+                <header class="title">
+                    Choose Your Option
+                </header>
+                <div class="main-body touch-scrollable scrollable-y note_body sh_main_body sh_manage_coupon_body">
+                    <div class="sh_d-flex">
+                        <t t-if="env and env.pos and env.pos.user and env.pos.user.groups_id and env.pos.user.groups_id.indexOf(env.pos.config.sh_enable_create_coupon[0]) != -1">
+                            <div class="create_coupon" t-on-click="create_coupon">
+                                <div class="box create_coupon_box">
+                                    <img src="/sh_pos_all_in_one_retail/static/sh_pos_loyalty/static/src/img/create_new_coupon.png" alt="img_crt_cpn" />
+                                    <h5>Click here to create new coupon</h5>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="env and env.pos and env.pos.user and env.pos.user.groups_id and env.pos.user.groups_id.indexOf(env.pos.config.sh_enable_redeem_coupon[0]) != -1">
+                            <div class="redeem_coupon" t-on-click="redeem_coupon">
+                                <div class="box redeem_coupon_box">
+                                    <img src="/sh_pos_all_in_one_retail/static/sh_pos_loyalty/static/src/img/existing_gift_coupon.png" alt="img_rdm_cpn" />
+                                    <h5>Click here to Redeem Existing coupon</h5>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+                <footer class="footer sh_manage_coupon_popup_footer">
+
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="CreateCouponPopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog sh_create_coupon_popup">
+            <div class="popup popup-text popup-lg product-configurator-popup select_receiver_popup">
+                <header class="title">
+                    Create New Coupon
+                </header>
+                <div class="main-body touch-scrollable scrollable-y note_body sh_main_body">
+                    <div class="sh_flex">
+                        <div class="create_coupon_left">
+                            <div class="cpn_name">
+                                <lable class="cpn_lbl">Coupon Name</lable>
+                                <input type="text" class="coupon_name"/>
+                            </div>
+                            <div class="expr_dt">
+                                <lable class="cpn_lbl">Expire Date</lable>
+                                <input type="date" class="coupon_expiry_date"/>
+                            </div>
+                            <div class="cpn_vlue">
+                                <lable class="cpn_lbl">Coupon Value</lable>
+                                <input type='text' class="coupon_value"/>
+                            </div>
+                            <div class="min_cart_amt">
+                                <lable class="cpn_lbl">Minimum Cart Amount</lable>
+                                <input type="text" class="coupon_minimum_cart_amount"/>
+                            </div>
+                            <div class="cpn_for">
+                                <lable class="cpn_lbl">Coupon For</lable>
+                                <select class="coupon_for">
+                                    <option value="all">All</option>
+                                    <option value="specific_customer">Specified Customer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="create_coupon_right">
+                            <div class="cpn_cd">
+                                <lable class="cpn_lbl">Coupon Code</lable>
+                                <input type="text" class="coupon_code"/>
+                            </div>
+                            <div class="app_form">
+                                <lable class="cpn_lbl">Applicable From</lable>
+                                <input type="date" class="coupon_applicable_date"/>
+                            </div>
+                            <div class="cpn_vlue_type">
+                                <lable class="cpn_lbl">Coupon Value Type</lable>
+                                <select class="coupon_value_type">
+                                    <option value='fixed'>Fixed</option>
+                                    <option value="percentage">Percentage</option>
+                                </select>
+                            </div>
+                            <div class="max_disc">
+                                <lable class="cpn_lbl">Maximum Discount</lable>
+                                <input type="text" class="coupon_max_discount"/>
+                            </div>
+                            <div class="cpn_type">
+                                <lable class="cpn_lbl">Coupon Type</lable>
+                                <div class="mt3">
+                                    <div class="cpn_crt_amt_validtion">
+                                        <input type="radio" id="coupon_type_cart_amount" name="coupon_type" value="cart_amount_validation" checked="1" />
+                                        <label class="cpn_type_cpn_lbl" for="coupon_type_cart_amount">Cart Amount Validation</label>
+                                    </div>
+                                    <div class="cpn_partial_redeemption">
+                                        <input type="radio" id="coupon_type_partial_redeemption" name="coupon_type" value="partial_redeemption" />
+                                        <label class="cpn_type_cpn_lbl" for="coupon_type_partial_redeemption">Partial Redeemption</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cpn_for_customer">
+                                <lable class="cpn_lbl">Coupon Customer</lable>
+                                <t t-if="env.pos.partners">
+                                    <select class="coupon_customer">
+                                        <t t-foreach="env.pos.partners" t-as="each_partner">
+                                            <option t-att-value='each_partner.id'>
+                                                <t t-esc="each_partner.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer sh_redeem_coupon_popup_footer">
+                    <div class="button confirm" t-on-click="confirm">
+                        Create
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="RedeemCouponPopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog sh_redeem_coupon_popup">
+            <div class="popup popup-text popup-lg product-configurator-popup select_receiver_popup">
+                <header class="title">
+                    Redeem Coupon
+                </header>
+                <div class="main-body touch-scrollable scrollable-y note_body sh_main_body">
+                    <div class="voucher_name">
+                        <h5>Enter Coupon Code</h5>
+                        <input type="text" class="coupon_name"/>
+                    </div>
+                </div>
+                <footer class="footer sh_redeem_coupon_popup_footer">
+                    <div class="button confirm" t-on-click="confirm">
+                        Validate
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+
+</templates>

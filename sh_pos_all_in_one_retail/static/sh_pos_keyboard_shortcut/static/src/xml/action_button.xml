@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ShortcutListTips" owl="1">
+        <div class="oe_status order-management" t-on-click="onClickShortcutTips">
+            <div class="oe_icon oe_green">
+                <img src="/sh_pos_all_in_one_retail/static/src/img/shortcut_tips.png" alt="Warehouse" style="height: 20px;width: 20px;" />
+            </div>
+        </div>
+    </t>
+</templates>

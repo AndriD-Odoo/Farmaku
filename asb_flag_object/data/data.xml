@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record id="model_account_move_bulk_create_payment" model="ir.actions.server">
+            <field name="name">Bulk Payment</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_bulk_payment()</field>
+        </record>
+        <record id="model_sale_order_flag_is_ready" model="ir.actions.server">
+            <field name="name">Flag Is Ready to Confirm ?</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.compute_ready_confirm()</field>
+        </record>
+        <record id="model_stock_picking_mark_as_todo" model="ir.actions.server">
+            <field name="name">Mark As Todo</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+for rec in records:
+    if rec:
+        rec.action_confirm()
+            </field>
+        </record>
+        <record id="model_stock_picking_check_availability" model="ir.actions.server">
+            <field name="name">Check Availability</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+for rec in records:
+    if rec:
+        rec.action_assign()
+            </field>
+        </record>
+    </data>
+</odoo>

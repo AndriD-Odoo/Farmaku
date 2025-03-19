@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sale_order_view_form_import_log" model="ir.ui.view">
+            <field name="name">notif.import.view.form.import.log</field>
+            <field name="model">notif.import</field>
+            <field name="arch" type="xml">
+                <form string="Import" create="0" edit="0">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="create_date"/>
+                            <field name="warehouse_id"/>
+                            <field name="count_success"/>
+                            <field name="count_fail"/>
+                        </group>
+                        <notebook>
+                            <page string="Log Import">
+                                <field name="notif_import_line" readonly="1">
+                                    <tree create="false" edit="false">
+                                        <field name="order"/>
+                                        <field name="sku"/>
+                                        <field name="product_name"/>
+                                        <field name="status"/>
+                                        <field name="reason"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sale_order_view_form_import" model="ir.ui.view">
+            <field name="name">notif.import.view.form.import</field>
+            <field name="model">notif.import</field>
+            <field name="arch" type="xml">
+                <form string="Import" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="create_date"/>
+                            <field name="warehouse_id"/>
+                            <field name="count_success"/>
+                            <field name="count_fail"/>
+                        </group>
+                        <notebook>
+                            <page string="Log Import">
+                                <field name="notif_import_line" readonly="1">
+                                    <tree create="false" edit="false">
+                                        <field name="order"/>
+                                        <field name="sku"/>
+                                        <field name="product_name"/>
+                                        <field name="status"/>
+                                        <field name="reason"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <footer>
+                            <button string="Save" class="btn-primary" special="save"/>
+                            <button string="Close" class="btn-secondary" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_order_view_tree_import_log">
+            <field name="name">notif.import.view.tree.import.log</field>
+            <field name="model">notif.import</field>
+            <field name="arch" type="xml">
+                <tree string="Import" create="0" edit="0" default_order="create_date desc">
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="warehouse_id" invisible="1"/>
+                    <field name="count_success"/>
+                    <field name="count_fail"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="notif_import_cron" model="ir.cron">
+            <field name="name">Delete Log Import SO</field>
+            <field name="model_id" ref="model_notif_import"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field name="state">code</field>
+            <field name="code">model.delete_notif_import()</field>
+        </record>
+
+        <record id="notif_import_product_line_cron" model="ir.cron">
+            <field name="name">Delete Log Notif Import Line</field>
+            <field name="model_id" ref="model_notif_import_line"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field name="state">code</field>
+            <field name="code">model.delete_notif_import_line()</field>
+        </record>
+
+        <record id="action_notif_import_log" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Import Log</field>
+            <field name="res_model">notif.import</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">No Import Log</p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_notif_import_log_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="sale_order_view_tree_import_log"/>
+            <field name="act_window_id" ref="action_notif_import_log"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_notif_import_log_form">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sale_order_view_form_import_log"/>
+            <field name="act_window_id" ref="action_notif_import_log"/>
+        </record>
+
+        <menuitem id="notif_import_menu" name="Log Import" parent="mkp_import_menu" action="action_notif_import_log"/>
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="section" model="product.template">
+        <field name="list_price">0</field>
+        <field name="standard_price">0</field>
+        <field name="type">consu</field>
+        <field name="name">Order line Section</field>
+        <field name="default_code">sh_pos_order_label_line</field>
+        <field name="active">True</field>
+        <field name="available_in_pos">True</field>
+        <field name="lst_price">0 </field>
+    </record>
+</odoo>

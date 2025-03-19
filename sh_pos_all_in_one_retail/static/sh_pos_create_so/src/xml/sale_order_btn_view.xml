@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="SaleOrderBtn" owl="1">
+        <div class="control-button" t-on-click="trigger('click-sale-order-button')">
+            <div>
+                <span class='fa fa-line-chart'></span>
+                Create Sale Order
+            </div>
+        </div>
+    </t>
+    <t t-name="saleOrderPopup" owl="1">
+        <div role="dialog" class="modal-dialog sh_pos_sale_order">
+            <div class="popup popup-alert">
+                <header class="title">
+                    <t t-esc="props.title" />
+                </header>
+                <main class="body">
+                    <t t-if='props.orders'>
+                        Sale Order Ref :
+                        <t t-foreach='props.orders' t-as='order'>
+                            <a target="_blank" class="so_name" t-attf-href="/mail/view?model=sale.order&amp;res_id={{order.id}}"><t t-esc="order.name" /></a> 
+                        </t>
+                    </t>
+                    <t t-else=''>
+                        <t t-esc='props.body' />
+                    </t>
+                </main>
+                <footer class="footer">
+                    <div class="button cancel_btn cancel" style='background: #6EC89B; color: white;' t-on-click="cancel">
+                        Ok
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+</templates>

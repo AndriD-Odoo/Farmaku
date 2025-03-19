@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="ir_config_parameter_stock_report_email" model="ir.config_parameter">
+            <field name="key">stock_extended.stock_report_email</field>
+            <field name="value">example@email.com, example2@email.com</field>
+        </record>
+
+        <record id="ir_config_parameter_exclude_sales_team" model="ir.config_parameter">
+            <field name="key">stock_extended.exclude_sales_team</field>
+            <field name="value">126,130</field>
+        </record>
+
+        <record id="ir_config_parameter_default_min_stock_tablet" model="ir.config_parameter">
+            <field name="key">stock_extended.default_min_stock_tablet</field>
+            <field name="value">30</field>
+        </record>
+
+        <record id="ir_config_parameter_default_min_stock_non_tablet" model="ir.config_parameter">
+            <field name="key">stock_extended.default_min_stock_non_tablet</field>
+            <field name="value">3</field>
+        </record>
+
+        <record id="ir_config_parameter_slow_min_qty" model="ir.config_parameter">
+            <field name="key">stock_extended.slow_min_qty</field>
+            <field name="value">3</field>
+        </record>
+
+        <record id="ir_config_parameter_pien_tze_huang_min_qty" model="ir.config_parameter">
+            <field name="key">stock_extended.pien_tze_huang_min_qty</field>
+            <field name="value">3</field>
+        </record>
+
+        <record id="ir_config_parameter_exclude_warehouse_daily_stock_movement" model="ir.config_parameter">
+            <field name="key">stock_extended.exclude_warehouse_daily_stock_movement</field>
+            <field name="value">5</field>
+        </record>
+
+    </data>
+</odoo>

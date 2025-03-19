@@ -1,0 +1,65 @@
+<odoo>
+    <data noupdate="1">
+        <record id="client_key_farmaku_integration" model="ir.config_parameter">
+            <field name="key">farmaku_client_key</field>
+            <field name="value">NUJuRTdkN3RVYm8zcUZEM3pta2t0akFyTTdjeGdkOWQ6</field>
+        </record>
+        <record id="server_key_farmaku_integration" model="ir.config_parameter">
+            <field name="key">farmaku_server_key</field>
+            <field name="value">5BnE7d7tUbo3qFD3zmkktjArM7cxgd9d</field>
+        </record>
+        <record id="url_farmaku_integration" model="ir.config_parameter">
+            <field name="key">farmaku_url</field>
+            <field name="value">https://securerx.public-api.eggaddict.com</field>
+        </record>
+
+        <record id="logs_importdata_farmaku_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_logs_importdata_endpoint</field>
+            <field name="value">v1/Logs/ImportData/Product/{id}</field>
+        </record>
+        <record id="order_cancelreason_farmaku_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_order_cancelreason_endpoint</field>
+            <field name="value">v1/Masters/Order/CancelReason</field>
+        </record>
+        <record id="orders_farmaku_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_orders_endpoint</field>
+            <field name="value">v1/Orders/{id}</field>
+        </record>
+        <record id="orders_proses_farmaku_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_orders_proses_endpoint</field>
+            <field name="value">v1/Orders/{id}/Process</field>
+        </record>
+        <record id="orders_cancel_farmaku_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_orders_cancel_endpoint</field>
+            <field name="value">v1/Orders/{id}/Cancel</field>
+        </record>
+        <record id="orders_deliver_farmaku_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_orders_deliver_endpoint</field>
+            <field name="value">v1/Orders/{id}/Deliver</field>
+        </record>
+        <record id="pharmacies_product_farmaku_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_pharmacies_product_endpoint</field>
+            <field name="value">v1/Products</field>
+        </record>
+        <record id="pharmacies_product_upload_farmaku_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_pharmacies_product_upload_endpoint</field>
+            <field name="value">v1/Products/Upload</field>
+        </record>
+        <record id="pharmacies_product_stock_farmaku_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_pharmacies_product_stock_endpoint</field>
+            <field name="value">v1/Products/Stock</field>
+        </record>
+        <record id="pharmacies_product_price_farmaku_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_pharmacies_product_price_endpoint</field>
+            <field name="value">v1/Products/Price</field>
+        </record>
+        <record id="change_warehouse_farmaku_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_change_warehouse_endpoint</field>
+            <field name="value">v1/Orders/{id}/Pharmacy</field>
+        </record>
+        <record id="ir_config_parameter_exclude_sales_team" model="ir.config_parameter">
+            <field name="key">asb_rest_api.exclude_sales_team_auto_create_invoice</field>
+            <field name="value">1234567,7654321</field>
+        </record>
+    </data>
+</odoo>

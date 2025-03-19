@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="sh_pos_bag_charges_setting" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_bag_charges/static/src/js/bag_charges.js" />
+            <link rel="stylesheet" type="text/css" href="/sh_pos_all_in_one_retail/static/sh_pos_bag_charges/static/src/scss/pos.scss" />
+        </xpath>
+    </template>
+</odoo>

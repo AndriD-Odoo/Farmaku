@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="product_move_category_fast" model="product.move.category">
+            <field name="category">fast</field>
+            <field name="sale_last_30_days">30</field>
+            <field name="min_buffer">30</field>
+            <field name="max_buffer">60</field>
+        </record>
+        <record id="product_move_category_medium" model="product.move.category">
+            <field name="category">medium</field>
+            <field name="sale_last_30_days">0</field>
+            <field name="min_buffer">15</field>
+            <field name="max_buffer">45</field>
+        </record>
+        <record id="product_move_category_slow" model="product.move.category">
+            <field name="category">slow</field>
+            <field name="sale_last_30_days">11</field>
+            <field name="min_buffer">10</field>
+            <field name="max_buffer">30</field>
+        </record>
+
+    </data>
+</odoo>

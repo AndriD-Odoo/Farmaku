@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 ForgeFlow S.L.
+     Copyright 2019 Serpent Consulting Services Pvt. Ltd.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo noupdate="0">
+    <!-- <record id="stock.warehouse0" model="stock.warehouse">
+        <field name="operating_unit_id" ref="operating_unit.main_operating_unit" />
+    </record>
+    <record id="stock.stock_location_stock" model="stock.location">
+        <field name="operating_unit_id" ref="operating_unit.main_operating_unit" />
+    </record> -->
+    <record id="model_update_operating_unit_location" model="ir.actions.server">
+        <field name="name">Update Operating Unit Location</field>
+        <field name="model_id" ref="stock.model_stock_warehouse"/>
+        <field name="binding_model_id" ref="stock.model_stock_warehouse"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">
+for rec in records:
+    if rec:
+        rec.update_operating_unit_location()
+        </field>
+    </record>
+    <record id="model_update_operating_unit_so" model="ir.actions.server">
+        <field name="name">Update Operating Unit SO</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">
+for rec in records:
+    if rec:
+        rec.update_operating_unit_so()
+        </field>
+    </record>
+</odoo>

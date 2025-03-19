@@ -1,0 +1,39 @@
+<odoo>
+	<data>
+		
+	    <record id="view_ms_magic_button" model="ir.ui.view">
+			<field name="name">Magic Button</field>
+			<field name="model">ms.magic.button</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				
+		        <form string="Magic Button">
+		        	<group>
+		        		<field name="action"/>
+		        	</group>
+		        	<group attrs="{'invisible': [('action', '!=', 'purchase_sale_price_revision')]}">
+						<field name="filename" invisible="1"/>
+						<field name="file" filename="filename" attrs="{'required': [('action', '=', 'purchase_sale_price_revision')]}"/>
+					</group>
+	                <footer>
+	                    <button name="action_magic" type="object" string="Do Your Magic" class="oe_highlight"/> or
+	                    <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>
+		          	
+		        </form>
+	    	</field>
+	    </record>
+		
+	    <record id="action_ms_magic_button" model="ir.actions.act_window">
+			<field name="name">Magic Button</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">ms.magic.button</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_ms_magic_button"/>
+			<field name="target">new</field>
+	    </record>
+		
+		<menuitem id="menu_ms_magic_button" parent="base.menu_custom" action="action_ms_magic_button" sequence="110"/>
+		
+	</data>
+</odoo>

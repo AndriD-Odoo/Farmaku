@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    
+    <t t-name="ProductsWidgetControlPanel" t-inherit="point_of_sale.ProductsWidgetControlPanel" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('breadcrumbs')]" position="before">
+            <t t-if="env.pos.config.sh_pos_switch_view">
+                <div class="sh_switch_view_icon">
+                    <button style="font-size:16px;" class="product_grid_view" t-on-click="trigger('click-product-grid-view')"  > <i class="fa fa-th"></i> </button>
+                    <button style="font-size:16px;" class="product_list_view" t-on-click="trigger('click-product-list-view')"  > <i class="fa fa-list"></i> </button>
+                </div>
+            </t>
+        </xpath>
+    </t>
+    
+    <t t-name="ProductList" t-inherit="point_of_sale.ProductList" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-list')]" position="replace">
+            <div t-if="props.products.length != 0" class="product-list sh_product_list_main">
+                <t t-if="env.pos.config.sh_pos_switch_view">
+                    <div class="product_grid sh_product_grid">
+                        <t t-if="env.pos.product_view == 'grid'">
+                            <t t-foreach="props.products" t-as="product" t-key="product.id">
+                            	<t t-if='product.default_code != "sh_pos_order_label_line"'>
+                            		<ProductItem product="product" />
+                            	</t>
+                            </t>
+                        </t>
+                    </div>
+                    <div class="product_list sh_product_list">
+                        <t t-if="env.pos.product_view == 'list'">
+                            <table>
+                                <thead>
+                                    <t t-if="env.pos.config.sh_display_product_image">
+                                        <th>Image</th>
+                                    </t>
+                                    <t t-if="env.pos.config.sh_display_product_name">
+                                        <th>Name</th>
+                                    </t>
+									<th t-if='env.pos.config.sh_pos_enable_product_variants'>Variants</th>
+                                    <t t-if="env.pos.config.sh_enable_prduct_code">
+                                        <th>Code</th>
+                                    </t>
+                                    <t t-if="env.pos.config.sh_dispaly_bag_qty">
+                                    	<th>Bag Quantity</th>
+                                    </t>
+                                    <t t-if="env.pos.config.sh_display_product_type">
+                                        <th>Type</th>
+                                    </t>
+                                    <t t-if="env.pos.config.sh_display_product_onhand">
+                                        <th>On Hand</th>
+                                    </t>
+                                    <t t-if="env.pos.config.sh_display_product_forecasted">
+                                        <th>Forecasted</th>
+                                    </t>
+                                    <t t-if="env.pos.config.sh_display_product_uom">
+                                        <th>UOM</th>
+                                    </t>
+                                    <t t-if="env.pos.config.sh_display_product_price">
+                                        <th>Price</th>
+                                    </t>
+				
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="props.products" t-as="product" t-key="product.id">
+                                    	<t t-if='product.default_code != "sh_pos_order_label_line"'>
+		                            		<ProductListItem product="product" />
+		                            	</t>
+                                        
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                    </div>
+                </t>
+                <t t-else="">
+                    <t t-foreach="props.products" t-as="product" t-key="product.id">
+                        <ProductItem product="product" />
+                    </t>
+                </t>
+            </div>
+        </xpath>
+    </t>
+
+    <!-- <t t-name="ProductListItem" owl="1">
+        <tr t-on-keypress="spaceClickProduct"
+                 t-on-click="trigger('click-product', props.product)"
+                 t-att-data-product-id="props.product.id"
+                 t-attf-aria-labelledby="article_product_{{props.product.id}}">
+            <t t-if="env.pos.config.sh_display_product_image">
+                <td>
+                    <t t-if="env.pos.config.sh_product_image_size == 'small_size'">
+                        <img t-att-src="imageUrl" t-att-alt="props.product.display_name" class="small_size_image"/>
+                    </t>
+                    <t t-if="env.pos.config.sh_product_image_size == 'medium_size'">
+                        <img t-att-src="imageUrl" t-att-alt="props.product.display_name" class="medium_size_image"/>
+                    </t>
+                    <t t-if="env.pos.config.sh_product_image_size == 'large_size'">
+                        <img t-att-src="imageUrl" t-att-alt="props.product.display_name" class="large_size_image"/>
+                    </t>
+                </td>
+            </t>
+            <t t-if="env.pos.config.sh_display_product_name">
+                <td>
+                    <t t-esc="props.product.display_name" />
+                </td>
+            </t>
+            <t t-if="env.pos.config.sh_display_product_code">
+                <td>
+                    <t t-if="props.product.default_code">
+                        <t t-esc="props.product.default_code"/>
+                    </t>
+                    <t t-else="">
+                        -
+                    </t>
+                </td>
+            </t>
+            <t t-if="env.pos.config.sh_display_product_type">
+                <td>
+                    <t t-if="props.product.type == 'consu'">
+                        Comsumable
+                    </t>
+                    <t t-if="props.product.type == 'product'">
+                        Storable
+                    </t>
+                    <t t-if="props.product.type == 'service'">
+                        Service
+                    </t>
+                </td>
+            </t>
+            <t t-if="env.pos.config.sh_display_product_onhand">
+                <t t-if="props.product.qty_available > 0">
+                    <t t-esc="props.product.qty_available"/>
+                </t>
+                <t t-else="">
+                    0
+                </t>
+            </t>
+            <t t-if="env.pos.config.sh_display_product_forecasted">
+                <t t-if="props.product.virtual_available > 0">
+                    <t t-esc="props.product.virtual_available"/>
+                </t>
+                <t t-else="">
+                    0
+                </t>
+            </t>
+            <t t-if="env.pos.config.sh_display_product_uom">
+                <t t-esc="props.product.uom_id[1]"/>
+            </t>
+            <t t-if="env.pos.config.sh_display_product_price">
+                <td>
+                    <span class="price-tag">
+                        <t t-esc="price" />
+                    </span>
+                </td>
+            </t>
+        </tr>
+    </t> -->
+    
+    <t t-name="ProductListItem" owl="1">
+    	<t t-if="env.pos.config.enable_product_bundle and props.product.sh_is_bundle">
+    		<tr t-on-keypress="spaceClickProduct" t-on-click="trigger('click-product', props.product)" t-att-data-product-id="props.product.id" t-attf-aria-labelledby="article_product_{{props.product.id}}" class="bundle_product_row">
+	            <t t-if="env.pos.config.sh_display_product_image">
+	                <td>
+	                    <t t-if="env.pos.config.sh_product_image_size == 'small_size'">
+	                        <img t-att-src="imageUrl" t-att-alt="props.product.display_name" class="small_size_image" />
+	                    </t>
+	                    <t t-if="env.pos.config.sh_product_image_size == 'medium_size'">
+	                        <img t-att-src="imageUrl" t-att-alt="props.product.display_name" class="medium_size_image" />
+	                    </t>
+	                    <t t-if="env.pos.config.sh_product_image_size == 'large_size'">
+	                        <img t-att-src="imageUrl" t-att-alt="props.product.display_name" class="large_size_image" />
+	                    </t>
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_display_product_name">
+	                <td>
+	                	<t t-if="env.pos.config.sh_pos_enable_product_variants">
+	            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+	                        	<t t-esc="props.product.name" />
+	                        </t>
+	                        <t t-else="">
+	                        	<t t-esc="props.product.display_name" />
+	                        </t>
+	                    </t>
+	                    <t t-else="">
+	                    	<t t-esc="props.product.display_name" />
+	                    </t>
+	                </td>
+	            </t>
+				<td t-if='env.pos.config.sh_pos_enable_product_variants' class='sh_pos_varint_list_view' >
+					<t t-set='variant' t-value='env.pos.db.has_variant(props.product.product_tmpl_id)' />
+					<span class='sh_has_variant sh_has_variant_count' t-if='variant.length > 1'> <t t-esc='variant.length' /> </span>
+				</td>
+	            <t t-if="env.pos.config.sh_enable_prduct_code">
+	                <td>
+	                    <t t-if="props.product.default_code">
+	                        <t t-esc="props.product.default_code" />
+	                    </t>
+	                    <t t-else="">
+	                        -
+	                    </t>
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_dispaly_bag_qty">
+	            	<td class="bag_td">
+	            		<t t-if="props.product.sh_qty_in_bag">
+		                   <t t-if="env.pos.config.sh_pos_enable_product_variants">
+		                        <t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+		                        </t>
+		                        <t t-else="">
+		                            <span class="bag-tag">
+		                                <svg id="Layer_1" data-name="Layer 1"
+		                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 95.4 116.7">
+		                                    <path d="M38,35.44V39.7H34.13c-1.71,0-2.05.31-2.18,1.95Q31.5,47.82,31.06,54l-3.72,51.45q-.4,5.51-.76,11c-.11,1.68.3,2.15,2,2.29L70.05,122c5.89.47,11.79,1,17.68,1.42.57,0,1.14,0,1.91,0-1.15-27.91-2.29-55.76-3.44-83.71H78.28V35.47h17.4c-.32-2-.48-3.92-.91-5.72a21.63,21.63,0,0,0-6.46-11.3c-4.57-4.18-9.63-4.32-14.42-.43l-1,.83-2.5-2.94c3.66-4.49,10.88-5.92,16.48-3.17,5.84,2.86,9.29,7.82,11.28,13.79a83.39,83.39,0,0,1,2,8.91h3.67c4,0,6.11,1.83,6.52,5.84,1,9.25,1.83,18.51,2.75,27.76L117,108.51c.23,2.26.49,4.52.67,6.79.28,3.4-1.15,5.54-4.41,6.61-5.56,1.83-11.15,3.57-16.7,5.46-2.92,1-5.85.57-8.78.34Q66.41,126,45,124.28q-8.84-.7-17.68-1.43a5.49,5.49,0,0,1-5-5.9c.21-4.69.61-9.37,1-14.06q1.13-15.58,2.26-31.16t2.27-31a5.51,5.51,0,0,1,5.66-5.28C35,35.42,36.45,35.44,38,35.44Zm56.75,85.75.39.38c2.95-2.11,5.92-4.18,8.83-6.34a2.12,2.12,0,0,1,2.25-.33c2.61,1,5.26,1.83,7.9,2.74l.17-.33c-.41-.28-.8-.6-1.22-.85-1.88-1.11-3.73-2.28-5.66-3.27a2.63,2.63,0,0,1-1.54-2.36c-.67-6.94-1.33-13.88-2.09-20.81q-2.28-20.79-4.67-41.57a10.4,10.4,0,0,0-.31-1.34,62.54,62.54,0,0,0,.13,8.34q2.13,27.51,4.35,55a3.79,3.79,0,0,1-1.31,3.39C99.52,116.25,97.16,118.74,94.76,121.19ZM77,38.09c0-1.41.09-2.82,0-4.21a26.76,26.76,0,0,0-7.72-17.55c-6.59-6.64-15.25-6.71-22-.23a24.58,24.58,0,0,0-7.49,14c-.64,4-.45,8.1-.71,12.14a6.64,6.64,0,0,1-.76,2.65,3.86,3.86,0,0,0,.75,4.77A3.69,3.69,0,0,0,44,49.57c1.35-1.22,1.81-3.43.53-4.71s-1.18-2.72-1.18-4.24,0-3.19,0-4.79c.15-6.78,2.41-12.72,7.43-17.39,4.65-4.34,10-4.33,14.72-.11a20.27,20.27,0,0,1,6.74,12.23,105.73,105.73,0,0,1,.62,11.14,3.24,3.24,0,0,1-1,2.84,3.49,3.49,0,0,0,.15,4.86,3.7,3.7,0,0,0,4.78.46,3.45,3.45,0,0,0,1.07-4.74,5.29,5.29,0,0,1-.83-3.4c0-1.21,0-2.42,0-3.63ZM71.69,39.6V35.38H66a24.74,24.74,0,0,1,2.37-10.07,2,2,0,0,0,.23-1.44c-.61-1.12-1.41-2.15-2.25-3.39a28.7,28.7,0,0,0-4.63,15H44.5V39.6Z" transform="translate(-22.32 -11.3)"/>
+		                                </svg>
+		                                <span class="bag_qty_value">
+		                                    <t t-esc="props.product.sh_qty_in_bag" />
+		                                </span>
+		                            </span>
+		                        </t>
+		                    </t>
+		                    <t t-else="">
+		                        <span class="bag-tag">
+		                            <svg id="Layer_1" data-name="Layer 1"
+		                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 95.4 116.7">
+		                                <path d="M38,35.44V39.7H34.13c-1.71,0-2.05.31-2.18,1.95Q31.5,47.82,31.06,54l-3.72,51.45q-.4,5.51-.76,11c-.11,1.68.3,2.15,2,2.29L70.05,122c5.89.47,11.79,1,17.68,1.42.57,0,1.14,0,1.91,0-1.15-27.91-2.29-55.76-3.44-83.71H78.28V35.47h17.4c-.32-2-.48-3.92-.91-5.72a21.63,21.63,0,0,0-6.46-11.3c-4.57-4.18-9.63-4.32-14.42-.43l-1,.83-2.5-2.94c3.66-4.49,10.88-5.92,16.48-3.17,5.84,2.86,9.29,7.82,11.28,13.79a83.39,83.39,0,0,1,2,8.91h3.67c4,0,6.11,1.83,6.52,5.84,1,9.25,1.83,18.51,2.75,27.76L117,108.51c.23,2.26.49,4.52.67,6.79.28,3.4-1.15,5.54-4.41,6.61-5.56,1.83-11.15,3.57-16.7,5.46-2.92,1-5.85.57-8.78.34Q66.41,126,45,124.28q-8.84-.7-17.68-1.43a5.49,5.49,0,0,1-5-5.9c.21-4.69.61-9.37,1-14.06q1.13-15.58,2.26-31.16t2.27-31a5.51,5.51,0,0,1,5.66-5.28C35,35.42,36.45,35.44,38,35.44Zm56.75,85.75.39.38c2.95-2.11,5.92-4.18,8.83-6.34a2.12,2.12,0,0,1,2.25-.33c2.61,1,5.26,1.83,7.9,2.74l.17-.33c-.41-.28-.8-.6-1.22-.85-1.88-1.11-3.73-2.28-5.66-3.27a2.63,2.63,0,0,1-1.54-2.36c-.67-6.94-1.33-13.88-2.09-20.81q-2.28-20.79-4.67-41.57a10.4,10.4,0,0,0-.31-1.34,62.54,62.54,0,0,0,.13,8.34q2.13,27.51,4.35,55a3.79,3.79,0,0,1-1.31,3.39C99.52,116.25,97.16,118.74,94.76,121.19ZM77,38.09c0-1.41.09-2.82,0-4.21a26.76,26.76,0,0,0-7.72-17.55c-6.59-6.64-15.25-6.71-22-.23a24.58,24.58,0,0,0-7.49,14c-.64,4-.45,8.1-.71,12.14a6.64,6.64,0,0,1-.76,2.65,3.86,3.86,0,0,0,.75,4.77A3.69,3.69,0,0,0,44,49.57c1.35-1.22,1.81-3.43.53-4.71s-1.18-2.72-1.18-4.24,0-3.19,0-4.79c.15-6.78,2.41-12.72,7.43-17.39,4.65-4.34,10-4.33,14.72-.11a20.27,20.27,0,0,1,6.74,12.23,105.73,105.73,0,0,1,.62,11.14,3.24,3.24,0,0,1-1,2.84,3.49,3.49,0,0,0,.15,4.86,3.7,3.7,0,0,0,4.78.46,3.45,3.45,0,0,0,1.07-4.74,5.29,5.29,0,0,1-.83-3.4c0-1.21,0-2.42,0-3.63ZM71.69,39.6V35.38H66a24.74,24.74,0,0,1,2.37-10.07,2,2,0,0,0,.23-1.44c-.61-1.12-1.41-2.15-2.25-3.39a28.7,28.7,0,0,0-4.63,15H44.5V39.6Z" transform="translate(-22.32 -11.3)"/>
+		                            </svg>
+		                            <span class="bag_qty_value">
+		                                <t t-esc="props.product.sh_qty_in_bag" />
+		                            </span>
+		                        </span>
+		                    </t> 
+		               </t>
+		               <t t-else="">
+		               		-
+		               </t>
+	            	</td>
+	           </t>
+	            <t t-if="env.pos.config.sh_display_product_type">
+	                <td>
+	                    <t t-if="props.product.type == 'consu'">
+	                        Comsumable
+	                    </t>
+	                    <t t-if="props.product.type == 'product'">
+	                        Storable
+	                    </t>
+	                    <t t-if="props.product.type == 'service'">
+	                        Service
+	                    </t>
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_display_product_onhand">
+	                <td>
+	                    <t t-if="props.product.qty_available > 0">
+	                        <!-- <t t-esc="props.product.qty_available" /> -->
+							<t t-if='env.pos.config.sh_show_qty_location'>
+								<t t-if="env.pos.config.sh_pos_enable_product_variants">
+			            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+			                        </t>
+			                        <t t-else="">
+			                        	<span class="sh_warehouse_display123">
+											<t t-esc="props.product.sh_pos_stock" />
+										</span>
+			                        </t>
+			                    </t>
+			                    <t t-else="">
+			                    	<span class="sh_warehouse_display123">
+										<t t-esc="props.product.sh_pos_stock" />
+									</span>
+			                    </t>
+							</t>
+							<t t-else="">
+								<t t-if="env.pos.config.sh_pos_enable_product_variants">
+			            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+			                        </t>
+			                        <t t-else="">
+			                        	<span class="sh_warehouse_display123">
+											<t t-esc="props.product.qty_available"/>
+										</span>
+			                        </t>
+			                    </t>
+			                    <t t-else="">
+			                    	<span class="sh_warehouse_display123">
+										<t t-esc="props.product.qty_available"/>
+									</span>
+			                    </t>
+								
+							</t>
+	                    </t>
+	                    <t t-else="">
+	                        0
+	                    </t>
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_display_product_forecasted">
+	                <td>
+	                	<t t-if="env.pos.config.sh_pos_enable_product_variants">
+	            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+	                        </t>
+	                        <t t-else="">
+	                        	<t t-if="props.product.virtual_available > 0">
+			                        <t t-esc="props.product.virtual_available" />
+			                    </t>
+			                    <t t-else="">
+			                        0
+			                    </t>
+			                </t>
+			            </t>
+			            <t t-else="">
+			            	<t t-if="props.product.virtual_available > 0">
+		                        <t t-esc="props.product.virtual_available" />
+		                    </t>
+		                    <t t-else="">
+		                        0
+		                    </t>
+			            </t>        
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_display_product_uom">
+	                <td>
+						<t t-if="props and props.product and props.product.uom_id and props.product.uom_id[1]">
+	                    	<t t-esc="props.product.uom_id[1]" />
+						</t>
+						<t t-else="">
+							-
+						</t>
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_display_product_price">
+	                <td>
+	                    <span class="price-tag">
+	                        <t t-esc="price" />
+	                    </span>
+	                </td>
+	            </t>
+	            <td>
+	            	 <t t-if="env.pos.config.sh_display_stock">
+	            	 	<t t-if="env.pos.config.sh_pos_enable_product_variants">
+	            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+                        	</t>
+                        	<t t-else="">
+                        		<span class="product-image-icon" t-on-click.stop="trigger('click-product-image-icon',props.product)">
+			            	 		<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 122"><path d="M100,62V25L70,9,40,26l-.5,35.5L10,77v37l31,17,29-16,31,16,29-17V76ZM40,91,15,78,41,65,66,77Zm28,21L42,127V94L68,79ZM44,27,70,13,95,25,70,39ZM72,42,97,28V61L72,74ZM99,91,74,78,99,65l25,12Zm27,22-25,14V94l25-14Z" transform="translate(-10 -9)"></path></svg>
+			            	 	</span>
+                        	</t>
+	            	 	</t>
+	            	 	<t t-else="">
+		            	 	<span class="product-image-icon" t-on-click.stop="trigger('click-product-image-icon',props.product)">
+		            	 		<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 122"><path d="M100,62V25L70,9,40,26l-.5,35.5L10,77v37l31,17,29-16,31,16,29-17V76ZM40,91,15,78,41,65,66,77Zm28,21L42,127V94L68,79ZM44,27,70,13,95,25,70,39ZM72,42,97,28V61L72,74ZM99,91,74,78,99,65l25,12Zm27,22-25,14V94l25-14Z" transform="translate(-10 -9)"></path></svg>
+		            	 	</span>
+	            	 	</t>
+		            </t>
+		            <t t-if="env.pos.config.enable_product_bundle and props.product.sh_is_bundle">
+		            	<span
+		                    class="product-bundle-icon"
+		                    t-on-click.stop="trigger('click-product-bundle-icon',props.product)"
+		                >
+		                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120.5 107"><path d="M70,17,9.5,47.5,70,78l60-31Zm-.07,51.9L25.5,46.5,69.93,24.1l44.07,22Z" transform="translate(-9.5 -17)"></path><polygon points="0.5 53 16.5 53 60.5 76 103.5 53 120.5 53 60.5 84 0.5 53"></polygon><polygon points="0.5 76 16.5 76 60.5 99 103.5 76 120.5 76 60.5 107 0.5 76"></polygon></svg>
+		                </span>
+		            </t>
+		            <t t-if="env.pos.config.sh_dispaly_bag_qty and props.product.sh_qty_in_bag">
+		            	<t t-if="env.pos.config.sh_pos_enable_product_variants">
+	            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+                        	</t>
+                        	<t t-else="">
+                        		<span class="product-image-icon-qty-add" t-on-click.stop="trigger('Add_Product',props.product)">
+									<svg style='width: 15px;' id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125 125"><rect y="48" width="125" height="29" rx="3.57"/><rect x="8" y="56" width="125" height="29" rx="3.57" transform="translate(133 -8) rotate(90)"/></svg>
+								</span>
+                        	</t>
+                        </t>
+                        <t t-else="">
+                        	<span class="product-image-icon-qty-add" t-on-click.stop="trigger('Add_Product',props.product)">
+								<svg style='width: 15px;' id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125 125"><rect y="48" width="125" height="29" rx="3.57"/><rect x="8" y="56" width="125" height="29" rx="3.57" transform="translate(133 -8) rotate(90)"/></svg>
+							</span>
+                        </t>
+		            	
+		            </t>
+	            </td>
+	            <t t-if="env.pos.config.enable_product_bundle and props.product.sh_is_bundle">
+	           		<!-- <div style="position: absolute;z-index: 1;top: 0;left: 0;background: #000;color: #fff;width: 100%;font-size: 15px;">Bundle Product </div> -->
+	           		<div class="sh_tag" style="position: absolute;z-index: 1;top: 0;left: 0;">
+	           			<img src="/sh_pos_all_in_one_retail/static/src/img/left_tag.png" alt="tag" />
+	           		</div>
+	           	</t>
+	        </tr>
+    	</t>
+    	<t t-else="">
+    		<tr t-on-keypress="spaceClickProduct" t-on-click="trigger('click-product', props.product)" t-att-data-product-id="props.product.id" t-attf-aria-labelledby="article_product_{{props.product.id}}">
+	            <t t-if="env.pos.config.sh_display_product_image">
+	                <td>
+	                    <t t-if="env.pos.config.sh_product_image_size == 'small_size'">
+	                        <img t-att-src="imageUrl" t-att-alt="props.product.display_name" class="small_size_image" />
+	                    </t>
+	                    <t t-if="env.pos.config.sh_product_image_size == 'medium_size'">
+	                        <img t-att-src="imageUrl" t-att-alt="props.product.display_name" class="medium_size_image" />
+	                    </t>
+	                    <t t-if="env.pos.config.sh_product_image_size == 'large_size'">
+	                        <img t-att-src="imageUrl" t-att-alt="props.product.display_name" class="large_size_image" />
+	                    </t>
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_display_product_name">
+	                <td>
+	                	<t t-if="env.pos.config.sh_pos_enable_product_variants">
+	            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+	                        	<t t-esc="props.product.name" />
+	                        </t>
+	                        <t t-else="">
+	                        	<t t-esc="props.product.display_name" />
+	                        </t>
+	                    </t>
+	                    <t t-else="">
+	                    	<t t-esc="props.product.display_name" />
+	                    </t>
+	                    
+	                </td>
+	            </t>
+				<td t-if='env.pos.config.sh_pos_enable_product_variants' class='sh_pos_varint_list_view' >
+					<t t-set='variant' t-value='env.pos.db.has_variant(props.product.product_tmpl_id)' />
+					<span class='sh_has_variant sh_has_variant_count' t-if='variant.length > 1'> <t t-esc='variant.length' />  </span>
+				</td>
+	            <t t-if="env.pos.config.sh_enable_prduct_code">
+	                <td>
+	                    <t t-if="props.product.default_code">
+	                        <t t-esc="props.product.default_code" />
+	                    </t>
+	                    <t t-else="">
+	                        -
+	                    </t>
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_dispaly_bag_qty">
+	            	<td class="bag_td">
+	            		<t t-if="props.product.sh_qty_in_bag">
+		                   <t t-if="env.pos.config.sh_pos_enable_product_variants">
+		                        <t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+		                        </t>
+		                        <t t-else="">
+		                            <span class="bag-tag">
+		                                <svg id="Layer_1" data-name="Layer 1"
+		                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 95.4 116.7">
+		                                    <path d="M38,35.44V39.7H34.13c-1.71,0-2.05.31-2.18,1.95Q31.5,47.82,31.06,54l-3.72,51.45q-.4,5.51-.76,11c-.11,1.68.3,2.15,2,2.29L70.05,122c5.89.47,11.79,1,17.68,1.42.57,0,1.14,0,1.91,0-1.15-27.91-2.29-55.76-3.44-83.71H78.28V35.47h17.4c-.32-2-.48-3.92-.91-5.72a21.63,21.63,0,0,0-6.46-11.3c-4.57-4.18-9.63-4.32-14.42-.43l-1,.83-2.5-2.94c3.66-4.49,10.88-5.92,16.48-3.17,5.84,2.86,9.29,7.82,11.28,13.79a83.39,83.39,0,0,1,2,8.91h3.67c4,0,6.11,1.83,6.52,5.84,1,9.25,1.83,18.51,2.75,27.76L117,108.51c.23,2.26.49,4.52.67,6.79.28,3.4-1.15,5.54-4.41,6.61-5.56,1.83-11.15,3.57-16.7,5.46-2.92,1-5.85.57-8.78.34Q66.41,126,45,124.28q-8.84-.7-17.68-1.43a5.49,5.49,0,0,1-5-5.9c.21-4.69.61-9.37,1-14.06q1.13-15.58,2.26-31.16t2.27-31a5.51,5.51,0,0,1,5.66-5.28C35,35.42,36.45,35.44,38,35.44Zm56.75,85.75.39.38c2.95-2.11,5.92-4.18,8.83-6.34a2.12,2.12,0,0,1,2.25-.33c2.61,1,5.26,1.83,7.9,2.74l.17-.33c-.41-.28-.8-.6-1.22-.85-1.88-1.11-3.73-2.28-5.66-3.27a2.63,2.63,0,0,1-1.54-2.36c-.67-6.94-1.33-13.88-2.09-20.81q-2.28-20.79-4.67-41.57a10.4,10.4,0,0,0-.31-1.34,62.54,62.54,0,0,0,.13,8.34q2.13,27.51,4.35,55a3.79,3.79,0,0,1-1.31,3.39C99.52,116.25,97.16,118.74,94.76,121.19ZM77,38.09c0-1.41.09-2.82,0-4.21a26.76,26.76,0,0,0-7.72-17.55c-6.59-6.64-15.25-6.71-22-.23a24.58,24.58,0,0,0-7.49,14c-.64,4-.45,8.1-.71,12.14a6.64,6.64,0,0,1-.76,2.65,3.86,3.86,0,0,0,.75,4.77A3.69,3.69,0,0,0,44,49.57c1.35-1.22,1.81-3.43.53-4.71s-1.18-2.72-1.18-4.24,0-3.19,0-4.79c.15-6.78,2.41-12.72,7.43-17.39,4.65-4.34,10-4.33,14.72-.11a20.27,20.27,0,0,1,6.74,12.23,105.73,105.73,0,0,1,.62,11.14,3.24,3.24,0,0,1-1,2.84,3.49,3.49,0,0,0,.15,4.86,3.7,3.7,0,0,0,4.78.46,3.45,3.45,0,0,0,1.07-4.74,5.29,5.29,0,0,1-.83-3.4c0-1.21,0-2.42,0-3.63ZM71.69,39.6V35.38H66a24.74,24.74,0,0,1,2.37-10.07,2,2,0,0,0,.23-1.44c-.61-1.12-1.41-2.15-2.25-3.39a28.7,28.7,0,0,0-4.63,15H44.5V39.6Z" transform="translate(-22.32 -11.3)"/>
+		                                </svg>
+		                                <span class="bag_qty_value">
+		                                    <t t-esc="props.product.sh_qty_in_bag" />
+		                                </span>
+		                            </span>
+		                        </t>
+		                    </t>
+		                    <t t-else="">
+		                        <span class="bag-tag">
+		                            <svg id="Layer_1" data-name="Layer 1"
+		                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 95.4 116.7">
+		                                <path d="M38,35.44V39.7H34.13c-1.71,0-2.05.31-2.18,1.95Q31.5,47.82,31.06,54l-3.72,51.45q-.4,5.51-.76,11c-.11,1.68.3,2.15,2,2.29L70.05,122c5.89.47,11.79,1,17.68,1.42.57,0,1.14,0,1.91,0-1.15-27.91-2.29-55.76-3.44-83.71H78.28V35.47h17.4c-.32-2-.48-3.92-.91-5.72a21.63,21.63,0,0,0-6.46-11.3c-4.57-4.18-9.63-4.32-14.42-.43l-1,.83-2.5-2.94c3.66-4.49,10.88-5.92,16.48-3.17,5.84,2.86,9.29,7.82,11.28,13.79a83.39,83.39,0,0,1,2,8.91h3.67c4,0,6.11,1.83,6.52,5.84,1,9.25,1.83,18.51,2.75,27.76L117,108.51c.23,2.26.49,4.52.67,6.79.28,3.4-1.15,5.54-4.41,6.61-5.56,1.83-11.15,3.57-16.7,5.46-2.92,1-5.85.57-8.78.34Q66.41,126,45,124.28q-8.84-.7-17.68-1.43a5.49,5.49,0,0,1-5-5.9c.21-4.69.61-9.37,1-14.06q1.13-15.58,2.26-31.16t2.27-31a5.51,5.51,0,0,1,5.66-5.28C35,35.42,36.45,35.44,38,35.44Zm56.75,85.75.39.38c2.95-2.11,5.92-4.18,8.83-6.34a2.12,2.12,0,0,1,2.25-.33c2.61,1,5.26,1.83,7.9,2.74l.17-.33c-.41-.28-.8-.6-1.22-.85-1.88-1.11-3.73-2.28-5.66-3.27a2.63,2.63,0,0,1-1.54-2.36c-.67-6.94-1.33-13.88-2.09-20.81q-2.28-20.79-4.67-41.57a10.4,10.4,0,0,0-.31-1.34,62.54,62.54,0,0,0,.13,8.34q2.13,27.51,4.35,55a3.79,3.79,0,0,1-1.31,3.39C99.52,116.25,97.16,118.74,94.76,121.19ZM77,38.09c0-1.41.09-2.82,0-4.21a26.76,26.76,0,0,0-7.72-17.55c-6.59-6.64-15.25-6.71-22-.23a24.58,24.58,0,0,0-7.49,14c-.64,4-.45,8.1-.71,12.14a6.64,6.64,0,0,1-.76,2.65,3.86,3.86,0,0,0,.75,4.77A3.69,3.69,0,0,0,44,49.57c1.35-1.22,1.81-3.43.53-4.71s-1.18-2.72-1.18-4.24,0-3.19,0-4.79c.15-6.78,2.41-12.72,7.43-17.39,4.65-4.34,10-4.33,14.72-.11a20.27,20.27,0,0,1,6.74,12.23,105.73,105.73,0,0,1,.62,11.14,3.24,3.24,0,0,1-1,2.84,3.49,3.49,0,0,0,.15,4.86,3.7,3.7,0,0,0,4.78.46,3.45,3.45,0,0,0,1.07-4.74,5.29,5.29,0,0,1-.83-3.4c0-1.21,0-2.42,0-3.63ZM71.69,39.6V35.38H66a24.74,24.74,0,0,1,2.37-10.07,2,2,0,0,0,.23-1.44c-.61-1.12-1.41-2.15-2.25-3.39a28.7,28.7,0,0,0-4.63,15H44.5V39.6Z" transform="translate(-22.32 -11.3)"/>
+		                            </svg>
+		                            <span class="bag_qty_value">
+		                                <t t-esc="props.product.sh_qty_in_bag" />
+		                            </span>
+		                        </span>
+		                    </t> 
+		               </t>
+		               <t t-else="">
+		               		-
+		               </t>
+	            	</td>
+	           </t>
+	            <t t-if="env.pos.config.sh_display_product_type">
+	                <td>
+	                    <t t-if="props.product.type == 'consu'">
+	                        Comsumable
+	                    </t>
+	                    <t t-if="props.product.type == 'product'">
+	                        Storable
+	                    </t>
+	                    <t t-if="props.product.type == 'service'">
+	                        Service
+	                    </t>
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_display_product_onhand">
+	                <td>
+	                    <t t-if="props.product.qty_available > 0">
+	                        <!-- <t t-esc="props.product.qty_available" /> -->
+							<t t-if='env.pos.config.sh_show_qty_location'>
+								<t t-if="env.pos.config.sh_pos_enable_product_variants">
+			            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+			                        </t>
+			                        <t t-else="">
+			                        	<span class="sh_warehouse_display123 ">
+											<t t-esc="props.product.sh_pos_stock" />
+										</span>
+			                        </t>
+			                    </t>
+			                    <t t-else="">
+			                    	<span class="sh_warehouse_display123 ">
+										<t t-esc="props.product.sh_pos_stock" />
+									</span>
+			                    </t>	
+								
+							</t>
+							<t t-else="">
+								<t t-if="env.pos.config.sh_pos_enable_product_variants">
+			            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+			                        </t>
+			                        <t t-else="">
+			                        	<span class="sh_warehouse_display123 ">
+											<t t-esc="props.product.qty_available"/>
+										</span>
+			                        </t>
+			                    </t>
+			                    <t t-else="">
+			                    	<span class="sh_warehouse_display123 ">
+										<t t-esc="props.product.qty_available"/>
+									</span>
+			                    </t>
+								
+							</t>
+	                    </t>
+	                    <t t-else="">
+	                        0
+	                    </t>
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_display_product_forecasted">
+	                <td>
+	                	<t t-if="env.pos.config.sh_pos_enable_product_variants">
+	            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+	                        </t>
+	                        <t t-else="">
+	                        	<t t-if="props.product.virtual_available > 0">
+			                        <t t-esc="props.product.virtual_available" />
+			                    </t>
+			                    <t t-else="">
+			                        0
+			                    </t>
+	                        </t>
+	                    </t>
+	                    <t t-else="">
+	                    	<t t-if="props.product.virtual_available > 0">
+		                        <t t-esc="props.product.virtual_available" />
+		                    </t>
+		                    <t t-else="">
+		                        0
+		                    </t>
+	                    </t>
+	                    
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_display_product_uom">
+	                <td>
+						<t t-if="props and props.product and props.product.uom_id and props.product.uom_id[1]">
+	                    	<t t-esc="props.product.uom_id[1]" />
+						</t>
+						<t t-else="">
+							-
+						</t>
+	                </td>
+	            </t>
+	            <t t-if="env.pos.config.sh_display_product_price">
+	                <td>
+	                    <span class="price-tag">
+	                        <t t-esc="price" />
+	                    </span>
+	                </td>
+	            </t>
+				
+	            <td>
+	            	 <t t-if="env.pos.config.sh_display_stock">
+	            	 	<t t-if="env.pos.config.sh_pos_enable_product_variants">
+	            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+	                        </t>
+	                        <t t-else="">
+	                        	<span class="product-image-icon" t-on-click.stop="trigger('click-product-image-icon',props.product)">
+			            	 		<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 122"><path d="M100,62V25L70,9,40,26l-.5,35.5L10,77v37l31,17,29-16,31,16,29-17V76ZM40,91,15,78,41,65,66,77Zm28,21L42,127V94L68,79ZM44,27,70,13,95,25,70,39ZM72,42,97,28V61L72,74ZM99,91,74,78,99,65l25,12Zm27,22-25,14V94l25-14Z" transform="translate(-10 -9)"></path></svg>
+			            	 	</span>
+	                        </t>
+	            	 	</t>
+	            	 	<t t-else="">
+		            	 	<span class="product-image-icon" t-on-click.stop="trigger('click-product-image-icon',props.product)">
+		            	 		<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 122"><path d="M100,62V25L70,9,40,26l-.5,35.5L10,77v37l31,17,29-16,31,16,29-17V76ZM40,91,15,78,41,65,66,77Zm28,21L42,127V94L68,79ZM44,27,70,13,95,25,70,39ZM72,42,97,28V61L72,74ZM99,91,74,78,99,65l25,12Zm27,22-25,14V94l25-14Z" transform="translate(-10 -9)"></path></svg>
+		            	 	</span>
+	            	 	</t>
+		            </t>
+		            <t t-if="env.pos.config.enable_product_bundle and props.product.sh_is_bundle">
+		            	<span
+		                    class="product-bundle-icon"
+		                    t-on-click.stop="trigger('click-product-bundle-icon',props.product)"
+		                >
+		                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120.5 107"><path d="M70,17,9.5,47.5,70,78l60-31Zm-.07,51.9L25.5,46.5,69.93,24.1l44.07,22Z" transform="translate(-9.5 -17)"></path><polygon points="0.5 53 16.5 53 60.5 76 103.5 53 120.5 53 60.5 84 0.5 53"></polygon><polygon points="0.5 76 16.5 76 60.5 99 103.5 76 120.5 76 60.5 107 0.5 76"></polygon></svg>
+		                </span>
+		            </t>
+		            <t t-if="env.pos.config.sh_dispaly_bag_qty and props.product.sh_qty_in_bag">
+		            	<t t-if="env.pos.config.sh_pos_enable_product_variants">
+	            	 		<t t-if="props.product.product_tmpl_id and env.pos.db and env.pos.db.has_variant(props.product.product_tmpl_id) and env.pos.db.has_variant(props.product.product_tmpl_id).length > 1">
+                        	</t>
+                        	<t t-else="">
+                        		<span class="product-image-icon-qty-add" t-on-click.stop="trigger('Add_Product',props.product)">
+									<svg style='width: 15px;' id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125 125"><rect y="48" width="125" height="29" rx="3.57"/><rect x="8" y="56" width="125" height="29" rx="3.57" transform="translate(133 -8) rotate(90)"/></svg>
+								</span>
+                        	</t>
+                        </t>
+                        <t t-else="">
+                        	<span class="product-image-icon-qty-add" t-on-click.stop="trigger('Add_Product',props.product)">
+								<svg style='width: 15px;' id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125 125"><rect y="48" width="125" height="29" rx="3.57"/><rect x="8" y="56" width="125" height="29" rx="3.57" transform="translate(133 -8) rotate(90)"/></svg>
+							</span>
+                        </t>
+		            	
+		            </t>
+	            </td>
+				
+	        </tr>
+    	</t>
+    </t>
+
+</templates>

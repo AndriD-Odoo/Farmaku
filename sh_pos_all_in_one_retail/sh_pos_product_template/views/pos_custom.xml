@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="product_template_point_of_sale_assets" name="pos_reprint_custom assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_product_template/static/src/js/templateLine.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_product_template/static/src/js/templateScreen.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_product_template/static/src/js/templateProductButton.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_product_template/static/src/js/pos_custom.js" />
+            <link rel="stylesheet" type="text/css" href="/sh_pos_all_in_one_retail/static/sh_pos_product_template/static/src/css/pos_custom.css" />
+        </xpath>
+    </template>
+</odoo>

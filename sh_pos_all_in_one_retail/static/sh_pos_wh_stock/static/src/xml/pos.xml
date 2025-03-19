@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductQtyPopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-text popup-lg product-configurator-popup sh_warehouse_qty_popup">
+                <header class="title">
+                    <t t-esc="props.title" />
+                </header>
+                <div class="main-body touch-scrollable scrollable-y">
+                    <t t-raw="props.body" />
+                </div>
+                <footer class="footer">
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="QuantityWarningPopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-text popup-lg product-configurator-popup sh_qty_popup">
+                <header class="title">
+                    Warning
+                </header>
+                <div class="main-body touch-scrollable scrollable-y product_content">
+                    <t t-if="props.product">
+                        <div class="sh_product_image">
+                            <img t-att-src="props.product_image" alt="Product image" class="product_image" />
+                        </div>
+                        <div class="sh_product_name">
+                            <t t-esc="props.product.display_name" />
+                            <div class="sh_max_qty">Minimum availabe quantity is <t t-esc="env.pos.config.sh_min_qty" /></div>
+                        </div>
+                    </t>
+                </div>
+                <footer class="footer sh_warning_footer">
+                    <div class="button order sh_order_button" style="width: 110px;height: 40px;line-height: 40px; color: #fff;padding-bottom: 0px;border-width: 2px;" t-on-click="put_order">
+                        Order
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+
+    <t t-extend="ProductItem" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension">
+        <xpath expr="//span[hasclass('price-tag')]" position="before">
+            <t t-if="env.pos.config.sh_show_qty_location and props.product.type=='product'">
+                <span class="sh_warehouse_display">
+                    <t t-esc="props.product.sh_pos_stock" />
+                </span>
+            </t>
+        </xpath>     
+    </t>
+    
+</templates>

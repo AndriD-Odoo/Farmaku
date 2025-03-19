@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+            <xpath expr="//tr[hasclass('o_total')]" position="after">
+                <tr class="border-black o_subtotal" style="background-color:white; color:black;" t-if="o.move_type in ['out_invoice', 'in_refund']">
+                    <td style="background-color:white; color:black;">DPP Total</td>
+                    <td style="background-color:white; color:black;" class="text-right">
+                        <span t-field="o.dpp_total"/>
+                    </td>
+                </tr>
+            </xpath>
+        </template>
+    
+    </data>
+</odoo>

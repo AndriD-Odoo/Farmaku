@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_crm_team_form_custom" model="ir.ui.view">
+            <field name="name">crm.team.form.custom</field>
+            <field name="model">crm.team</field>
+            <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="before">
+                    <!-- Insert the partner_id field here -->
+                    <field name="partner_id"/>
+                    <field name="team_code"/>
+                    <field name="payment_journal_id"/>
+                </xpath>
+                <!-- Add a new page after 'members' -->
+                <xpath expr="//page[@name='members']" position="after">
+                    <page string="Invoice Recap Parameters" name="invoice_recap_parameters">
+                        <div class="o_settings_container" name="invoice_recap_setting_container">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                id="product_mapping"
+                                title="Dummy Products Mapping for Invoice Recap Invoice lines">
+                                <div class="o_setting_left_pane">
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <h2 class="o_form_label">Dummy Products</h2>
+                                    <div class="text-muted">
+                                        Map the Dummy Products for Invoice Lines
+                                    </div>
+                                    <div class="content-group">
+                                        <label for="gross_amount_product_id" string="Gross Amt" class="col-lg-3 o_light_label"/>
+                                        <field name="gross_amount_product_id" widget="many2one"/>
+                                        <label for="subsidy_amount_product_id" string="Subsidy" class="col-lg-3 o_light_label"/>
+                                        <field name="subsidy_amount_product_id" widget="many2one"/>
+                                        <label for="shipping_cost_product_id" string="Shipping" class="col-lg-3 o_light_label"/>
+                                        <field name="shipping_cost_product_id" widget="many2one"/>
+                                        <label for="voucher_amount_product_id" string="Voucher" class="col-lg-3 o_light_label"/>
+                                        <field name="voucher_amount_product_id" widget="many2one"/>
+                                        <label for="commission_product_id" string="Commission" class="col-lg-3 o_light_label"/>
+                                        <field name="commission_product_id" widget="many2one"/>
+                                        <label for="service_fee_product_id" string="Service" class="col-lg-3 o_light_label"/>
+                                        <field name="service_fee_product_id" widget="many2one"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                id="account_mapping"
+                                title="Account Mapping for the Invoice Recap Move lines">
+                                <div class="o_setting_left_pane">
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <h2 class="o_form_label">Account IDs</h2>
+                                    <div class="text-muted">
+                                        Map the Accounts for Invoice Move Lines
+                                    </div>
+                                    <div class="content-group">
+                                        <label for="gross_amount_account_id" string="Gross Amt" class="col-lg-3 o_light_label"/>
+                                        <field name="gross_amount_account_id" widget="many2one"/>
+                                        <label for="subsidy_amount_account_id" string="Subsidy" class="col-lg-3 o_light_label"/>
+                                        <field name="subsidy_amount_account_id" widget="many2one"/>
+                                        <label for="shipping_cost_account_id" string="Shipping" class="col-lg-3 o_light_label"/>
+                                        <field name="shipping_cost_account_id" widget="many2one"/>
+                                        <label for="voucher_amount_account_id" string="Voucher" class="col-lg-3 o_light_label"/>
+                                        <field name="voucher_amount_account_id" widget="many2one"/>
+                                        <label for="commission_account_id" string="Commission" class="col-lg-3 o_light_label"/>
+                                        <field name="commission_account_id" widget="many2one"/>
+                                        <label for="service_fee_account_id" string="Service" class="col-lg-3 o_light_label"/>
+                                        <field name="service_fee_account_id" widget="many2one"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

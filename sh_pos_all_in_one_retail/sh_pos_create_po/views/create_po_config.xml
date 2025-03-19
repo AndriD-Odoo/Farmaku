@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sh_pos_res_config_setting_purchase_button" model="ir.ui.view">
+        <field name="name">pos.config.settings.purchase</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('sh_pos_create_so_config')]" position="after">
+                <h2>Create Purchase Order</h2>
+                <div class="row mt16 o_settings_container sh_pos_create_po_config">
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_dispaly_purchase_btn" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_dispaly_purchase_btn" />
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <div style="width:200px">
+                            <label for="select_purchase_state" attrs="{'invisible': [('sh_dispaly_purchase_btn', '!=', True)]}" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <field name="select_purchase_state" attrs="{'invisible': [('sh_dispaly_purchase_btn', '!=', True)]}" widget="radio" />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

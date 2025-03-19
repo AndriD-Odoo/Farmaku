@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_stock_move_line_operation_tree" model="ir.ui.view">
+        <field name="name">view.move.line.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='product_uom_id']" position="attributes">
+                <attribute name="string">UoM</attribute>
+            </xpath>
+            <xpath expr="//field[@name='lot_id']" position="after">
+                <field name="allowed_lot_ids" widget="many2many_tags" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='lot_id']" position="attributes">
+                <attribute name="domain">[('id', 'in', allowed_lot_ids)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='package_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='result_package_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='location_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='location_dest_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_detailed_operation_tree" model="ir.ui.view">
+        <field name="name">view.move.line.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='product_uom_id']" position="attributes">
+                <attribute name="string">UoM</attribute>
+            </xpath>
+            <xpath expr="//field[@name='lot_id']" position="after">
+                <field name="allowed_lot_ids" widget="many2many_tags" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='lot_id']" position="attributes">
+                <attribute name="domain">[('id', 'in', allowed_lot_ids)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='package_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='result_package_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='location_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='location_dest_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_operation_tree_expiry" model="ir.ui.view">
+        <field name="name">stock.move.line.inherit.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="product_expiry.view_stock_move_line_operation_tree_expiry"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_name']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <field name="expiration_date" position="after">
+                <field name="tracking" invisible="1"/>
+                <field name="product_expiration_date" invisible="1"/>
+                <field name="expiration_month" attrs="{'column_invisible': [('parent.use_expiration_date', '!=', True)]}"/>
+                <field name="lot_name" position="move"/>
+            </field>
+            <xpath expr="//field[@name='expiration_date']" position="attributes" >
+                <attribute name="attrs">{
+                    'column_invisible': [('parent.use_expiration_date', '!=', True)],
+                    'readonly': [('picking_type_use_existing_lots', '=', True)],
+                    'required': [('tracking', '=', 'lot'), ('parent.picking_code', '=', 'incoming')]
+                }</attribute>
+                <attribute name="widget">date</attribute>
+            </xpath>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-danger">(picking_code == 'incoming' and product_expiration_date &gt; expiration_date) or (picking_code == 'incoming' and parent.quantity_done &gt; parent.reserved_availability)</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_detailed_operation_tree_expiry" model="ir.ui.view">
+        <field name="name">stock.move.line.inherit.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="product_expiry.view_stock_move_line_detailed_operation_tree_expiry"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_name']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <field name="expiration_date" position="after">
+                <field name="tracking" invisible="1"/>
+                <field name="product_expiration_date" invisible="1"/>
+                <field name="expiration_month"/>
+                <field name="lot_name" position="move"/>
+                <field name="move_quantity_done" invisible="1"/>
+                <field name="move_reserved_availability" invisible="1"/>
+            </field>
+            <xpath expr="//field[@name='expiration_date']" position="attributes" >
+                <attribute name="attrs">{
+                    'readonly': [('picking_type_use_existing_lots', '=', True)],
+                    'required': [('tracking', '=', 'lot'), ('parent.picking_type_code', '=', 'incoming')]
+                }</attribute>
+                <attribute name="widget">date</attribute>
+            </xpath>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-danger">(parent.picking_type_code == 'incoming' and product_expiration_date &gt; expiration_date) or (parent.picking_type_code == 'incoming' and move_quantity_done &gt; move_reserved_availability)</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_move_line_view_search" model="ir.ui.view">
+        <field name="name">stock.move.line.search</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.stock_move_line_view_search"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='location_dest_id']" position="after">
+                <field name="picking_origin"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_move_line_tree" model="ir.ui.view">
+        <field name="name">view.move.line.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='product_uom_id']" position="attributes">
+                <attribute name="string">UoM</attribute>
+            </xpath>
+            <xpath expr="//field[@name='reference']" position="after">
+                <field name="picking_origin"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

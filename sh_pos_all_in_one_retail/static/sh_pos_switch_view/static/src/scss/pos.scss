@@ -1,0 +1,81 @@
+.bundle_product_row{
+	position: relative;
+}
+.pos .sh_switch_view_icon button.highlight {
+    background: $sh_pos_primary_color !important;
+    color: #fff !important;
+}
+.pos .sh_switch_view_icon button.product_grid_view,
+.pos .sh_switch_view_icon button.product_list_view {
+    font-size: 16px !important;
+    padding: 9px 12px;
+    margin: 0px 0px 0px 5px;
+    color: #4c4c4c;
+    line-height: 20px;
+}
+.pos .sh_switch_view_icon {
+    display: flex;
+    align-items: center;
+}
+.pos .rightpane.sh_right_pane .sh_product_list_main {
+    padding: 0px !important;
+}
+.pos .rightpane.sh_right_pane .sh_product_list_main,
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list,
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list table {
+    width: 100%;
+}
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list table th {
+    line-height: 20px;
+    white-space: nowrap;
+}
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list th,
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list td {
+    padding: 10px 12px !important;
+}
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list .small_size_image {
+    height: 50px;
+    object-fit: contain;
+    width: 50px;
+}
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list .medium_size_image {
+    height: 90px;
+    object-fit: contain;
+    width: 90px;
+}
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list .large_size_image {
+    height: 130px;
+    object-fit: contain;
+    width: 120px;
+}
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list table thead {
+    background: $sh_pos_primary_color;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #fff;
+}
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list table td {
+    font-size: 14px;
+}
+/*
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list table tr:nth-child(even) {
+    background: #fff;
+}
+*/
+.pos .rightpane.sh_right_pane,
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list {
+    overflow: auto;
+}
+.pos .rightpane.sh_right_pane .sh_product_list_main,
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list {
+    height: 100%;
+}
+
+/*
+@media only screen and (max-width: 1024px) {
+    .pos .sh_product_grid .product {
+        width: 122px !important;
+        height: 120px !important;
+    }
+}
+*/

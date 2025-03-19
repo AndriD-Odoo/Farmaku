@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+wizard_import_bank_excel,access_wizard_import_bank_excel,recon_bank_batch.model_wizard_import_bank_excel,,1,1,1,1

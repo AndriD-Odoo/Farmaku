@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-name="OrderSummary" t-inherit="point_of_sale.OrderSummary" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('summary')]" position="attributes">
+            <t t-if="env.pos.pos_theme_settings_data and env.pos.pos_theme_settings_data.length > 0 and env.pos.pos_theme_settings_data[0] and env.pos.pos_theme_settings_data[0].sh_cart_total_sticky">
+				<attribute name="class">summary sticky_total clearfix sh_order_summary</attribute>
+			</t>
+			<t t-else="">
+				<attribute name="class">summary clearfix sh_order_summary</attribute>
+			</t>
+        </xpath>
+		<xpath expr="//div[hasclass('line')]" position="replace">
+			<t t-if="env.pos.pos_theme_settings_data and env.pos.pos_theme_settings_data.length > 0 and env.pos.pos_theme_settings_data[0] and env.pos.pos_theme_settings_data[0].sh_cart_total_sticky and env.pos.pos_theme_settings_data[0].sh_cart_total_sticky">
+				<!-- <div class="summary clearfix sticky_total sh_order_summary" style="position:relative;"> -->
+				<t t-if="env.pos.get_order().applied_coupon.length">
+					<div class="coupon_code">
+						<span class="coupon_code" style="font-size: 13px;">Coupon Code : <t t-esc="env.pos.get_order().applied_coupon[0]"/></span>
+						<br/>
+						<span class="coupon_code" style="font-size: 13px;">Coupon Amount : <t t-esc="env.pos.format_currency(env.pos.get_order().coupon_amount)"/></span>
+					</div>
+				</t>
+				<div class="line sh_order_summary_line">
+						<div class="entry total">
+							<span class="badge" style="font-size: 16px;color: #212121;">Total : </span>
+							<span class="value" style="font-size: 16px;color: #212121;">
+								<t t-esc="props.total" />
+							</span>
+							<t t-if="env.pos.config.sh_remove_all_item">
+								<span class="sh_remove_cart_item">
+									<RemoveAllItemButton/>
+								</span>
+							</t>
+							<t t-if="env.pos.config.sh_enable_rounding">
+								<div t-if="props.rounding" class="subentry">
+									<span class="rounding">Rounding : </span>
+									<span class="value">
+										<t t-esc="props.rounding" />
+									</span>
+								</div>
+							</t>
+
+							<t t-if='env.pos.config.enable_volume'>
+								<div class="totl_vlm">
+									<span class="total_volume">Total Volume :</span>
+									<span class="value">
+										<t t-esc='env.pos.get_order().total_volume' />
+									</span>
+								</div>
+							</t>
+							<div t-if="props.tax" class="subentry" style="padding-top: 4px;">
+		                        Taxes :
+								<span class="value">
+									<t t-esc="props.tax" />
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="sh_order_summary_left_line">
+						<div class="line global_discount_line">
+							<t t-if="env.pos.config.line_discount == 'line_discount' or env.pos.config.sh_allow_global_discount">
+								<span class="total badge">Global Discount :</span>
+								<span class="discount_amount" style="margin-left:10px;">
+									<t t-if="props.discount > 0">
+										<t t-esc="props.discount.toFixed(2)" />
+									</t>
+									<t t-else="">
+			                    		0
+									</t>
+								</span>
+
+							</t>
+							<t t-if="env.pos.config.line_discount == 'line_discount' or env.pos.config.sh_allow_global_discount">
+								<span class="sh_remove_global_discount">
+									<RemoveDiscountButton/>
+								</span>
+							</t>
+						</div>
+						<t t-if="env.pos.config.enable_pos_item_counter or env.pos.config.enable_pos_qty_counter">
+							<div class="items_counter" style="font-size:14px;">
+								<t t-if="env.pos.config.enable_pos_item_counter">
+									<b style="font-weight: normal; color: #919191;">
+				                        Total Items: <span class="value">
+											<t t-esc="props.total_items" />
+										</span>
+									</b>
+								</t>
+								<t t-if="env.pos.config.enable_pos_item_counter and env.pos.config.enable_pos_qty_counter">
+									<b style="margin: 0px 5px;color: #919191;"> | </b>
+								</t>
+								<t t-if="env.pos.config.enable_pos_qty_counter">
+									<b style="font-weight: normal; color: #919191;">
+					                        Total Qty: <span class="value">
+											<t t-esc="props.total_qty" />
+										</span>
+									</b>
+								</t>
+							</div>
+						</t>
+						<t t-if='env.pos.config.enable_weight'>
+							<div class="totl_wght">
+								<span class="total_weight">Total Weight :</span>
+								<span class="value">
+									<t t-esc='env.pos.get_order().total_weight.toFixed(2)' />
+								</span>
+							</div>
+						</t>
+						<div class="line sh_left_line">
+							<t t-if="env.pos.config.sh_enable_loyalty">
+								<div class='entry point_total'>
+									<span class="loyalty_point_label">
+			                        		Points:
+									</span>
+									<span class="pre_define_point">
+										<t t-if="props.pre_define_point">
+											<t t-esc="props.pre_define_point" />
+										</t>
+										<t t-else="">
+			                                    0
+										</t>
+									</span>
+									<span>+
+										<span class="current_point">
+											<t t-if="props.current_point">
+												<span></span>
+												<t t-if="props.current_point &gt;= 0">
+													<t t-esc="props.current_point" />
+												</t>
+												<t t-elif="props.current_point &lt; 0">
+			                                   		(											<t t-esc="props.current_point" />
+													)
+												</t>
+											</t>
+											<t t-else="">
+			                                    0
+											</t>
+										</span>
+									</span>
+									<span class="total_point">
+										<t t-if="props.total_point">
+			                                    =									<t t-esc="props.total_point" />
+										</t>
+										<t t-else="">
+			                                   = 0
+										</t>
+									</span>
+								</div>
+							</t>
+						</div>
+					</div>
+				<!-- </div> -->
+			</t>
+			<t t-else="">
+				<!-- <div class="summary clearfix sh_order_summary" style="position:relative;"> -->
+					<div class="line sh_order_summary_line">
+						<div class="entry total">
+							<span class="badge" style="font-size: 15px;color: #212121;">Total : </span>
+							<span class="value" style="font-size: 15px;color: #212121;">
+								<t t-esc="props.total" />
+							</span>
+							<t t-if="env.pos.config.sh_remove_all_item">
+								<span class="sh_remove_cart_item">
+									<RemoveAllItemButton/>
+								</span>
+							</t>
+							<t t-if="env.pos.config.sh_enable_rounding">
+								<div t-if="props.rounding" class="subentry">
+									<span class="rounding">Rounding : </span>
+									<span class="value">
+										<t t-esc="props.rounding" />
+									</span>
+								</div>
+							</t>
+							<t t-if='env.pos.config.enable_volume'>
+								<div class="totl_vlm">
+									<span class="total_volume">Total Volume :</span>
+									<span class="value">
+										<t t-esc='env.pos.get_order().total_volume' />
+									</span>
+								</div>
+							</t>
+							<div t-if="props.tax" class="subentry" style="padding-top: 5px;">
+		                        Taxes :
+								<span class="value">
+									<t t-esc="props.tax" />
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="sh_order_summary_left_line">
+						<div class="line global_discount_line">
+							<t t-if="env.pos.config.sh_line_discount_or_custom_discount ==  'line_discount' or env.pos.config.sh_allow_global_discount" style="font-size:14px !important;font-weight:normal;text-align:left;width:295px;">
+								<span class="total badge">Global Discount :</span>
+								<span class="discount_amount" style='margin-left:10px;'>
+									<t t-if="props.discount > 0">
+										<t t-esc="props.discount.toFixed(2)" />
+									</t>
+									<t t-else="">
+					                    		0
+									</t>
+								</span>
+							</t>
+							<t t-if="env.pos.config.line_discount == 'line_discount' or env.pos.config.sh_allow_global_discount">
+								<span class="sh_remove_global_discount">
+									<RemoveDiscountButton/>
+								</span>
+							</t>
+						</div>
+						<t t-if="env.pos.config.enable_pos_item_counter or env.pos.config.enable_pos_qty_counter">
+							<div class="items_counter" style="font-size:14px;">
+								<t t-if="env.pos.config.enable_pos_item_counter">
+									<b style="font-weight: normal; color: #919191;">
+						                        Total Items:
+						           		<span class="value">
+											<t t-esc="props.total_items" />
+										</span>
+									</b>
+								</t>
+								<t t-if="env.pos.config.enable_pos_item_counter and env.pos.config.enable_pos_qty_counter">
+									<b style="margin: 0px 5px;color: #919191;"> | </b>
+								</t>
+								<t t-if="env.pos.config.enable_pos_qty_counter">
+									<b style="font-weight: normal; color: #919191;">
+							                        Total Qty: 
+							        	<span class="value">
+											<t t-esc="props.total_qty" />
+										</span>
+									</b>
+								</t>
+							</div>
+						</t>
+						<t t-if='env.pos.config.enable_weight'>
+							<div class="totl_wght">
+								<span class="total_weight">Total Weight :</span>
+								<span class="value">
+									<t t-esc='env.pos.get_order().total_weight.toFixed(2)' />
+								</span>
+							</div>
+						</t>
+						<div class="line sh_left_line">
+							<t t-if="env.pos.config.sh_enable_loyalty">
+								<div class='entry point_total'>
+									<span class="loyalty_point_label">
+														Points:
+									</span>
+									<span class="pre_define_point">
+										<t t-if="props.pre_define_point">
+											<t t-esc="props.pre_define_point" />
+										</t>
+										<t t-else="">
+															0
+										</t>
+									</span>
+									<span>+	
+										<span class="current_point">
+											<t t-if="props.current_point">
+												<span></span>
+												<t t-if="props.current_point &gt;= 0">
+													<t t-esc="props.current_point" />
+												</t>
+												<t t-elif="props.current_point &lt; 0">
+																(									<t t-esc="props.current_point" />)
+												</t>
+											</t>
+											<t t-else="">
+															0
+											</t>
+										</span>
+									</span>
+									<span class="total_point">
+										<t t-if="props.total_point"> =							<t t-esc="props.total_point" />
+										</t>
+										<t t-else=""> = 0
+										</t>
+									</span>
+								</div>
+							</t>
+						</div>
+					</div>
+				<!-- </div> -->
+			</t>
+		</xpath>
+	</t>
+</templates>

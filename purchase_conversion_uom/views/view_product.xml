@@ -1,0 +1,64 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="product_template_inherit_tree">
+      <field name="name">product.template.tree</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_tree_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='standard_price']" position="after">
+          <field name="normal_price" widget='monetary' options="{'currency_field': 'currency_id'}" optional="show"/>
+          <field name="discount_price" widget='monetary' options="{'currency_field': 'currency_id'}" optional="show"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_template_inherit_form">
+      <field name="name">product.template.form</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//div[@name='standard_price_uom']" position="after">
+          <field name="normal_price" widget='monetary' options="{'currency_field':'currency_id'}"/>
+          <field name="discount_price" widget='monetary' options="{'currency_field':'currency_id'}"/>
+          <field name="uom_category_id" invisible="1"/>
+        </xpath>
+
+<!--        <xpath expr="//page[@name='general_information']/group" position="after">-->
+<!--          <group string="Coversion UoM">-->
+<!--            <field name="uom_exist_ids" invisible="1"/>-->
+<!--            <group>-->
+<!--              <field name="product_uom_line_ids" nolabel="1">-->
+<!--                <tree editable="bottom">-->
+<!--                  <field name="uom_id" domain="[-->
+<!--                    ('id', 'not in', parent.uom_exist_ids),-->
+<!--                    ('category_id', '=', parent.uom_category_id),-->
+<!--                  ]"/>-->
+<!--                  <field name="conversion"/>-->
+<!--                </tree>-->
+<!--              </field>-->
+<!--            </group>-->
+<!--          </group>-->
+<!--        </xpath>-->
+
+        <xpath expr="//field[@name='uom_po_id']" position="attributes">
+          <attribute name="invisible">0</attribute>
+        </xpath>
+      </field>
+    </record>
+
+<!--    <record id="stock_picking_inherit_form" model="ir.ui.view">-->
+<!--      <field name="name">stock.picking.inherit</field>-->
+<!--      <field name="model">stock.picking</field>-->
+<!--      <field name="inherit_id" ref="stock.view_picking_form"/>-->
+<!--      <field name="arch" type="xml">-->
+<!--        <xpath expr="//field[@name='move_ids_without_package']//tree//field[@name='product_id']" position="after">-->
+<!--          <field name="purchase_line_id" invisible="1"/>-->
+<!--          <field name="purchase_qty" force_save="1" readonly="1" attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>-->
+<!--          <field name="purchase_uom_id" string="Purchase UoM" force_save="1" readonly="1" attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>-->
+<!--        </xpath>-->
+<!--      </field>-->
+<!--    </record>-->
+
+  </data>
+</odoo>

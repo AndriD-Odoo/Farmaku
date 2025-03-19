@@ -1,0 +1,27 @@
+.data_td{
+	padding:5px;
+}
+#bundle_product_table .data_td{
+	padding:1px;
+}
+.head_td{
+	background:lightgrey;
+	padding:8px;
+}
+.footer_td{
+	padding:10px;
+}
+#product_price{
+	width: 35%;
+    margin-left: 29px;
+    margin-top: 5px;font-size: 15px;
+}
+@media only screen and (max-width: 992px){
+	#product_price{width: 45%;margin-left: 6px;margin-top: 5px;}
+}
+#product_qty{
+	width: 35%;font-size: 15px;
+}
+.invalid_input{
+	 border: thin solid red;
+}

@@ -1,0 +1,16 @@
+@media only screen and (max-width: 576px) and (min-width: 415px){
+	.pos .popup.popup-selection .selection{height: 200px !important;}
+	.popup.popup-selection{max-width: 280px !important;/* left: 14% !important;top: 20% !important; */}	
+}
+@media only screen and (max-width: 414px) and (min-width: 376px){
+	.pos .popup.popup-selection .selection{height: 200px !important;}
+	.popup.popup-selection{max-width: 280px !important;/* left: 14% !important;top: 20% !important; */}	
+}
+@media only screen and (max-width: 375px) and (min-width: 321px){
+	.pos .popup.popup-selection .selection{height: 200px !important;}
+	.popup.popup-selection{max-width: 280px !important;/* left: 12% !important;top: 20% !important; */}	
+}
+@media only screen and (max-width: 320px){
+	.pos .popup.popup-selection .selection{height: 200px !important;}
+	.popup.popup-selection{max-width: 250px !important;/* left: 12% !important;top: 10% !important; */}	
+}

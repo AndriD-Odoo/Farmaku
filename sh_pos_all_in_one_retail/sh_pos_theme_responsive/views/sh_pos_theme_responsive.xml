@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sh_pos_theme_responsive_index" name="sh_pos_theme_responsive assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+        	
+        	<link rel="stylesheet"  type="text/scss" href="/sh_pos_all_in_one_retail/static/src/scss/pos_theme_variables.scss"/>  
+        	<script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/chrome.js"></script>
+        	<script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/ticket_screen.js"></script>
+        	<script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/client_list_screen.js"></script>
+        	<script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/payment_screen.js"></script>
+        	<script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/receipt_screen.js"></script>
+        	<script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/product_screen.js"></script>
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/action_pad_widget.js"></script>
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/models.js"></script>
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/orderline.js"></script>
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/product_widget_control_panel.js"></script>
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/order_management.js"></script>
+            
+            
+        <!--     <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/temp.js"></script> -->
+            <link rel="stylesheet" href="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/css/pos.css" id="pos-stylesheet"/>
+            
+            <link rel="stylesheet"  type="text/scss" href="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/scss/pos_theme.scss"/>
+            <link rel="stylesheet" type="text/scss" href="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/scss/fonts.scss"/>        
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/js/owl.carousel.js"></script>
+			<link rel="stylesheet" href="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/css/owl.carousel.css" id="pos-stylesheet"/>
+			<link rel="stylesheet" href="/sh_pos_all_in_one_retail/static/sh_pos_theme_responsive/static/src/css/owl.theme.default.min.css" id="pos-stylesheet"/>
+        </xpath>
+    </template>
+    
+   <!--  <template id="sh_pos_theme_settings_web_assets_backend" inherit_id="point_of_sale.assets" name="POS backend assets">
+        <xpath expr="link[last()]" position="after">
+             
+
+           
+ 			    
+ 			       
+        </xpath>
+    </template> -->
+  <!--   
+    <template id="sh_pos_theme_settings_assets" inherit_id="point_of_sale.assets">
+        <xpath expr="//link[last()]" position="after">
+        	
+        </xpath>
+    </template> -->
+</odoo>

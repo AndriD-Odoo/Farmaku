@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="stock_picking_farmaku_marketplace_form">
+            <field name="name">stock.picking.farmaku.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location_id']" position="before">
+                    <field name="airway_bill" attrs="{'invisible':[('is_airwaybill_mkp', '!=', True)], 'readonly':['|',('state','in',['done','cancel']),('picking_type_code', '=', 'outgoing')]}"/>
+                </xpath>
+                <xpath expr="//group[@name='other_infos']" position="after">
+                    <group name="mkp_info" string="Marketplace Sale Info" attrs="{'invisible':[('is_from_excel', '!=', True)]}">
+                        <field name="is_from_excel" invisible="1"/>
+                        <field name="is_airwaybill_mkp" invisible="1"/>
+                        <field name="shop_name" readonly="1"/>
+                        <field name="period" readonly="1"/>
+                        <field name="farmaku_order_mkp" readonly="1"/>
+                        <field name="invoice_mkp" readonly="1"/>
+                        <field name="order_status_mkp" readonly="1"/>
+                    </group>
+                    <group name="mkp_shipping_info" string="Marketplace Shipping Info" attrs="{'invisible':[('is_from_excel', '!=', True)]}">
+                        <field name="shipping_source" readonly="1"/>
+                        <field name="shipping_name_readonly" readonly="1"/>
+                        <field name="shipping_service_name_readonly" readonly="1"/>
+                        <field name="shipping_price" readonly="1"/>
+                        <field name="shipping_discount" readonly="1"/>
+                        <field name="shipping_insurance" readonly="1"/>
+                        <field name="shipping_price_total" readonly="1"/>
+                    </group>
+                    <group name="mkp_recipient_info" string="Marketplace Recipient Info" attrs="{'invisible':[('is_from_excel', '!=', True)]}">
+                        <field name="recipient_name" readonly="1"/>
+                        <field name="recipient_phone" readonly="1"/>
+                        <field name="recipient_address" readonly="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

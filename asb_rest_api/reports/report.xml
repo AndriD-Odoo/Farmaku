@@ -1,0 +1,18 @@
+<odoo>
+    <record id="asb_rest_api.pharmacies_product" model="ir.actions.report">
+        <field name="name">Get Product Pharmacies</field>
+        <field name="model">sync.pharmacies.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">asb_rest_api.pharmacies_product</field>
+        <field name="report_file">asb_rest_api.pharmacies_product</field>
+        <field name="print_report_name">'Laporan Product Pharmacies'</field>
+	</record>
+    <record id="asb_rest_api.order" model="ir.actions.report">
+        <field name="name">Get Product Pharmacies</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">asb_rest_api.order</field>
+        <field name="report_file">asb_rest_api.order</field>
+        <field name="print_report_name">'Laporan Order'</field>
+	</record>
+</odoo>

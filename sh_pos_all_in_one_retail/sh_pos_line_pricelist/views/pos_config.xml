@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_pos_config_line_pricelist" model="ir.ui.view">
+        <field name="name">pos.config.settings.logo</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <field name="pricelist_id" position="after">
+                <div class="row mt16 o_settings_container" id="pricing">
+                    <div class="col-12 col-lg-6 o_setting_box" id="default_pricelist_setting" groups="base.group_multi_currency,product.group_product_pricelist">
+                        <div class="content-group mt16">
+                            <label for="sh_pricelist_for_code" />
+                            <field name="sh_pricelist_for_code" widget="many2many_tag" />
+                            <label for="sh_min_pricelist_value" />
+                            <field name="sh_min_pricelist_value" widget="many2many_tag" />
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>

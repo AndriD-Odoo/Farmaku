@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="ClientDetailsEdit" t-inherit="point_of_sale.ClientDetailsEdit" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('client-details-right')]/div[hasclass('client-detail')]" position="after">
+            <div class="client-detail">
+              	<input class='detail client-mobile' placeholder="Mobile" name='mobile' type='tel' t-on-change="captureChange" t-att-value='props.partner.mobile || ""'></input>
+            </div>
+        </xpath>
+    </t>
+    <t t-extend="ClientListScreen" t-inherit="point_of_sale.ClientListScreen" t-inherit-mode="extension">
+        <xpath expr="//table[hasclass('client-list')]/thead/tr" position="replace">
+            <tr>
+                <th>Name</th>
+                <th t-if="!env.isMobile">Address</th>
+                <th t-if="env.isMobile">ZIP</th>
+                <th>Email</th>
+                <t t-if="env.pos.config.sh_enable_customer_discount">
+                	<th>Discount</th>
+                </t>
+                <th>Point</th>
+                <th>Mobile</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </xpath>
+    </t>
+
+    <t t-name="WhatsappMessagePopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-text popup-lg product-configurator-popup sh_whatsapp_popup">
+                <header class="title">
+                    Send Whatsapp Message
+                </header>
+                <div class="main-body touch-scrollable scrollable-y" style="padding: 20px;">
+                	<div class="sh_whatsapp_number">
+	                    <div style="margin-right: 15px;"><label class="sh_wp_number_lbl">Whatsapp Number : </label></div>
+	                    <div><input readonly="" type="text" class="mobile_no" t-att-value="props.mobile_no" name="mobile_no" style="font-size: 15px;" /></div>
+                	</div>
+					<div class="sh_whatsapp_msg">
+	                    <div class="sh_msg_div"><label class="sh_wp_msg_lbl">Message : </label></div>
+	                    <div>
+		                    <textarea placeholder="Enter Message Here.." class="wp_message" t-att-value="props.message" name="message" />
+	                    </div>
+                    </div>
+
+                    <a class="wp_url" target="blank" href=""><span></span></a>
+                    <div style="text-align: left;" class="sh_wp_note">
+                        <h5 style="margin: 10px 0px;">Note : </h5>
+                       	<p> 1) Use *text* to make text bold.</p>
+                        <p> 2) Use _text_ to make text italic.</p>
+                        <p> 3) Use %0A after/before Text if you want to add blank line.</p>
+                        <p> 4) use %20 after/before any Text if you want to give space.</p>
+                        <p> 5) go to users => preferences to add signature.</p>
+                    </div>
+                </div>
+                <footer class="footer">
+                    <div class="button confirm" t-on-click="confirm">
+                        <t t-esc="props.confirmText" />
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        <t t-esc="props.cancelText" />
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+
+    <t t-extend="ReceiptScreen" t-inherit="point_of_sale.ReceiptScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('print')]" position="after">
+            <t t-if="env.pos.config.enable_whatsapp and env.pos.get_order().get_client() and env.pos.get_order().get_client().mobile">
+<!--                <div class="button send_wp" t-on-click="trigger('click-send_wp')" style="margin-left: 5px;"><i class="fa fa-whatsapp"></i> Send By Whatsapp</div>-->
+
+                <div class="button send_wp_direct" t-on-click="trigger('click-send_wp_dierct')" style="margin-left: 5px;"><i class="fa fa-whatsapp"></i> Send By Whatsapp Direct</div>
+            </t>
+        </xpath>
+    </t>
+</templates>

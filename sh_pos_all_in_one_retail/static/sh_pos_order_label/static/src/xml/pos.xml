@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+    <t t-name='AddlabelButton' owl='1'>
+        <div class='control-button sh_order_label_btn' t-on-click='trigger("click-add-button")'>
+        	<a style="display: flex;" class="btn btn-primary">
+        		<div class="sh_icon_img" style="display: flex;align-items: center;margin-right: 10px;">
+                	<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 130"><title>add label</title><path d="M70,5a65,65,0,1,0,65,65A65,65,0,0,0,70,5Zm0,115a50,50,0,1,1,50-50A50,50,0,0,1,70,120Z" transform="translate(-5 -5)"/><rect x="24" y="57" width="82" height="14" rx="7"/><rect x="29" y="62" width="82" height="14" rx="7" transform="translate(134 -6) rotate(90)"/></svg>
+                </div>
+                <div class="sh_text_span">
+               		<span class="sh_control_btn_span">Add Label</span>
+               	</div>
+        	</a>
+        </div>
+    </t>
+    <t t-name="LabelPopup" owl="1">
+        <div role="dialog" class="modal-dialog sh_lbl_modal_dialog">
+            <div class="popup popup-alert label_popup">
+                <header class="title">
+                    Add Label
+                </header>
+                <main class="body sh-lbl-popup-body">
+                    <div>
+                        <textarea rows='3' name='label_value' id='label_value' placeholder='Add Label' value=''></textarea>
+                    </div>
+                </main>
+                <footer class="footer">
+                    <div class="button confirm" t-on-click="confirm">
+                        Confirm
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('orderlines')]" position='replace'>
+            <div class="orderlines">
+                <t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
+                    <t t-if='line.product_name == "Order line Section"'>
+                        <t t-if='env.pos.config.enable_order_line_label_in_receipt and env.pos.config.enable_order_line_label  '>
+                            <h5 class='line_label'>
+                                <span>
+                                    <t t-esc='env.pos.get_order().get_orderline_by_id(line.id)[0].add_section' />
+                                </span>
+                            </h5>
+                        </t>
+                    </t>
+                    <t t-else=''>
+                        <t t-if="isSimple(line)">
+                            <div>
+                                <t t-esc="line.product_name_wrapped[0]" />
+                                <span t-esc="env.pos.format_currency_no_symbol(line.price_display)" class="price_display pos-receipt-right-align" />
+                            </div>
+                            <WrappedProductNameLines line="line" />
+                        </t>
+                        <t t-else="">
+                            <div t-esc="line.product_name_wrapped[0]" />
+                            <WrappedProductNameLines line="line" />
+                            <t t-if="line.display_discount_policy == 'without_discount' and line.price != line.price_lst
+                                and line.unit_name == line.secondary_unit_name">
+                                <div class="pos-receipt-left-padding">
+                                    <s><t t-esc="env.pos.format_currency_no_symbol(line.price_lst)" /></s>
+                                    ->
+                                    <t t-esc="env.pos.format_currency_no_symbol(line.price)" />
+                                </div>
+                            </t>
+                            <t t-elif="line.discount !== 0">
+                                <div class="pos-receipt-left-padding">
+                                    <t t-if="env.pos.config.iface_tax_included === 'total'">
+                                        <t t-esc="env.pos.format_currency_no_symbol(line.price_with_tax_before_discount)" />
+                                    </t>
+                                    <t t-else="">
+                                        <t t-esc="env.pos.format_currency_no_symbol(line.price)" />
+                                    </t>
+                                </div>
+                            </t>
+                            <t t-if="line.discount !== 0">
+                                <div class="pos-receipt-left-padding">
+                                    Discount:
+                                    <t t-esc="line.discount" />
+                                    %
+                                </div>
+                            </t>
+                            <div class="pos-receipt-left-padding">
+                                <t t-esc="Math.round(line.quantity * Math.pow(10, env.pos.dp['Product Unit of Measure'])) / Math.pow(10, env.pos.dp['Product Unit of Measure'])" />
+                                <t t-if="line.unit_name !== 'Units'" t-esc="line.unit_name" />
+                                x
+                                <t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)" />
+                                <span class="price_display pos-receipt-right-align">
+                                    <t t-esc="env.pos.format_currency_no_symbol(line.price_display)" />
+                                </span>
+                            </div>
+                        </t>
+                        <t t-if="line.pack_lot_lines">
+                            <div class="pos-receipt-left-padding">
+                                <ul>
+                                    <t t-foreach="line.pack_lot_lines" t-as="lot" t-key="lot.cid">
+                                        <li>
+                                            SN
+                                            <t t-esc="lot.attributes['lot_name']" />
+                                        </li>
+                                    </t>
+                                </ul>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </div>
+        </xpath>
+    </t>
+    <t t-name="OrderWidget" t-inherit="point_of_sale.OrderWidget" t-inherit-mode="extension" owl="1">
+        <xpath expr="//ul[hasclass('orderlines')]" position="replace">
+            <ul class="orderlines">
+                <t t-foreach="orderlinesArray" t-as="orderline" t-key="orderline.id">
+                    <t t-if="env.pos.db.get_product_by_name('sh_pos_order_label_line').id != orderline.product.id">
+                        <Orderline line="orderline" />
+                    </t>
+                    <t t-else=''>
+                        <li t-att-data-label_id="orderline.get_orderline_label()" class=" orderline label_item">
+                            <h6 class="line_label">
+                                <t t-if='orderline and orderline.get_orderline_label()'>
+                                    <span>
+                                        <t t-esc="orderline.get_orderline_label()" />
+                                    </span>
+                                </t>
+                                <t t-else=''></t>
+                            </h6>
+                            <span t-on-click='remove_label' class="remove_label">
+                                <i class="fa fa-fw fa-trash-o" />
+                            </span>
+                        </li>
+                    </t>
+                </t>
+            </ul>
+        </xpath>
+    </t>
+</templates>

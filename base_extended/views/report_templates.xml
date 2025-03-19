@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_assets_common" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/base_extended/static/src/css/report_style.css"/>
+            <link rel="stylesheet" type="text/scss" href="/base_extended/static/src/scss/report_style.scss"/>
+            <link href="https://fonts.googleapis.com/css?family=Calibri" rel="stylesheet"/>
+            <link href="https://fonts.googleapis.com/css?family=Times+New+Roman" rel="stylesheet"/>
+            <link href="https://fonts.googleapis.com/css?family=Courier+New" rel="stylesheet"/>
+            <link href="https://fonts.googleapis.com/css?family=Arial" rel="stylesheet"/>
+        </xpath>
+    </template>
+
+    <template id="company_header">
+        <div class="o_boxed_header">
+            <div class="row mb8">
+                <div class="col-6">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                </div>
+                <div class="col-6 text-right mb4" style="font-size: 12px !important;">
+                    <h4 class="mt0" t-field="company.report_header"/>
+                    <span t-field="company.name"/>
+                    <br/>
+                    <span t-field="company.partner_id.street"/>
+                    <br/>
+                    <span t-field="company.partner_id.city"/>, <span t-field="company.partner_id.state_id.name"/> <span t-field="company.partner_id.zip"/>
+                    <br/>
+                    <span><t t-esc="company.country_id.vat_label or 'NPWP'"/>: <span t-field="company.vat"/></span>
+                    <br t-if="company.partner_id.pbf_permit_number"/>
+                    <span t-if="company.partner_id.pbf_permit_number">Nomor Izin PBF: <span t-field="company.partner_id.pbf_permit_number"/></span>
+                    <br t-if="company.partner_id.cdob"/>
+                    <span t-if="company.partner_id.cdob">Nomor Sertifikat CDOB: <span t-field="company.partner_id.cdob"/></span>
+                    <br/>
+                    <span><![CDATA[&nbsp;]]></span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="web.external_layout_boxed">
+        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+            <t t-call="base_extended.company_header"/>
+        </div>
+
+        <div style="font-size: 14px !important;" t-attf-class="article o_report_layout_boxed o_company_#{company.id}_layout" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <div class="pt-0">
+                <!-- This div ensures that the address is not cropped by the header. -->
+                <div t-if="report_title">
+                    <table class="table table-sm o_main_table m-0 table-borderless border border-right-0 border-left-0 border-top-0 border-bottom-0">
+                        <tr>
+                            <td class="text-right" colspan="2" id="doc_date">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left" id="doc_title">
+                                <strong><span style="font-size: 30px;" t-esc="report_title.upper()"/></strong>
+                            </td>
+                            <td class="text-right" id="doc_number"/>
+                        </tr>
+                        <tr>
+                            <td class="text-right" colspan="2" id="doc_ref">
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br/>
+                <t t-call="web.address_layout"/>
+            </div>
+            <t t-raw="0"/>
+        </div>
+
+        <div t-attf-class="footer o_company_#{company.id}_layout">
+            <div name="footer_content" align="right"/>
+        </div>
+    </template>
+
+</odoo>

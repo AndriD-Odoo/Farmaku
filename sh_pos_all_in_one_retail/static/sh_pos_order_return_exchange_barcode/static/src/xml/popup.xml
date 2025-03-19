@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="OrderReturnBarcodePopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog sh_signature_modal_dialog">
+            <div class="popup popup-text popup-lg product-configurator-popup order_return_popup order_return_barcode_popup">
+                <header class="title">
+                    <t t-if="env.pos.is_return">
+                        Return Products
+                    </t>
+                    <t t-if="env.pos.is_exchange">
+                        Exchange Products
+                    </t>
+                </header>
+                <div class="button complete_return" t-on-click="click_complete_return">
+                    <t t-if="env.pos.is_return">
+                        Complete Return
+                    </t>
+                    <t t-if="env.pos.is_exchange">
+                        Complete Exchange
+                    </t>
+                </div>
+                <div class="main-body touch-scrollable scrollable-y note_body sh_return_exchange_main_body">
+                    <div class="main_div_eturn_exchange">
+                        <table class="return_product_table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Qty.</th>
+                                    <th class="return_exchange_popup_header">
+                                        <t t-if="env.pos.is_return">
+                                            Return Qty.
+                                        </t>
+                                        <t t-if="env.pos.is_exchange">
+                                            Exchange Qty.
+                                        </t>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="lines">
+                                    <t t-foreach="lines" t-as="each_line">
+                                        <t t-if="env.pos.is_return">
+                                            <t t-if="each_line.product_id[0]">
+                                                <t t-if="!env.pos.db.get_product_by_id(each_line.product_id[0]).sh_product_non_returnable">
+                                                    <t t-if="(each_line.qty - each_line.sh_return_qty) != 0 and (each_line.qty - each_line.sh_return_qty) > 0">
+                                                        <tr t-att-data-order_id="order" class="return_data_line" t-att-data-line_id="each_line.id">
+                                                            <td><t t-esc="each_line.product_id[1]" /></td>
+                                                            <td><t t-esc="(each_line.qty - each_line.sh_return_qty)" /></td>
+                                                            <td><input type="text" class="return_qty_input" t-on-keyup="updateReturnQty" /></td>
+                                                        </tr>
+                                                    </t>
+                                                </t>
+                                            </t>
+                                            <t t-else="">
+                                                <t t-if="!env.pos.db.get_product_by_id(each_line.product_id).sh_product_non_returnable">
+                                                    <t t-if="(each_line.qty - each_line.sh_return_qty) != 0 and (each_line.qty - each_line.sh_return_qty) > 0">
+                                                        <tr t-att-data-order_id="order" class="return_data_line" t-att-data-line_id="each_line.sh_line_id">
+                                                            <td><t t-esc="env.pos.db.get_product_by_id(each_line.product_id).display_name" /></td>
+                                                            <td><t t-esc="(each_line.qty - each_line.sh_return_qty)" /></td>
+                                                            <td><input type="text" class="return_qty_input" t-on-keyup="updateReturnQty" /></td>
+                                                        </tr>
+                                                    </t>
+                                                </t>
+                                            </t>
+                                        </t>
+                                        <t t-if="env.pos.is_exchange">
+                                            <t t-if="each_line.product_id[0]">
+                                                <t t-if="!env.pos.db.get_product_by_id(each_line.product_id[0]).sh_product_non_returnable">
+                                                    <t t-if="(each_line.qty - each_line.sh_return_qty) != 0 and (each_line.qty - each_line.sh_return_qty) > 0">
+                                                        <tr t-att-data-order_id="order" class="return_data_line" t-att-data-line_id="each_line.id">
+                                                            <td><t t-esc="each_line.product_id[1]" /></td>
+                                                            <td><t t-esc="(each_line.qty - each_line.sh_return_qty)" /></td>
+                                                            <td><input type="text" class="return_qty_input" t-on-keyup="updateReturnQty" /></td>
+                                                        </tr>
+                                                    </t>
+                                                </t>
+                                            </t>
+                                            <t t-else="">
+                                                <t t-if="!env.pos.db.get_product_by_id(each_line.product_id).sh_product_non_returnable">
+                                                    <t t-if="(each_line.qty - each_line.sh_return_qty) != 0 and (each_line.qty - each_line.sh_return_qty) > 0">
+                                                        <tr t-att-data-order_id="order" class="return_data_line" t-att-data-line_id="each_line.sh_line_id">
+                                                            <td><t t-esc="env.pos.db.get_product_by_id(each_line.product_id).display_name" /></td>
+                                                            <td><t t-esc="(each_line.qty - each_line.sh_return_qty)" /></td>
+                                                            <td><input type="text" class="return_qty_input" t-on-keyup="updateReturnQty" /></td>
+                                                        </tr>
+                                                    </t>
+                                                </t>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <footer class="footer order_return_barcode_footer">
+                    <div class="sh_radio_btn_div">
+                        <div class="sh_return_exchange_radio">
+                            <t t-if="env.pos.config.sh_allow_return and env.pos.config.sh_allow_exchange">
+                                <input type="radio" id="return_radio" name="return_exchange_radio" checked="true" />
+                                <label for="return_radio" style="margin-right: 8px;"> Return</label>
+                                <input type="radio" id="exchange_radio" name="return_exchange_radio" />
+                                <label for="exchange_radio"> Exchange</label>
+                            </t>
+                            <t t-if="env.pos.config.sh_allow_return and !env.pos.config.sh_allow_exchange">
+                                <input type="radio" id="return_radio" name="return_exchange_radio" checked="true" />
+                                <label for="return_radio"> Return</label>
+                            </t>
+                            <t t-if="!env.pos.config.sh_allow_return and env.pos.config.sh_allow_exchange">
+                                <input type="radio" id="exchange_radio" name="return_exchange_radio" checked="true" />
+                                <label for="exchange_radio"> Exchange</label>
+                            </t>
+
+                            <br />
+                        </div>
+                        <div class="sh_same_product_checkbox sh_custom_checkbox" style="display: none;">
+                            <input type="checkbox" id="exchange_checkbox" />
+                            <label for="exchange_checkbox" class="chk_lbl"> Exchange With Same Products</label><br />
+                        </div>
+                    </div>
+                    <div class="barcode_footer_button">
+                        <div class="button confirm" t-on-click="confirm">
+                            <t t-if="env.pos.is_return">
+                                Return
+                            </t>
+                            <t t-if="env.pos.is_exchange">
+                                Exchange
+                            </t>
+                        </div>
+                        <div class="button cancel" t-on-click="cancel">
+                            Cancel
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+</templates>

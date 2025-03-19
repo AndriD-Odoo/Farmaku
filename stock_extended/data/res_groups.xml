@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_stock_valuation_quant" model="res.groups">
+            <field name="name">Show Valuation Details on Stock Quant</field>
+        </record>
+
+    </data>
+</odoo>

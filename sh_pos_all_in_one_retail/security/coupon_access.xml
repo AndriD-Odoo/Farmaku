@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <record id="group_enable_create_coupon" model="res.groups">
+        <field name="name">POS - Allow Create Coupon</field>
+    </record>
+
+    <record id="group_enable_redeem_coupon" model="res.groups">
+        <field name="name">POS - Allow Redeem Coupon</field>
+    </record>
+    
+    <record id="group_set_price_in_product" model="res.groups">
+        <field name="name">Set Min-Max price in product</field>
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]" />
+    </record>
+
+    <record id="group_pos_product_price" model="res.groups">
+        <field name="name">Allow confirm pos product sale price</field>
+    </record>
+</odoo>

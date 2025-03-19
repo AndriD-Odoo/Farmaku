@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_pos_order_line_pos_note" model="ir.ui.view">
+        <field name="name">pos.order.line.pos.note</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='discount']" position="after">
+                <field name="sh_discount_code" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- <record id="sh_pos_config_settings_pos_note" model="ir.ui.view">
+        <field name="name">pos.config.settings.pos.note</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[12]" position="after">
+                <h2>POS Custom Discount</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_apply_custom_discount" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_apply_custom_discount" />
+                            <div class="text-muted">
+                                Standard Discount Feature Disable.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_apply_both_discount" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_apply_both_discount" />
+                            <div class="text-muted">
+                                Separate Action Icon.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record> -->
+
+    <record id="view_pos_discount_tree" model="ir.ui.view">
+        <field name="name">POS Discount Tree</field>
+        <field name="model">pos.discount</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sh_discount_name" />
+                <field name="sh_discount_code" />
+                <field name="sh_discount_value" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pos_discount_form" model="ir.ui.view">
+        <field name="name">pos.discount.form</field>
+        <field name="model">pos.discount</field>
+        <field name="arch" type="xml">
+            <form string="POS Discount">
+                <sheet>
+                    <group col="2" colspan="4" name="order_fields">
+                        <field name="sh_discount_name" />
+                        <field name="sh_discount_code" />
+                        <field name="sh_discount_value" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_discount" model="ir.actions.act_window">
+        <field name="name">POS Discount</field>
+        <field name="res_model">pos.discount</field>
+        <field name="view_mode">tree,form</field>
+        <field name="type">ir.actions.act_window</field>
+    </record>
+
+    <menuitem id="menu_pos_discount" name="POS Discount" action="action_pos_discount" parent="point_of_sale.menu_point_config_product" sequence="3" />
+</odoo>

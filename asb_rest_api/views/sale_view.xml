@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sale_order_farmaku_form">
+            <field name="name">sale.order.farmaku.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_cancel']" position="attributes">
+                    <attribute name="confirm">Are you sure want to cancel this order?</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="after">
+                    <button name="action_refund" type="object" string="Refund" states="sale,done" confirm="Are you sure want to refund this order?"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="cancel_reason_id" attrs="{'readonly': [('state', '=', 'cancel')]}"/>
+                    <field name="cancel_note" attrs="{'readonly': [('state', '=', 'cancel')]}"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page name='farmaku_info' string="Farmaku Info">
+                        <group>
+                            <group>
+                                <field name="farmaku_order_id" readonly="1" widget="integer" options="{'format': 0}"/>
+                                <field name="order_number" readonly="1"/>
+                                <field name="order_status" readonly="1"/>
+                                <field name="recipient_name_web" readonly="1"/>
+                                <field name="recipient_phone_web" readonly="1"/>
+                                <field name="recipient_address_web" readonly="1"/>
+                                <field name="invoice_number" attrs="{'readonly': ['|', ('is_from_api', '=', True), ('state', '!=', 'draft')]}"/>
+                                <field name="payment_method" readonly="1"/>
+                                <field name="pharmacy_code" readonly="1"/>
+                                <field name="pharmacy_name" readonly="1"/>
+                                <field name="has_concoction" readonly="1"/>
+                                <field name="grand_total_price" invisible="1"/>
+                                <field name="is_backorder" readonly="1"/>
+                                <field name="edc_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="is_need_to_enter_airway_bill" invisible="1"/>
+                                <field name="driver_name" invisible="1"/>
+                                <field name="driver_phone" invisible="1" widget="phone"/>
+                                <field name="driver_photo_url_path" invisible="1" widget="url"/>
+                                <field name="driver_plate_number" invisible="1"/>
+                                <field name="driver_vehicle_model" invisible="1"/>
+                                <field name="tracking_url" invisible="1" widget="url"/>
+                                <field name="delivery_status" invisible="1"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="is_from_api" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+       <record id="sale_order_view_search_inherit_website" model="ir.ui.view">
+            <field name="name">sale.order.search.inherit.website</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="order_number"/>
+                    <field name="invoice_number"/>
+                </field>
+            </field>
+        </record>
+        <record id="sale_order_website_action" model="ir.actions.act_window">
+            <field name="name">Order From Website</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sale.view_quotation_tree_with_onboarding"/>
+            <field name="domain">[('is_from_api', '=', True)]</field>
+        </record>
+        <menuitem
+            id="farmaku_sub_menu"
+            name="Farmaku"
+            parent="sale.sale_order_menu"/>
+        <menuitem
+            id="so_website_menu"
+            name="Orders Website"
+            parent="farmaku_sub_menu"
+            action="sale_order_website_action"/>
+    </data>
+</odoo>

@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+
+        <record id="view_move_form" model="ir.ui.view">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="partner_contact_ids" invisible="1"/>
+                    <field name="receiver_pic_id" attrs="{'readonly': [('state', 'not in', ['draft', 'posted'])], 'invisible': [('move_type', 'not in', ['out_invoice', 'in_refund'])]}" domain="[('id', 'in', partner_contact_ids)]"/>
+                    <field name="warehouse_id" attrs="{'readonly': [('state', 'not in', ['draft', 'posted'])], 'invisible': [('move_type', 'not in', ['out_invoice', 'in_refund'])]}"/>
+                    <field name="warehouse_contact_ids" invisible="1"/>
+                    <field name="sender_pic_id" attrs="{'readonly': [('state', 'not in', ['draft', 'posted'])], 'invisible': [('move_type', 'not in', ['out_invoice', 'in_refund'])]}" domain="[('id', 'in', warehouse_contact_ids)]"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,130 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_brand_tree">
+            <field name="name">product.brand.tree</field>
+            <field name="model">product.brand</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="icon_url_path"/>
+                    <field name="image_url_path"/>
+                    <field name="is_show_homepage"/>
+                    <field name="brand_key"/>
+                    <field name="meta_description"/>
+                    <field name="meta_keyword"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_brand_form">
+            <field name="name">product.brand.form</field>
+            <field name="model">product.brand</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="icon_url_path"/>
+                            <field name="image_url_path"/>
+                            <field name="is_show_homepage"/>
+                            <field name="brand_key"/>
+                            <field name="meta_description"/>
+                            <field name="meta_keyword"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_brand_action">
+            <field name="name">Product Brand</field>
+            <field name="res_model">product.brand</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_product_brand"
+            name="Product Brand"
+            parent="menu_master_farmaku"
+            action="product_brand_action"
+        />
+        <record model="ir.ui.view" id="product_brand_pic_tree">
+            <field name="name">product.brand.pic.tree</field>
+            <field name="model">product.brand.pic</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="brand_id"/>
+                    <field name="pic_name"/>
+                    <field name="pic_phone"/>
+                    <field name="pic_email"/>
+                    <field name="pic_title"/>
+                    <field name="pic_note"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_brand_pic_form">
+            <field name="name">product.brand.pic.form</field>
+            <field name="model">product.brand.pic</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="brand_id"/>
+                            <field name="pic_name"/>
+                            <field name="pic_phone"/>
+                            <field name="pic_email"/>
+                            <field name="pic_title"/>
+                            <field name="pic_note"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_brand_pic_action">
+            <field name="name">Product Brand</field>
+            <field name="res_model">product.brand.pic</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_product_brand_pic"
+            name="Product Brand Pic"
+            parent="menu_master_farmaku"
+            action="product_brand_pic_action"
+        />
+    </data>
+</odoo>

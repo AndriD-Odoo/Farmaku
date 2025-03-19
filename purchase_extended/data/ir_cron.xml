@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record forcecreate="True" id="ir_cron_auto_cancel_purchase" model="ir.cron">
+            <field name="name">Auto Cancel Purchase Order</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_auto_cancel(limit=500)</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="nextcall" eval="DateTime.now().strftime('%Y-%m-%d 17:00:00')"/>
+            <field name="numbercall">-1</field>
+            <field eval="True" name="doall"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_purchase_vendor_revision" model="ir.cron">
+            <field name="name">Purchase Vendor Revision</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_purchase_vendor_revision(purchase_vendors={
+                'P76336': {549776:811491},
+                'P76331': {296652:811463},
+                'P76329': {302289:811444},
+                'P76234': {447341:811514},
+                'P75378': {549776:811491},
+                'P75374': {349304:811411},
+                'P75373': {308696:811387},
+                'P75369': {801317:811403},
+                'P75267': {801311:811400},
+                })</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="nextcall" eval="DateTime.now().strftime('%Y-%m-%d 17:00:00')"/>
+            <field name="numbercall">1</field>
+            <field eval="True" name="doall"/>
+            <field eval="False" name="active"/>
+        </record>
+
+    </data>
+</odoo>

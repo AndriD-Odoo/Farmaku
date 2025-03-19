@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- List View -->
+        <record model="ir.ui.view" id="status_mkp_tree">
+            <field name="name">status.mkp.tree</field>
+            <field name="model">status.mkp</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="channel"/>
+                    <field name="status"/>
+                    <field name="status_type"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Form View -->
+        <record model="ir.ui.view" id="status_mkp_form">
+            <field name="name">status.mkp.form</field>
+            <field name="model">status.mkp</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="channel"/>
+                            </group>
+                            <group>
+                                <field name="status"/>
+                                <field name="status_type"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="status_mkp_action">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Status Marketplace</field>
+            <field name="res_model">status.mkp</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_status_mkp"
+            name="Status Marketplace"
+            parent="mkp_import_menu"
+            action="status_mkp_action"
+        />
+
+    </data>
+</odoo>

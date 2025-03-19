@@ -1,0 +1,71 @@
+<odoo>
+	<data>
+	
+	    <record id="stock_picking_box_form_view" model="ir.ui.view">
+			<field name="name">stock.picking.box.form</field>
+			<field name="model">stock.picking.box</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+		        <form>
+					<sheet>
+						<group>
+							<group>
+								<field name="picking_id" readonly="1"/>
+							</group>
+						</group>
+						<separator string="Box Details"/>
+						<div colspan="2">
+							<div>
+								<span>Input Nomor Box sesuai jumlah box yang akan dikirimkan. Lalu pilih SKU yang masuk ke dalam box tersebut.</span>
+								<br/>
+								<span>Pastikan data yang diinput sesuai dengan fisik yang akan dikirimkan.</span>
+							</div>
+						</div>
+						<field name="lines">
+							<tree>
+								<field name="name"/>
+								<field name="item_count"/>
+								<field name="qty"/>
+							</tree>
+							<form>
+								<group>
+									<group>
+										<field name="name"/>
+										<field name="item_count"/>
+										<field name="qty"/>
+									</group>
+								</group>
+								<separator string="Item Details"/>
+								<field name="item_details">
+									<tree editable="bottom" create="false">
+										<field name="move_line_id" invisible="1"/>
+										<field name="barcode" readonly="1"/>
+										<field name="name" readonly="1"/>
+										<field name="qty"/>
+										<field name="uom_id" readonly="1"/>
+										<field name="lot_name" readonly="1"/>
+										<field name="expiration_date" widget="date" readonly="1"/>
+									</tree>
+								</field>
+							</form>
+						</field>
+						<footer>
+							<button name="save" string="Save" special="save" class="oe_highlight"/> or
+							<button string="Cancel" class="oe_link" special="cancel"/>
+						</footer>
+					</sheet>
+		        </form>
+	    	</field>
+	    </record>
+		
+	    <record id="stock_picking_box_action" model="ir.actions.act_window">
+			<field name="name">Input Boxes</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">stock.picking.box</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="stock_picking_box_form_view"/>
+			<field name="target">new</field>
+	    </record>
+	
+	</data>
+</odoo>

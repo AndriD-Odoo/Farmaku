@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="invoice_recap_tree" model="ir.ui.view">
+            <field name="name">account.invoice.recap.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_register_payment']" position="after">
+                    <button name="action_upload_excel" type="object" string="Generate MP" class="btn-primary"/> <!-- Added action_read_excel button -->
+                </xpath>
+                <tree>
+                    <field name="narration" optional="hide"/> <!-- Added narration field for search -->
+                </tree>
+            </field>
+        </record>
+
+        <record id="invoice_recap_tree_search" model="ir.ui.view">
+            <field name="name">account.invoice.recap.filter</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_user_id']" position="after">
+                    <field name="narration" string="Notes"/> <!-- Added narration field for search -->
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

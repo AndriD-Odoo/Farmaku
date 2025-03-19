@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="status_mkp_data_verify" model="status.mkp">
+            <field name="name">Verify Order</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Verifikasi Konfirmasi Pembayaran..Pembayaran telah diterima Tokopedia dan pesanan sudah diteruskan kepenjual.</field>
+            <field name="status_type">open</field>
+        </record>
+        <record id="status_mkp_data_order_process" model="status.mkp">
+            <field name="name">Order Process</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Pemesanan sedang diproses oleh penjual.</field>
+            <field name="status_type">open</field>
+        </record>
+        <record id="status_mkp_data_resi_invalid" model="status.mkp">
+            <field name="name">Resi Invalid</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Kode resi pengiriman tidak valid.</field>
+            <field name="status_type">process</field>
+        </record>
+        <record id="status_mkp_data_waiting_delivery" model="status.mkp">
+            <field name="name">Waiting Delivery Status</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Menunggu status pengiriman dari kurir..Pesanan dalam proses pengiriman oleh kurir.</field>
+            <field name="status_type">process</field>
+        </record>
+        <record id="status_mkp_data_wait_pickup" model="status.mkp">
+            <field name="name">Waiting PickUp</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Menunggu Pick Up.</field>
+            <field name="status_type">process</field>
+        </record>
+        <record id="status_mkp_data_in_delivery" model="status.mkp">
+            <field name="name">Order in Delivery</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Pesanan telah dikirim..Pesanan dalam proses pengiriman oleh kurir.</field>
+            <field name="status_type">done</field>
+        </record>
+        <record id="status_mkp_data_order_arrived" model="status.mkp">
+            <field name="name">Order Arrived</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Pesanan telah tiba ditujuan..Dana akan diteruskan ketika barang dikonfirmasi pembeli atau otomatis dalam 48jam.</field>
+            <field name="status_type">done</field>
+        </record>
+        <record id="status_mkp_data_order_transaction_done" model="status.mkp">
+            <field name="name">Transaction Done</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Transaksi selesai..Dana akan diteruskan ke penjual.</field>
+            <field name="status_type">done</field>
+        </record>
+        <record id="status_mkp_data_order_complaint" model="status.mkp">
+            <field name="name">Order Complaint</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Pesanan dikomplain oleh pembeli.</field>
+            <field name="status_type">done</field>
+        </record>
+        <record id="status_mkp_data_transaction_canceled" model="status.mkp">
+            <field name="name">Transaction Canceled</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Transaksi dibatalkan.</field>
+            <field name="status_type">cancel</field>
+        </record>
+        <record id="status_mkp_data_transaction_rejected" model="status.mkp">
+            <field name="name">Transaction Rejected</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Transaksi ditolak.</field>
+            <field name="status_type">cancel</field>
+        </record>
+        <record id="status_mkp_data_transaction_canceled_buyer" model="status.mkp">
+            <field name="name">Transaction Rejected by Buyer</field>
+            <field name="channel">Tokopedia</field>
+            <field name="status">Pesanan dibatalkan pembeli.</field>
+            <field name="status_type">cancel</field>
+        </record>
+	</data>
+</odoo>

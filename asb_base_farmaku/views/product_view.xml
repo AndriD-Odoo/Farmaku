@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_photos_tree">
+            <field name="name">product.photos.tree</field>
+            <field name="model">product.photos</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="image_url"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_photos_form">
+            <field name="name">product.photos.form</field>
+            <field name="model">product.photos</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="image_url"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_photos_action">
+            <field name="name">Product Photos</field>
+            <field name="res_model">product.photos</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_product_photo"
+            name="Product Photo"
+            parent="menu_master_farmaku"
+            action="product_photos_action"
+        />
+
+        <record model="ir.ui.view" id="product_dot_color_tree">
+            <field name="name">product.dot.color.tree</field>
+            <field name="model">product.dot.color</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_dot_color_form">
+            <field name="name">product.dot.color.form</field>
+            <field name="model">product.dot.color</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_dot_color_action">
+            <field name="name">Product Dot Color</field>
+            <field name="res_model">product.dot.color</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_product_dot_color"
+            name="Product Dot Color"
+            parent="menu_master_farmaku"
+            action="product_dot_color_action"
+        />
+
+        <record model="ir.ui.view" id="product_type_tree">
+            <field name="name">product.type.tree</field>
+            <field name="model">product.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="ethical"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_type_form">
+            <field name="name">product.type.form</field>
+            <field name="model">product.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="ethical"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_type_action">
+            <field name="name">Product Type</field>
+            <field name="res_model">product.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_product_type"
+            name="Product Type"
+            parent="menu_master_farmaku"
+            action="product_type_action"
+        />
+        
+
+        <record model="ir.ui.view" id="product_template_farmaku_form">
+            <field name="name">product.template.farmaku.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Farmaku Information" name="farmaku_information">
+                        <group>
+                            <group>
+                                <field name="brand_id"/>
+                                <field name="product_dot_color_id"/>
+                                <field name="product_type_id"/>
+                                <field name="forconcoction"/>
+                                <field name="forprescription"/>
+                                <field name="attention"/>
+                                <field name="contraindication"/>
+                            </group>
+                            <group>
+                                <field name="dimension_length"/>
+                                <field name="dimension_height"/>
+                                <field name="dimension_width"/>
+                                <field name="weight" string="Dimension Weight"/>
+                            </group>
+                            <group>
+                                <field name="dosage"/>
+                                <field name="drug_interaction"/>
+                                <field name="indication"/>
+                            </group>
+                            <group>
+                                <field name="is_backorder"/>
+                                <field name="is_fullfilled_bymitra"/>
+                            </group>
+                            <group>
+                                <field name="long_description"/>
+                                <field name="principal_id"/>
+                                <field name="side_effect"/>
+                            </group>
+                            <group>
+                                <field name="conversion"/>
+                                <field name="conversion_operator"/>
+                            </group>
+                            <group>
+                                <field name="is_best_selling"/>
+                                <field name="is_new_arrival"/>
+                                <field name="is_top_offer"/>
+                                <field name="is_discontinue"/>
+                            </group>
+                            <group>
+                                <field name="product_key"/>
+                                <field name="meta_keyword"/>
+                                <field name="meta_description"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="product_move_category_view_tree" model="ir.ui.view">
+            <field name="name">product.move.category.tree</field>
+            <field name="model">product.move.category</field>
+            <field name="arch" type="xml">
+                <tree create="false" delete="false" editable="bottom">
+                    <field name="category" readonly="1"/>
+                    <field name="sale_last_30_days" attrs="{'readonly': [('category', '=', 'medium')]}"/>
+                    <field name="sale_last_30_days_label" readonly="1"/>
+                    <field name="min_buffer"/>
+                    <field name="max_buffer"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="product_move_category_action" model="ir.actions.act_window">
+            <field name="name">Product Move Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.move.category</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="product_move_category_menu" parent="stock.menu_product_in_config_stock" action="product_move_category_action" sequence="20"/>
+
+    </data>
+</odoo>

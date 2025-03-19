@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <template id="sh_assets_frontend_sh_pos_discount" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_discount/static/src/js/models.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_discount/static/src/js/db.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_discount/static/src/js/popup.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_discount/static/src/js/numpad.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_discount/static/src/js/screen.js" />
+            <link rel="stylesheet" href="/sh_pos_all_in_one_retail/static/sh_pos_discount/static/src/css/pos.css" />
+        </xpath>
+    </template>
+</odoo>

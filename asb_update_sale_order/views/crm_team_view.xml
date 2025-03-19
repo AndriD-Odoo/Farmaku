@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="crm_team_form">
+            <field name="name">crm.team.form</field>
+            <field name="model">crm.team</field>
+            <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoiced_target']" position="after">
+                    <field name="shop_name"/>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="code"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

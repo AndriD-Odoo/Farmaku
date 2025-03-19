@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_electronic_data_capture_all,electronic_data_capture_all,model_electronic_data_capture,base.group_user,1,1,1,1
+access_payment_method_all,payment_method_all,model_payment_method,base.group_user,1,1,1,1

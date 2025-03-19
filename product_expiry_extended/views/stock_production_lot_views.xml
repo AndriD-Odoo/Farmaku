@@ -1,0 +1,28 @@
+<odoo>
+
+	<record id="view_move_form_expiry_inherit" model="ir.ui.view">
+        <field name="name">stock.production.lot.inherit.form</field>
+        <field name="model">stock.production.lot</field>
+        <field name="inherit_id" ref="product_expiry.view_move_form_expiry" />
+        <field name="arch" type="xml">
+
+        	<field name="expiration_date" position="attributes">
+                <attribute name="widget">date</attribute>
+            </field>
+
+            <field name="removal_date" position="attributes">
+                <attribute name="widget">date</attribute>
+            </field>
+
+            <field name="use_date" position="attributes">
+                <attribute name="widget">date</attribute>
+            </field>
+
+            <field name="alert_date" position="attributes">
+                <attribute name="widget">date</attribute>
+            </field>
+            
+        </field>
+    </record>
+
+</odoo>

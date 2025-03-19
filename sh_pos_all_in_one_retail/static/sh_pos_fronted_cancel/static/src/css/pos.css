@@ -1,0 +1,38 @@
+.cancel_fronted_order {
+    width: 16px;
+}
+.tool {
+    cursor: pointer;
+    position: relative;
+}
+.tool::after {
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    z-index: -100;
+}
+.tool:hover::after,
+.tool:focus::after {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    z-index: 100;
+}
+.tool::after {
+    background: #393939;
+    border-radius: 3px;
+    bottom: 180%;
+    color: #fff;
+    content: attr(data-tip);
+    margin-left: -5em;
+    padding: 3px;
+    transition: all 0.65s cubic-bezier(0.84, -0.18, 0.31, 1.26) 0.2s;
+    transform: scale(0.6) translateY(50%);
+    width: 6rem;
+    text-align: center;
+    font-size: 13px;
+}
+
+.tool:hover::after,
+.tool:focus::after {
+    transition: all 0.65s cubic-bezier(0.84, -0.18, 0.31, 1.26);
+}

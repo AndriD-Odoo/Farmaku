@@ -1,0 +1,10 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<odoo>
+    <template id="sh_pos_product_config" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/sh_pos_all_in_one_retail/static/sh_pos_product_creation/static/src/scss/pos.scss" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_product_creation/static/src/js/product_popup.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_product_creation/static/src/js/product_button.js" />
+        </xpath>
+    </template>
+</odoo>

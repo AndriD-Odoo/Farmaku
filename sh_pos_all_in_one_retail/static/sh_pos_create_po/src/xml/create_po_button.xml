@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="purchase_template" xml:space="preserve">
+
+    <t t-name="POButton" owl="1">
+        <div class="control-button">
+            <div class='sh_create_po' t-on-click="trigger('click-Purchase-button')">
+               <i class='fa fa-credit-card-alt' />
+                Create Purchase Order
+            </div>
+        </div>
+    </t>
+    
+    <t t-name="PoPopup" owl="1">
+        <div role="dialog" class="modal-dialog sh_pos_purchasr_order">
+            <div class="popup popup-alert">
+                <header class="title">
+                   <t t-esc="props.title" />
+                </header>
+                <main class="body">
+                    <t t-if='props.PurhcaseOrderId'>
+                        Purchase Order Ref : 
+                        <a target="_blank" class="po-name" t-attf-href="/mail/view?model=purchase.order&amp;res_id={{props.PurhcaseOrderId}}"><t t-esc="props.PurchaseOrderName" /></a>
+                    </t>
+                    <t t-else=''>
+                        <t t-esc="props.body" />
+                    </t>                   
+                </main>
+                <footer class="footer">
+                    <button class="button click_ok" style='background: #6EC89B; color: white;' t-on-click="click_ok" >Ok</button>
+                </footer>
+            </div>
+        </div>
+    </t>
+
+</templates>

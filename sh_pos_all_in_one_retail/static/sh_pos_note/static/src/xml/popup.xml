@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="TemplateLineNotePopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-text popup-lg product-configurator-popup line_note_popup">
+                <header class="title">
+                    Add Product Note
+                </header>
+                <div class="main-body touch-scrollable scrollable-y note_body">
+                    <textarea id="textarea_note" rows="7" cols="30">
+                    	<t t-esc="env.pos.get_order().get_selected_orderline().get_line_note()"/>
+                    </textarea>
+                    <div class="button_div">
+                        <t t-foreach="env.pos.db.all_note" t-as="each_note" t-key="each_note.id">
+                            <span id="note_button" t-att-data-id="each_note.id" style="cursor: pointer;">
+                                <button
+                                    type="button"
+                                    class="dmy btn btn-secondary each_note_button"
+                                    t-att-text="each_note.display_name"
+                                    t-att-data-value="each_note.display_name"
+                                    t-att-data-id="each_note.id"
+                                    t-on-click="click_line_note_button"
+                                >
+                                    <t t-esc="each_note.display_name" />
+                                </button>
+                            </span>
+                        </t>
+                    </div>
+                </div>
+                <footer class="footer">
+                    <div class="sh_store_checkbox sh_custom_checkbox">
+                        <input type="checkbox" id="store_checkbox" />
+                        <label for="store_checkbox" class="chk_lbl"> Store Extra Note</label><br />
+                    </div>
+                    <div class="button confirm" t-on-click="confirm">
+                        Confirm
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="TemplateGlobalNotePopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-text popup-lg product-configurator-popup global_note_popup">
+                <header class="title">
+                    Add Global Note
+                </header>
+                <div class="main-body touch-scrollable scrollable-y note_body">
+                    <textarea id="textarea_note" rows="7" cols="30">
+                    	<t t-esc="env.pos.get_order().get_global_note()"/>
+                    </textarea>
+                    <div class="button_div">
+                        <t t-foreach="env.pos.db.all_note" t-as="each_note" t-key="each_note.id">
+                            <span id="note_button" t-att-data-id="each_note.id" style="cursor: pointer;">
+                                <button
+                                    type="button"
+                                    class="dmy btn btn-secondary each_note_button"
+                                    t-att-text="each_note.display_name"
+                                    t-att-data-value="each_note.display_name"
+                                    t-att-data-id="each_note.id"
+                                    t-on-click="click_global_note_button"
+                                >
+                                    <t t-esc="each_note.display_name" />
+                                </button>
+                            </span>
+                        </t>
+                    </div>
+                </div>
+                <footer class="footer">
+                    <div class="sh_store_checkbox sh_custom_checkbox">
+                        <input type="checkbox" id="store_checkbox" />
+                        <label for="store_checkbox" class="chk_lbl"> Store Extra Note</label><br />
+                    </div>
+                    <div class="button confirm" t-on-click="confirm">
+                        Confirm
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+    <t t-name="CreateNotePopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-text popup-lg product-configurator-popup create_note_popup">
+                <header class="title">
+                    Add New Note
+                </header>
+                <div class="main-body touch-scrollable scrollable-y note_body">
+                    <textarea id="textarea_note" rows="2" cols="30">
+                    	<!-- <t t-esc="env.pos.get_order().get_global_note()"/> -->
+                    </textarea>
+                </div>
+                <footer class="footer">
+                    <div class="button confirm" t-on-click="confirm">
+                        Save
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+</templates>

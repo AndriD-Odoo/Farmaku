@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="button_approve_multi" model="ir.actions.server">
+            <field name="name">Approve Order</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="state">code</field>
+            <field name="code">action = records.button_approve()</field>
+        </record>
+
+        <record id="view_purchase_order_filter" model="ir.ui.view">
+            <field name="name">purchase.order.search</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="ttb_status"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="purchase_order_kpis_tree" model="ir.ui.view">
+            <field name="name">purchase.order.tree</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="picking_type_id"/>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="before">
+                    <field name="create_date" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="ttb_status"/>
+                </xpath>
+                <xpath expr="//field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="purchase_order_view_tree" model="ir.ui.view">
+            <field name="name">purchase.order.tree</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="picking_type_id"/>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="before">
+                    <field name="create_date" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_status']" position="before">
+                    <field name="ttb_status"/>
+                </xpath>
+                <xpath expr="//field[@name='date_planned']" position="replace">
+                    <field name="effective_date"/>
+                </xpath>
+                <xpath expr="//field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='button_cancel']" position="attributes">
+                    <attribute name="states"/>
+                    <attribute name="attrs">{'invisible': [('is_cancelable', '!=', True)]}</attribute>
+                </xpath>
+<!--                <xpath expr="//field[@name='partner_ref']" position="attributes">-->
+<!--                    <attribute name="attrs">{'readonly': [('state', 'not in', ['draft', 'sent', 'to approve'])]}</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='user_id']" position="attributes">-->
+<!--                    <attribute name="attrs">{'readonly': [('state', 'not in', ['draft', 'sent', 'to approve'])]}</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='payment_term_id']" position="attributes">-->
+<!--                    <attribute name="attrs">{'readonly': [('state', 'not in', ['draft', 'sent', 'to approve'])]}</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='order_line']" position="attributes">-->
+<!--                    <attribute name="attrs">{'readonly': [('state', 'not in', ['draft', 'sent', 'to approve'])]}</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="is_cancelable" invisible="1"/>
+                    <field name="partner_contact_ids" invisible="1"/>
+                    <field name="sender_pic_id" attrs="{'readonly': [('state', 'not in', ['draft', 'sent', 'to approve'])]}" domain="[('id', 'in', partner_contact_ids)]"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="picking_type_id" position="move"/>
+                    <field name="warehouse_contact_ids" invisible="1"/>
+                    <field name="receiver_pic_id" attrs="{'readonly': [('state', 'not in', ['draft', 'sent', 'to approve'])]}" domain="[('id', 'in', warehouse_contact_ids)]"/>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="before">
+                    <field name="create_date" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='qty_invoiced']" position="after">
+                    <field name="current_stock"/>
+                    <field name="day_30_sale" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="before">
+                    <field name="is_price_unit_editable" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('is_price_unit_editable', '!=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('is_price_unit_editable', '!=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//page[@name='notes']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='notes']" position="before">
+                    <page string="Current Stock All Warehouse">
+                        <field name="current_stock_all_warehouse"/>
+                    </page>
+                </xpath>
+                <xpath expr="//group[@name='other_info']/field[@name='company_id']" position="after">
+                    <field name="ttb_status"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

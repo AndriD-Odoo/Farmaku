@@ -1,0 +1,30 @@
+<?xml version ="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <record model="ir.ui.view" id="view_pos_config_form_cash_control">
+        <field name="name">pos.config.form.view.inherit</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <field name="amount_authorized_diff" position="after">
+                <div attrs="{'invisible': [('cash_control', '=', False)]}">
+                    <label for="sh_is_cash_in_out" class="font-weight-normal" />
+                    <field name="sh_is_cash_in_out" />
+                </div>
+
+                <div attrs="{'invisible': [('sh_is_cash_in_out', '=', False)]}">
+                    <label for="sh_print_information" class="font-weight-normal" />
+                    <field name="sh_print_information" />
+                </div>
+                <div attrs="{'invisible': ['|',('sh_print_information', '=', False),('sh_is_cash_in_out', '=', False)]}">
+                    <label for="sh_signature_part_receipt" class="font-weight-normal" />
+                    <field name="sh_signature_part_receipt" />
+                </div>
+                <div attrs="{'invisible': [('sh_is_cash_in_out', '=', False)]}">
+                    <label for="sh_set_closing_at_close" class="font-weight-normal" />
+                    <field name="sh_set_closing_at_close" style="width: 45%;" />
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>

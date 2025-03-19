@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'base'), ('name', '=', 'id')]"/>
+            </function>
+            <value eval="{'noupdate': False}"/>
+        </function>
+
+        <record id="base.id" model="res.country">
+            <field eval="'%(street)s\n%(street2)s\n%(city)s, %(state_name)s %(zip)s'" name="address_format" />
+        </record>
+
+    </data>
+</odoo>

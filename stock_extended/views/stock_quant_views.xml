@@ -1,0 +1,163 @@
+<odoo>
+    <data>
+
+        <record id="view_stock_quant_tree" model="ir.ui.view">
+            <field name="name">stock.quant.tree</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='package_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="quantity" position="move"/>
+                    <field name="available_quantity" position="move"/>
+                    <field name="product_uom_id" position="move"/>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='quantity']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='available_quantity']" position="attributes">
+                    <attribute name="string">Available</attribute>
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_uom_id']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='location_id']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='lot_id']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_stock_quant_tree_inherit" model="ir.ui.view">
+            <field name="name">stock.quant.tree</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock_account.view_stock_quant_tree_inherit"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='value']" position="attributes">
+                    <attribute name="widget">float</attribute>
+                    <attribute name="align">center</attribute>
+                </xpath>
+<!--                <xpath expr="//field[@name='value']" position="after">-->
+<!--                    <field name="avg_value"/>-->
+<!--                    <field name="svl_value" groups="stock_extended.group_stock_valuation_quant"/>-->
+<!--                    <field name="svl_qty" groups="stock_extended.group_stock_valuation_quant"/>-->
+<!--                    <field name="svl_unit_value" groups="stock_extended.group_stock_valuation_quant"/>-->
+<!--                    <button name="action_view_valuation_details" type="object" string="Valuation Details" groups="stock_extended.group_stock_valuation_quant"/>-->
+<!--                </xpath>-->
+
+            </field>
+        </record>
+
+        <record id="view_stock_quant_tree_editable" model="ir.ui.view">
+            <field name="name">stock.quant.tree</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='package_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='inventory_quantity']" position="attributes">
+                    <attribute name="string">Qty Fisik</attribute>
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="inventory_quantity" position="move"/>
+                    <field name="available_quantity" position="move"/>
+                    <field name="product_uom_id" position="move"/>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='available_quantity']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_uom_id']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='location_id']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='lot_id']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="align">center</attribute>
+                </xpath>
+                <xpath expr="//field[@name='quantity']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='quantity'][2]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_stock_quant_tree_editable_inherit" model="ir.ui.view">
+            <field name="name">stock.quant.tree</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock_account.view_stock_quant_tree_editable_inherit"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='value']" position="attributes">
+                    <attribute name="widget">float</attribute>
+                    <attribute name="align">center</attribute>
+                </xpath>
+<!--                <xpath expr="//field[@name='value']" position="after">-->
+<!--                    <field name="avg_value"/>-->
+<!--                    <field name="svl_value" groups="stock_extended.group_stock_valuation_quant"/>-->
+<!--                    <field name="svl_qty" groups="stock_extended.group_stock_valuation_quant"/>-->
+<!--                    <field name="svl_unit_value" groups="stock_extended.group_stock_valuation_quant"/>-->
+<!--                    <button name="action_view_valuation_details" type="object" string="Valuation Details" groups="stock_extended.group_stock_valuation_quant"/>-->
+<!--                </xpath>-->
+
+            </field>
+        </record>
+
+        <record id="view_stock_quant_pivot" model="ir.ui.view">
+            <field name="name">stock.quant.pivot</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_pivot"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='quantity']" position="after">
+                    <field name="reserved_quantity" type="measure"/>
+                    <field name="available_quantity" type="measure"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="stock.dashboard_open_quants" model="ir.actions.act_window">
+            <field name="context">{'search_default_internal_loc': 1, 'search_default_positive':1}</field>
+        </record>
+
+        <record model="ir.actions.server" id="stock.action_view_quants">
+            <field name="code">
+                action = model.with_context(
+                    search_default_internal_loc=1,
+                    search_default_positive=1,
+                ).action_view_quants()
+            </field>
+        </record>
+
+    </data>
+</odoo>

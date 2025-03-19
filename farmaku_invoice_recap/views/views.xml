@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <!-- Tree View for farmaku.settlement.batch -->
+        <record id="view_farmaku_settlement_batch_tree" model="ir.ui.view">
+            <field name="name">farmaku.settlement.batch.tree</field>
+            <field name="model">farmaku.settlement.batch</field>
+            <field name="arch" type="xml">
+                <tree string="Settlement Batch Tree View">
+                    <!-- Define columns to display in the tree view -->
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="name"/>
+                    <field name="sales_team"/>
+                    <field name="settlement_line_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View for farmaku.settlement.batch -->
+        <record id="view_farmaku_settlement_batch_form" model="ir.ui.view">
+            <field name="name">farmaku.settlement.batch.form</field>
+            <field name="model">farmaku.settlement.batch</field>
+            <field name="arch" type="xml">
+                <form string="Settlement Batch Form View">
+                    <header>
+                        <button
+                            name="action_generate_invoice_recap"
+                            string="Create Invoice Recap"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('invoice_recap_id', '!=', False)]}"
+                        />
+                    </header>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group>
+                            <field name="sales_team"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="invoice_recap_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Settlement Batch Lines">
+                            <field name="settlement_line_ids" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <!-- Define columns to display in the tree view -->
+                                    <field name="mp_invoice"/>
+                                    <!-- <field name="sales_team"/> -->
+                                    <field name="gross_amount"/>
+                                    <field name="subsidy_amount"/>
+                                    <field name="shipping_cost"/>
+                                    <field name="voucher_amount"/>
+                                    <field name="commission"/>
+                                    <field name="service_fee"/>
+                                    <field name="net_amount"/>
+                                    <field name="refund"/>
+                                    <field name="is_previous_period"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="settlement_batch_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Settlement Additions">
+                            <field name="settlement_additions_ids" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <!-- Define columns to display in the tree view -->
+                                    <field name="description"/>
+                                    <field name="amount"/>
+                                    <field name="product_id"/>
+                                    <field name="account_id"/>
+                                    <field name="settlement_batch_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Settlement Deductions">
+                            <field name="settlement_deductions_ids" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <!-- Define columns to display in the tree view -->
+                                    <field name="description"/>
+                                    <field name="amount"/>
+                                    <field name="product_id"/>
+                                    <field name="account_id"/>
+                                    <field name="settlement_batch_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Summary">
+                            <group>
+                                <group>
+                                    <field name="total_gross_amount" widget="monetary"/>
+                                    <field name="total_subsidy_amount" widget="monetary"/>
+                                    <field name="total_additions" widget="monetary"/>
+                                    <field name="total_gross_amount_after_refunds" widget="monetary"/>
+                                    <field name="total_net_amount" widget="monetary"/>                                    
+                                </group>
+                                <group>
+                                    <field name="total_shipping_cost" widget="monetary"/>
+                                    <field name="total_voucher_amount" widget="monetary"/>
+                                    <field name="total_commission" widget="monetary"/>
+                                    <field name="total_service_fee" widget="monetary"/>
+                                    <field name="total_deductions" widget="monetary"/>
+                                    <field name="total_refund_current_period" widget="monetary"/>
+                                    <field name="total_refund_previous_period" widget="monetary"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for farmaku.settlement.batch -->
+        <record id="action_farmaku_settlement_batch" model="ir.actions.act_window">
+            <field name="name">Settlement Batch</field>
+            <field name="res_model">farmaku.settlement.batch</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click here to create a new settlement batch record.
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu Item for farmaku.settlement.batch -->
+        <menuitem id="menu_farmaku_settlement_batch" name="Settlement Batch" sequence="10"
+            action="action_farmaku_settlement_batch" parent="account.menu_finance_receivables"/>
+
+    </data>
+</odoo>

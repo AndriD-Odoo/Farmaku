@@ -1,0 +1,65 @@
+.pos .client-window .client-details-contents .client-details-box .client-detail input.styled-checkbox {
+    display: none;
+}
+.pos .clientlist-screen .client-detail > .label{
+    color: #919191 !important;
+    width: 49%;
+    text-align: left;
+}
+
+@media only screen and (max-width: 567px) {
+    .pos .clientlist-screen .client-detail > .label{
+        color: #919191 !important;
+        width: auto;
+    }
+}
+
+.pos .client-window .client-details-contents .client-details-box .client-detail input.styled-checkbox[type="checkbox"]+label {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.pos .client-window .client-details-contents .client-details-box .client-detail input.styled-checkbox[type="checkbox"]+label:before {
+    content: '';
+    display: block;
+    width: 14px;
+    height: 14px;
+    border: 3px solid $sh_pos_primary_color;
+    position: absolute;
+    left: 5px;
+    top: 0px;
+    opacity: .6;
+    -webkit-transition: all .12s, border-color .08s;
+    transition: all .12s, border-color .08s;
+    border-radius: 3px;
+}
+
+.pos .client-window .client-details-contents .client-details-box .client-detail input.styled-checkbox[type="checkbox"]:checked+label:before {
+    width: 5px;
+    top: -5px;
+    left: 5px;
+    border-radius: 0;
+    opacity: 1;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+@media only screen and (max-width: 992px) {
+    .pos .client-window .client-details-contents .client-details-box .client-detail input.styled-checkbox[type="checkbox"]+label:before {
+        left: auto !important;
+        top: -20px !important;
+        right: 12px !important;
+    }
+
+    .pos .client-window .client-details-contents .client-details-box .client-detail input.styled-checkbox[type="checkbox"]:checked+label:before {
+        top: -25px !important;
+        left: auto !important;
+        right: 12px !important;
+    }
+}

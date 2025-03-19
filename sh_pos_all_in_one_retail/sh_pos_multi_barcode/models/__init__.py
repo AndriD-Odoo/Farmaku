@@ -1,0 +1,1 @@
+# Copyright (C) Softhealer Technologies.

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="email_template_pos_coupon" model="mail.template">
+            <field name="name">POS Coupon: Send by email</field>
+            <field name="model_id" ref="sh_pos_all_in_one_retail.model_sh_pos_coupon"/>
+            <field name="subject">Hurry, savings end soon!</field>
+            <field name="email_from">${(user.email_formatted) | safe}</field>
+            <field name="partner_to"></field>
+            <field name="body_html" type="html">
+            
+            <div class="coupon_for_mail_div" style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    <div class="email_header">THANK YOU FOR BEING OUR CUSTOMER</div>
+                    <div class="coupon_for_mail_inner_content">
+                        <div class="coupon_for_mail_discount">GET FLAT 
+                        % if ctx.get('sh_coupon_value_type') == 'fixed':
+                            ${object.sh_coupon_value} AMOUNT OFF
+                        % else:
+                            ${object.sh_coupon_value} % OFF
+                        % endif
+                        </div>
+                        <div class="coupon_for_mail_code">
+                            Here is your coupon code <b>${object.sh_coupon_code}</b>
+                        </div>
+                        <div class="coupon_for_mail_date">
+                            Hurry Up! offer is valid till <b>${object.sh_coupon_expiry_date}</b>
+                        </div>
+                        <div class="coupon_for_mail_desc">
+                            Please redeem this coupon code on any product to get instant discount.
+                        </div>
+                    </div>
+                </p>
+            </div>
+            
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

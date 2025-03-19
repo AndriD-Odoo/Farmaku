@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="cancel_reason_wizard" model="ir.ui.view">
+            <field name="name">cancel.reason.wizard</field>
+            <field name="model">cancel.reason.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="cancel_reason_id" required="1"/>
+                    </group>
+                    <footer>
+                        <button name="proses_cancel"
+                            string="Confirm"
+                            type="object"
+                            class="oe_highlight"
+                            />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

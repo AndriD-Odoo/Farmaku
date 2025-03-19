@@ -1,0 +1,117 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="ingredient_tree">
+            <field name="name">ingredient.tree</field>
+            <field name="model">ingredient.ingredient</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="article_url"/>
+                    <field name="image_url_path"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="ingredient_form">
+            <field name="name">ingredient.form</field>
+            <field name="model">ingredient.ingredient</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="article_url"/>
+                            <field name="image_url_path"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ingredient_action">
+            <field name="name">Ingredient</field>
+            <field name="res_model">ingredient.ingredient</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_ingredient"
+            name="Ingredient"
+            parent="menu_master_farmaku"
+            action="ingredient_action"
+        />
+
+        <record model="ir.ui.view" id="product_ingredient_tree">
+            <field name="name">product.ingredient.tree</field>
+            <field name="model">product.ingredient</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ingredient_id"/>
+                    <field name="product_id"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_ingredient_form">
+            <field name="name">product.ingredient.form</field>
+            <field name="model">product.ingredient</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="ingredient_id"/>
+                            <field name="product_id"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_ingredient_action">
+            <field name="name">Product Ingredient</field>
+            <field name="res_model">product.ingredient</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_product_ingredient"
+            name="Product Ingredient"
+            parent="menu_master_farmaku"
+            action="product_ingredient_action"
+        />
+    </data>
+</odoo>

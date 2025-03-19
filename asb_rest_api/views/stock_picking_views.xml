@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="vpicktree" model="ir.ui.view">
+            <field name="name">stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='scheduled_date']" position="after">
+                    <field name="shipping_service_name"/>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="before">
+                    <field name="invoice_numbers"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record model="ir.ui.view" id="stock_picking_farmaku_form">
+            <field name="name">stock.picking.farmaku.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location_id']" position="before">
+                    <field name="airway_bill" attrs="{'invisible':[('is_need_to_enter_airway_bill', '!=', True)], 'readonly':['|',('state','in',['done','cancel']),('picking_type_code', '=', 'outgoing')]}"/>
+                </xpath>
+                <xpath expr="//group[@name='other_infos']/field[@name='company_id']" position="after">
+                    <field name="invoice_numbers"/>
+                </xpath>
+                <xpath expr="//group[@name='other_infos']" position="after">
+                    <group name="farmaku_info" string="Farmaku Info" attrs="{'invisible':[('is_from_api', '!=', True)]}">
+                        <field name="is_need_to_enter_airway_bill" invisible="1"/>
+                        <field name="is_from_api" invisible="1"/>
+                        <field name="shipping_distance" readonly="1"/>
+                        <field name="shipping_price" readonly="1"/>
+                        <field name="shipping_discount" readonly="1"/>
+                        <field name="shipping_note" readonly="1"/>
+                        <field name="shipping_name_readonly" string="Shipping Name" readonly="1"/>
+                        <field name="shipping_service_name_readonly" readonly="1"/>
+                        <field name="driver_name" readonly="1"/>
+                        <field name="driver_phone" readonly="1" widget="phone"/>
+                        <field name="driver_photo_url_path" readonly="1" widget="url"/>
+                        <field name="driver_plate_number_readonly" readonly="1"/>
+                        <field name="driver_vehicle_model" readonly="1"/>
+                        <field name="tracking_url" readonly="1" widget="url"/>
+                        <field name="delivery_status" readonly="1"/>
+                        <field name="recipient_name_web" readonly="1"/>
+                        <field name="recipient_phone_web" readonly="1"/>
+                        <field name="recipient_address_web" readonly="1"/>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook/page[@name='detailed_operations_hidden']/button[@name='action_put_in_pack']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[@name='detailed_operations_shown']/button[@name='action_put_in_pack']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[@name='operations']/button[@name='action_put_in_pack']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

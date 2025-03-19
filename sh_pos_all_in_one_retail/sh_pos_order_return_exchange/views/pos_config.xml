@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <record id="sh_pos_config_settings_pos_return_exchange" model="ir.ui.view">
+        <field name="name">pos.config.settings.pos.note</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='accounting_section']" position="after">
+                <h3>POS Order Return Exchange</h3>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_allow_return" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_allow_return" />
+                            <div class="content-group" attrs="{'invisible': [('sh_allow_return','=',False)]}">
+                                <div class="mt16">
+                                    <label for="sh_return_more_qty" class="o_light_label" />
+                                    <field name="sh_return_more_qty" /><br/>
+                                    <label for="sh_return_print_receipt" class="o_light_label" />
+                                    <field name="sh_return_print_receipt" />
+                                </div>
+                                <div class="mt16"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_allow_exchange" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_allow_exchange" />
+                            <div class="content-group" attrs="{'invisible': [('sh_allow_exchange','=',False)]}">
+                                <div class="mt16">
+                                    <label for="sh_exchange_print_receipt" class="o_light_label" />
+                                    <field name="sh_exchange_print_receipt" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record> -->
+</odoo>

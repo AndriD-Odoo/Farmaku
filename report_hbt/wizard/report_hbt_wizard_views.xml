@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="report_hbt_view_form" model="ir.ui.view">
+            <field name="name">report.hbt.wizard.form</field>
+            <field name="model">report.hbt.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="4">
+                            <field name="product_ids" widget="many2many_tags" options="{'no_create':True, 'no_open':True}"/>
+                            <field name="partner_ids" widget="many2many_tags" options="{'no_create':True, 'no_open':True}"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_view" string="View" type="object" class="oe_highlight"/>
+                        <button name="action_export_excel" string="Export to Excel" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="report_hbt_wizard_action" model="ir.actions.act_window">
+            <field name="name">Report HBT</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">report.hbt.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="report_hbt_wizard_menu" name="Report HBT" parent="purchase_extended.purchase_report_sub" sequence="20" groups="purchase.group_purchase_user" action="report_hbt_wizard_action"/>
+
+    </data>
+</odoo>

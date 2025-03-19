@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_report_all_search_view" model="ir.ui.view">
+        <field name="name">stock.report.all.search</field>
+        <field name="model">stock.report.all</field>
+        <field eval="10" name="priority"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id" context="{'force_search': True}"/>
+                <field name="location_id" context="{'force_search': True}"/>
+                <field name="package_id" context="{'force_search': True}"/>
+                <field name="lot_id" context="{'force_search': True}"/>
+                <field name="owner_id"/>
+                <group expand='0' string='Filters'>
+                    <filter name='internal_loc' string="Internal Locations" domain="[('location_id.usage','=', 'internal')]"/>
+                    <filter name='transit_loc' string="Transit Locations" domain="[('location_id.usage' ,'=', 'transit')]"/>
+                    <separator/>
+                    <filter name="negative" string="Negative Stock" domain="[('quantity', '&lt;', 0.0)]"/>
+                    <filter name="positive" string="Positive Stock" domain="[('quantity', '&gt;', 0.0)]"/>
+                    <filter name="reserved" string="Reservations" domain="[('reserved_quantity', '&gt;', 0.0)]"/>
+                    <separator/>
+                    <filter name="filter_in_date" date="in_date"/>
+                </group>
+                <group expand='0' string='Group by...'>
+                    <filter string='Product' name="productgroup" context="{'group_by': 'product_id'}"/>
+                    <filter string='Location' name="locationgroup" domain="[]" context="{'group_by': 'location_id'}"/>
+                    <filter string='Owner' name="owner" context="{'group_by': 'owner_id'}"/>
+                    <filter string='Lot/Serial Number' name="Lot_Serial_number" context="{'group_by': 'lot_id'}"/>
+                    <filter string='Package' name="package" domain="[]" context="{'group_by': 'package_id'}"/>
+                    <filter string='Company' name="company" domain="[]" context="{'group_by': 'company_id'}"/>
+               </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_stock_report_all_tree">
+        <field name="name">stock.report.all.tree</field>
+        <field name="model">stock.report.all</field>
+        <field eval="10" name="priority"/>
+        <field name="arch" type="xml">
+            <tree create="0" delete="0" decoration-danger="expiration_date &lt; current_date or quantity &lt; 0">
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="available_quantity"/>
+                <field name="product_uom_id"/>
+                <field name="location_id"/>
+                <field name="lot_id"/>
+                <field name="expiration_date" optional="show" widget="date" align="center"/>
+                <field name='company_id'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_report_all_action" model="ir.actions.act_window">
+        <field name="name">Inventory Report (All Companies)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.report.all</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{'search_default_internal_loc': 1, 'search_default_positive':1}</field>
+        <field name="view_id" ref="view_stock_report_all_tree"/>
+    </record>
+
+    <menuitem id="menu_stock_report_all"
+              parent="stock.menu_warehouse_report" sequence="100"
+              action="stock_report_all_action"/>
+
+</odoo>

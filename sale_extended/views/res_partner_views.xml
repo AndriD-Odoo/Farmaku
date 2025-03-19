@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+
+        <!-- Inherit Form View to Modify it -->
+<!--        <record id="res_partner_view_buttons" model="ir.ui.view">-->
+<!--            <field name="name">res.partner.form</field>-->
+<!--            <field name="model">res.partner</field>-->
+<!--            <field name="inherit_id" ref="sale.res_partner_view_buttons"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//button[@name='%(sale.act_res_partner_2_sale_order)d']" position="attributes">-->
+<!--                    <attribute name="name">action_view_sale_order</attribute>-->
+<!--                    <attribute name="type">object</attribute>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>

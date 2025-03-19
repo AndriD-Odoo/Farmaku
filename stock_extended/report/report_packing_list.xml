@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_packing_list_document">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+            <t t-if="not company">
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+            <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                <t t-call="base_extended.company_header"/>
+            </div>
+            <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+
+            <div class="page">
+                <div class="oe_structure"/>
+                <div style="font-size: 14px !important;" t-attf-class="article o_report_layout_boxed o_company_#{company.id}_layout" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                    <table class="table table-sm o_main_table m-0 table-borderless border border-right-0 border-left-0 border-top-0 border-bottom-0">
+                        <tr>
+                            <td class="text-right" colspan="2" id="doc_date">
+                                <span style="font-size:10px;" t-field="o.create_date" t-options="{'widget': 'date'}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left" id="doc_title">
+                                <strong><span style="font-size: 30px;">Packing List</span></strong>
+                            </td>
+                            <td class="text-right" id="doc_number">
+                                <strong><span style="font-size:30px;"><span t-field="o.name"/></span></strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right" colspan="2" id="doc_ref">
+                                <span t-if="o.origin" style="font-size:10px;">Reference: <span t-field="o.origin"/></span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-sm o_main_table">
+                        <t t-foreach="o.box_ids.lines" t-as="box_line">
+                            <thead>
+                                <tr style="font-size:28px; border-top: 1px solid;">
+                                    <th colspan="6" name="th_box" class="text-left"><strong><span t-field="box_line.name"/></strong></th>
+                                </tr>
+                            </thead>
+                            <thead>
+                                <tr>
+                                    <th name="th_barcode" class="text-center"><strong>Barcode</strong></th>
+                                    <th name="th_product" class="text-center"><strong>Product</strong></th>
+                                    <th style="width:10%" name="th_quantity" class="text-center"><strong>Qty</strong></th>
+                                    <th name="th_lot" class="text-center"><strong>Lot/SN</strong></th>
+                                    <th name="th_expiration_date" class="text-center"><strong>ED</strong></th>
+                                    <th style="width:10%" name="th_ttb_check" class="text-center"><strong>TTB Check</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="box_line.item_details" t-as="line">
+                                    <tr>
+                                        <td name="td_barcode">
+                                            <span t-field="line.barcode"/>
+                                        </td>
+                                        <td name="td_product">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="line.qty"/>
+                                            <span t-field="line.uom_id.name" groups="uom.group_uom"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="line.lot_name"/>
+                                        </td>
+                                        <td>
+                                            <span t-if="line.expiration_date" t-esc="line.expiration_date.strftime('%d/%m/%y')"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <p style="font-size:20px">&#9634;</p>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </t>
+                    </table>
+                </div>
+
+                <div class="oe_structure"/>
+            </div>
+        </template>
+
+        <template id="report_packing_list">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="stock_extended.report_packing_list_document" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_report_packing_list" model="ir.actions.report">
+            <field name="name">Packing List</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">stock_extended.report_packing_list</field>
+            <field name="report_file">stock_extended.report_packing_list</field>
+            <field name="print_report_name">'Packing List - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_stock_picking"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="base_extended.paperformat_farmaku"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add the security rules for the new model 'farmaku.settlement.batch' -->
+    <record id="group_farmaku_settlement_batch_user" model="res.groups">
+        <field name="name">Farmaku Settlement Batch User</field>
+        <field name="implied_ids" eval="[(4, ref('group_account_manager'))]"/>
+    </record>
+
+    <!-- Add the security rules for the new model 'farmaku.settlement.line' -->
+    <record id="group_farmaku_settlement_line_user" model="res.groups">
+        <field name="name">Farmaku Settlement Line User</field>
+        <field name="implied_ids" eval="[(4, ref('group_account_manager'))]"/>
+    </record>
+
+    <!-- Add the security rules for the new model 'farmaku.settlement.additions' -->
+    <record id="group_farmaku_settlement_additions_user" model="res.groups">
+        <field name="name">Farmaku Settlement Additions User</field>
+        <field name="implied_ids" eval="[(4, ref('group_account_manager'))]"/>
+    </record>
+
+    <!-- Add the security rules for the new model 'farmaku.settlement.deductions' -->
+    <record id="group_farmaku_settlement_deductions_user" model="res.groups">
+        <field name="name">Farmaku Settlement Deductions User</field>
+        <field name="implied_ids" eval="[(4, ref('group_account_manager'))]"/>
+    </record>
+</odoo>

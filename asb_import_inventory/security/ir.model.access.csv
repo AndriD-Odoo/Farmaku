@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_asb_import_inventory_adjustment,asb_import_inventory.import_inventory_adjustment,model_import_inventory_adjustment,base.group_user,1,1,1,1

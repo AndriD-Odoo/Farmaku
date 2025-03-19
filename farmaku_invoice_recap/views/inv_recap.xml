@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="invoice_recap_form" model="ir.ui.view">
+        <field name="name">account.invoice.recap.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="settlement_batch_id"
+                    attrs="{
+                        'invisible': [('settlement_batch_id', '=', False)],
+                        'readonly': [('settlement_batch_id', '!=', False)]
+                    }"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

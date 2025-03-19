@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-name="ClientLine" t-inherit="point_of_sale.ClientLine" t-inherit-mode="extension" owl="1">
+		<xpath expr="//tr" position="replace">
+			<tr t-attf-class="client-line {{highlight}}" t-att-data-id="props.partner.id"
+	            t-on-click="trigger('click-client', {client: props.partner})">
+	            <td>
+	                <t t-esc="props.partner.name" />
+	            </td>
+	            <td t-if="!env.isMobile">
+					<t t-if="props.partner.address">
+						<t t-esc="props.partner.address.substring(0, 25)"/> <t t-if="props.partner.address.length > 25"><span>....?</span></t>
+					</t>
+					<t t-else="">
+						<span></span>
+					</t>
+	            </td>
+	            <t t-if = "highlight">
+		            <td>
+						<t t-esc="props.partner.email.substring(0, 25) or ''"/> <t t-if="props.partner.email.length > 25"><span>....?</span></t>
+		                <span t-if="highlight"><br/></span>
+		            </td>
+	            </t>
+	            <t t-else="">
+	            	<td>
+		                <t t-esc="props.partner.email.substring(0, 25) or ''"/> <t t-if="props.partner.email.length > 25"><span>....?</span></t>
+		                <span t-if="highlight"><br/></span>
+		            </td>
+	            </t>
+	            <td t-if="env.isMobile">
+	                <t t-esc="props.partner.zip or ''" />
+	                <span t-if="highlight"><br/></span>
+	            </td>
+	            <t t-if="env.pos.config.sh_enable_customer_discount">
+	            	<td>
+	            		<t t-if="props.partner.sh_customer_discount">
+	            			<t t-esc="props.partner.sh_customer_discount"/>
+	            		</t>
+	            		<t t-else="">
+	            			0
+	            		</t>
+	            	</td>
+	            </t>
+	            <td>
+	                <t t-esc="props.partner.sh_user_point" />
+	            </td>
+	            <td class="client_mobile">
+	                <t t-esc="props.partner.mobile or ''" />
+	                <span t-if="highlight"><br /></span>
+	                
+	            </td>
+<!--	            <td>-->
+<!--	                <t t-if="props.partner.mobile and env.pos.config.enable_whatsapp">-->
+<!--	                    <span t-att-data-id="props.partner.id" class="button send_wp" t-on-click="trigger('click-send_wp',props.partner)" role="img" aria-label="Send Whatsapp" title="Send Whatsapp Message">-->
+<!--	                        <i class="fa fa-whatsapp"></i>-->
+<!--	                    </span>-->
+<!--	                </t>-->
+<!--	            </td>-->
+	            <t t-if="env.pos.config.sh_customer_order_history and env.pos.config.sh_enable_order_list">
+	                <td><i class="fa fa-history client_history_icon 85" aria-hidden="true" t-on-click="click_order_history_icon"></i></td>
+	            </t>
+	            <td>
+	            	<t t-if="highlight">
+	            		<button class="edit-client-button" t-on-click.stop="trigger('click-edit')">
+	                    	<i class="fa fa-pencil" aria-hidden="true"></i>
+	                    </button>
+	            	</t>
+                    
+                </td>
+	        </tr>
+		</xpath>
+	</t>
+	
+</templates>

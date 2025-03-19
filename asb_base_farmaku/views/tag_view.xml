@@ -1,0 +1,170 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tag_tree">
+            <field name="name">tag.tree</field>
+            <field name="model">tag.tag</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="image_url"/>
+                    <field name="tag_link"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="tag_form">
+            <field name="name">tag.form</field>
+            <field name="model">tag.tag</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="image_url"/>
+                            <field name="tag_link"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="tag_action">
+            <field name="name">Tag</field>
+            <field name="res_model">tag.tag</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_tag"
+            name="Tag"
+            parent="menu_master_farmaku"
+            action="tag_action"
+        />
+
+        <record model="ir.ui.view" id="tag_product_tree">
+            <field name="name">tag.product.tree</field>
+            <field name="model">tag.product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="tag_id"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="tag_product_form">
+            <field name="name">tag.product.form</field>
+            <field name="model">tag.product</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="tag_id"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="tag_product_action">
+            <field name="name">Tag Product</field>
+            <field name="res_model">tag.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_tag_product"
+            name="Tag Product"
+            parent="menu_master_farmaku"
+            action="tag_product_action"
+        />
+
+        <record model="ir.ui.view" id="tag_promo_tree">
+            <field name="name">tag.promo.tree</field>
+            <field name="model">tag.promo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- <field name="promo_id"/> -->
+                    <field name="tag_id"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="tag_promo_form">
+            <field name="name">tag.promo.form</field>
+            <field name="model">tag.promo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <!-- <field name="promo_id"/> -->
+                            <field name="tag_id"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="tag_promo_action">
+            <field name="name">Tag Promo</field>
+            <field name="res_model">tag.promo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_tag_promo"
+            name="Tag Promo"
+            parent="menu_master_farmaku"
+            action="tag_promo_action"
+        />
+    </data>
+</odoo>

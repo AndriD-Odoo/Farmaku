@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Extend the existing Settings view -->
+        <record id="view_res_config_settings_form_inherit" model="ir.ui.view">
+            <field name="name">res.config.settings.form.inherit</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//div[hasclass('settings')]" position="inside"> -->
+                <xpath expr="//h2[text()='Vendor Bills']" position="before">
+                    <!-- Add your custom settings fields here -->
+                    <h2>Invoice Recap Parameters</h2>
+                    <div class="row mt16 o_settings_container" name="invoice_recap_setting_container">
+                        <div class="col-12 col-lg-6 o_setting_box"
+                            id="amount_mapping"
+                            title="Account Mapping for the Amounts and Subsidy (if applicable)">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Gross Amount Subsidy Mapping</span>
+                                <div class="text-muted">
+                                    Map the gross amount and the subsidy amount, posted as credit by default
+                                </div>
+                                <div class="content-group">
+                                    <label for="gross_amount_product_id" string="Gross Amt" class="col-lg-3 o_light_label"/>
+                                    <field name="gross_amount_product_id" widget="many2one"/>
+                                    <label for="subsidy_amount_product_id" string="Subsidy" class="col-lg-3 o_light_label"/>
+                                    <field name="subsidy_amount_product_id" widget="many2one"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box"
+                            id="expenses_fees"
+                            title="Account Mapping for the Expenses and Fees (if applicable)">
+                            <div class="o_setting_left_pane" />
+                            <div class="o_setting_right_pane">
+                                <!-- <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/> -->
+                                <span class="o_form_label">Expenses and Fees Mapping</span>
+                                <div class="text-muted">
+                                    Map the applicable expenses and fee, posted as debit by default
+                                </div>
+                                <div class="content-group">
+                                    <label for="shipping_cost_product_id" string="Shipping" class="col-lg-3 o_light_label"/>
+                                    <field name="shipping_cost_product_id" widget="many2one"/>
+                                    <label for="voucher_amount_product_id" string="Voucher" class="col-lg-3 o_light_label"/>
+                                    <field name="voucher_amount_product_id" widget="many2one"/>
+                                    <label for="commission_product_id" string="Commission" class="col-lg-3 o_light_label"/>
+                                    <field name="commission_product_id" widget="many2one"/>
+                                    <label for="service_fee_product_id" string="Service" class="col-lg-3 o_light_label"/>
+                                    <field name="service_fee_product_id" widget="many2one"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

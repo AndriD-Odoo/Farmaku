@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_report_hbt_wizard_all,report_hbt_wizard_all,model_report_hbt_wizard,,1,1,1,1
+access_report_hbt_all,report_hbt_all,model_report_hbt,,1,1,1,1

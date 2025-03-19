@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farmaku_settlement_batch_user,Farmaku Settlement Batch User,model_farmaku_settlement_batch,account.group_account_manager,1,1,1,1
+access_farmaku_settlement_line_user,Farmaku Settlement Line User,model_farmaku_settlement_line,account.group_account_manager,1,1,1,1
+access_farmaku_settlement_additions_user,Farmaku Settlement Additions User,model_farmaku_settlement_additions,account.group_account_manager,1,1,1,1
+access_farmaku_settlement_subtractions_user,Farmaku Settlement Deductions User,model_farmaku_settlement_deductions,account.group_account_manager,1,1,1,1

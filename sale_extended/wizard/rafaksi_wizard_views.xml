@@ -1,0 +1,42 @@
+<odoo>
+	<data>
+	
+	    <record id="rafaksi_wizard_form_view" model="ir.ui.view">
+			<field name="name">rafaksi.wizard.form</field>
+			<field name="model">rafaksi.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+		        <form>
+					<group>
+						<group>
+							<field name="name"/>
+							<field name="start_date"/>
+							<field name="end_date"/>
+							<field name="brand_id" options="{'no_open': True, 'no_create': True}"/>
+							<field name="product_id" options="{'no_open': True, 'no_create': True}"/>
+							<field name="team_ids" widget="many2many_tags" options="{'no_open': True, 'no_create': True}"/>
+							<field name="exclude_team_ids" widget="many2many_tags" options="{'no_open': True, 'no_create': True}"/>
+							<field name="warehouse_id" options="{'no_open': True, 'no_create': True}"/>
+						</group>
+					</group>
+	                <footer>
+	                    <button name="print_excel_report" string="Export" type="object" class="oe_highlight"/> or
+	                    <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>
+		        </form>
+	    	</field>
+	    </record>
+		
+	    <record id="rafaksi_wizard_action" model="ir.actions.act_window">
+			<field name="name">Rafaksi</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">rafaksi.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="rafaksi_wizard_form_view"/>
+			<field name="target">new</field>
+	    </record>
+		
+		<menuitem id="rafaksi_wizard_menu" action="rafaksi_wizard_action" parent="sale.menu_sale_report" sequence="10"/>
+	
+	</data>
+</odoo>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="sale_order_farmaku_marketplace_form">
+      <field name="name">sale.order.farmaku.marketplace.form</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook" position="inside">
+          <page string="Marketplace Info" name="mkp_info" attrs="{'invisible':[('is_from_excel', '!=', True)]}">
+            <group>
+              <group name="mkp_order_info" string="Marketplace Sale Info">
+                <field name="is_from_excel" invisible="1"/>
+                <field name="is_airwaybill_mkp" invisible="1"/>
+                <field name="shop_name" readonly="1"/>
+                <field name="period" readonly="1"/>
+
+                <field name="farmaku_order_mkp" readonly="1"/>
+                <field name="invoice_mkp" readonly="1"/>
+                <field name="order_status_mkp" readonly="1"/>
+                <field name="grand_total_price_mkp" readonly="1"/>
+              </group>
+              <group name="mkp_shipping_info" string="Marketplace Shipping Info">
+                <field name="shipping_name" readonly="1"/>
+                <field name="shipping_service_name" readonly="1"/>
+                <field name="shipping_price" readonly="1"/>
+                <field name="shipping_discount" readonly="1"/>
+                <field name="shipping_insurance" readonly="1"/>
+                <field name="shipping_price_total" readonly="1"/>
+              </group>
+              <group name="mkp_recipient_info" string="Marketplace Recipient Info">
+                <field name="recipient_name" readonly="1"/>
+                <field name="recipient_phone" readonly="1"/>
+                <field name="recipient_address" readonly="1"/>
+              </group>
+            </group>
+          </page>
+          <page name="note" string="Note">
+            <field name="notes"/>
+          </page>
+        </xpath>
+        <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+          <field name="product_id_mkp" invisible="1"/>
+          <field name="is_from_excel" invisible="1"/>
+        </xpath>
+        <xpath expr="//field[@name='order_line']/tree/field[@name='product_packaging']" position="attributes">
+          <attribute name="optional">hide</attribute>
+        </xpath>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_order_farmaku_marketplace_tree">
+      <field name="name">sale.order.farmaku.marketplace.tree</field>
+      <field name="model">sale.order</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="farmaku_order_mkp"/>
+          <field name="invoice_mkp"/>
+          <field name="create_date"/>
+          <field name="partner_id"/>
+          <field name="user_id" optional="show" widget="many2one_avatar_user"/>
+          <field name="company_id" groups="base.group_multi_company" optional="show" readonly="1"/>
+          <field name="state" decoration-success="state == 'sale' or state == 'done'" decoration-info="state == 'draft' or state == 'sent'" widget="badge" optional="show"/>
+          <field name="order_status_mkp" optional="hide"/>
+          <field name="amount_total" sum="Total Tax Included" widget="monetary" decoration-bf="1" optional="show"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="sale_order_view_search_inherit_marketplace" model="ir.ui.view">
+      <field name="name">sale.order.search.inherit.marketplace</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="farmaku_order_mkp"/>
+          <field name="invoice_mkp"/>
+          <field name="tag_ids"/>
+        </field>
+        <field name="order_line" position="after">
+          <field name="order_line" string="SKU" filter_domain="[('order_line.sku', 'ilike', self)]"/>
+        </field>
+        <field name="partner_id" position="after">
+          <field name="partner_id" string="Phone" filter_domain="[('partner_id.phone', 'ilike', self)]"/>
+          <field name="partner_id" string="Mobile" filter_domain="[('partner_id.mobile', 'ilike', self)]"/>
+          <field name="partner_id" string="Email" filter_domain="[('partner_id.email', 'ilike', self)]"/>
+          <field name="client_order_ref"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="action_sale_order_mkp" model="ir.actions.act_window">
+      <field name="name">Order From Marketplace</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sale.order</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="sale_order_farmaku_marketplace_tree"/>
+      <field name="domain">[('is_from_excel', '=', True)]</field>
+    </record>
+    <record id="action_update_order" model="ir.actions.act_window">
+      <field name="name">Update Status</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sale.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+    
+    <menuitem id="mkp_import_menu" name="Marketplace" parent="sale.sale_order_menu"/>
+    <menuitem id="sale_mkp_menu" name="Orders Marketplace" parent="mkp_import_menu" action="action_sale_order_mkp"/>
+    <menuitem id="sale_wizard_menu" name="Upload Excel" parent="mkp_import_menu" action="action_update_order"/>
+  </data>
+</odoo>

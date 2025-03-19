@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sh_quick_print_receipt_template" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_quick_print_receipt/static/src/js/action_button.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_quick_print_receipt/static/src/js/screen.js" />
+        </xpath>
+    </template>
+</odoo>

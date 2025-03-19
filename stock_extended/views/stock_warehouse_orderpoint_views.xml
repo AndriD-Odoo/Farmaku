@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="warehouse_orderpoint_search" model="ir.ui.view">
+            <field name="name">stock.warehouse.orderpoint.search</field>
+            <field name="model">stock.warehouse.orderpoint</field>
+            <field name="inherit_id" ref="stock.warehouse_orderpoint_search"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="outstanding_po_ids"/>
+                    <field name="outstanding_po_qty"/>
+                </xpath>
+
+            </field>
+        </record>
+        
+        <record id="view_warehouse_orderpoint_tree_editable_config" model="ir.ui.view">
+            <field name="name">stock.warehouse.orderpoint.tree</field>
+            <field name="model">stock.warehouse.orderpoint</field>
+            <field name="inherit_id" ref="stock.view_warehouse_orderpoint_tree_editable_config"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="last_sale_update_date"/>
+                    <field name="last_update_date"/>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_warehouse_orderpoint_form" model="ir.ui.view">
+            <field name="name">stock.warehouse.orderpoint.form</field>
+            <field name="model">stock.warehouse.orderpoint</field>
+            <field name="inherit_id" ref="stock.view_warehouse_orderpoint_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="action_compute_min_max" string="Compute Min Max Qty" class="oe_highlight" type="object"/>
+                    </header>
+                </xpath>
+                <xpath expr="//group/group[2]" position="after">
+                    <group string="Transaction Summary">
+                        <field name="sale_qty" readonly="1"/>
+                        <field name="sale_count" readonly="1"/>
+                        <field name="sale_qty_90d" readonly="1"/>
+                        <field name="sale_count_90d" readonly="1"/>
+                        <field name="sale_avg_90d" readonly="1"/>
+                        <field name="last_sale_update_date" readonly="1"/>
+                        <field name="move_category_id" readonly="1"/>
+                        <field name="min_buffer" readonly="1"/>
+                        <field name="max_buffer" readonly="1"/>
+                        <field name="min_stock_category"/>
+                        <field name="min_stock"/>
+                        <field name="product_type_id"/>
+                    </group>
+                    <group string="Outstanding PO">
+                        <field name="outstanding_po_ids" readonly="1" widget="many2many_tags"/>
+                        <field name="outstanding_po_qty" readonly="1"/>
+                        <div>
+                            <button name="action_view_purchase" type="object" string="View PO" attrs="{'invisible': [('outstanding_po_qty', '=', 0)]}" class="btn-primary"/>
+                        </div>
+                    </group>
+                    <group string="Others Info">
+                        <field name="last_sale_date" readonly="1"/>
+                        <field name="last_sale_number" readonly="1"/>
+                        <field name="last_update_date" readonly="1"/>
+                        <field name="product_wajib" invisible="1"/>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="action_server_update_last_sale_date" model="ir.actions.server">
+            <field name="name">Update Last SO Date</field>
+            <field name="type">ir.actions.server</field>
+            <field name="binding_model_id" ref="stock.model_stock_warehouse_orderpoint" />
+            <field name="model_id" ref="stock.model_stock_warehouse_orderpoint" />
+            <field name="state">code</field>
+            <field name="code">
+                records.update_last_sale_date()
+            </field>
+        </record>
+
+    </data>
+</odoo>

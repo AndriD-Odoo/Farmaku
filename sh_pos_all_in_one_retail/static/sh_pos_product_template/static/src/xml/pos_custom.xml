@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="TemplateProductsButton" owl="1">
+        <div class="control-button" t-on-click="trigger('click-product-template-icon')">
+        	<a style="display: flex;" class="btn btn-primary">
+                 <div class="sh_icon_img" style="display: flex;align-items: center;margin-right: 8px;">
+                 	<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112"><path d="M116.86,14H23.14A9.14,9.14,0,0,0,14,23.14v93.72A9.14,9.14,0,0,0,23.14,126h93.72a9.14,9.14,0,0,0,9.14-9.14V23.14A9.14,9.14,0,0,0,116.86,14ZM122,114.25a7.75,7.75,0,0,1-7.75,7.75H25.75A7.75,7.75,0,0,1,18,114.25V42H122ZM122,37H18V24.89A6.9,6.9,0,0,1,24.89,18h90.22A6.9,6.9,0,0,1,122,24.89ZM23,54V91H65V54ZM60.46,87H27.54V58H60.46ZM117,61H70V56h47ZM81.5,30h-54A2.5,2.5,0,0,1,25,27.5h0A2.5,2.5,0,0,1,27.5,25h54A2.5,2.5,0,0,1,84,27.5h0A2.5,2.5,0,0,1,81.5,30ZM117,75H70V70h47Zm0,14H70V84h47Zm0,18H25v-5h92ZM95.5,23a4.5,4.5,0,1,0,4.5,4.5A4.49,4.49,0,0,0,95.5,23Zm0,7A2.5,2.5,0,1,1,98,27.5,2.5,2.5,0,0,1,95.5,30Zm10-7a4.5,4.5,0,1,0,4.5,4.5A4.49,4.49,0,0,0,105.5,23Zm0,7a2.5,2.5,0,1,1,2.5-2.5A2.5,2.5,0,0,1,105.5,30Zm10-7a4.5,4.5,0,1,0,4.5,4.5A4.49,4.49,0,0,0,115.5,23Zm0,7a2.5,2.5,0,1,1,2.5-2.5A2.5,2.5,0,0,1,115.5,30Z" transform="translate(-14 -14)"/></svg>
+                 </div>
+                 <div class="sh_text_span">
+                  	<span class="sh_control_btn_span">Template Products</span>
+                 </div>
+            </a>
+        </div>
+    </t>
+    <t t-name="TemplateProductsLine" owl="1">
+        <tr t-attf-class="template-line {{highlight}}" t-att-data-id="props.template.id" t-on-click="trigger('click-template', {template: props.template})">
+            <td>
+                <t t-esc="props.template.name" />
+            </td>
+            <td>
+                <t t-esc="env.pos.format_currency(props.template.amount_total)" />
+            </td>
+        </tr>
+    </t>
+
+    <t t-name="TemplateProductsListScreenWidget" owl="1">
+        <div class="templateproductlist-screen screen">
+            <div class="screen-content">
+                <section class="top-content">
+                    <div class="button back" t-on-click="back">
+                        <t t-if="!env.isMobile">Discard</t>
+                        <t t-else="">
+                            <i class="fa fa-undo"></i>
+                        </t>
+                    </div>
+                    <div class="button highlight" t-on-click="trigger('click-save')">
+                        <t t-if="!env.isMobile"> <span> Load Product Template</span> <i class="fa fa-angle-double-right" /> </t>
+                        <t t-else="">
+                            <i class="fa fa-angle-double-right" />
+                        </t>
+                    </div>
+                    <div class="searchbox-client top-content-center">
+                        <input placeholder="Search Template" size="1" t-on-keyup="updateTemplateList" />
+                        <span class="search-clear-template"></span>
+                    </div>
+                </section>
+                <section class="full-content">
+                    <div class="window">
+                        <section class="subwindow">
+                            <div class="subwindow-container">
+                                <div class="subwindow-container-fix touch-scrollable scrollable-y order-list-scroll">
+                                    <table class="template-list">
+                                        <thead>
+                                            <tr>
+                                                <th>Product Template Name</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="template-list-contents">
+                                            <t t-foreach="templatelistcontents" t-as="template" t-key="template.id">
+                                                <TemplateProductsLine template="template" selectedTemplate="state.selectedTemplate" t-on-click-template="clickLine" />
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </t>
+</templates>

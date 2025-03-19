@@ -1,0 +1,1983 @@
+$font-color: #555555;
+$dark-gray: #d8d8d8;
+$light-color: #efefef;
+$gray-button: #e5e5e5;
+
+
+/* font */
+body,.pos,.pos button,.pos .modal-dialog .popup,input,.pos .popup input, .pos .popup-input,textarea,
+.pos .screen-login{font-family: $sh_pos_body_font_family !important;}
+
+
+@if $sh_pos_body_font_family == 'custom_google_font'{
+@import url("https://fonts.googleapis.com/css?family=#{unquote($sh_pos_body_google_font_family)}");
+body,.pos,.pos button,.pos .modal-dialog .popup,input,.pos .popup input, .pos .popup-input,textarea,
+.pos .screen-login{font-family:$sh_pos_body_google_font_family !important;}
+}
+
+/* font */
+
+/* #######  common scss   ####### */
+
+
+.pos .popup footer .button{margin-top: 7px;}
+.pos .pos-topheader{background: $sh_pos_primary_color !important;}
+.pos .order{border-radius: 5px;padding-top: 0px;padding-bottom: 0px;}
+
+.pos .ticket-button [badge]:after{min-height: 18px;padding: 0;line-height: 18px;min-width: 18px;background: #000;}
+.pos .ticket-button{font-weight: 600;}
+.pos .ticket-button.highlight{background: none;}
+.pos .pos-rightheader > *,
+.pos .pos-rightheader .header-button:last-child{border: 0px;}
+.pos .search-bar-portal .search-box input{color: $sh_pos_primary_color;font-size: 13px;font-weight: 600;transition: all .4s;}
+.pos .search-bar-portal .search-box input:focus{box-shadow: 0 2px 5px 0 rgba(0,0,0,.20) inset, 0 3px 10px 0 rgba(0,0,0,.25) inset;}
+
+.pos .search-bar-portal .search-box input::placeholder{color: $sh_pos_primary_color;}
+.pos .search-bar-portal .search-box .icon,
+.pos .search-bar-portal .search-box .clear-icon{color: $sh_pos_primary_color;}
+.pos .pos-branding{align-items: center;}
+.pos .pos-logo{height: 25px;margin-top: 0;}
+.pos .oe_status .oe_green, .pos .oe_icon.oe_green{color: #fff;width: auto;}
+.pos .pos-rightheader .header-button{font-weight: 600;position: relative;}
+.pos .pos-rightheader .header-button:after {content: '';position: absolute;top: 50%;left: 0;background: #fff;width: 1px;height: 18px;transform: translateY(-50%);}
+.pos .order .orderline .info-list{margin-left: 0;}
+.pos .order .orderline .span_delete_icon{background: $sh_pos_primary_color;border: 1px solid $sh_pos_primary_color !important;color: #fff;width: 18px;height: 20px;text-align: center;line-height: 16px;padding: 0;border-radius: 5px;font-size: 13px;margin-top: 0px;}
+.pos .order .orderline .info-list,
+.pos .order .orderline .info-list em {color: #919191;font-size: 14px;line-height: 18px;margin-bottom: 6px;}   
+.pos .order .orderline{border-bottom: 1px solid #ccc;padding-top: 10px;display: inline-block;}
+.pos .order .summary .line .subentry{padding-top: 5px;font-size: 14px;text-align: right;color: #919191;} 
+.pos .order .orderline .product-name{color: #212121;font-size: 15px;}  
+.pos .order .summary .total{font-size: 18px;}
+.pos .order .summary .line{border-top: 0px;} 
+.pos .ticket-button:hover{background: unset;}   
+.pos .pos-rightheader .header-button.confirm{background: $sh_pos_primary_color;}   
+.pos .leftpane .pads{border-top: 0px;}   
+.pos .leftpane{border-color: $sh_pos_primary_color;}
+.pos .leftpane .pads .subpads{padding: 0px 3px 10px;}   
+.pos .actionpad{margin: 0px;border: 0;}    
+.pos .actionpad .button.pay .pay-circle{margin: 0 !important;padding: 0;height: auto;line-height: normal;width: auto;font-size: unset;margin-right: 10px !important;}   
+.pos .actionpad .button:last-child{width: auto;min-width: 54px;margin-right: 3px;}    
+.pos .actionpad .button.pay{display: flex;align-items: center;justify-content: center;border-radius: 5px;}   
+.pos .actionpad .button.pay .pay-circle .fa {position: relative !important;top: 0px !important;left: 0px !important;margin-right: 0px;font-size: 10px;width: 25px;line-height: 25px;display: inline-block;}  
+.pos .order .orderline span.span_product_image{width: 17%;float: left;height: 100%;} 
+.pos .order .orderline .price {vertical-align: top;padding-top: 3px;display: inline-block;}
+.pos .mode-button.selected-mode{background: $sh_pos_primary_color;}
+.pos .mode-button.selected-mode:hover{background: $sh_pos_primary_color;}
+
+
+.pos .screen .screen-full-width{height: calc(100vh - 100px);}
+.pos .screen .screen-full-width.not_control_button {height: 100%;}
+
+
+/*.pos .control-button{background: #fff;box-shadow: 0 2px 10px 0 rgba(0,0,0,.05);border: 0;margin-left: 10px;font-size: 15px;font-weight: 600;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;}*/
+.pos .control-button{background: #fff;box-shadow: 0 2px 10px 0 rgba(0,0,0,.05);border: 0;margin-left: 10px;font-size: 15px;font-weight: 600;}
+.pos .control-buttons{background: $sh_pos_secondary_color;box-shadow: 0 2px 5px 0 rgba(0,0,0,.25%), 0 3px 10px 0 rgba(0,0,0,.20%);} 
+.pos .control-button:hover{background: #fff;}
+.pos .control-button .control-button-number{height: 20px;line-height: 20px;width: 20px;font-size: 12px;} 
+.pos .order .orderline.dirty{border-left-color: $sh_pos_primary_color;color: $sh_pos_primary_color;border-left: 5px solid;}
+.pos .control-button:active{border-color: $sh_pos_primary_color;background-color: $sh_pos_primary_color;}
+.pos .numpad button:active{background-color: $sh_pos_primary_color;}
+.pos .actionpad .button.set-customer.decentered{padding-left: 4px;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+ 
+.pos .numpad{margin-bottom: 0 !important;}
+.pos .actionpad{padding-top: 7px;}
+.pos .order .orderline.selected{background: lighten($sh_pos_primary_color, 45%) !important;}
+.pos .pos-rightheader .header-button:after{display: none;} 
+ 
+
+/* box up header style */ 
+.pos .green-border-bottom{border-color: $sh_pos_primary_color;} 
+.pos .breadcrumb:first-child{line-height: normal; height: auto;border-right: 0;} 
+.pos .oe_status.order-management .oe_green i.fa-search:before{content: "\f022";}
+.pos .breadcrumb:first-child{padding-right: 6px;}
+/* box up header style */ 
+
+/* customer */
+.pos .clientlist-screen .client-list thead > tr, .pos .clientlist-screen .client-list tr:nth-child(even){background: #fff;}
+.pos .clientlist-screen .client-list tr{background: #fff;}
+.pos .screen:not(.receipt-screen) .screen-content{border: 0px;}
+.pos .screen .top-content{z-index: 1;padding-left: 0;}
+.pos .screen:not(.receipt-screen) .top-content{border: 0px;}
+.pos .screen .top-content .searchbox-client.top-content-center{text-align: right;padding-left: 0;}
+.pos .searchbox-client input{border-radius: 5px;box-shadow: none !important;color: $sh_pos_primary_color !important;padding-left: 20px;width: 200px;border-width: 2px;transition: all .4s;}
+.pos .clientlist-screen .client-detail select{appearance: none;background-image: url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20448%22%20enable-background%3D%22new%200%200%20256%20448%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E.arrow%7Bfill%3A%23424242%3B%7D%3C%2Fstyle%3E%3Cpath%20class%3D%22arrow%22%20d%3D%22M255.9%20168c0-4.2-1.6-7.9-4.8-11.2-3.2-3.2-6.9-4.8-11.2-4.8H16c-4.2%200-7.9%201.6-11.2%204.8S0%20163.8%200%20168c0%204.4%201.6%208.2%204.8%2011.4l112%20112c3.1%203.1%206.8%204.6%2011.2%204.6%204.4%200%208.2-1.5%2011.4-4.6l112-112c3-3.2%204.5-7%204.5-11.4z%22%2F%3E%3C%2Fsvg%3E%0A);background-position: right 10px center;background-repeat: no-repeat;background-size: auto 50%;}
+.pos .searchbox-client input:focus{border-color: $sh_pos_primary_color;border-width: 2px;}
+.pos .leftpane{max-width: 486px;}
+
+
+.pos .clientlist-screen .client-list tr{color: #919191;}
+.pos .edit-client-button{color: #fff;background: $sh_pos_primary_color;width: 31px;height: 32px;border-radius: 5px;font-size: 12px;margin-top: 0px;}
+.pos .clientlist-screen .client-details input, .pos .clientlist-screen .client-details select{padding: 10px 10px;border-radius: 3px; border: solid 1px #cecbcb; margin-bottom: 10px;font-size: 14px;color: #919191;outline: none;}    
+.pos .clientlist-screen .client-details > input{border: 0;font-weight: 600;color: #212121;font-size: 20px;margin-top: 8px !important;}  
+.pos .clientlist-screen .client-details-box{border-top: 1px solid #ccc;padding-top: 20px;}    
+.pos .clientlist-screen .client-details input, .pos .clientlist-screen .client-details select{width: 95%;color: #919191;transition: all .4s;}    
+.pos .clientlist-screen .client-details input::placeholder{color: #919191;}
+.pos .clientlist-screen .client-details input.client-name,
+.pos .clientlist-screen .client-details input.client-name::placeholder{color: #212121;}
+.pos .clientlist-screen .client-details input:focus{border-color: $sh_pos_primary_color;}
+.pos .clientlist-screen .client-details input.detail.client-name:focus{border: 1px solid $sh_pos_primary_color;}
+.pos .clientlist-screen .client-details select:focus{border-color: $sh_pos_primary_color;}
+.pos .clientlist-screen .client-list th, .pos .clientlist-screen .client-list td{color: #666666;}
+
+.pos .clientlist-screen .client-details{border-bottom: 0;}  
+
+    
+/* customer */
+
+
+/* order screen */
+.pos .ticket-screen .controls{margin-left: 0;border-bottom: 0px solid #ebebeb;}
+.pos .ticket-screen .pos-search-bar{box-shadow: 0 2px 2px 0 rgba(0,0,0,.10%), 0 3px 5px 0 rgba(0,0,0,.10%);border-radius: 5px;color: #212121;border: 2px solid #ccc;transition: all .4s;}
+.pos .ticket-screen .pos-search-bar .search input{border: 0px;}
+.pos .ticket-screen .pos-search-bar .filter:before{content: '';position: absolute;top: 50%;left: 0;background: #919191;width: 2px;height: 15px;transform: translateY(-50%);}
+.pos .ticket-screen .pos-search-bar .filter span{font-weight: 600;font-size: 14px;}
+.pos .ticket-screen .pos-search-bar .filter:hover{color: #212121;}
+.pos .ticket-screen .pos-search-bar .filter{border: 0;}
+.pos .ticket-screen .pos-search-bar .filter .down-icon{top: 50%;transform: translateY(-50%);}
+.pos .ticket-screen .orders .header-row{background: #fff;color: #616161;}
+.pos .ticket-screen .order-row:hover{background: #ebebeb;color: #666666;}
+.pos .ticket-screen .order-row:nth-child(odd){background: #fff;color: #666666;}
+.pos .ticket-screen .order-row:hover{background: #fff;}
+
+.pos .ticket-screen .orders .col.very-narrow i{width: 23px;height: 23px;background: transparent;text-align: center;line-height: 23px;color: #919191;border-radius: 5px;font-size: 14px;border: 1px solid #919191;transition: all .5s;}
+.pos .ticket-screen .orders .header-row .col.start{color: #212121;font-weight: 600;font-size: 16px;}
+.pos .ticket-screen .orders .header-row .col.end{color: #212121;font-weight: 600;}
+.pos .ticket-screen .orders .header-row{margin-bottom: 0px;}
+.pos .ticket-screen .orders .order-row{align-items: center;}
+.pos .ticket-screen .orders .col.start,
+.pos .ticket-screen .orders .col.end{font-size: 14px;}
+.pos .ticket-screen .orders .col{padding: 10px 12px;}
+.pos .ticket-screen .pos-search-bar:focus-within{border-color: $sh_pos_primary_color;}
+/* order screen */
+
+/* payment screen */
+.pos .screen .left-content .paymentmethods-container .paymentmethods{margin-left: 6px;}
+.pos .screen .left-content .paymentmethods-container .paymentmethods .paymentmethod{background: #ebebeb;margin-bottom: 10px;border-color: #ebebeb;color: #919191;}
+.pos .screen .left-content .paymentmethods-container .paymentlines{margin-left: 6px;}
+.pos .paymentline{border-top-width: 1px;margin-bottom: 10px;background: #ebebeb;border-color: #ebebeb;transition: all .4s;}
+.pos .paymentline:hover{background: $sh_pos_primary_color;color: #fff;border-color: $sh_pos_primary_color;}
+.pos .screen .left-content .paymentmethods-container .paymentmethods .paymentmethod:hover{background: $sh_pos_primary_color;color: #fff;border-color: $sh_pos_primary_color;}
+.pos .screen .top-content .top-content-center h1{color: $sh_pos_primary_color;}
+.pos .paymentlines-container .paymentlines-empty{background: #ebebeb;padding: 24px 0;border-radius: 5px;}
+.pos .paymentlines-container{padding-top: 16px;border: 0;margin-top: 16px;}
+.pos .paymentlines-container .paymentlines-empty .total{padding-top: 0;color: $sh_pos_primary_color;}
+.pos .paymentlines-container .paymentlines-empty .message{color: #919191;font-size: 16px;}
+.pos .screen .left-content{border-right: 0px;}
+.pos .payment-numpad .numpad{border: 0;width: 320px !important;margin-right: 0;}
+.pos .payment-numpad{margin-right: 3px;margin-top: 13px;}
+.pos .payment-buttons{margin-left: 0;margin-right: 50px;}
+.pos .payment-screen .customer-button{margin-bottom: 5px;}
+.pos .payment-screen .payment-buttons .button{height: 72px;}
+
+.pos .payment-screen .payment-buttons .button{background: #ebebeb;border-color: #ebebeb;color: #919191;}
+.pos .payment-screen .payment-buttons .button:hover{color: #fff;background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;}
+
+.pos .screen .right-content .paymentlines-container{background: #ebebeb;border-radius: 5px;}
+.pos .screen .right-content .paymentlines-container .payment-status-total-due{color: #919191;}
+.pos .screen .right-content .paymentlines-container .payment-status-remaining span.label{color: #212121;font-weight: 600;}
+.pos .screen .right-content .paymentlines-container .payment-status-remaining .amount{color: $sh_pos_primary_color;font-weight: 600;}
+.pos .screen .right-content .paymentlines-container .payment-status-change .label{color: #212121;font-size: 20px;font-weight: bold;}
+.pos .screen .right-content .paymentlines-container .payment-status-change .amount.highlight{color: $sh_pos_primary_color !important;font-size: 20px;background: transparent;}
+.pos .payment-screen .payment-buttons .button:active{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;}
+.pos .payment-screen .top-content{border-bottom: 0px;}
+.pos .payment-buttons .payment-controls .button.js_invoice{margin-bottom: 5px;}
+
+/* payment screen */
+
+/* payment recipe */ 
+.pos .receipt-screen .default-view .actions{text-align: center;background: transparent;}
+.pos .receipt-screen .default-view .actions h1{margin-bottom: 2rem;}
+.pos .receipt-screen .default-view .actions h1:nth-child(2){font-size: 18px;font-weight: normal;}
+.pos .receipt-screen .default-view .actions .buttons .button{margin: 0 5px;background: #fff;}
+.pos .receipt-screen .default-view .actions .buttons{margin: 1rem;}
+
+.pos .receipt-screen .default-view .actions .buttons .button i{padding-right: 5px;}
+.pos .receipt-screen .default-view .actions h1:first-child{margin-top: 2rem;}
+.pos .receipt-screen .default-view .actions .send-email .email-icon{background: #fff;}
+.pos .receipt-screen .default-view .actions .send-email .input-email{padding: 5px;}
+.pos .receipt-screen .default-view .actions .send-email .input-email input{color: #212121;}
+.pos .receipt-screen .default-view .actions .send-email .input-email button{background: $sh_pos_primary_color;color: #fff;padding: 0 20px;}
+.pos .receipt-screen .default-view .actions .send-email button.send.highlight{background: $sh_pos_primary_color;}
+.pos .receipt-screen .default-view .actions .send-email{padding: 0 20px;}
+.pos .payment-screen .payment-buttons .button .js_customer_name{padding-left: 20px;}
+/* payment recipe */
+
+
+/* note */
+.pos textarea:focus{box-shadow: 0px 0px 0px 1px $sh_pos_primary_color;}
+.pos textarea{width: 95% !important;font-size: 16px;}
+.pos .modal-dialog .popup{background-color: #fff;}
+.pos .popup .footer{display: flex;justify-content: center;}
+.popup.popup-number .popup-input{border: 1px solid #ccc;}
+/* note */
+
+
+/* splitting */
+.splitbill-screen .main .pay-button .button:hover{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;color: #fff;}
+/* splitting */
+
+
+/* guest */
+.pos .popup input:focus, .pos .popup-input.active{box-shadow: 0px 0px 0px 1px $sh_pos_primary_color;}
+.popups .modal-dialog .popup.popup-number .footer .button{margin-top: 0;}
+.popups .modal-dialog .popup.popup-number .footer{align-items: center;}
+/* guest */
+
+/* bill spliting */
+.splitbill-screen .order-info{color: $sh_pos_primary_color;}
+/* bill spliting */
+
+@if $sh_cart_position == 'right_side'{
+	.pos .leftpane{border-left: solid 3px $sh_pos_primary_color;}
+}
+
+.pos .order-button.floor-button{background: lighten($sh_pos_primary_color, 35%);color: #000;margin: 0;height: 100%;border-radius: 0;padding-top: 2px;min-width: auto;}
+.pos .order-button.floor-button span{vertical-align: middle;}
+.pos .order-button.floor-button .fa{font-size: 21px;}
+
+
+/* odd even */
+.pos .clientlist-screen .client-list tr:nth-of-type(even),
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list table tbody tr:nth-of-type(even){background: $sh_even_row_color;}
+.pos .clientlist-screen .client-list tr:nth-of-type(odd),
+.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list table tbody tr:nth-of-type(odd){background: $sh_odd_row_color;}
+.pos .ticket-screen .orders .order-row:nth-of-type(even){background: $sh_even_row_color;}
+.pos .ticket-screen .orders .order-row:nth-of-type(odd){background: $sh_odd_row_color;}
+.pos .clientlist-screen .client-list thead tr{background: #fff !important;}
+.pos .order-management-screen .order-list .order-row:nth-of-type(even){background: $sh_even_row_color;}
+.pos .order-management-screen .order-list .order-row:nth-of-type(odd){background: $sh_odd_row_color;}
+.pos table tbody tr:nth-of-type(even){background: $sh_even_row_color !important;}
+.pos table tbody tr:not(.sh_closing_total):nth-of-type(odd){background: $sh_odd_row_color !important;}
+
+
+.pos table.sh_order_list tbody tr.sh_order_line:nth-of-type(even){background: $sh_even_row_color !important;}
+.pos table.sh_order_list tbody tr.sh_order_line:nth-of-type(odd){background: $sh_odd_row_color !important;}
+
+.pos table.sh_order_list tbody tr.inner_data_table_row:nth-of-type(even){background: $sh_odd_row_color !important;}
+.pos table.sh_order_list tbody tr.inner_data_table_row:nth-of-type(odd){background: $sh_even_row_color !important;}
+
+.pos table.inner_data_table tr:nth-of-type(even){background: $sh_even_row_color;}
+.pos table.inner_data_table tr:nth-of-type(odd){background: $sh_odd_row_color;}
+
+/* odd even */
+
+/* search tooltip */
+.pos .ticket-screen .pos-search-bar .search li{color: $sh_pos_primary_color;}
+/* search tooltip */
+
+/* split */
+.pos .subwindow .splitbill-screen.screen .contents{border-left: 0;border-right: 0;}
+.pos .splitbill-screen.screen .main .lines{border-right: 0;}
+.pos .splitbill-screen .order{padding-bottom: 0;padding-top: 0;margin-left: 6px;border-bottom: 0;}
+.pos .splitbill-screen .order-info{border-bottom: 0;}
+.pos .splitbill-screen .order .orderline.selected{color: #414141;}
+.pos .splitbill-screen .order .orderline.selected .product-name,
+.pos .splitbill-screen .order .orderline.selected .info-list,
+.pos .splitbill-screen .order .orderline.selected .info-list em{color: #414141;}
+.pos .splitbill-screen.screen .pay-button .button:active{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;}
+/* split */
+
+
+/* login screen */
+.pos .login-overlay{background: $sh_pos_primary_color;}
+.pos .login-overlay:before{display: none;}
+/* login screen */
+
+
+/* theme media query */
+
+/* cart price sticky */
+@media (min-width: 1400px){
+   .screen .screen-full-width .order .summary.sticky_total{position: sticky;bottom: 0;margin: 0;background: #fff;border-top: 1px solid #ccc;}
+   .screen .screen-full-width .order{padding-bottom: 0;}
+}
+/* cart price sticky */
+
+/* cash opening */
+.pos .leftpane .sh_cash_opening{margin-top: 0 !important;}
+.pos .leftpane .sh_cash_opening .sh_opening_amount{display: flex;justify-content: center;align-items: center;margin: 30px 0;width: 84%;justify-content: flex-start;margin: 30px auto;}
+.pos .leftpane .sh_cash_opening .sh_opening_amount h1{font-size: 20px;padding-right: 20px;font-weight: 600;}
+.pos .leftpane .sh_cash_opening input{width: 100px;flex-grow: unset;flex-basis: auto;margin: 0;line-height: 40px;outline: none;border: 2px solid #ccc;transition: all .4s;border-radius: 0;padding-left: 15px;}
+.pos .leftpane .sh_cash_opening .sh_opening_amount span{padding-left: 15px;font-size: 20px;font-weight: 600;}
+.pos .leftpane .sh_cash_opening > h1{font-size: 20px;}
+.pos .leftpane .sh_cash_opening textarea{width: 80% !important;height: 150px;border-radius: 0;border: 2px solid #ccc;transition: all .4s;}
+.pos .leftpane .sh_cash_opening > span{width: auto;background: $sh_pos_primary_color;color: #fff;min-width: 110px;line-height: 42px;display: inline-block;}
+.pos .leftpane .sh_cash_opening input:focus{border-color: $sh_pos_primary_color;}
+.pos .leftpane .sh_cash_opening > h1.sh_notes{width: 84%;margin: 0.67em auto;text-align: left;}
+.pos .leftpane .sh_cash_opening textarea:focus{border-color: $sh_pos_primary_color;}
+.pos .categories{border-color: $sh_pos_primary_color;}
+
+@media (min-width: 991px){
+  	.pos .screen .screen-full-width .rightpane{overflow-x: auto;}
+   .pos .products-widget{overflow-x: auto;}
+   .pos .rightpane-header.green-border-bottom{flex-flow: row nowrap;overflow-x: auto;}
+   .pos .category-simple-button{min-width: 90px;}
+}
+@media (min-width: 769px) and (max-width: 991px){
+   .pos .clientlist-screen.screen .top-content{padding-left: 10px;}
+   .pos .payment-numpad{margin-left: 0;}
+   .pos .payment-buttons{margin-right: 20px;}
+   .pos .receipt-screen .default-view .actions .buttons{display: block;}
+   .pos .receipt-screen .default-view .actions .buttons .button{margin-bottom: 10px;min-width: 140px;}
+   .pos .actions.sh_receipt_actions{margin: 73px 0 !important;max-width: 40%;}
+   .pos .receipt-screen .default-view .pos-receipt-container{flex: 0 1 60%;}
+   .pos .ticket-screen .controls{margin-left: 12px;}
+   .pos .green-border-bottom{padding: 0 10px !important;padding-bottom: 10px !important;}
+   .pos .breadcrumb:first-child{margin-top: 10px;}
+   .pos .category-simple-button{height: 41px;padding: 0 12px;margin-top: 10px !important;flex: none;}
+   .pos .breadcrumb{margin-top: 10px;}
+   .pos .screen .screen-full-width .rightpane{overflow-x: auto;}
+   .pos .products-widget{overflow-x: auto;}
+   .pos .rightpane-header.green-border-bottom{flex-flow: row nowrap;overflow-x: auto;}
+   .pos .screen .screen-content-flexbox .floor-map{overflow-x: auto;}   
+}
+
+
+@media (max-width: 992px){
+  .pos .product{width: 23%;margin: 5px 5px !important;}
+   .pos .product .product-img img{max-height: 100px;max-width: 100%;}
+   .pos .screen .screen-full-width{height: 100%;}
+   .pos .modal-dialog .popup{max-width: 100%;width: 85% !important;}
+   .pos .modal-dialog{padding: 0;}
+   .pos .cart_product_image{display: none;}
+   .pos .popup.popup-selection .selection-item.selected{background-color: $sh_pos_primary_color;color: #fff;}
+   .pos .product:active{border: solid 1px $sh_pos_primary_color;}
+   .pos .leftpane,
+   .pos .order{max-width: 100%;}
+   .pos .not_control_button .control-buttons{display: none;}
+   .pos .pos-rightheader .header-button{border: 0;}
+  
+   /* payment */
+   .pos .screen .left-content .paymentmethods-container .paymentmethods{margin-left: 10px;margin-right: 10px;}
+   .pos .screen .left-content .paymentmethods-container .paymentmethods .paymentmethod{margin: 5px 8px;}
+   .payment-screen .payment-buttons .button {height: 72px;line-height: 72px;padding: 0;}
+   .pos .payment-numpad{margin-right: 3px;margin-top: 13px;}
+   .pos .payment-buttons{margin-left: 0; margin-right: 16px;}
+   .pos .payment-screen .payment-buttons .button .js_customer_name{padding-left: 0;}
+   .pos .payment-numpad .numpad{width: 100% !important;}
+   /*.pos .order .orderline .product-name{width: 62% !important;}*/
+   .pos .screen .left-content .paymentmethods-container .paymentlines{margin-right: 16px;margin-left: 16px;}	
+   .pos .switchpane .btn-switchpane{background: $sh_pos_primary_color;padding-bottom: 0;}
+   .pos .switchpane .btn-switchpane.secondary{color: $sh_pos_primary_color;}
+   .pos .pos-content{top: 48px !important;}
+   .pos .ticket-screen .controls{margin-left: 8px;margin-right: 8px !important;}
+  	.pos .ticket-screen .controls button{margin-right: 0px;}
+   .pos .ticket-screen .controls button.discard{margin: 0 8px;}
+   .pos .screen .top-content .searchbox-client.top-content-center{padding-left: 8px;}
+   .pos .clientlist-screen.screen .top-content{padding-right: 10px !important;padding-left: 10px;}
+   .pos .clientlist-screen .client-details input.client-name{width: 60%;}
+   .pos .clientlist-screen .client-details-left{width: 100%;}
+   .pos .clientlist-screen .client-details input, .pos .clientlist-screen .client-details select{width: 100%;}
+   /* payment */
+   
+   /* action button */
+   .pos .control-buttons{position: unset !important;bottom: auto !important;width: auto !important;box-shadow: none !important;padding-bottom: 8px !important;overflow-x: auto;flex-flow: row nowrap;height: auto !important;display: flex !important;padding-top: 8px !important;}
+   .pos .control-button{width: auto !important;margin: 0 5px !important;}
+   .pos .control-button{min-width: 110px !important;flex: none;}
+   .pos .leftpane{width: 100%;border: 0;}
+   /* action button */
+   
+   .pos .not_control_button .control-buttons{display: none !important;}
+   .pos .switchpane .btn-switchpane.secondary{padding: 0;line-height: 45px;background: $sh_pos_primary_color;color: #fff;}
+   .pos .switchpane{height: auto;}
+   .pos .screen .left-content{max-width: 100%;}
+   .pos .screen .left-content .paymentlines-container{background: $sh_pos_secondary_color;border-radius: 5px;margin: 16px;padding: 25px 20px;}
+   .pos .payment-status-container .amount.highlight{color: $sh_pos_primary_color;}
+   .pos .screen .main-content{display: block;}
+   .pos .sh_client_pos_content .subwindow-container .orders{overflow: auto !important;}
+   .pos .sh_client_pos_content .subwindow-container .orders .order-row,.pos .sh_client_pos_content .subwindow-container .orders .header-row{justify-content: flex-start !important;}
+   .pos .screen .screen-content-flexbox .floor-map{overflow-x: auto;}
+   
+   @if $sh_mobile_start_screen == 'product_with_cart'{
+      .pos .green-border-bottom{padding: 3px 3px 10px !important;}
+      .pos .screen .screen-full-width{height: auto;}
+      .pos .screen .screen-full-width .leftpane .order-container{height: 40vh;}
+      .pos .leftpane .pads .subpads{padding-top: 5px;padding-bottom: 5px;}
+   }
+   
+   
+}
+
+@media (max-width: 576px){
+   .pos .product{width: 30%;margin: 5px 3px !important;}
+   .pos .numpad button{height: 36px;width: 36px;font-size: 12px;padding-left: 0;padding-right: 0;}
+   .pos .payment-numpad .numpad br {display: none;}
+   .pos .payment-buttons{margin-left: 16px;margin-right: 16px;margin-top: 0;display: block;}
+   .pos .payment-numpad{display: inline-block;width: 100%;margin-left: 0;}
+   .pos .clientlist-screen .full-content .subwindow.list{display: table-row;}
+   .pos .searchbox-client input{width: auto;}
+   .pos .payment-buttons{display: flex;flex-direction: row;}
+   .pos .payment-screen .customer-button{width: 48%;padding-right: 3px;}
+   .pos .payment-screen .payment-controls{width: 50%;margin-left: 3px;}
+   .pos .payment-numpad{margin-bottom: 3px;}
+   .pos .screen .left-content .paymentmethods-container .paymentmethods .paymentmethod{margin: 5px 6px;}
+   .pos .payment-numpad .numpad{width: 320px !important;margin: 0 auto !important;}
+   .pos .switchpane{height: auto;}
+   .pos .switchpane .btn-switchpane.secondary{padding: 0;line-height: 45px;background: $sh_pos_primary_color;color: #fff;}
+   .pos .pos-receipt-container > div{width: 100%;}
+   .pos .receipt-screen .default-view .actions .buttons{display: block;margin: 1rem 0;}
+   .pos .receipt-screen .default-view .actions .buttons .button{margin-bottom: 20px;}
+   .pos .green-border-bottom{padding: 5px 5px !important;}
+   .pos .breadcrumb-button.breadcrumb-home{font-size: 16px !important;}
+   .pos .payment-screen .paymentlines-empty .total{font-size: 36px;}
+   .pos .order .orderline{padding: 10px;}
+   .pos .pos-receipt-container > div{width: 100%;max-width: 300px;margin-left: 0;margin-right: 0;}
+   .pos .receipt-screen .default-view .actions .send-email .input-email input{font-size: 12px;}
+   .pos .receipt-screen .default-view .actions{margin: 0 13px !important;}
+   .pos .receipt-screen .default-view .actions .send-email{padding: 0;}
+   .pos .ticket-screen .controls{display: block;margin: 0;padding: 8px;}
+   .pos .ticket-screen .pos-search-bar .search{width: 60%;}
+   .pos .ticket-screen .controls button.discard{margin: 0;margin-top: 8px;margin-right: 8px;}
+   .pos .ticket-screen .pos-search-bar{border-radius: 5px;max-width: 100%;}
+   .pos .ticket-screen .orders .col{min-width: 90px;}
+   .pos .ticket-screen .orders .col.end{justify-content: flex-start;}
+   .pos .leftpane .pads .subpads{padding-top: 7px;padding: 0 3px;}
+   .pos .product-list{justify-content: center;text-align: center;}
+   .pos .sh_client_pos_content .subwindow-container .orders{display: grid;}
+   .pos .ticket-screen .orders .header-row{top: -1px;}
+   .pos .order-button.floor-button{padding-top: 0;}
+   .payment-status-container{display: block;}
+   .pos .clientlist-screen .top-content .searchbox-client{padding-top: 0; padding-bottom: 0;}
+   .pos .pos-topheader .ticket-button div:last-child {display: none;}
+   .pos .order-button.floor-button > span:nth-child(3) {display: none;}
+   .pos .order-button.floor-button{padding: 0;min-width: 65px;margin-left: 7px;}
+   .pos .pos-rightheader .header-button:after{display: none;}
+   .pos-topheader .pos-rightheader .status-buttons .close_button{font-size: 0;position: relative;padding-right: 0;padding-left: 25px;}
+   .pos-topheader .pos-rightheader .status-buttons .close_button:before{font-family: FontAwesome;top: 50%;left: 50%;padding-right: 10px;content: "\f00d";transform: translate(-50%,-50%);color: #fff;position: absolute;font-size: 18px;font-weight: normal;}
+   .pos-topheader .pos-rightheader .status-buttons .close_button.confirm:before{content: "\f00c";}
+   .pos .screen .screen-full-width .leftpane{height: 55vh;}
+   .pos .actionpad .button{height: 40px;}
+   .pos .actionpad .button.pay{height: 40px !important;}
+   .pos .order{font-size: 14px;}
+   .pos .numpad{margin: 0 !important;}
+   .pos .actionpad{margin-top: 0px;padding-top: 3px;}
+   .pos .switchpane .btn-switchpane.secondary:first-child{border-right: 0;}
+   .pos .screen .screen-full-width .leftpane .pads .control-buttons{margin-bottom: 3px;padding-left: 1px;}
+   .pos .actionpad .button.pay .pay-circle .fa{display: none;}
+   .pos .actionpad .button.set-customer.decentered{padding-left: 10px;padding-right: 10px;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+   
+   .pos .pos-topheader .pos-rightheader .sh_cart_management{padding-left: 7px;padding-right: 7px;}
+   .pos .pos-topheader .pos-rightheader .ticket-button{padding-left: 7px;padding-right: 7px;}
+   .pos .pos-topheader .pos-rightheader .sh_product_management{padding-left: 7px;padding-right: 7px;}
+   .pos .control-button{min-width: 100px !important;width: auto;padding: 0 10px !important;flex: none;}
+   .pos .control-button .control-button-number{margin-left: 0;}
+   
+   .pos .search-bar-portal .search-box{position: unset;}
+   .pos-topheader .pos-rightheader > .search-bar-portal .search-box .icon{position: relative;}
+   .pos-topheader .pos-rightheader > .search-bar-portal .search-box .icon.sh_open_search_bar{margin-left: 15px;height: 80%;line-height: 38px;width: 25px;position: absolute;text-align: center;z-index: 2;}
+   .pos .search-bar-portal .search-box input{position: absolute;top: 50%;left: 50%;width: 77%;height: 80%;transform: translate(-50%, -50%);z-index: 1;}
+   .pos .search-bar-portal .search-box .clear-icon{height: 80%;line-height: 38px;width: 25px;text-align: center;z-index: 2;}
+   .pos .status-buttons-portal .status-buttons .oe_status{padding-left: 7px;padding-right: 7px;}
+   .pos .pos-rightheader{padding: 0 7px;} 
+   .pos-topheader .pos-rightheader .status-buttons .close_button:before{padding-right: 10px;padding-right: 10px;}   
+   .pos .ticket-screen .controls button.discard,
+   .pos .ticket-screen .controls button.highlight{width: 46px;}   
+   .pos .order-management-screen .control-panel .button span{display: none;}
+   .pos .order-management-screen .control-panel .search-box input{width: 100px;padding-top: 0;padding-bottom: 0;height: 42px;}
+   .pos .order-management-screen .control-panel .button{padding: 0px 16px !important;}
+   .pos .order-management-screen .control-panel .button i{font-size: 20px;line-height: 40px;}   
+   .pos .leftpane .sh_cash_opening .sh_opening_amount h1{font-size: 16px;}
+   .pos .leftpane .sh_cash_opening input{width: 70px;}
+   .pos .leftpane .sh_cash_opening > h1.sh_notes{font-size: 16px;}
+   
+   .pos .order-management-screen .control-panel .item .page{padding-right: 5px !important;}
+   .pos .order-management-screen .control-panel .page-controls .next,
+   .pos .order-management-screen .control-panel .page-controls .previous{border: 0;padding: 0px;}
+   .pos .order-management-screen .control-panel .item .page-controls i{font-size: 14px !important;padding: 5px !important;}
+   .pos .order-management-screen .control-panel .page-controls .previous,
+   .pos .order-management-screen .control-panel .page-controls .next{background: transparent !important;}
+   .pos .login-footer .login-button.close-session{margin-top: 10px;}
+   
+   @if $sh_mobile_start_screen == 'product_screen'{
+     .pos .numpad button{height: 53px;width: 53px;}
+     .pos .screen .screen-full-width .leftpane{height: 100%;}
+     .pos .leftpane .pads .subpads{padding: 0px 3px 10px;}
+     .pos .numpad{margin-bottom: 7px !important;margin-top: 8px !important;}
+   }
+   
+   @if $sh_mobile_start_screen == 'cart_screen'{
+     .pos .numpad button{height: 53px;width: 53px;}
+     .pos .screen .screen-full-width .leftpane{height: 100%;}
+     .pos .leftpane .pads .subpads{padding: 0px 3px 10px;}
+     .pos .numpad{margin-bottom: 0px !important;margin-top: 8px !important;}
+   }
+   @if $sh_mobile_start_screen == 'product_with_cart'{
+      .pos .screen .screen-full-width .leftpane .order-container{height: 30vh;}
+      .pos .screen .screen-full-width .leftpane{height: auto;}
+   }
+   
+/* theme media query */
+
+}
+/* ###############   common css   ################### */
+   
+/* action btn bottom */
+@if $sh_action_button_position == 'bottom'{
+  .pos .control-buttons{position: fixed;bottom: 7px;width: 100%;}  
+  .pos .owl-carousel .owl-item .item .control-button{width: 90%;padding: 0;margin: 0 auto;}
+  .pos .product-screen #owl-demo{background: $sh_pos_secondary_color;padding: 9px 0 5px;position: fixed; bottom: 0;}
+  .pos .product-screen #owl-demo .owl-nav,
+  .pos .product-screen #owl-demo .owl-dots{display: none;}
+  .pos .screen #owl-demo{background: $sh_pos_secondary_color;padding: 7px 0 7px;position: fixed;bottom: 0;}
+  
+}
+/* action btn right */
+
+/* action btn left */
+@if $sh_action_button_position == 'left_side'{
+	.pos .control-button{margin-left: 0px;margin-bottom: 10px;}
+	.pos .control-buttons{padding: 8px 11px 0px 11px;}
+	.pos .screen .screen-full-width{height: 100%;}
+	.pos .control-buttons{height: 100%;display: block;padding-top: 0px;}	
+	.pos .control-button:first-child {margin-top: 10px;}
+	.pos .control-buttons.sh_left_control_buttons{overflow-y: auto;}
+	
+}
+/* action btn left */
+
+/* action btn right */
+@if $sh_action_button_position == 'right_side'{
+	
+	.pos .control-button{margin-left: 0px;margin-bottom: 10px;}
+	.pos .control-buttons{padding: 8px 11px 0px 11px;}
+	.pos .screen .screen-full-width{height: 100%;}
+	.pos .control-buttons{height: 100%;display: block;padding-top: 0px;}	
+	.pos .control-button:first-child {margin-top: 10px;}
+	.pos .control-button{min-width: 90px;}
+	.pos .control-buttons.sh_left_control_buttons{overflow-y: auto;}
+	
+}
+/* action btn right */
+
+   
+/* box style */    
+@if $sh_pos_product_style == 'style_1'{
+	.pos .product{background: #fff;border: 0;box-shadow: 0 2px 5px 0 rgba(0,0,0,.15%), 0 3px 10px 0 rgba(0,0,0,.10%);outline: none;transition: all .4s;border-radius: 5px;}
+	.pos .product .product-img,.pos .product .product-name{background: transparent;}
+	.pos .product{text-align: center;height: 130px;overflow: unset;}
+	.pos .product .product-name{display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;margin-bottom: 5px;padding-bottom: 0;font-size: 12px;font-weight: 600;color: #414141;}
+	.pos .product .price-tag{left: -8px;top: 10px;right: auto;border-radius: 4px;background: $sh_pos_primary_color;padding: 3px 8px;font-weight: bold;font-size: 13px;line-height: 14px;z-index: 1;}
+	.pos .product .product-img .price-tag.sh_has_variant{border-radius: 4px;}
+	.pos .product:hover{box-shadow: 0 4px 8px 0 rgba(0,0,0,.25%), 0 5px 15px 2px rgba(0,0,0,.20%);}	
+
+     /* category with img */
+	.pos .rightpane .products-widget-control .rightpane-header.grey-border-bottom{padding: 10px;background: #ffffff;}
+	.pos .rightpane .products-widget-control .categories .category-list{background: #fff;}
+	.pos .rightpane .products-widget-control .categories .category-list .category-button{background: #f0f0f0;border: 0;box-shadow: 0 2px 5px 0 rgba(0,0,0,.15), 0 3px 10px 0 rgba(0,0,0,.10);outline: none;transition: all .4s;border-radius: 5px;text-align: center;}
+	.pos .rightpane .products-widget-control .categories .category-list .category-button:hover{box-shadow: 0 4px 8px 0 rgba(0,0,0,.25), 0 5px 15px 2px rgba(0,0,0,.20);}
+	.pos .rightpane .products-widget-control .categories .category-list .category-button .category-name{display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;margin-bottom: 5px;padding-bottom: 0;font-size: 12px;font-weight: 600;color: #414141;}
+	.pos .rightpane .categories{border-color: $sh_pos_primary_color;}	
+	/* category with img */
+
+}   
+/* box style */    
+
+/* body background color */    
+@if $sh_pos_body_background_type == 'bg_color'{
+  
+  .pos .pos-content{background: $sh_pos_body_background_color;}
+  .pos .leftpane{background: $sh_pos_body_background_color;} 
+  .pos .order-container{background: $sh_pos_body_background_color;}
+}
+/* body background color */   
+
+/* button style */
+@if $sh_pos_button_style == 'style_1'{
+	
+	.pos .actionpad .button{margin: 0px 3px;border: 0px;background: $sh_pos_secondary_color;border-radius: 5px;display: flex;align-items: center;justify-content: center;} 
+	.pos .actionpad .button .fa-user{position: relative;top: 0;left: 0;border: 1px solid rgba(0,0,0,0.2);background: rgba(255,255,255,0.4);width: 30px;height: 30px;line-height: 30px;text-align: center;}   
+	.pos .breadcrumb-button.breadcrumb-home{background: $sh_pos_primary_color;color: #fff;padding: 9px 12px;border-radius: 5px;font-size: 18px;line-height: normal;}
+	.pos .category-simple-button{background: $sh_pos_secondary_color;margin: 0 5px;justify-content: center;border-radius: 5px;color: #919191;font-weight: 600;border: 0px;transition: all .4s;}
+	.pos .category-simple-button:hover{background: $sh_pos_primary_color;color: #fff;}
+	.pos .breadcrumb-button{background: $sh_pos_secondary_color;margin: 0 5px;justify-content: center;border-radius: 5px;color: #919191;font-weight: 600;line-height: 41px;padding: 0px 20px;transition: all .4s;}
+	.pos .breadcrumb-button:hover{background: $sh_pos_primary_color;color: #fff;}
+	.pos .green-border-bottom{padding: 10px;background: $sh_pos_body_background_color;}
+    .pos .breadcrumb:last-child{border-right: 0;margin-left: 10px;}
+	.pos .breadcrumb-arrow{display: none;}
+	.pos .breadcrumb{line-height: normal;height: unset; margin-left: 5px;}
+	.pos .category-simple-button:active{background: $sh_pos_primary_color;} 
+	.pos .numpad button{margin: 3px;border: 0;border-radius: 5px;background: $sh_pos_secondary_color;}
+	.pos .numpad button:hover{background: $sh_pos_secondary_color;}
+	.pos .numpad button:active{background: $sh_pos_primary_color;}
+	
+	.pos .numpad button{color: #919191;}
+	.pos .numpad{border-top: 0;margin-right: 0;margin-bottom: 7px;}  
+	.pos .control-button{box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 3px 5px 0 rgba(0, 0, 0, 0.1);}
+	.pos .screen .top-content .button{border: 2px solid $sh_pos_primary_color;background: $sh_pos_primary_color;font-size: 14px;color: #fff;font-weight: 600;padding: 3px 20px;border-radius: 5px;}
+	.pos .screen .top-content .button.back{border: 2px solid $sh_pos_primary_color;background: #fff;font-size: 14px;color: $sh_pos_primary_color;font-weight: 600;padding: 3px 16px;border-radius: 5px;}
+	.pos .screen .top-content .button:hover{background: $sh_pos_primary_color;color: #fff;}
+	.pos .screen .top-content .button:active{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;}
+	.pos .clientlist-screen .button.new-customer{border: 2px solid $sh_pos_primary_color;background: $sh_pos_primary_color;font-size: 14px;color: #fff;font-weight: 600;padding: 3px 7px;border-radius: 5px;}
+    .pos .control-button.highlight, .pos .button.highlight{border-color: $sh_pos_primary_color !important;background: $sh_pos_primary_color !important;font-size: 14px;} 
+	.pos .actionpad .button:active{border-color: $sh_pos_primary_color;background-color: $sh_pos_primary_color;}
+	.pos .ticket-screen .controls button.discard{border: 2px solid $sh_pos_primary_color;background: #fff;font-size: 14px;color: $sh_pos_primary_color;font-weight: 600;padding: 10px 0px;border-radius: 5px;}
+	.pos .ticket-screen .controls button.discard:hover{background: $sh_pos_primary_color;color: #fff;}
+	.pos .ticket-screen .controls button.highlight{background: $sh_pos_primary_color;color: #fff;border-color: $sh_pos_primary_color;font-size: 14px;padding: 11px 0px;border-radius: 5px;}
+	.pos .receipt-screen .default-view .actions .buttons .button{border: 2px solid $sh_pos_primary_color; color: $sh_pos_primary_color;font-weight: 600;transition: all .4s;}
+	.pos .receipt-screen .default-view .actions .buttons .button:hover{background: $sh_pos_primary_color;color: #fff;}
+	
+	.pos-topheader .pos-branding > .ticket-button:hover,
+	.pos-topheader .pos-branding > .ticket-button.highlight{background: transparent;}
+    .pos .actionpad .button.set-customer:hover,
+    .pos .actionpad .button.pay:hover{background: $sh_pos_primary_color;color: #fff;}
+	.pos .actionpad .button.pay .pay-circle .fa{width: auto;color: #555555;background: transparent;font-size: 14px;line-height: normal;border: 1px solid rgba(0,0,0,0.2);background: rgba(255,255,255,0.4);width: 30px;height: 30px;line-height: 30px;text-align: center;}
+    .pos .actionpad .button.pay:hover .pay-circle .fa{color: #fff;}
+    .pos .actionpad .button:last-child:hover{background: $sh_pos_primary_color;color: #fff;}
+    .pos .control-button:hover{background: $sh_pos_primary_color;color: #fff !important;}
+    .pos .control-button:hover a{color: #fff !important;}
+    
+    .pos .control-button:hover .control-button-number{color: #555;background: #fff;}
+    .pos .popup .footer .button{background: $sh_pos_primary_color !important;color: #fff !important;border-color: $sh_pos_primary_color !important;border-radius: 3px;border-width: 2px;}
+    .pos .popup .footer .button.cancel,.pos .popups .sh_pos_purchasr_order .footer button.click_ok,
+    .pos .popup .footer .button.clear{border-color: $sh_pos_primary_color !important;color: $sh_pos_primary_color !important;background: #fff !important;transition: all .4s;border-width: 2px;border-style: solid;}
+    .pos .popup .footer .button.cancel:hover,.pos .popup .footer .button.clear:hover{background: $sh_pos_primary_color !important;color: #fff !important;}
+
+	.pos .screen .left-content .paymentmethods-container .paymentmethods .paymentmethod{background: $sh_pos_secondary_color;border-color: $sh_pos_secondary_color;}
+	.pos .screen .right-content .paymentlines-container,
+	.pos .paymentlines-container .paymentlines-empty{background: $sh_pos_secondary_color;}
+	.pos .payment-screen .payment-buttons .button{background: $sh_pos_secondary_color;}
+	.pos .paymentline{background: $sh_pos_secondary_color;border-color: $sh_pos_secondary_color;}
+	.pos .control-button{border-radius: 5px;}
+	.pos .popup .footer .button,
+	.sh_attribute_name_and_value .sh_attribute_id #attribute_value{border-radius: 5px;}
+	
+	.pos .popup-numpad .input-button, .pos .popup-numpad .mode-button{border-radius: 5px;}
+	.pos .popup-numpad .input-button:active, .pos .popup-numpad .mode-button:active{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;}
+	.pos .splitbill-screen.screen .pay-button .button{border-radius: 5px !important;}
+	
+	.pos .order-management-screen .control-panel .button{color: $sh_pos_primary_color;border-color: $sh_pos_primary_color;border-width: 2px;border-radius: 5px;background: #fff;font-size: 14px;font-weight: 600;padding: 3px 16px;}
+	.pos .order-management-screen .control-panel .button:hover{background: $sh_pos_primary_color;color: #fff;}
+	
+	.pos .login-element .login-button.select-employee{border-radius: 5px;border-width: 2px;border-color: $sh_pos_primary_color;background: $sh_pos_primary_color;color: #fff;height: auto;padding: 15px 20px;}
+	.pos .login-footer .login-button.close-session{border-radius: 5px;border-bottom-right-radius: 10px;border-width: 2px;border-color: $sh_pos_primary_color;color: $sh_pos_primary_color;background: #fff;height: auto;padding: 15px 20px;transition: all .4s;}	
+	.pos .login-footer .login-button.close-session:hover{background: $sh_pos_primary_color;color: #fff;}
+	.pos .sh_pre_define_note_table td i{background: transparent;color: #919191;width: 20px;height: 20px;text-align: center;line-height: 20px;padding: 0;border-radius: 5px;font-size: 12px;cursor: pointer;border: 1px solid #919191;}
+	
+	 @media (min-width: 768px){
+	    .pos  .ticket-screen .controls button.discard{padding: 10px 12px;}
+	    .pos .ticket-screen .controls button.highlight{padding: 10px 12px;}
+	    .pos .clientlist-screen .button.new-customer{padding: 3px 12px;}
+	 }		 
+}
+
+/* button style */
+
+
+
+/* cart img true */
+@if $sh_image_display_in_cart == 'True'{
+	.pos .order .orderline .product-name{width: 62% !important;}
+	.pos .product-screen.screen .leftpane .sh_orderline_icons{margin-left: 75px;}
+}
+/* cart img true */
+
+/* cart img flase */
+@if $sh_image_display_in_cart == 'False'{
+	.pos .order .orderline .product-name{width: 80% !important;}
+	.pos .product-screen.screen .leftpane .sh_orderline_icons{margin-left: 0px;}
+}
+/* cart img flase */
+
+/* background img select */
+@if $sh_pos_body_background_type == 'bg_img'{
+	body {background: url('/web/image?model=sh.pos.theme.settings&id=1&field=body_background_image') no-repeat center center fixed !important;background-repeat: no-repeat !important;background-size: cover !important;}
+	.pos .pos-topheader{background: rgba(0,0,0,0.5) !important;}
+	.pos .pos-content{background: transparent !important;}
+    .pos{background: transparent !important;}
+	.pos .leftpane{background: rgba(207, 207, 207, 0.78) !important;}
+	
+	.pos .order-container{background: transparent !important;}
+	.pos .order{background: transparent !important;}
+	.pos .rightpane-header{background: transparent !important;}
+	.pos .category-list.simple{background: transparent !important;}
+	.pos .product-list-scroller{background: transparent !important;}
+	.pos .pos-content{background: rgba(207, 207, 207, 0.78) !important;}
+	.pos .leftpane .pads .subpads{background: #fff;}
+	.ticket-screen .orders .header-row,
+	.ticket-screen .order-row:nth-child(even),
+	.ticket-screen .order-row:nth-child(odd){background: transparent;}
+	.splitbill-screen.screen .main{background: rgba(226, 226, 226, 0.8) !important;}
+	.pos .leftpane .pads .subpads{padding: 4px 3px 7px;}
+	.pos .rightpane .products-widget-control .categories .category-list{background: transparent !important;}
+}
+/* background img select  */
+
+/*---loding-page---*/
+.pos .loader{background: $sh_pos_primary_color !important;}
+.pos .loader-feedback h1 {text-indent: -9999px;}
+.pos .loader-feedback .progressbar{height: 3px;}
+body{background: $sh_pos_primary_color;}
+/*---loding-page---*/
+
+/* sticky */
+@if $sh_header_sticky == 'True'{	
+	.pos .clientlist-screen .subwindow.list .subwindow-container-fix{height: calc(100vh - 115px);}
+	.pos .clientlist-screen .client-list tr th{position: sticky;top: 0px;}
+	.pos .ticket-screen .orders .header-row{position: sticky;top: 0;}
+	.pos table thead tr th,
+	.pos .rightpane .orders .order-row.header{position: sticky;top: 0;z-index: 1;}	
+	.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list table thead{position: sticky;top: 0;z-index: 2;}	
+	
+}
+/* sticky */
+
+
+/* without border */
+@if $sh_list_view_border == 'without_border'{ 
+   .pos .clientlist-screen .client-list tr,
+   .pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list table tbody tr{border-bottom: 0px solid #ccc;}
+   .pos .ticket-screen .orders .order-row,
+   .pos .ticket-screen .orders .header-row{border-bottom: 0px solid #ccc;}   
+}
+/* without border */
+
+/* bordered */
+@if $sh_list_view_border == 'bordered'{ 
+   .pos .clientlist-screen .client-list tr,
+   .pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list table tbody tr{border-bottom: 1px solid #ccc;}
+   .pos .ticket-screen .orders .order-row,
+   .pos .ticket-screen .orders .header-row{border-bottom: 1px solid #ccc;}   
+   .pos .order-management-screen .order-list .order-row{border-bottom: 1px solid #ccc;}
+   .pos table tbody tr{border-bottom: 1px solid #ccc;}
+   
+}
+/* bordered*/
+
+/* row hover */
+
+@if $sh_list_row_hover == 'True'{ 
+	.pos .clientlist-screen .client-list tbody tr:hover,
+	.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list table tbody tr:hover{background: $sh_hover_background_color !important;}
+	.pos .clientlist-screen .client-list tbody tr:hover{background: $sh_hover_background_color !important;}
+	.pos .ticket-screen .orders .order-row:hover{background: $sh_hover_background_color !important;}
+	.pos table tbody tr:not(.sh_closing_total):hover{background: $sh_hover_background_color !important;}
+}
+
+/* order management button */
+.order-management-screen .control-panel .search-box input{border-radius: 5px;border-width: 2px;outline: none;box-shadow: none;transition: all .4s;}
+.order-management-screen .control-panel .search-box input:focus{color: $sh_pos_primary_color;box-shadow: none;border-color: $sh_pos_primary_color;}
+
+.orders .order-row .header{padding: 10px 12px;font-weight: 600;font-size: 15px;border: 0;}
+.order-management-screen .control-panel{margin: 0;padding: 10px;border-bottom: 1px solid #ccc;}
+.order-management-screen .order-list .item{padding: 15px 10px;border: 0;background: transparent;font-size: 14px;color: #666666;font-weight: normal;}
+.order-list .order-row:hover{background: #fff;}
+.order-management-screen .order-list .order-row{background: #ffffff;}
+.order-management-screen .control-panel .item .page-controls{font-size: medium;}
+.order-management-screen .control-panel .item .page-controls i{color: #7d7d7d;text-align: center;padding: 8px 14px;width: auto;height: auto;font-weight: normal;font-size: 14px;cursor: pointer;}
+.order-management-screen .control-panel .item .page-controls i:before{content: "\f053";}
+.order-management-screen .control-panel .item .page-controls .next i:before{content: "\f054";}
+
+.order-management-screen .control-panel .item:last-child{display: flex;align-items: center;}
+.order-management-screen .control-panel .item .page-controls{order: 2;}
+.order-management-screen .control-panel .page-controls .previous{margin-right: 0.2rem;color: $sh_pos_primary_color;border-color: $sh_pos_primary_color;border-width: 2px;border-radius: 5px;background: #ffffff;font-size: 14px;font-weight: 600;padding: 0px;}
+.order-management-screen .control-panel .item .page-controls i{color: $sh_pos_primary_color;padding: 6px 8px;}
+.order-management-screen .control-panel .item .page{padding-right: 10px;}
+.order-management-screen .control-panel .page-controls .next{margin-right: 0.2rem;color: $sh_pos_primary_color;border-color: $sh_pos_primary_color;border-width: 2px;border-radius: 5px;background: #ffffff;font-size: 14px;font-weight: 600;padding: 0px;}
+
+/* order management button */
+
+
+/* ########################  style 1  ########################### */
+
+@if $sh_pos_theme_style == 'style_1'  {
+	.pos .leftpane .pads .subpads{padding: 0px 3px 10px;}
+	.pos .numpad{margin-top: 3px;}
+	.pos .actionpad{padding-top: 4px;}
+	.screen .screen-full-width .order .summary.sticky_total{bottom: -1px;}
+	.pos .rightpane-header{background: $sh_pos_body_background_color;}
+	
+	
+	/* customer img */
+	.pos .clientlist-screen .client-picture{border-radius: 5px;}
+	/* customer img */
+	.pos .leftpane .sh_cash_opening textarea{border-radius: 5px;}
+	.pos .leftpane .sh_cash_opening input{border-radius: 5px;}
+	
+	
+	@if $sh_pos_body_background_type == 'bg_img'{
+		.ticket-screen .orders .header-row{background: #fff;}
+		
+	}
+	@media (min-width: 576px) and (max-width: 768px){
+	  .pos .control-buttons{margin-bottom: 5px;}
+	  .ticket-screen .controls button.discard{padding: 13px 15px;}
+	  .ticket-screen .controls button.highlight{padding: 14px 16px;}
+	}
+	
+	@media (max-width: 576px){
+	  .ticket-button:hover{background: transparent;}
+	  .pos .popups .popup-selection{width: 90%;left: 50% !important;transform: translate(-50%,-50%) !important;top: 50% !important;}
+	  .ticket-button .with-badge{margin-right: 0;}
+	  .search-bar-portal .search-box{margin: 0 10px;}
+	  .pos .numpad button{height: 38px;width: 10.6vw;font-size: 14px;}
+	  .screen .right-content .payment-buttons-container .payment-numpad .numpad button{font-size: 18px;}
+	  .order-management-screen .control-panel .search-box{margin: 0.2rem 0;}
+	  .order-management-screen .control-panel .search-box input{width: 85px;}
+	  .order-management-screen .control-panel .item .page-controls i{font-size: 12px;padding: 7px 10px;}
+	  .pos .oe_status .oe_green, .pos .oe_icon.oe_green i,
+	  .ticket-button .with-badge i,
+	  .pos .oe_status .oe_icon i,
+	  .pos-topheader .pos-rightheader > .search-bar-portal .search-box .icon i{font-size: 18px;width: auto;}
+	  .pos .pos-rightheader .header-button.lock-button{width: auto;padding: 0 7px;}
+	  @if $sh_mobile_start_screen == 'product_with_cart'{
+	  	.pos .numpad button{width: 10.4vw;}
+	  	.pos .leftpane .pads .subpads{padding: 0px 3px 3px;}
+	  	.pos .screen::-webkit-scrollbar {display: none;}
+	  	.pos .breadcrumb-button.breadcrumb-home{margin-left: 0;}
+	  	.pos .rightpane .products-widget-control .rightpane-header.grey-border-bottom{padding: 10px 7px;}
+	  }
+	}	
+}
+
+/* ########################  style 1  ########################### */
+
+/* ########################  style 2  ########################### */
+
+/* theme style 2 */
+@if $sh_pos_theme_style == 'style_2'  {
+	.pos-topheader .pos-branding > .ticket-button:hover{background: transparent;}
+	.pos .rightpane .products-widget-control .rightpane-header.grey-border-bottom{background: #fff;}
+	.pos .product-screen.screen .leftpane .order-container .order .sh_order_summary .line.global_discount_line .remove_discount_control_button, .pos .product-screen.screen .leftpane .order-container .order .sh_order_summary_line .sh_remove_cart_item .remove_control_button{margin-left: 0px;}
+	
+	.cart_product_image{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;}
+	
+	@if $sh_pos_body_background_type == 'bg_img'{
+		.pos .numpad{margin-top: 0;}
+		.pos .actionpad{padding-top: 3px !important;}
+		.ticket-screen .orders .header-row{background: #fff;}
+	}
+	
+	@media (max-width: 576px){
+	  .screen .top-content .button.highlight, .pos .clientlist-screen .button.new-customer, .screen .top-content .button{min-width: auto;}
+	  .pos .oe_status .oe_green, .pos .oe_icon.oe_green i,
+	  .ticket-button .with-badge i,
+	  .pos .oe_status .oe_icon i,
+	  .pos-topheader .pos-rightheader > .search-bar-portal .search-box .icon i{font-size: 18px;width: auto;}
+	  .pos-topheader .pos-rightheader > .search-bar-portal .search-box .icon i{font-size: 18px;width: auto;}
+	  .pos .pos-rightheader .header-button.lock-button{width: auto;padding: 0 7px;}
+	  .ticket-button .with-badge{margin-right: 0;}
+	  .search-bar-portal .search-box{margin: 0 7px;}
+	 
+		@if $sh_pos_body_background_type == 'bg_img'{.ticket-button:hover{background: transparent;}}
+	 
+	 }
+}
+/* theme style 2 */
+
+/* box style 2 */
+@if $sh_pos_product_style == 'style_2'{
+
+	.pos .product{border-radius: 0;border-top-left-radius: 30px;border-bottom-right-radius: 30px;height: 120px;border: 0;box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);outline: none;transition: all .4s;}
+	.pos .product .price-tag{right: 0;background: $sh_pos_primary_color;}
+	.pos .product .product-name{display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;margin-bottom: 5px;padding-bottom: 0;font-size: 12px;font-weight: 600;color: #414141;text-align: center;padding-right: 15px;}
+	@if $sh_display_product_image_name == 'product_name'{
+		.pos .product .product-name{border-bottom-right-radius: 30px;}
+	}
+	.pos .product:hover{box-shadow: 0 2px 5px 0 rgba(0,0,0,.25),0 3px 10px 0 rgba(0,0,0,.2);}
+	
+	/* category with img */
+	.pos .rightpane .products-widget-control .rightpane-header.grey-border-bottom{padding: 10px;background: #ffffff;}
+	.pos .rightpane .products-widget-control .categories .category-list{background: $sh_pos_body_background_color;}
+	.pos .rightpane .products-widget-control .categories .category-list .category-button{border-radius: 0;border-top-left-radius: 30px;border-bottom-right-radius: 30px;height: 120px;border: 0;box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);outline: none;transition: all .4s;}
+	.pos .rightpane .products-widget-control .categories .category-list .category-button:hover{box-shadow: 0 2px 5px 0 rgba(0,0,0,.25), 0 3px 10px 0 rgba(0,0,0,.20);}
+	.pos .rightpane .products-widget-control .categories .category-list .category-button .category-name{display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;margin-bottom: 5px;padding-bottom: 0;font-size: 12px;font-weight: 600;color: #414141;text-align: center;}
+	.pos .rightpane .categories{border-color: $sh_pos_primary_color;}	
+	/* category with img */
+	
+	@media (max-width: 576px){
+	  .pos .numpad button{height: 38px; width: 10.6vw;font-size: 14px;}
+	  .pos .payment-numpad .numpad button{font-size: 20px;}
+	  .ticket-screen .controls button{padding: 10px;}
+	}
+	
+}
+/* box style 2 */
+
+/* btn style 2 */
+@if $sh_pos_button_style == 'style_2'{
+	.pos .breadcrumb-button.breadcrumb-home{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;background: $sh_pos_primary_color;color: #fff;padding: 10px 20px;font-size: 18px;line-height: normal;}	
+    .pos .category-simple-button{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;background: $sh_pos_secondary_color;margin: 0 5px;justify-content: center;color: #555555;font-weight: 600;border: 0px;transition: all .4s;}
+	.pos .category-simple-button:hover{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;color: #fff;}
+	.pos .green-border-bottom {padding: 10px;background: #FFFFFF;}
+	.pos .category-simple-button:hover{background: $sh_pos_primary_color;color: #fff;}
+	.pos .breadcrumb-arrow {display: none;}
+	.pos .breadcrumb:last-child {border-right: 0;}
+	.pos .breadcrumb-button{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;background: $sh_pos_secondary_color;margin: 0 5px;justify-content: center;color: #555555;font-weight: 600;border: 0px;transition: all .4s;}
+ 	.pos .breadcrumb-button:hover{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;color: #fff;}
+ 	.pos .breadcrumbs .breadcrumb{ margin-left: 5px;}
+ 	.pos .breadcrumbs .breadcrumb:last-child{ height: 41px;}
+    .pos .breadcrumb-button{padding: 0 20px;}
+    
+    .pos .numpad {border-top: 0;margin-right: 0;margin-bottom: 0px;}
+	.pos .numpad button {margin: 3px;border: 0; border-radius: 0px;background: $sh_pos_secondary_color;color: #919191;border-top-left-radius: 10px; border-bottom-right-radius: 10px;}
+	.pos .numpad button:hover{background: $sh_pos_secondary_color;}
+	.pos .numpad button:active{background: $sh_pos_primary_color;}
+	.pos .actionpad .button{margin: 0px 3px;border: 0px;background: $sh_pos_secondary_color;border-radius: 0px !important;display: flex;align-items: center;justify-content: center;border-top-left-radius: 10px !important;border-bottom-right-radius: 10px !important;}
+    .pos .actionpad .button:hover{background: $sh_pos_primary_color;color: #fff;border-color: $sh_pos_primary_color;}
+    .pos .actionpad .button .fa-user{position: relative;left: 0;top: 0;border: 1px solid rgba(0, 0, 0, 0.2);background: rgba(255, 255, 255, 0.4);width: 30px;height: 30px;line-height: 30px;text-align: center;}
+    .pos .actionpad .button.pay .pay-circle .fa{color: #212121;font-size: 14px;border: 1px solid rgba(0, 0, 0, 0.2);background: rgba(255, 255, 255, 0.4);width: 30px;height: 30px;line-height: 30px;text-align: center;}
+    .pos .actionpad .button.pay:hover .pay-circle .fa{color: #fff;}
+    .pos .actionpad{padding-top: 7px;}
+    
+    .pos .control-button{border-radius: 0;border-top-left-radius: 10px !important;border-bottom-right-radius: 10px !important;}
+	.pos .control-button:hover{background: $sh_pos_primary_color;color: #fff !important;}
+	.pos .control-button:hover .control-button-number{background: #fff;color: $sh_pos_primary_color;}
+	
+	.pos .control-button:hover a{color: #fff !important;}
+	
+	.pos .control-button.highlight, .pos .button.highlight{background: $sh_pos_primary_color !important;border-color: $sh_pos_primary_color !important;}
+	.ticket-screen .controls button.discard{border-color: $sh_pos_primary_color !important;color: $sh_pos_primary_color !important;background: #fff;border-width: 2px;border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;transition: all .4s;}
+	.ticket-screen .controls button.discard:hover{background: $sh_pos_primary_color !important;color: #fff !important;}
+	.ticket-screen .controls button.highlight{border-color: $sh_pos_primary_color !important;color: #fff !important;background: $sh_pos_primary_color;border-width: 2px;border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;transition: all .4s;}
+	.screen .top-content .button.back{border-color: $sh_pos_primary_color !important;color: $sh_pos_primary_color !important;background: #fff;border-width: 2px;border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;transition: all .4s;font-size: 16px;}
+    .screen .top-content .button.back:hover{background: $sh_pos_primary_color !important;color: #fff !important;}
+	.screen .top-content .button.highlight,
+	.pos .clientlist-screen .button.new-customer,
+	.screen .top-content .button{border-color: $sh_pos_primary_color !important;color: #fff !important;background: $sh_pos_primary_color;border-width: 2px;border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;transition: all .4s;font-size: 16px;}
+	.screen .top-content .button:hover{background: $sh_pos_primary_color;}
+	.screen .left-content .paymentmethods-container .paymentmethods .paymentmethod{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;}
+	.screen .right-content .paymentlines-container{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;background: $sh_pos_secondary_color;}
+	.payment-screen .payment-buttons .button:last-child{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;}
+	.pos .numpad button:last-child{border-bottom-right-radius: 10px;}
+	.pos .popup .footer .button.confirm,
+	.pos .popup .pos_product_footer .button.Create,
+	.pos .popups .modal-dialog.sh_create_product_popup .create_product_popup .cat-create #add_category,
+	.pos .popups .sh_cash_in_out_modal_dialog .cash_control_in_out_popup .footer .button.cash_in_out,
+	.pos .popups .sh_cash_in_out_modal_dialog .cash_control_in_out_popup .footer .button.back,
+	.pos .sh_cash_in_out_option_modal_dialog .closing_balance_popup .sh_closing_footer .button.ok,
+	.pos .sh_cash_in_out_option_modal_dialog .closing_balance_popup .sh_closing_footer .button.back,
+	.pos .sh_cash_in_out_option_modal_dialog .closing_balance_popup .sh_closing_footer .button.add_closing_line,
+	.pos .popups .modal-dialog.sh_cash_in_out_statement_modal_dialog .sh_cash_in_out_statement_popup .footer .button.print,
+	.pos .popups .modal-dialog .popup.sh_popup_confirm .footer.sh_confirm_footer .button.pos_close,.pos .popups .modal-dialog .popup.sh_popup_confirm .footer.sh_confirm_footer .button.pos_session_close{border-radius: 0;border-width: 2px;border-color: $sh_pos_primary_color !important;background: $sh_pos_primary_color !important;color: #fff !important;border-top-left-radius: 10px;border-bottom-right-radius: 10px;}
+    .pos .popup .footer .button.cancel,.pos .popups .sh_pos_purchasr_order .footer button.click_ok,
+    .pos .popup .footer .button.clear{border-radius: 0;border-width: 2px;border-color: $sh_pos_primary_color !important;color: $sh_pos_primary_color !important;background: #fff !important;border-top-left-radius: 10px;border-bottom-right-radius: 10px;border-style: solid;}
+	.pos .popup .footer .button.cancel:hover,
+	.pos .popup .footer .button.clear:hover{background: $sh_pos_primary_color !important;color: #fff !important;}
+	.receipt-screen .default-view .actions .buttons .button{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;border-width: 2px;border-color: $sh_pos_primary_color;color: $sh_pos_primary_color;transition: all .4s;}
+	.receipt-screen .default-view .actions .buttons .button:hover{background: $sh_pos_primary_color;color: #fff;}
+	
+	.splitbill-screen.screen .pay-button .button:last-child{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;}
+	.screen .left-content .paymentmethods-container .paymentmethods .paymentmethod{background: $sh_pos_secondary_color;}
+	.pos .paymentlines-container .paymentlines-empty{background: $sh_pos_secondary_color;}
+	.payment-screen .payment-buttons .button{background: $sh_pos_secondary_color;border-color: $sh_pos_secondary_color;}
+	.pos .paymentline{background: $sh_pos_secondary_color;border-color: $sh_pos_secondary_color;border-radius: 0 !important;border-top-left-radius: 10px !important;border-bottom-right-radius: 10px !important;}
+	.pos .leftpane .pads{background: #fff;}
+	.screen .left-content .paymentlines-container{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;}
+	.payment-screen .payment-buttons .button:last-child{border-radius: 0 !important;border-top-left-radius: 10px !important;border-bottom-right-radius: 10px !important;}
+	.pos .actionpad .button:active{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;}
+	.pos .actionpad .button.pay:active .pay-circle .fa{color: #fff;}
+	.pos .category-simple-button:active{background: $sh_pos_primary_color;}
+	.pos .payment-numpad .numpad button:first-child{border-top-left-radius: 10px;}
+	.pos .numpad button:nth-child(4){border-top-right-radius: 0;}
+	.pos .payment-numpad .numpad button:nth-child(16){border-bottom-left-radius: 0;}
+	.order-management-screen .control-panel .button{color: $sh_pos_primary_color;border-color: $sh_pos_primary_color;border-width: 2px;border-radius: 0px;background: #fff;font-size: 14px;font-weight: 600;padding: 3px 16px;transition: all .4s;border-top-left-radius: 10px;border-bottom-right-radius: 10px;}
+	.order-management-screen .control-panel .button:hover{background: $sh_pos_primary_color;color: #fff;}
+	.pos .popup-numpad .input-button, .pos .popup-numpad .mode-button{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;}
+ 	.popup.popup-number .popup-input{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;}
+    .popup.popup-number .popup-numpad button:active{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;color: #fff;}
+	.pos .order .orderline .span_delete_icon{border-radius: 0;border-top-left-radius: 5px;border-bottom-right-radius: 5px;}
+	.pos .edit-client-button{border-radius: 0;border-top-left-radius: 5px;border-bottom-right-radius: 5px;}
+	.pos .clientlist-screen .client-picture,
+	.sh_attribute_name_and_value .sh_attribute_id #attribute_value{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;}
+    .pos .pos-rightheader .header-button.lock-button{width: auto;padding: 0 7px;}
+    .pos .popups .popup-selection{top: 50% !important;transform: translate(-50%,-50%) !important;left: 50% !important;}
+    .pos .login-element .login-button.select-employee{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;border-width: 2px;border-color: $sh_pos_primary_color;background: $sh_pos_primary_color;color: #fff;height: auto;padding: 15px 20px;}
+	.pos .login-footer .login-button.close-session{border-radius: 0;border-top-left-radius: 10px;border-bottom-right-radius: 10px;border-width: 2px;border-color: $sh_pos_primary_color;color: $sh_pos_primary_color;background: #fff;height: auto;padding: 15px 20px;transition: all .4s;}	
+	.pos .login-footer .login-button.close-session:hover{background: $sh_pos_primary_color;color: #fff;}
+    .order-management-screen .control-panel .page-controls .previous{border-radius: 0;border-top-left-radius: 5px;border-bottom-right-radius: 5px;}
+    .order-management-screen .control-panel .page-controls .next{border-radius: 0;border-top-left-radius: 5px;border-bottom-right-radius: 5px;}
+	.sh_pre_define_note_table td i{background: transparent;color: #919191;width: 20px;height: 20px;text-align: center;line-height: 20px;padding: 0;border-radius: 0px;font-size: 12px;cursor: pointer;border-top-left-radius: 5px;border-bottom-right-radius: 5px;border: 1px solid #919191;}
+	
+}		
+
+
+/* btn style */
+/* ####################   style 2   ########################## */
+
+
+/* ####################   style 3   ########################## */
+
+/* style 3 */
+@if $sh_pos_theme_style == 'style_3'  {
+
+	.ticket-screen .orders .header-row{background: #fff;}
+	.pos .searchbox-client input,
+	.pos .clientlist-screen .client-details input.client-name,
+	.pos .clientlist-screen .client-details input, 
+	.pos .clientlist-screen .client-details select{border-radius: 0;}
+	.ticket-screen .pos-search-bar,
+	.search-bar-portal .search-box input{border-radius: 0;}
+	.ticket-screen .pos-search-bar .search input,
+	.ticket-screen .pos-search-bar .filter{border-radius: 0;}
+	.pos .modal-dialog .popup{border-radius: 0px;}
+	
+	.order-management-screen .control-panel .search-box input{border-radius: 0;}
+	.pos .categories{border-color: $sh_pos_primary_color;}
+	.pos .modal-dialog .popup{top: 50%;left: 50%;transform: translate(-50%,-50%);}
+	.pos .screen-login{border-radius: 0;}
+	.pos .leftpane .pads .subpads{padding: 4px 3px 3px;}
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product{width: 135px !important;}
+	
+	@if $sh_pos_body_background_type == 'bg_color'{
+	 
+	   .pos .leftpane .pads .subpads{padding-top: 5px;padding-bottom: 3px;}
+	   .pos .rightpane-header{background: $sh_pos_body_background_color;}
+	   @media (max-width: 576px){
+	     .screen .screen-full-width .leftpane .pads .control-buttons{margin-bottom: 0;}
+	     .pos .actionpad{padding-top: 3px !important;}
+	   }
+	   
+	}
+	
+	
+	@media (min-width: 769px){
+	  .pos .numpad{margin-top: 0;}
+	  .pos .actionpad{padding-bottom: 3px;padding-top: 3px !important;}
+	  
+	}
+	
+	@media (min-width: 576px) and (max-width: 768px){
+	   .pos .numpad{margin-top: 0;}
+	}
+	
+	@media (max-width: 576px){
+		@if $sh_pos_body_background_type == 'bg_img'{
+		  .pos .actionpad{padding-top: 3px !important;}
+		  .ticket-button.highlight{background: transparent;}
+		  .screen .top-content .button.highlight, .pos .clientlist-screen .button.new-customer, .screen .top-content .button{min-width: auto;}
+			.pos .leftpane .pads .subpads{padding: 4px 3px 5px;}
+			}
+		.pos .numpad button{height: 38px;width: 10.6vw;font-size: 14px;}
+		.pos .payment-numpad .numpad button{font-size: 20px;}
+		.ticket-button .with-badge{margin-right: 0;}
+		.pos .oe_status .oe_green, .pos .oe_icon.oe_green i,
+	    .ticket-button .with-badge i,
+	    .pos .oe_status .oe_icon i,
+	    .pos-topheader .pos-rightheader > .search-bar-portal .search-box .icon i{font-size: 18px;width: auto;}
+	    .pos-topheader .pos-rightheader > .search-bar-portal .search-box .icon i{font-size: 18px;width: auto;}
+	  	.search-bar-portal .search-box{margin: 0 7px;}
+		.pos .pos-rightheader .header-button.lock-button{padding: 0 7px;}
+		.pos .breadcrumb-button.breadcrumb-home{margin-left: 0;}
+		.screen .screen-full-width .rightpane .products-widget .rightpane-header{padding: 10px 7px;}
+		.pos .screen::-webkit-scrollbar {display: none;}
+		@if $sh_mobile_start_screen == 'cart_screen'{
+			.pos .numpad{margin-top: 0 !important;}
+			.pos .leftpane .pads .subpads{padding-bottom: 7px;}
+		}
+		@if $sh_mobile_start_screen == 'product_screen'{
+			.pos .numpad{margin-top: 0 !important;margin-bottom: 0 !important;}
+			.pos .leftpane .pads .subpads{padding-bottom: 7px;}
+		}
+		@if $sh_mobile_start_screen == 'product_with_cart'{
+		  .pos .numpad button{height: 38px;width: 10.4vw;font-size: 14px;}
+		  
+		}
+	}
+}
+/* style 3 */
+
+
+/* box style 3 */
+@if $sh_pos_product_style == 'style_3'{
+
+	.pos .product{border-radius: 0;height: 120px;border: 1px solid #ccc;outline: none;border-bottom: 2px solid $sh_pos_primary_color;transition: all .4s;}
+	.pos .product:hover{box-shadow: 0 2px 5px 0 rgba(0,0,0,.25), 0 3px 10px 0 rgba(0,0,0,.20);}
+	.pos .product .price-tag{right: 0;background: $sh_pos_primary_color;}
+	.pos .product .product-name{display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;margin-bottom: 5px;padding-bottom: 0;font-size: 12px;font-weight: 600;color: #414141;text-align: center;padding-right: 15px;}
+	.pos .product .product-img img{max-height: 90px;}
+	.pos .product .product-name{background: #e5e5e5;margin-bottom: 0;padding: 0 5px;line-height: 25px;}
+	@if $sh_display_product_image_name == 'product_name'{
+		.pos .product .product-name{background: transparent !important;}
+	}
+   	.pos .category-button .category-name{background: #e5e5e5;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;margin-bottom: 0;padding-bottom: 0;font-size: 12px;font-weight: 600;color: #414141;text-align: center;padding: 0;height: 25px;line-height: 25px;}
+	.pos .category-button{border-radius: 0;height: 120px;border: 1px solid #ccc;outline: none;border-bottom: 2px solid $sh_pos_primary_color;transition: all .4s;}
+	.pos .category-list{background: transparent;}
+	.pos .category-button:hover{box-shadow: 0 2px 5px 0 rgba(0,0,0,.25), 0 3px 10px 0 rgba(0,0,0,.20);}
+    .screen .screen-full-width .rightpane .products-widget .rightpane-header{padding: 10px;}
+   
+}
+/* box style 3 */
+    
+/* btn style 3 */
+@if $sh_pos_button_style == 'style_3'{
+	.pos .breadcrumb-button.breadcrumb-home{border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;background: $sh_pos_primary_color;color: #fff;padding: 10px 20px;font-size: 18px;line-height: normal;}	
+    .pos .category-simple-button{border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;background: $sh_pos_secondary_color;margin: 0 5px;justify-content: center;color: #919191;font-weight: 600;border: 0px;transition: all .4s;}
+	.pos .category-simple-button:hover{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;color: #fff;}
+	.pos .green-border-bottom {padding: 10px;background: #FFFFFF;}
+	.pos .category-simple-button:hover{background: $sh_pos_primary_color;color: #fff;}
+	.pos .breadcrumb-arrow {display: none;}
+	.pos .breadcrumb:last-child {border-right: 0;}
+	.pos .breadcrumb-button{border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;background: $sh_pos_secondary_color;margin: 0 5px;justify-content: center;color: #919191;font-weight: 600;border: 0px;transition: all .4s;}
+ 	.pos .breadcrumb-button:hover{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;color: #fff;}
+ 	.pos .category-simple-button:active{background: $sh_pos_primary_color;}
+ 	.pos .breadcrumbs .breadcrumb{margin-left: 5px;}
+ 	.pos .breadcrumbs .breadcrumb:last-child{height: 41px; float: left; display: inline-block;line-height: 48px; margin-left: 6px;min-width: 48px; }
+    .pos .breadcrumb-button{padding: 0 20px;}
+    
+    .pos .numpad {border-top: 0;margin-right: 0;margin-bottom: 7px;}
+	.pos .numpad button {margin: 3px;border: 0; border-radius: 0px;background: $sh_pos_secondary_color;color: #919191;border-top-left-radius: 0px; border-bottom-right-radius: 0px;}
+	.pos .actionpad .button{margin: 0px 3px;border: 0px;background: $sh_pos_secondary_color;border-radius: 0px !important;display: flex;align-items: center;justify-content: center;border-top-left-radius: 0px !important;border-bottom-right-radius: 0px !important;}
+    .pos .actionpad .button:hover{background: $sh_pos_primary_color;color: #fff;border-color: $sh_pos_primary_color;}
+    .pos .actionpad .button .fa-user{position: relative;left: 0;top: 0;background: transparent;}
+    .pos .actionpad .button.pay .pay-circle .fa{background: transparent;color: #212121;font-size: 14px;}
+    .pos .actionpad .button.pay:hover .pay-circle .fa{color: #fff;}
+    .pos .numpad button:hover{background: $sh_pos_secondary_color;}
+    .pos .numpad button:active{background: $sh_pos_primary_color}
+    
+    .pos .control-button{border-radius: 0;border-top-left-radius: 0px !important;border-bottom-right-radius: 0px !important;}
+	.pos .pos-content .control-buttons .control-button:hover{background: $sh_pos_primary_color;color: #fff !important;}
+	.pos .control-button:hover .control-button-number{background: #fff;color: $sh_pos_primary_color;}
+	.pos .control-button:hover a{color: #fff !important}
+	
+	
+	.pos .control-button.highlight, .pos .button.highlight{background: $sh_pos_primary_color !important;border-color: $sh_pos_primary_color !important;}
+	.ticket-screen .controls button.discard{border-color: $sh_pos_primary_color !important;color: $sh_pos_primary_color !important;background: #fff;border-width: 2px;border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;transition: all .4s;padding: 10px 12px;}
+	.ticket-screen .controls button.discard:hover{background: $sh_pos_primary_color !important;color: #fff !important;}
+	.ticket-screen .controls button.highlight{border-color: $sh_pos_primary_color !important;color: #fff !important;background: $sh_pos_primary_color;border-width: 2px;border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;transition: all .4s;padding: 10px 12px;}
+	.screen .top-content .button.back{border-color: $sh_pos_primary_color !important;color: $sh_pos_primary_color !important;background: #fff;border-width: 2px;border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;transition: all .4s;font-size: 16px;}
+    .screen .top-content .button.back:hover{background: $sh_pos_primary_color !important;color: #fff !important;}
+	.screen .top-content .button.highlight,
+	.pos .clientlist-screen .button.new-customer,
+	.screen .top-content .button{border-color: $sh_pos_primary_color !important;color: #fff !important;background: $sh_pos_primary_color;border-width: 2px;border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;transition: all .4s;font-size: 16px;}
+	.screen .top-content .button:hover{background: $sh_pos_primary_color;}
+	.screen .left-content .paymentmethods-container .paymentmethods .paymentmethod{border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;}
+	.screen .right-content .paymentlines-container{border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;}
+	.payment-screen .payment-buttons .button:last-child{border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;}
+	.pos .numpad button:last-child{border-bottom-right-radius: 0px;}
+	.pos .popup .footer .button.confirm,.pos .popup .pos_product_footer .button.Create,.pos .popups .modal-dialog.sh_create_product_popup .create_product_popup .cat-create #add_category,
+	.pos .popups .sh_cash_in_out_modal_dialog .cash_control_in_out_popup .footer .button.cash_in_out,
+	.pos .popups .sh_cash_in_out_modal_dialog .cash_control_in_out_popup .footer .button.back,
+	.pos .sh_cash_in_out_option_modal_dialog .closing_balance_popup .sh_closing_footer .button.ok,
+	.pos .sh_cash_in_out_option_modal_dialog .closing_balance_popup .sh_closing_footer .button.back,
+	.pos .sh_cash_in_out_option_modal_dialog .closing_balance_popup .sh_closing_footer .button.add_closing_line,
+	.pos .popups .modal-dialog.sh_cash_in_out_statement_modal_dialog .sh_cash_in_out_statement_popup .footer .button.print,
+	.pos .popups .modal-dialog .popup.sh_popup_confirm .footer.sh_confirm_footer .button.pos_close,.pos .popups .modal-dialog .popup.sh_popup_confirm .footer.sh_confirm_footer .button.pos_session_close{border-radius: 0;border-width: 2px;border-color: $sh_pos_primary_color !important;background: $sh_pos_primary_color !important;color: #fff !important;border-top-left-radius: 0px;border-bottom-right-radius: 0px;}
+    .pos .popup .footer .button.cancel,.pos .popups .sh_pos_purchasr_order .footer button.click_ok,.pos .popup .footer .button.clear{border-radius: 0;border-width: 2px;border-color: $sh_pos_primary_color !important;color: $sh_pos_primary_color !important;background: #fff !important;border-top-left-radius: 0px;border-bottom-right-radius: 0px;border-style: solid;}
+	.pos .popup .footer .button.cancel:hover,.pos .popup .footer .button.clear:hover{background: $sh_pos_primary_color !important;color: #fff !important;}
+	.receipt-screen .default-view .actions .buttons .button{border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;border-width: 2px;border-color: $sh_pos_primary_color;color: $sh_pos_primary_color;transition: all .4s;}
+	.receipt-screen .default-view .actions .buttons .button:hover{border-color: $sh_pos_primary_color;background: $sh_pos_primary_color;color: #fff;}
+	
+	.splitbill-screen.screen .pay-button .button:last-child{border-radius: 0;border-top-left-radius: 0px;border-bottom-right-radius: 0px;}
+	.pos .numpad{margin-bottom: 0px;}
+	.pos .actionpad{padding-top: 7px;}
+	.pos .pos-topheader .ticket-button:hover{background: transparent;}
+	.screen .left-content .paymentmethods-container .paymentmethods .paymentmethod{background: $sh_pos_secondary_color;border-color: $sh_pos_secondary_color;}
+	.screen .right-content .paymentlines-container,
+	.pos .paymentlines-container .paymentlines-empty{background: $sh_pos_secondary_color;}
+	.payment-screen .payment-buttons .button{background: $sh_pos_secondary_color;}
+	.pos .paymentline{border-radius: 0 !important;background: $sh_pos_secondary_color;border-color: $sh_pos_secondary_color;}
+	.pos .payment-numpad .numpad button:first-child,
+	.pos .payment-numpad .numpad button:nth-child(16),
+	.pos .numpad button:nth-child(4),
+	.payment-screen .payment-buttons .button,
+	.pos .paymentlines-container{border-radius: 0 !important;}
+	.pos .popup-number .popup-input{border-radius: 0;}
+	.pos .popup-numpad .input-button, .pos .popup-numpad .mode-button{border-radius: 0;}
+	.pos .popup-numpad .input-button:active, .pos .popup-numpad .mode-button:active{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;}
+	.order-management-screen .control-panel .button{color: $sh_pos_primary_color;border-color: $sh_pos_primary_color;border-width: 2px;border-radius: 0;background: #fff;font-size: 14px;font-weight: 600;padding: 3px 16px;}
+	.order-management-screen .control-panel .button:hover{background: $sh_pos_primary_color;color: #fff;}
+    .cart_product_image{border-radius: 0;}
+    .pos .edit-client-button,
+    .pos .order .orderline .span_delete_icon{border-radius: 0;}
+	.pos .clientlist-screen .client-picture{border-radius: 0;}
+	.pos .login-element .login-button.select-employee{border-radius: 0;border-width: 2px;border-color: $sh_pos_primary_color;background: $sh_pos_primary_color;color: #fff;height: auto;padding: 15px 20px;}
+	.pos .login-footer .login-button.close-session{border-radius: 0;border-width: 2px;border-color: $sh_pos_primary_color;color: $sh_pos_primary_color;background: #fff;height: auto;padding: 15px 20px;transition: all .4s;}	
+	.pos .login-footer .login-button.close-session:hover{background: $sh_pos_primary_color;color: #fff;}
+	.order-management-screen .control-panel .page-controls .previous{border-radius: 0;}
+	.order-management-screen .control-panel .page-controls .next{border-radius: 0;}
+	.pos .leftpane .sh_cash_opening textarea{border-radius: 0px;}
+	.pos .leftpane .sh_cash_opening input,
+	.sh_attribute_name_and_value .sh_attribute_id #attribute_value{border-radius: 0px;}
+	.sh_pre_define_note_table td i{background: transparent;color: #919191;width: 20px;height: 20px;text-align: center;line-height: 20px;padding: 0;border-radius: 0px;font-size: 12px;cursor: pointer;border: 1px solid #919191;}
+}	
+/* btn style */   
+   
+.pos .status-buttons-portal .status-buttons .oe_status .username{display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;}
+.pos .modal-dialog .popup .footer .sh_store_checkbox{padding-right: 10px;}
+
+@media only screen and (min-width: 768px){
+	.pos .pos-rightheader .status-buttons-portal .status-buttons .header-button.close_button:before {position: absolute;content: '';left: 0px;top: 13px;height: 20px;border: 1px solid #fff;background: white;}
+} 
+.pos .sh_switch_view_icon button{border: 1px solid $sh_pos_secondary_color;}
+.pos .pos-content .product-screen.screen .rightpane .products-widget-control .rightpane-header .breadcrumbs{margin-left: 8px;}
+.pos .pos-content .product-screen.screen .rightpane .products-widget-control .rightpane-header .breadcrumbs .breadcrumb-button{margin-right: 0px;margin-left: 0px;}
+
+.pos .pos-content .product-screen.screen .rightpane .product .product-name.sh_product_name_1_icon,
+.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name.sh_product_name_1_icon,
+.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name.sh_product_name_1_icon{width: 75%;}
+.pos .pos-content .product-screen.screen .rightpane .product .product-name.sh_product_name_2_icon,
+.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name.sh_product_name_2_icon,
+.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name.sh_product_name_2_icon{width: 65%;}
+.pos .pos-content .product-screen.screen .rightpane .product .product-name.sh_product_name_3_icon,
+.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name.sh_product_name_3_icon,
+.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name.sh_product_name_3_icon{width: 50%;}
+.pos .pos-content .product-screen.screen .rightpane .product .product-name.sh_product_name_0_icon,
+.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name.sh_product_name_0_icon,
+.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name.sh_product_name_0_icon{width: 100%;}
+.pos .pos-content .product-screen.screen .rightpane .product .product-name,
+.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name,
+.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name{padding-top: 10px;margin-bottom: 8px;font-size: 13px;padding-left: 10px;text-align: left;line-height: 15px;background: transparent;}
+
+
+/* Product box Configuration */
+@if $sh_display_product_image_name=="product_name" {
+	body .o_action_manager .pos .product-list .product {
+	  height: 110px;
+	  overflow: unset;
+	  width: 140px;
+	  background: $product_background_color !important;
+	  margin: 13px 10px !important;
+	}
+  
+	.pos .product .product-img {
+	  padding: 0px !important;
+	}
+  
+	.pos .product .product-img img {
+	  display: none;
+	}
+  
+	.pos .product .product-img,
+	.pos .product .product-img img {
+	  height: 0px;
+	  max-height: 0px;
+	}
+  
+	.pos .product .product-name {
+	  display: -webkit-box;
+	  -webkit-line-clamp: 3;
+	  -webkit-box-orient: vertical;
+	  overflow: hidden;
+	  padding: 10px 10px 0px 10px !important;
+	  margin-bottom: 8px !important;
+	  font-size: 15px !important;
+	  line-height: 18px !important;
+	  margin-top: 30px;
+	  text-align: center !important;
+	}
+  
+	.pos .pos-content .product-screen.screen .rightpane .product .product-name.sh_product_name_0_icon,
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name.sh_product_name_0_icon,
+	.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name.sh_product_name_0_icon,
+	.pos .pos-content .product-screen.screen .rightpane .product .product-name.sh_product_name_1_icon,
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name.sh_product_name_1_icon,
+	.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name.sh_product_name_1_icon,
+	.pos .pos-content .product-screen.screen .rightpane .product .product-name.sh_product_name_2_icon,
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name.sh_product_name_2_icon,
+	.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name.sh_product_name_2_icon,
+	.pos .pos-content .product-screen.screen .rightpane .product .product-name.sh_product_name_3_icon,
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name.sh_product_name_3_icon,
+	.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name.sh_product_name_3_icon {
+	  width: 100%;
+	  bottom: 35px;
+	}
+}
+
+
+
+@if $sh_pos_theme_style == 'style_1' {
+	.pos .order .orderlines .orderline{background: #f4f4f4;margin: 8px 10px 0px 10px;width: 96%;border: 1px solid #f4f4f4;}
+}
+@if $sh_pos_theme_style == 'style_2' {
+	.pos .order .orderlines .orderline{background: #ebebeb;margin: 8px 10px 0px 10px;width: 96%;border: 1px solid #ebebeb;}
+}
+@if $sh_pos_theme_style == 'style_3' {
+	.pos .order .orderlines .orderline{background: #fcfcfc;margin: 8px 10px 0px 10px;width: 96%;border: 1px solid #fcfcfc;}
+	.pos .products-widget-control .category-simple-button{color: #4f4d4d;}
+}
+.pos .pos-content .product-screen.screen .rightpane .product,
+.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product{width: 135px;height: 152px;margin: 13px 12px !important;overflow: unset;}
+.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product{margin: 10px 12px !important;}
+.pos .pos-content .product-screen.screen .rightpane .product .product-img,
+.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img{width: unset;padding: 10px;border-radius: 5px;}
+.pos .pos-content .product-screen.screen .rightpane .product .product-img img,
+.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img img{border-radius: 5px;}
+.pos .pos-content .product-screen.screen .rightpane .product .product-img .sh_warehouse_display,
+.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-img .sh_warehouse_display,
+.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img .sh_warehouse_display{position: absolute;right: -8px;top: 10px;background: #fff;color: #212121;border: 2px solid $sh_pos_primary_color;font-weight: bold;font-size: 13px;line-height: 14px;border-radius: 4px;width: auto;z-index: 1;}
+.pos .product-screen.screen .control-buttons.sh_left_control_buttons .control-button a,.pos .product-screen.screen .control-buttons.sh_left_control_buttons .control-button{color: #414141;font-size: 15px;}
+.pos .product-screen.screen .control-buttons.sh_left_control_buttons .control-button{padding: 10px 10px;position: relative;display: flex;justify-content: center;align-items: center;line-height: unset;}
+.pos .product-screen.screen .sh_left_control_buttons .sh_mng_cpn_control_btn{position: absolute;left: 10px;top: 14px;}
+.pos .product-screen.screen .sh_left_control_buttons .sh_control_btn_span{line-height: 18px;}
+.pos .product-screen.screen .control-buttons.sh_left_control_buttons .control-button:hover span.sh_control_btn_span{color: #fff;}
+.pos .leftpane .order-container .order .sh_order_summary .line.global_discount_line span.total,
+.pos .leftpane .order-container .order .sh_order_summary .line.global_discount_line span.discount_amount{font-size: 15px;color: #212121;}
+.pos .leftpane .order-container .order .sh_order_summary .line.global_discount_line .remove_discount_control_button,
+.pos .leftpane .order-container .order .sh_order_summary_line .sh_remove_cart_item .remove_control_button{box-shadow: none;min-width: unset;line-height: unset;overflow: unset;margin-top: 0px;margin-bottom: 0px;background: transparent;margin-left: 0px;}
+.pos .leftpane .order-container .order .sh_order_summary .line.global_discount_line .remove_discount_control_button:hover,.pos .leftpane .order-container .order .sh_order_summary_line .sh_remove_cart_item .remove_control_button:hover,.pos .leftpane .order-container .order .sh_order_summary .line.global_discount_line .remove_discount_control_button:focus,.pos .leftpane .order-container .order .sh_order_summary_line .sh_remove_cart_item .remove_control_button:focus{background: transparent;}
+.pos .product-screen.screen .leftpane .order-container .order .sh_left_line .point_total{font-size: 14px;color: #919191;font-weight: normal;}
+.pos .clientlist-screen.screen .client-window .list .client-list .client_history_icon,
+.pos .clientlist-screen.screen .client-window .list .client-list .send_wp{background: $sh_pos_primary_color;color: #fff;padding: 7px 9px;line-height: 16px;font-size: 14px;cursor: pointer;}
+.pos .clientlist-screen.screen .client-window .list .client-list{font-size: 15px;}
+.pos .product-screen.screen .leftpane .order-container .order .sh_orderline_icons li{display: inline-block;border: 1px solid #919191;vertical-align: middle;padding: 3px 3px 0px 3px;margin-right: 5px;}
+.pos .product-screen.screen .leftpane .order-container .order .sh_orderline_icons li:hover,.pos .product-screen.screen .leftpane .order-container .order .sh_orderline_icons li:focus{border: 1px solid $sh_pos_primary_color;cursor: pointer;}
+.pos .product-screen.screen .leftpane .order-container .order .orderline .span_product_image img{width: 60px;height: 60px;}
+.pos .popups .modal-dialog .sh_qty_popup .sh_warning_footer .sh_order_button{padding-bottom: 0px;background: $sh_pos_primary_color !important;color: #fff;}
+.pos .product-screen.screen .screen-full-width .leftpane .pads .actionpad{padding-bottom: 7px;}
+.pos .popups .modal-dialog .popup .title{text-transform: capitalize;padding: 15px 20px;}
+.pos .popups .modal-dialog .popup.sh_pricelist_popup{max-height: 350px;height: 350px;}
+.pos .popups .modal-dialog .popup.sh_pricelist_popup .main-body{max-height: 234px !important;height: 234px;padding: 0px 0px;}
+.pos .popups .modal-dialog .popup.sh_pricelist_popup .sh_pricelist_footer .button.cancel{margin-right: 0px;}
+.pos .popups .modal-dialog .popup.sh_qty_popup{max-height: 285px;height: 285px !important;}
+.pos .popups .modal-dialog .popup.sh_qty_popup .main-body{max-height: 130px !important;height: 130px;}
+.pos .popups .modal-dialog .popup.sh_warehouse_qty_popup{max-height: 300px;height: 300px;width: 500px;max-width: 500px;}
+.pos .popups .modal-dialog .popup.sh_warehouse_qty_popup .main-body{max-height: 185px !important;height: 185px;}
+.pos .popups .modal-dialog .popup.line_note_popup,.pos .popups .modal-dialog .popup.global_note_popup{height: 350px;max-height: 350px;}
+.pos .popups .modal-dialog .popup.create_note_popup{height: 288px;max-height: 288px;}
+.pos .popups .modal-dialog .popup.create_note_popup .note_body{height: 150px;max-height: 150px;}
+.pos .popups .modal-dialog .popup.line_note_popup .note_body,.pos .popups .modal-dialog .popup.global_note_popup .note_body{max-height: 214px;height: 214px;}
+.pos .popups .modal-dialog .popup.line_note_popup .note_body div.button_div,
+.pos .popups .modal-dialog .popup.global_note_popup .note_body div.button_div{padding: 10px 3px;}
+.pos .popups .modal-dialog .popup.line_note_popup .note_body #note_button,
+.pos .popups .modal-dialog .popup.global_note_popup .note_body #note_button{padding: 10px 5px;}
+.pos .popups .modal-dialog .popup.sh_cart_product_bundle_popup{height: 350px;max-height: 350px;}
+.pos .popups .modal-dialog .popup.sh_cart_product_bundle_popup .main-body{height: 234px;max-height: 234px;}
+.pos .popups .modal-dialog .popup.sh_cart_product_bundle_popup .title{margin-bottom: 0px;}
+.pos .popups .modal-dialog.sh_shortcut_modal_dialog .shortcut_tips_popup{width: 600px;max-width: 600px;}
+.pos .popups .modal-dialog.sh_shortcut_modal_dialog .shortcut_tips_popup .sh_shortcut_table thead th{text-transform: uppercase;}
+.pos .popups .modal-dialog.sh_shortcut_modal_dialog .shortcut_tips_popup .sh_key_shortcut_footer{margin-right: 0px;}
+.pos .popups .modal-dialog.sh_create_product_popup .create_product_popup main.pos_product_body{max-height: 250px;height: 250px;overflow: auto;margin: 0px;padding: 10px;}
+.pos .popups .modal-dialog.sh_modal_discount .sh_product_discount_popup{width: 550px;max-height: 384px;}
+
+.pos .popups .modal-dialog .popup .title,
+.pos .popups .modal-dialog .popup.sh_popup_selection .title,
+.pos .popups .modal-dialog .popup.sh_qty_popup .title,
+.pos .popups .modal-dialog .popup.sh_warehouse_qty_popup .title,
+.pos .popups .modal-dialog .popup.line_note_popup .title,
+.pos .popups .modal-dialog .popup.sh_product_bundle_popup .title,
+.pos .popups .modal-dialog .popup.sh_cart_product_bundle_popup .title,
+.pos .popups .modal-dialog.sh_reward_popup .popup .title,
+.pos .popups .modal-dialog.sh_manage_coupon_popup .popup .title,
+.pos .popups .modal-dialog.sh_create_coupon_popup .popup .title,
+.pos .popups .modal-dialog.sh_redeem_coupon_popup .popup .title,
+.pos .popups .modal-dialog .popup.global_note_popup .title,
+.pos .popups .modal-dialog .popup.create_note_popup .title,
+.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .header,
+.pos .popups .modal-dialog.sh_signature_modal_dialog .order_return_popup .title,
+.pos .popups .modal-dialog.sh_discount_modal_dialog .sh_discount_popup .title,
+.pos .popups .modal-dialog.sh_signature_modal_dialog .sh_signature_popup .title,
+.pos .popups .modal-dialog.sh_loyalty_point_popup .sh_loyalty_redeem_popup .title,
+.pos .popups .modal-dialog .popup.sh_whatsapp_popup .title,
+.pos .popups .modal-dialog.sh_shortcut_modal_dialog .shortcut_tips_popup .title,
+.pos .popups .modal-dialog.sh_create_product_popup .create_product_popup .title,
+.pos .popups .modal-dialog .popup.sh_pricelist_popup .title{background: rgba(221 ,221 ,221 ,0.5);color: #555;}
+
+
+
+.pos .product-screen.screen .leftpane .order-container .order .orderlines .sh_note_info .note{word-break: break-word;font-size: 15px;}
+.pos .product-screen.screen .leftpane .order-container .order .orderlines .sh_note_info .sh_note_lbl{font-size: 12px;}
+.pos .popups .modal-dialog .popup.sh_product_bundle_popup .title{margin-bottom: 10px;}
+.pos .popups .modal-dialog .popup.sh_product_bundle_popup table#bundle_product_table,
+.pos .popups .modal-dialog .popup.sh_cart_product_bundle_popup table.wh_qty{font-size: 15px;}
+.pos .popups .modal-dialog .popup.sh_product_bundle_popup table#bundle_product_table .head_td,
+.pos .popups .modal-dialog .popup.sh_cart_product_bundle_popup table.wh_qty .head_td{text-transform: uppercase;}
+.pos .modal-dialog.sh_reward_popup .sh_reward_popup_selection .gift_selection{border: 1px solid #ccc;}
+.pos .modal-dialog.sh_reward_popup .sh_reward_popup_selection .gift_selection:focus,
+.pos .modal-dialog.sh_create_coupon_popup .create_coupon_right .cpn_vlue_type select:focus, .pos .modal-dialog.sh_create_coupon_popup .create_coupon_left .cpn_for select:focus, .pos .modal-dialog.sh_create_coupon_popup .create_coupon_right .cpn_for_customer select:focus{border: 1px solid $sh_pos_primary_color;}
+.pos .popups .modal-dialog.sh_create_product_popup .create_product_popup input,.pos .popups .modal-dialog.sh_create_product_popup .create_product_popup select{font-size: 15px;}
+
+.pos .full-content.sh_note_full_content{overflow: auto !important;}
+.pos .full-content.sh_note_full_content .sh_pre_define_note_list{overflow: unset !important;}
+.pos .full-content.sh_note_full_content .sh_pre_define_note_list .sh_pre_define_note_table{table-layout: fixed;}
+.pos .full-content.sh_note_full_content .sh_pre_define_note_list .sh_pre_define_note_table .note_name{word-break: break-word;}
+.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .sh_bundle_product_span{display: none;}
+.pos .popups .modal-dialog.sh_discount_modal_dialog .sh_discount_popup .sh_discount_footer .button.confirm{background: $sh_pos_primary_color !important;}
+.pos .popups .modal-dialog.sh_signature_modal_dialog .order_return_popup .sh_return_exchange_main_body{padding: 0px;}
+.pos .popups .modal-dialog.sh_loyalty_point_popup .sh_loyalty_mthd #payment_method_selection:focus{border: 1px solid $sh_pos_primary_color !important;}
+
+.pos .popups .modal-dialog .popup.sh_whatsapp_popup{width: 600px;max-width: 600px;height: 424px;max-height: 424px;}
+.pos .popups .modal-dialog .popup.sh_whatsapp_popup .main-body{max-height: 268px;height: 268px;}
+.pos .popups .modal-dialog .popup.sh_whatsapp_popup .sh_whatsapp_number,
+.pos .popups .modal-dialog .popup.sh_whatsapp_popup .sh_whatsapp_msg{display: flex;align-items: center;margin-bottom: 10px;}
+.pos .popups .modal-dialog .popup.sh_whatsapp_popup .sh_whatsapp_number label.sh_wp_number_lbl,
+.pos .popups .modal-dialog .popup.sh_whatsapp_popup .sh_whatsapp_msg label.sh_wp_msg_lbl,
+.pos .popups .modal-dialog .popup.sh_whatsapp_popup .sh_wp_note p{font-size: 15px;}
+.pos .popups .modal-dialog .popup.sh_whatsapp_popup .sh_wp_note p{margin: 2px 0px !important;font-weight: normal;}
+.pos .popups .modal-dialog .popup.sh_whatsapp_popup .sh_msg_div{width: 165px;text-align: left;}
+.pos .popups .modal-dialog.sh_create_product_popup .create_product_popup select:focus{box-shadow: 0px 0px 0px 1px $sh_pos_primary_color;}
+.pos .product-screen.screen .leftpane .order-container .order{background: transparent;}
+
+
+@if $sh_pos_product_style == 'style_1'{
+	.pos .product{overflow: unset;}
+	.pos .pos-content .product-screen.screen .rightpane .product .product-img,.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img{border-radius: 5px;}
+	.pos .pos-content .product-screen.screen .rightpane .product .product-img img,.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img img {border-radius: 5px;}
+	.pos .pos-content .product-screen.screen .rightpane .product .product-img .sh_warehouse_display,.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-img .sh_warehouse_display,.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img .sh_warehouse_display,.modal-dialog .popup .product_content .sh_product_image .product_image{border-radius: 5px;}
+	.pos .pos-content .product-screen.screen .rightpane .product .product-img .sh_warehouse_display,.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-img .sh_warehouse_display,.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img .sh_warehouse_display,.modal-dialog .popup .product_content .sh_product_image .product_image{border-radius: 5px;}
+}
+@if $sh_pos_button_style == 'style_1'{
+	.pos .product-screen.screen .leftpane .order-container .order .sh_orderline_icons li,
+	.pos .sh_switch_view_icon button.product_grid_view,.pos .sh_switch_view_icon button.product_list_view{border-radius: 4px;}
+	.pos .product-screen.screen .leftpane .order-container .order .orderline .span_product_image img,
+	.pos .clientlist-screen.screen .client-window .list .client-list .client_history_icon,
+	.pos .clientlist-screen.screen .client-window .list .client-list .send_wp,
+	.pos .order .orderlines .orderline,.pos .pos-topheader .pos-rightheader button.create_product,
+	.paymentmethods-container .payment_order_note #payment_note_textarea,
+	.pos .pos-topheader .search-bar-portal .search-box input,
+	.pos .popups .modal-dialog.sh_signature_modal_dialog .order_return_popup .button.complete_return,
+	.pos .receipt-screen .default-view .actions .buttons .button{border-radius: 5px;}
+	.pos .popups .modal-dialog .popup .sh_warning_footer .sh_order_button,.pos .product-screen.screen .product_list.sh_product_list .product-image-icon svg,.pos .product-screen.screen .product_list.sh_product_list .product-bundle-icon svg,
+	.pos .product-screen.screen .pads .control-button,.pos .product .sh_bundle_product_span,.pos .sh_full_content_service_management .sh_order_screen table.sh_order_list td i,
+	.pos .popups .modal-dialog.sh_create_product_popup .popup.create_product_popup .pos-cat .cat-create #add_category,
+	.pos .modal-dialog.sh_manage_coupon_popup .create_coupon .box.create_coupon_box,.pos .modal-dialog.sh_manage_coupon_popup .redeem_coupon .box.redeem_coupon_box,
+	.pos .screen .left-content .paymentmethods-container .paymentmethods .paymentmethod,.pos .product .product-img .bag-tag,.light-theme.sh_pagination a, .light-theme.sh_pagination span,
+	.pos .payment-screen .payment-buttons .button,.pos .product-screen.screen .rightpane .products-widget .product-list-container .product-list .sh_product_list span.product-image-icon-qty-add svg,
+	.pos .rightpane .product-list-container .product-list .product_list.sh_product_list .bag-tag,
+	.pos .rightpane .product-list-container .product-list .product_list.sh_product_list .sh_has_variant_count,
+	.sh_custom_checkbox label.chk_lbl:before,
+	.pos .receipt-screen .default-view .actions.sh_receipt_actions .send-email .input-email .send,.pos .popups .sh_shortcut_modal_dialog .shortcut_tips_popup .footer .button.cancel{border-radius: 5px !important;}
+}
+@if $sh_pos_product_style == 'style_2'{
+	.pos .pos-content .product-screen.screen .rightpane .product .product-img,
+	.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img{border-radius: 10px 0px 10px 0px;}
+	.pos .pos-content .product-screen.screen .rightpane .product .product-img img,
+	.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img img{border-radius: 10px 0px 10px 0px;}
+	.pos .pos-content .product-screen.screen .rightpane .product .product-img .sh_warehouse_display,
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-img .sh_warehouse_display,
+	.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img .sh_warehouse_display,
+	.modal-dialog .popup .product_content .sh_product_image .product_image{border-radius: 10px 0px 10px 0px;}
+	.pos .product{overflow: unset;}
+	.pos .product .price-tag{left: -8px;top: 10px;right: auto;border-radius: 10px 0px 10px 0px;background: $sh_pos_primary_color;padding: 3px 8px;font-weight: bold;font-size: 13px;line-height: 14px;z-index: 1;}
+	.pos .product .product-img .price-tag.sh_has_variant{border-radius : 10px 0px 10px 0px;}
+	@media only screen and (max-width: 992px){
+		.pos .product .product-img{background: transparent;}
+	}
+}
+@if $sh_pos_button_style == 'style_2'{
+	.pos .product-screen.screen .leftpane .order-container .order .sh_orderline_icons li,
+	.pos .sh_switch_view_icon button.product_grid_view,.pos .sh_switch_view_icon button.product_list_view{border-radius: 10px 0px 10px 0px;}
+	.pos .product-screen.screen .leftpane .order-container .order .orderline .span_product_image img,
+	.pos .clientlist-screen.screen .client-window .list .client-list .client_history_icon,
+	.pos .clientlist-screen.screen .client-window .list .client-list .send_wp,
+	.pos .order .orderlines .orderline,.pos .pos-topheader .pos-rightheader button.create_product,
+	.paymentmethods-container .payment_order_note #payment_note_textarea,
+	.pos .popups .modal-dialog.sh_signature_modal_dialog .order_return_popup .button.complete_return,
+	.pos .receipt-screen .default-view .actions .buttons .button{border-radius: 10px 0px 10px 0px;}
+	.pos .popups .modal-dialog .popup .sh_warning_footer .sh_order_button,
+	.pos .ticket-screen .orders .col.very-narrow i,.pos .product-screen.screen .product_list.sh_product_list .product-image-icon svg,.pos .product-screen.screen .product_list.sh_product_list .product-bundle-icon svg,
+	.pos .product-screen.screen .pads .control-button,.pos .product .sh_bundle_product_span,.pos .sh_full_content_service_management .sh_order_screen table.sh_order_list td i,
+	.pos .popups .modal-dialog.sh_create_product_popup .popup.create_product_popup .pos-cat .cat-create #add_category,
+	.pos .modal-dialog.sh_manage_coupon_popup .create_coupon .box.create_coupon_box,.pos .modal-dialog.sh_manage_coupon_popup .redeem_coupon .box.redeem_coupon_box,
+	.pos .screen .left-content .paymentmethods-container .paymentmethods .paymentmethod,
+	.pos .payment-screen .payment-buttons .button,.pos .product .product-img .bag-tag,.light-theme.sh_pagination a, .light-theme.sh_pagination span,
+	.pos .product-screen.screen .rightpane .products-widget .product-list-container .product-list .sh_product_list span.product-image-icon-qty-add svg,
+	.pos .rightpane .product-list-container .product-list .product_list.sh_product_list .bag-tag,
+	.pos .rightpane .product-list-container .product-list .product_list.sh_product_list .sh_has_variant_count,
+	.pos .receipt-screen .default-view .actions.sh_receipt_actions .send-email .input-email .send,
+	.pos .popups .sh_shortcut_modal_dialog .shortcut_tips_popup .footer .button.cancel{border-radius: 10px 0px 10px 0px !important;}
+	.sh_custom_checkbox label.chk_lbl:before{border-radius: 6px 0px 6px 0px;}
+	.pos .modal-dialog .sh_custom_checkbox input:checked + label.chk_lbl:after,
+	.pos .modal-dialog .sh_custom_checkbox input:checked + label.chk_lbl:after{top: 6px !important;}
+}
+@if $sh_pos_product_style == 'style_3'{
+	.pos .product{overflow: unset;}
+	.pos .pos-content .product-screen.screen .rightpane .product .product-img,
+	.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img{border-radius: 0px;}
+	.pos .pos-content .product-screen.screen .rightpane .product .product-img img,
+	.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img img{border-radius: 0px;}
+	.pos .pos-content .product-screen.screen .rightpane .product .product-img .sh_warehouse_display,
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-img .sh_warehouse_display,
+	.pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img .sh_warehouse_display,
+	.modal-dialog .popup .product_content .sh_product_image .product_image{border-radius: 0px;}
+	.pos .product .price-tag{left: -8px;top: 10px;right: auto;border-radius: 0px;background: $sh_pos_primary_color;padding: 3px 8px;font-weight: bold;font-size: 13px;line-height: 14px;z-index: 1;}
+	.pos .product .product-img .price-tag.sh_has_variant{border-radius: 0px;}
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product{width: 135px;height: 142px;margin: 13px 10px !important;overflow: unset;}
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-img{width: 100%;height: 110px;}
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup main.body{margin: 15px 0px 15px 0px;}
+	.pos .pos-content .control-buttons .control-button:hover{background: $sh_pos_primary_color;color: #fff !important;}
+	@media only screen and (max-width: 992px){
+		.pos .product-screen.screen .product .product-img{height: 100px !important;}
+		.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product{width: 116px;height: 130px;}
+		.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-img{width: 100%;height: 100px;}
+	}
+}
+@if $sh_pos_button_style == 'style_3'{
+	.pos .product-screen.screen .leftpane .order-container .order .sh_orderline_icons li,.pos .sh_switch_view_icon button.product_grid_view,.pos .sh_switch_view_icon button.product_list_view{border-radius: 0px;}
+	.pos .product-screen.screen .leftpane .order-container .order .orderline .span_product_image img,
+	.pos .clientlist-screen.screen .client-window .list .client-list .client_history_icon,
+	.pos .clientlist-screen.screen .client-window .list .client-list .send_wp,
+	.pos .order .orderlines .orderline,.pos .pos-topheader .pos-rightheader button.create_product,
+	.paymentmethods-container .payment_order_note #payment_note_textarea,
+	.pos .popups .modal-dialog.sh_signature_modal_dialog .order_return_popup .button.complete_return,
+	.pos .receipt-screen .default-view .actions .buttons .button{border-radius: 0px;}
+	.pos .popups .modal-dialog .popup .sh_warning_footer .sh_order_button,
+	.pos .rightpane .product .sh_bundle_product_span,
+	.pos .ticket-screen .orders .col.very-narrow i,.pos .product-screen.screen .product_list.sh_product_list .product-image-icon svg,.pos .product-screen.screen .product_list.sh_product_list .product-bundle-icon svg,
+	.pos .product-screen.screen .pads .control-button,.pos .product .sh_bundle_product_span,.pos .sh_full_content_service_management .sh_order_screen table.sh_order_list td i,
+	.pos .popups .modal-dialog.sh_create_product_popup .popup.create_product_popup .pos-cat .cat-create #add_category,
+	.pos .modal-dialog.sh_manage_coupon_popup .create_coupon .box.create_coupon_box,.pos .modal-dialog.sh_manage_coupon_popup .redeem_coupon .box.redeem_coupon_box,
+	.pos .screen .left-content .paymentmethods-container .paymentmethods .paymentmethod,
+	.pos .payment-screen .payment-buttons .button,.pos .product .product-img .bag-tag,.light-theme.sh_pagination a, .light-theme.sh_pagination span,
+	.pos .product-screen.screen .rightpane .products-widget .product-list-container .product-list .sh_product_list span.product-image-icon-qty-add svg,
+	.pos .rightpane .product-list-container .product-list .product_list.sh_product_list .bag-tag,
+	.pos .rightpane .product-list-container .product-list .product_list.sh_product_list .sh_has_variant_count,
+	.sh_custom_checkbox label.chk_lbl:before,
+	.pos .receipt-screen .default-view .actions.sh_receipt_actions .send-email .input-email .send,
+	.pos .popups .sh_shortcut_modal_dialog .shortcut_tips_popup .footer .button.cancel{border-radius: 0px !important;}
+}
+@if $sh_action_button_position == 'bottom'{
+	.pos .product-screen.screen .owl-carousel .control-button a,.pos .product-screen.screen .owl-carousel .control-button{color: #414141;font-size: 15px;display: flex;align-items: center;}
+	.pos .product-screen.screen .owl-carousel .control-button{padding: 5px 10px;position: relative;display: flex;align-items: center;}
+	.pos .product-screen.screen .owl-carousel .sh_mng_cpn_control_btn{position: absolute;left: 10px;top: 14px;}
+	.pos .product-screen.screen .owl-carousel .sh_control_btn_span{line-height: 18px;}
+	.pos .product-screen.screen .owl-carousel .control-button:hover span.sh_control_btn_span{color: #fff;}
+	.pos .product-screen.screen .owl-carousel .control-button .sh_icon_img{margin-right: 10px;line-height: 15px;}
+	.pos .product-screen.screen .owl-carousel .control-button .sh_icon_img svg{width: 16px;fill: #414141;}
+	.pos .product-screen.screen .owl-carousel .control-button:hover .sh_icon_img svg,.pos .product-screen.screen .owl-carousel .control-button:focus .sh_icon_img{fill: #fff;}
+	.pos .product-screen.screen .owl-carousel .control-button.o_pricelist_button{padding: 15px 10px;}
+	.pos .product-screen.screen .owl-carousel .control-button.o_pricelist_button .sh_control_btn_span{display: -webkit-box;max-width: 145px;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;}
+	.pos .rightpane.sh_right_pane .sh_product_list_main .sh_product_list {height: 98% !important;}
+}
+@if $sh_cart_total_sticky == 'True'{ 
+	.pos .leftpane .order-container .order .sticky_total{position: sticky !important;bottom: 0px !important;background: #fff !important;border-top: 1px solid #ccc;margin-top: 0px !important;margin-bottom: 0px !important;}
+	.pos .order-management-screen.screen .leftpane .order-container .order .sticky_total{padding-bottom: 15px;}
+	.pos .order-management-screen.screen .leftpane .order-container .order .orderlines{padding-bottom: 10px;}
+}
+@if $sh_pos_product_style == 'style_3'{
+   @if $sh_display_product_image_name == 'image_name'{
+	   .pos .product{background: #e5e5e5;}
+   }
+}
+.pos .popups .modal-dialog.sh_create_product_popup .create_product_popup .footer.pos_product_footer{height: 68px;}
+@media only screen and (max-width: 992px){
+	.pos .pos-content .product-screen.screen .rightpane .product .product-img, .pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-img{padding: 10px 0px !important;width: 100% !important;height: 100px;}
+	.pos .pos-topheader .pos-rightheader > .search-bar-portal .search-box .icon{color: #fff;margin-left: 0;}
+	.pos .pos-topheader .pos-rightheader > .search-bar-portal .search-box .icon.sh_open_search_bar{color: $sh_pos_primary_color;margin-left: 10px;}
+	.pos .product-screen.screen .leftpane .sh_orderline_icons{margin-left: 0px !important;}
+	.pos .product-screen.screen .pads .control-button .sh_icon_img{margin-right: 10px;align-items: center;display: flex;}
+	.pos .product-screen.screen .pads .control-button .sh_icon_img svg{width: 16px;fill: #414141;}
+	.pos .product-screen.screen .pads .control-button:hover .sh_icon_img svg,.pos .product-screen.screen .pads .control-button:focus .sh_icon_img svg{fill: #fff;}
+	.pos .product-screen.screen .pads .control-button{border-radius: 5px;padding: 5px 10px;position: relative;display: flex;align-items: center;}
+	.pos .leftpane .order-container .order .sh_order_summary_line .sh_remove_cart_item .remove_control_button,.pos .leftpane .order-container .order .sh_order_summary .line.global_discount_line .remove_discount_control_button{min-width: unset !important;margin: 0px 2px !important;padding: 0px 2px !important;}
+	.pos .pos-content .product-screen.screen .order-container .order .orderlines .orderline .product-name{width: 75% !important;}
+	.pos .popups .popup.popup-selection .selection{max-height: 200px !important;}
+	.pos .popups .modal-dialog.sh_manage_coupon_popup .redeem_coupon .box.redeem_coupon_box img{height: 55px;margin-top: 5px;}
+	.pos .popups .modal-dialog.sh_manage_coupon_popup .create_coupon .box.create_coupon_box img{height: 60px;}
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product{width: 116px;height: 135px;margin: 13px 12px !important;overflow: unset;}
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup main.body{margin: 0px;margin-left: 0px !important;}
+	.pos .popups .modal-dialog .popup.sh_product_bundle_popup table#bundle_product_table, .pos .popups .modal-dialog .popup.sh_cart_product_bundle_popup table.wh_qty{font-size: 14px !important;}
+	.pos .popups .modal-dialog .popup.sh_product_bundle_popup{height: 390px;max-height: 390px;}
+	.pos .order .summary.sh_order_summary .line{margin-left: 10px;margin-right: 10px;}
+	.pos .order .summary.sh_order_summary .total{font-size: 16px;}
+	.pos .product-screen.screen .leftpane .order-container .order .sh_order_summary .line.global_discount_line span.total, .pos .product-screen.screen .leftpane .order-container .order .sh_order_summary .line.global_discount_line span.discount_amount{font-size: 14px;}
+	.pos .product-screen.screen .leftpane .order-container .order .sh_order_summary .items_counter{padding-left: 10px;padding-right: 10px;}
+	.pos .popups .modal-dialog .popup .title{font-size: 16px !important;}
+	.pos .popups .modal-dialog .popup.sh_warehouse_qty_popup .main-body{height: 190px !important;max-height: 190px !important;}
+	.pos .popups .modal-dialog .popup.sh_warehouse_qty_popup{height: 300px;max-height: 300px;}
+	.pos .popups .modal-dialog .popup.sh_cart_product_bundle_popup .main-body{overflow: auto !important;}
+	.pos .suggestion-list .product-list-container{overflow-y: hidden ;}
+	.pos .popups .modal-dialog.sh_create_product_popup .popup.create_product_popup .pos_product_body{height: 250px;max-height: 250px;overflow: auto;margin: 0px;padding: 10px;}
+	.pos .product-list{justify-content: center;text-align: center;}
+	.pos .popups .modal-dialog.sh_create_product_popup .create_product_popup .footer.pos_product_footer{height: 65px;}
+	.pos .full-content.sh_note_full_content .sh_pre_define_note_list .sh_pre_define_note_table{table-layout: unset;}
+	.pos .order-management-screen .back-to-list{background: $sh_pos_primary_color;}
+	.pos .payment-screen.screen .left-content .paymentmethods-container .pymnt_header_note{margin-top: 10px;}
+	.o_touch_device .pos .pos-topheader .pos-rightheader button.create_product{background: transparent !important;padding: 0px 10px !important;color: #fff !important;}
+}
+@media only screen and (max-width: 992px) and (min-width: 768px){
+	.pos .order .orderlines .orderline{width: 97.3%;}
+	.pos .pos-topheader .pos-rightheader button.create_product{margin-left: 12px;}
+}
+@media only screen and (max-width: 767.98px){
+	.pos .order .orderlines .orderline{width: 94%;}
+	.pos .pos-topheader .pos-rightheader button.create_product{margin-left: 0px;}
+}
+.pos .popup input[type="checkbox"]:focus, .pos .popup input[type="checkbox"].active{box-shadow: 0px 0px 0px 1px transparent;}
+.sh_pre_define_note_table .name_td .show_input_name input{border: 1px solid #ccc;}
+.sh_pre_define_note_table .name_td .show_input_name input:focus,.sh_pre_define_note_table .name_td .show_input_name input:focus-visible{box-shadow: 0px 0px 0px 1px $sh_pos_primary_color;outline: none;}
+.pos .popups .modal-dialog .popup table tbody tr td.data_td{font-weight: normal;}
+.pos .popups .modal-dialog.sh_create_product_popup .popup.create_product_popup .pos-cat .cat-create #add_category{background: $sh_pos_primary_color;}
+.pos .popups .modal-dialog.sh_create_product_popup .create_product_popup select{color: #555;}
+
+.pos .sh_pre_define_note_list table.sh_pre_define_note_table thead th,
+.pos .sh_order_screen table.sh_order_list thead th,
+.pos .pos-content table thead th,
+.pos .popups table thead th,
+.pos .ticket-screen .orders .header-row,
+.pos .rightpane.sh_order_mangement_right_pane .orders .order-row.header,
+.pos .rightpane.sh_order_mangement_right_pane .orders .order-row.header .header {background: $sh_pos_primary_color;font-size: 15px;text-transform: uppercase;color: #fff !important;}
+.pos .ticket-screen .orders .header-row .col{color: #fff !important;font-size: 15px;}
+
+/* Form Element style */
+@if $sh_form_element_style == 'style_1'{
+	.pos input,.pos select,.pos textarea,.pos .popups .modal-dialog .popup .dmy.btn.btn-secondary.each_note_button,
+	.pos .sh_pre_define_note_table td i,
+	.signature_detail_div #signature canvas.jSignature,
+	.pos .modal-dialog.sh_loyalty_point_popup .sh_popup_input_box{border-radius: 4px !important;}
+}
+@if $sh_form_element_style == 'style_2'{
+	.pos input,.pos select,.pos textarea,.pos .popups .modal-dialog .popup .dmy.btn.btn-secondary.each_note_button,
+	.pos .sh_pre_define_note_table td i,
+	.signature_detail_div #signature canvas.jSignature,
+	.pos .modal-dialog.sh_loyalty_point_popup .sh_popup_input_box{border-radius: 10px 0px 10px 0px !important;}
+}
+@if $sh_form_element_style == 'style_3'{
+	.pos input,.pos select,.pos textarea,.pos .popups .modal-dialog .popup .dmy.btn.btn-secondary.each_note_button,
+	.pos .sh_pre_define_note_table td i,
+	.signature_detail_div #signature canvas.jSignature,
+	.pos .modal-dialog.sh_loyalty_point_popup .sh_popup_input_box{border-radius: 0px !important;}
+}
+
+.pos .product-screen.screen .owl-carousel .control-button .sh_icon_img svg,
+.pos .product-screen.screen .control-buttons.sh_left_control_buttons .control-button svg{width: 16px;fill: #414141;}
+.pos .product-screen.screen .product .product-image-icon svg,
+.pos .product-screen.screen .product .product-bundle-icon svg,
+.pos .product-screen.screen .product .product-image-icon-qty-add svg,
+.pos .popups .modal-dialog .product .product-image-icon svg,
+.pos .popups .modal-dialog .product .product-bundle-icon svg{width: 15px;fill: #919191;}
+.pos .product-screen.screen .leftpane .sh_orderline_icons li svg{width: 14px;fill: #919191;}
+.pos .order .sh_order_summary .line.global_discount_line .remove_discount_control_button svg,
+.pos .order .sh_order_summary .line.sh_order_summary_line .remove_control_button svg{width: 14px;fill: #919191;}
+.pos .product-screen.screen .owl-carousel .control-button:hover .sh_icon_img svg,.pos .product-screen.screen .owl-carousel .control-button:focus .sh_icon_img svg,
+.pos .product-screen.screen .control-buttons.sh_left_control_buttons .control-button:hover svg,.pos .product-screen.screen .control-buttons.sh_left_control_buttons .control-button:focus svg{fill: #fff;}
+.pos .product-screen.screen .product .product-image-icon svg:hover,.pos .product-screen.screen .product .product-image-icon svg:focus,
+.pos .product-screen.screen .product .product-,.pos .product-screen.screen .product .product-bundle-icon svg:focus,
+.pos .popups .modal-dialog .product .product-image-icon svg:hover,.pos .popups .modal-dialog .product .product-image-icon svg:focus,
+.pos .popups .modal-dialog .product .product-,.pos .popups .modal-dialog .product .product-bundle-icon svg:focus,
+.pos .product-screen.screen .product .product-image-icon-qty-add svg:hover,.pos .product-screen.screen .product .product-image-icon-qty-add svg:focus,
+.pos .product-screen.screen .leftpane .sh_orderline_icons li svg:hover,.pos .product-screen.screen .leftpane .sh_orderline_icons li svg:focus,
+.pos .order .sh_order_summary .line.global_discount_line .remove_discount_control_button svg:hover,.pos .order .sh_order_summary .line.global_discount_line .remove_discount_control_button svg:focus,
+.pos .order .sh_order_summary .line.sh_order_summary_line .remove_control_button svg:hover,.pos .order .sh_order_summary .line.sh_order_summary_line .remove_control_button svg:focus,
+.pos .product-list-container .product .product-bundle-icon svg:hover,.pos .product-list-container .product .product-bundle-icon svg:focus{fill: $sh_pos_primary_color;}
+.pos .product-screen.screen .product_list.sh_product_list .product-image-icon svg,.pos .product-screen.screen .product_list.sh_product_list .product-bundle-icon svg{background: transparent;fill: #919191;width: 13px;height: 14px;text-align: center;padding: 4px 4px;cursor: pointer;margin: 0px 3px;border: 1px solid #919191;transition: all .5s;}
+.pos .product-screen.screen .product_list.sh_product_list .product-image-icon svg:hover,.pos .product-screen.screen .product_list.sh_product_list .product-bundle-icon svg:hover{background: transparent;fill: $sh_pos_primary_color;border: 1px solid $sh_pos_primary_color;transition: all .5s;}
+.pos .full-content.sh_note_full_content .sh_pre_define_note_list .sh_pre_define_note_table .edit_note i:hover,
+.pos .full-content.sh_note_full_content .sh_pre_define_note_list .sh_pre_define_note_table .remove_icon i:hover,
+.pos .sh_full_content_service_management .sh_order_screen table.sh_order_list td i:hover,
+.ticket-screen .orders .col.very-narrow i:hover{background: transparent;color: $sh_pos_primary_color;border: 1px solid $sh_pos_primary_color;transition: all .5s;}
+.pos .sh_full_content_service_management .sh_order_screen table.sh_order_list td i{background: transparent;color: #919191;width: 20px;height: 20px;text-align: center;line-height: 20px;padding: 0;font-size: 12px;cursor: pointer;border: 1px solid  #919191;transition: all .5s;}
+
+.pos .popup.popup-selection.sh_popup_selection .sh_selection_popup_table .selection-item{font-size: 15px;line-height: 20px;}
+.pos .popup.popup-selection.sh_popup_selection .sh_selection_popup_table .selection-item td{padding: 10px 12px;}
+
+.pos .screen-content .sh_order_screen .sh_order_line.highlight,
+.pos .rightpane.sh_order_mangement_right_pane .orders .order-row.highlight,
+.pos .popup.popup-selection.sh_popup_selection .sh_selection_popup_table .selection-item.selected,
+.pos .clientlist-screen .client-list tr.highlight,
+.pos .order-management-screen .order-list .order-row.highlight .item,
+.pos .templateproductlist-screen .template-list tr.template-line.highlight,
+.pos .popups .modal-dialog.sh_modal_discount .sh_product_discount_popup .sh_discount_main_table .discount_table .discount_row.highlight{color: $sh_pos_primary_color !important;font-weight: bold !important;}
+.pos .clientlist-screen .client-list tr.highlight:nth-child(even){background: $sh_even_row_color !important;}
+.pos .clientlist-screen .client-list tr.highlight:nth-child(odd){background: $sh_odd_row_color !important;}
+.pos .rightpane.sh_order_mangement_right_pane .orders .order-row.highlight .item,
+.pos .clientlist-screen .client-list tr.highlight td{color: $sh_pos_primary_color;font-weight: bold;}
+
+.pos .clientlist-screen.screen .top-content .button.next{margin-left: 0px;}
+.pos .clientlist-screen.screen .top-content .button:last-child {margin-right: 0px;}
+.pos .clientlist-screen.screen .top-content,.pos .templateproductlist-screen.screen .top-content,
+.pos .payment-screen.screen .top-content,
+.pos .clientlist-screen.screen .top-content .searchbox-client{padding-right: 0px;}
+.pos .templateproductlist-screen.screen .top-content .button.new-note,
+.pos .templateproductlist-screen.screen .top-content.sh_top_content .button.back.sh_service_back_btn{margin-left: 0px;}
+
+@media only screen and (max-width: 767.98px){
+	.pos .clientlist-screen.screen .top-content .button.next{margin-left: 8px;}
+	.pos .clientlist-screen.screen .top-content,.pos .templateproductlist-screen.screen .top-content,
+	.pos .payment-screen.screen .top-content{padding-right: 8px;}
+	.pos .templateproductlist-screen.screen .top-content .button.new-note,
+	.pos .templateproductlist-screen.screen .top-content.sh_top_content .button.back.sh_service_back_btn{margin-left: 8px;}
+	.pos .templateproductlist-screen screen .sh_top_content .sh_searchbox_client_service{padding: 0px 5px !important;}
+}
+body .o_action_manager .pos .order-management-screen.screen .order{background: transparent;}
+body .o_action_manager .pos .order-management-screen.screen .order .sh_order_summary .line.sh_left_line{top: 59% !important;}
+body .pos .order-management-screen.screen .leftpane .order-container .order-scroller .order .orderline .product-name{width: 75% !important;}
+.pos .order-management-screen .control-buttons.sh_left_control_buttons .control-button{display: flex;align-items: center;padding: 8px 10px;}
+.pos .order-management-screen .control-buttons.sh_left_control_buttons .control-button i{margin-right: 10px;}
+.pos .order-management-screen .control-buttons.sh_left_control_buttons .control-button span{line-height: 20px;}
+
+.pos .order-management-screen .control-panel .search-box{text-align: right;}
+
+@if $sh_pos_theme_style == 'style_3'  {
+	@if $sh_pos_body_background_type == 'bg_img'{
+		.pos .product-screen.screen .leftpane .order-container .order .sh_order_summary .items_counter b,.pos .leftpane .order .summary .line .subentry,.pos .product-screen.screen .leftpane .order-container .order .sh_left_line .point_total,
+		.pos .product-screen.screen .leftpane .order-container .order .totl_wght,
+		.pos .product-screen.screen .leftpane .order-container .order .totl_vlm{color: #4d4d4d !important;}
+	}
+}
+
+
+@if $sh_pos_theme_style == 'style_2'  {
+	.pos .product-screen.screen .control-buttons.sh_left_control_buttons .control-button a, .pos .product-screen.screen .control-buttons.sh_left_control_buttons .control-button,
+	.pos .order .orderline .product-name{font-size: 14px;}
+}
+
+.pos .sh_order_screen .inner_data_table_row  .inner_data_table.return_note_table_above{margin-bottom: 5px;}
+.pos .sh_order_screen .inner_data_table_row  .inner_data_table.return_note_table_above,.pos .sh_order_screen .inner_data_table_row .inner_data_table.counter_table_below{background: transparent;box-shadow: none;border: 0px;}
+.pos .sh_order_screen .inner_data_table_row  .inner_data_table.return_note_table_above tr,.pos .sh_order_screen .inner_data_table_row .inner_data_table.counter_table_below tr{background: transparent !important;border: 0px !important;}
+.pos .sh_order_screen .inner_data_table_row  .inner_data_table.return_note_table_above tr td,.pos .sh_order_screen .inner_data_table_row .inner_data_table.counter_table_below tr td{padding: 10px 5px !important;text-align: left;}
+.pos .sh_order_screen .inner_data_table_row  .inner_data_table.return_note_table_above .note_label{width: 45px;}
+.pos .sh_order_screen .inner_data_table_row  .inner_data_table.return_note_table_above .note_content{width: 390px;word-break: break-word;}
+.pos .sh_order_screen .inner_data_table_row  .inner_data_table.return_note_table_above .return_order_ref_label{width: 168px;}
+
+.pos .sh_order_screen .inner_data_table_row .inner_data_table.counter_table_below .total_item_label{width: 88px;}
+.pos .sh_order_screen .inner_data_table_row .inner_data_table.counter_table_below .total_item_number{width: 348px;}
+.pos .sh_order_screen .inner_data_table_row .inner_data_table.counter_table_below .total_qty_label{width: 72px;}
+
+.pos .sh_order_screen .inner_data_table_row .inner_data_table.counter_table_below{margin-top: 5px;}
+.pos .sh_full_content_service_management .sh_order_list div.inner_data_table_row td:first-child{padding: 10px;background: transparent;}
+.pos .pos-content .control-button i.fa,.pos .pos-content .control-button .control-button-number{margin-right: 10px;}
+.pos .pos-content .control-button .control-button-number{margin-left: 0px;}
+
+/* Product box Configuration */ 
+@if $sh_display_product_image_name == 'product_name'{
+	body .o_action_manager .pos .product-list .product{height: 110px;overflow: unset;width: 140px;background: $product_background_color !important;margin: 13px 10px !important;}
+	.pos .product .product-img img{display: none;}
+	.pos .product .product-img,.pos .product .product-img img{height: 0px;max-height: 0px;}
+	.pos .product .product-name{display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;padding: 10px 10px 0px 10px !important;margin-bottom: 8px !important;font-size: 15px !important;line-height: 18px !important;margin-top: 30px;text-align: center !important;}
+
+	.pos .pos-content .product-screen.screen .rightpane .product .product-name.sh_product_name_1_icon, .pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name.sh_product_name_1_icon, .pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name.sh_product_name_1_icon,
+	.pos .pos-content .product-screen.screen .rightpane .product .product-name.sh_product_name_2_icon, .pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name.sh_product_name_2_icon, .pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name.sh_product_name_2_icon,
+	.pos .pos-content .product-screen.screen .rightpane .product .product-name.sh_product_name_3_icon, .pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-name.sh_product_name_3_icon, .pos .pos-content .product-screen.screen .rightpane .suggestion-list .product .product-name.sh_product_name_3_icon{width: 100%;bottom: 35px;}
+	.pos .pos-content .product-screen.screen .rightpane .product, .pos .pos-content .product-screen.screen .rightpane .suggestion-list .product,.pos .product-list .product{height: 148px !important;}
+	
+	.pos .product .sh_product_img_1_icon{right: 38% !important;}
+	.pos .product .sh_product_img_2_icon{right: 30% !important;}
+	.pos .rightpane .product span.product-bundle-icon.sh_product_img_3_icon , .pos .rightpane .product span.product-image-icon.sh_product_img_3_icon , .pos .rightpane .product span.product-image-icon-qty-add.sh_product_img_3_icon{right: 20% !important;}
+	
+	.pos .product-name.product_name_no_ref_code {bottom: 20px !important;}
+}
+
+@if $sh_display_product_image_name == 'image'{
+	.pos .product .product-name{display: none;}
+	.pos .product .product-img{padding: 15px 0px;}
+	.pos .sh_pos_variant_popup .sh_product_variants_popup .product .product-img{padding: 0px;}
+	.pos .product .sh_product_img_1_icon{right: 38% !important;}
+	.pos .product .sh_product_img_2_icon{right: 30% !important;}
+	@if $sh_pos_product_style == 'style_2'{
+		.pos .sh_pos_variant_popup .sh_product_variants_popup .product .product-img,
+		.pos .sh_pos_variant_popup .sh_product_variants_popup .product .product-img img{border-top-left-radius: 30px;}
+	}
+	.pos .rightpane .product span.product-bundle-icon.sh_product_img_3_icon , .pos .rightpane .product span.product-image-icon.sh_product_img_3_icon , .pos .rightpane .product span.product-image-icon-qty-add.sh_product_img_3_icon{right: 20% !important;}
+}
+
+.pos .leftpane .order-container .order .orderlines .orderline ul.info-list li.info .qty_in_bag{margin-left: 8px;position: relative;}
+.pos .leftpane .order-container .order .orderlines .orderline ul.info-list li.info .qty_in_bag:before{content: '|';position: absolute;left: 0;top: -1px;font-size: 16px;}
+.pos .leftpane .order-container .order .orderlines .orderline ul.info-list li.info .qty_in_bag .lbl_bag{margin-left: 12px;}
+
+@if $sh_image_display_in_cart == 'True'{
+	.pos .order .orderlines .orderline .info-list{margin-left: 17%;}
+	.pos .splitbill-screen.screen .order .orderlines .orderline .info-list{margin-left: 0px !important;}
+	.pos .leftpane .order-container .order .orderlines .orderline .price{white-space: nowrap;max-width: 21%;overflow: hidden;text-overflow: ellipsis;}
+}
+@if $sh_image_display_in_cart == 'False'{	
+	.pos .leftpane .order-container .order .orderlines .orderline .price{white-space: nowrap;max-width: 20%;overflow: hidden;text-overflow: ellipsis;}
+}
+.pos .leftpane .order-container .order .sh_order_summary .sh_order_summary_line .entry.total .totl_wght,
+.pos .leftpane .order-container .order .sh_order_summary .sh_order_summary_line .entry.total .totl_vlm{padding-top: 5px;font-size: 14px;text-align: right;color: #919191;font-weight: normal;}
+.pos .leftpane .order-container .order .orderlines ul.info-list li.info .bag_qty_svg_icon svg{width: 12px;fill: #919191;}
+.pos .product-screen.screen .leftpane .sh_orderline_icons .span_discount_icon svg{width: 13px;}
+.pos .leftpane .order-container .order .orderlines ul.info-list li.info .bag_qty_svg_icon{cursor: pointer;margin-left: 8px;}
+.pos .leftpane .order-container .order .orderlines ul.info-list li.info .bag_qty_svg_icon svg:hover,.pos .leftpane .order-container .order .orderlines ul.info-list li.info .bag_qty_svg_icon svg:focus{fill: $sh_pos_primary_color;}
+
+.pos .popups .modal-dialog .sh_product_qty_add_bag input.add_qty{font-size: 16px;margin: 25px 0px;min-height: 35px;}
+ 
+.pos .popups .modal-dialog.sh_modal_discount .sh_product_discount_popup .main-body.sh_discount_main_table{padding: 0px !important;overflow: auto !important;}
+
+.pos .rightpane .product-list-container .product-list .product .sh_product_img_1_icon{margin-right: 6px;}
+.pos .product .product-img .bag-tag svg{fill: #fff;width: 10px;}
+.pos .product .product-img .bag-tag .bag_qty_value{color: #fff;font-size: 13px;margin-left: 6px;}
+.pos .product .product-img .bag-tag{position: absolute;left: -8px;top: 32px;right: auto;background: $sh_pos_primary_color;padding: 3px 8px;font-weight: bold;font-size: 13px;line-height: 14px;z-index: 1;}
+ 
+.pos .product-screen.screen .rightpane .products-widget .product-list-container .product-list .sh_product_list span.product-image-icon,.pos .product-screen.screen .rightpane .products-widget .product-list-container .product-list .sh_product_list span.product-bundle-icon,.pos .product-screen.screen .rightpane .products-widget .product-list-container .product-list .sh_product_list span.product-image-icon-qty-add{display: block;}
+.pos .product-screen.screen .rightpane .products-widget .product-list-container .product-list .sh_product_list span.product-image-icon-qty-add svg{background: transparent;fill: #919191;width: 12px;height: 14px;text-align: center;padding: 3px 3px;cursor: pointer;margin: 0px 2px;border: 1px solid #919191;transition: all .5s;}
+
+.pos .product-screen.screen .rightpane .products-widget .product-list-container .product-list .sh_product_list span.product-image-icon-qty-add svg:hover,.pos .product-screen.screen .rightpane .products-widget .product-list-container .product-list .sh_product_list span.product-image-icon-qty-add svg:focus{background: transparent;fill: $sh_pos_primary_color;border: 1px solid $sh_pos_primary_color;transition: all .5s;}
+
+.pos .sh_cash_control_popup .main_div_cash_control .cash_in_out_option_main_div .cash_btn .img_icon svg{fill: $sh_pos_primary_color;}
+.pos .sh_cash_control_popup .main_div_cash_control .cash_in_out_option_main_div .cash_btn:hover,.pos .sh_cash_control_popup .main_div_cash_control .cash_in_out_option_main_div .cash_btn:focus{border: 1px solid $sh_pos_primary_color;}
+
+.pos .popups .sh_cash_in_out_modal_dialog .cash_control_in_out_popup .main_div_cash_control input:focus, .pos .popups .sh_cash_in_out_modal_dialog .cash_control_in_out_popup .main_div_cash_control .popup-input.active,
+.pos .popups .sh_cash_in_out_option_modal_dialog .closing_balance_popup .main_div_cash_control .sh_set_closing_balance_table input:focus,.pos .popups .sh_cash_in_out_option_modal_dialog .closing_balance_popup .main_div_cash_control .sh_set_closing_balance_table .popup-input.active{box-shadow: 0px 0px 0px 1px $sh_pos_primary_color;}
+.pos .popups .sh_cash_in_out_option_modal_dialog .closing_balance_popup .main_div_cash_control .sh_closing_total{background: $sh_pos_primary_color;}
+
+.pos .sh_cash_in_out_option_modal_dialog .closing_balance_popup .main_div_cash_control .sh_set_closing_body_div .sh_set_closing_balance_table .sh_closing_tr .cancel_line{cursor: pointer;}
+.pos .sh_cash_in_out_option_modal_dialog .closing_balance_popup .main_div_cash_control .sh_set_closing_body_div .sh_set_closing_balance_table .sh_closing_tr .cancel_line:hover .fa{color: $sh_pos_primary_color;}
+
+/* Radio Button Design */
+.pos .popups .modal-dialog [type="radio"]:checked,
+.pos .popups .modal-dialog [type="radio"]:not(:checked) {position: absolute;left: -9999px;}
+.pos .popups .modal-dialog [type="radio"]:checked + label,
+.pos .popups .modal-dialog [type="radio"]:not(:checked) + label{position: relative;padding-left: 28px;cursor: pointer;line-height: 20px;display: inline-block;color: #666;}
+.pos .popups .modal-dialog [type="radio"]:checked + label:before,
+.pos .popups .modal-dialog [type="radio"]:not(:checked) + label:before {content: '';position: absolute;left: 0;top: 0;width: 16px;height: 16px;border: 1px solid #b8b8b8;border-radius: 100%;background: #fff;}
+.pos .popups .modal-dialog [type="radio"]:checked + label:after,
+.pos .popups .modal-dialog [type="radio"]:not(:checked) + label:after {content: '';width: 10px;height: 10px;background: $sh_pos_primary_color;position: absolute;top: 4px;left: 4px;border-radius: 100%;-webkit-transition: all 0.2s ease;transition: all 0.2s ease;}
+.pos .popups .modal-dialog [type="radio"]:not(:checked) + label:after {opacity: 0;-webkit-transform: scale(0);transform: scale(0);}
+.pos .popups .modal-dialog [type="radio"]:checked + label:after {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}
+
+
+.pos .popups .modal-dialog.sh_cash_in_out_statement_modal_dialog .sh_cash_in_out_statement_popup .main_div_sh_statement .sh_statement_date .sh_start_date .sh_start_date_value .start_date:focus,
+.pos .popups .modal-dialog.sh_cash_in_out_statement_modal_dialog .sh_cash_in_out_statement_popup .main_div_sh_statement .sh_statement_date .sh_end_date .sh_end_date_value .end_date:focus{box-shadow: 0px 0px 0px 1px $sh_pos_primary_color;}
+.pos .popups .modal-dialog .popup.popup-confirm main.body{font-size: 16px;}
+
+.pos .pos-content .screen.orderlist-screen .screen-content .sh_pagination ul li.active .current{background: $sh_pos_primary_color;border-color: $sh_pos_primary_color;}
+.pos .pos-content .screen.orderlist-screen .screen-content .sh_pagination ul li.disabled > .current{background: #9d9d9d;border-color: #8d8d8d;}
+
+.pos .sh_order_screen .inner_data_table_row .inner_data_table thead .order_data_row.order_data_header th{z-index: 0;}
+  
+.pos .screen .right-content .paymentlines-container .payment-status-remaining .amount{color: $sh_pos_primary_color !important;background: transparent;}
+.pos .payment-screen.screen .right-content .paymentlines-container .payment-status-container .payment-status-remaining{font-size: 20px;}
+.pos .product-list .product .product_ref_code .sh_ref_cd{position: absolute;bottom: 20px;text-align: center;top: auto;line-height: 15px;width: 100%;margin: 6px 0px;left: 0;}
+.pos .product .product_ref_code .sh_ref_cd .sh_ref_code_value{font-size: 11px;margin: 0px auto;width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.pos .popups .modal-dialog.sh_discount_modal_dialog .sh_discount_popup .sh_discount_main_table{padding: 15px;}
+.pos .sh_discount_popup .sh_discount_main_table .sh_discount_radio [for="discount_fixed_radio"],
+.pos .popups .modal-dialog.sh_reward_popup .select_receiver_popup .sh_main_body .sh_label_radio [for="gift_reward"]{margin-right: 12px;}
+  
+.pos .leftpane .order-container .order .orderlines .orderline.label_item{display: flex;align-items: center;}
+.pos .leftpane .order-container .order .orderlines .orderline.label_item .line_label{width: 100%;}
+.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product .product-img{background: transparent;}
+.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product{height: 130px;width: 120px;}
+
+.pos .popups .modal-dialog.sh_modal_discount .sh_product_discount_popup .sh_discount_main_table .discount_table .discount_row.highlight td{font-weight: bold !important;}
+@if $sh_pos_theme_style == 'style_3' AND $sh_pos_product_style == 'style_3' AND $sh_display_product_image_name == 'product_name'{
+	.pos .product-list .product .product_ref_code .sh_ref_cd{bottom: 20px;}
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product{bottom: 20px;}
+}
+@if $sh_pos_theme_style == 'style_3' AND $sh_pos_product_style == 'style_3' AND $sh_display_product_image_name == 'image'{
+	.pos .product-list .product .product_ref_code .sh_ref_cd{bottom: 8px;}
+	.pos .popups .modal-dialog.bag_category_dialog .bag_category_popup .product{background: #fff;}
+}
+@if $sh_display_product_image_name == 'image'{
+	.pos .product-list .product .product_ref_code .sh_ref_cd{bottom: 8px;}
+}
+// @if $sh_display_product_image_name == 'product_name'{
+// 	.pos .product-list .product .product_ref_code .sh_ref_cd{bottom: 63px;}
+// }
+
+.pos .rightpane .product-list-container .product-list .product_list.sh_product_list .bag-tag,
+.pos .rightpane .product-list-container .product-list .product_list.sh_product_list .sh_has_variant_count{background: $sh_pos_primary_color;padding: 5px 8px;color: #fff;display: inline-flex;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;}
+.pos .rightpane .product-list-container .product-list .product_list.sh_product_list .sh_has_variant_count{font-size: 13px;cursor: pointer;}
+.pos .rightpane .product-list-container .product-list .product_list.sh_product_list .bag-tag svg{width: 12px;fill: #fff;margin-right: 5px;}
+.pos .rightpane .product-list-container .product-list .sh_product_list table td.bag_td,
+.pos .rightpane .product-list-container .product-list .product_list.sh_product_list .sh_pos_varint_list_view{text-align: center;}
+
+.pos .leftpane .order-container .order .summary.sh_order_summary .sh_order_summary_left_line{display: block;text-align: left;}
+.pos .leftpane .order-container .order .summary.sh_order_summary .sh_order_summary_left_line .totl_wght{padding-left: 10px;padding-right: 10px;font-size: 14px;color: #919191;font-weight: normal;padding-top: 5px;}
+
+
+/* custom checkbox design */
+
+.sh_custom_checkbox input{appearance: none;box-shadow: none;min-height: 0px !important;margin: 0px !important;padding: 0px !important;}
+.sh_custom_checkbox label.chk_lbl {position: relative;cursor: pointer;}
+
+.sh_custom_checkbox label.chk_lbl:before {content:'';-webkit-appearance: none;background-color: transparent;border: 2px solid $sh_pos_primary_color;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);padding: 7px;display: inline-block;position: relative;vertical-align: middle;cursor: pointer;margin-right: 5px;}
+
+.sh_custom_checkbox input:checked + label.chk_lbl:after {content: '';display: block;position: absolute;top: 3px;left: 7px;width: 3px; height: 9px;border: solid $sh_pos_primary_color;border-width: 0 2px 2px 0;transform: rotate(45deg);}
+
+.pos .top-content.sh_receipt_top_content{justify-content: flex-end;}
+.pos .receipt-screen .actions.sh_receipt_actions .notice.successful{color: $sh_pos_primary_color;}
+
+@if $sh_pos_body_background_type == 'bg_img'{
+	.pos .leftpane .order-container .order .sh_order_summary .sh_order_summary_left_line .items_counter b,
+	.pos .leftpane .order-container .order .summary.sh_order_summary .sh_order_summary_left_line .totl_wght,
+	.pos .leftpane .order-container .order .sh_order_summary .line.sh_left_line,
+	.pos .leftpane .order-container .order .sh_left_line .point_total,
+	.pos .leftpane .order-container .order .summary.sh_order_summary .line .subentry,
+	.pos .leftpane .order-container .order .sh_order_summary .sh_order_summary_line .entry.total .totl_vlm{color: #414141 !important;}
+}
+
+@media only screen and (max-width: 992px){
+	.pos .order .orderlines .orderline .info-list{margin-left: 0px;}
+	.pos .modal-dialog .sh_custom_checkbox input:checked + label.chk_lbl:after, .pos .modal-dialog .sh_custom_checkbox input:checked + label.chk_lbl:after{top: 4px !important;}
+	.pos .popup footer .button{margin-top: 10px;}
+}
+@media only screen and (max-width: 767.98px){
+	.pos .popups .modal-dialog .sh_warehouse_qty_popup header.title{white-space: nowrap;width: 87%;overflow: hidden;text-overflow: ellipsis;}
+	.pos .order .sh_order_summary .line.sh_order_summary_line{margin-bottom: 5px !important;text-align: left;}
+	.pos .leftpane .order-container .order .sh_order_summary{display: block;text-align: left;padding-bottom: 5px;}
+	.pos .order .summary.sh_order_summary .total,.pos .order .summary.sh_order_summary .line .subentry,
+	.pos .order .summary.sh_order_summary .line .subentry,.pos .leftpane .order-container .order .sh_order_summary .sh_order_summary_line .entry.total .totl_wght, .pos .leftpane .order-container .order .sh_order_summary .sh_order_summary_line .entry.total .totl_vlm{text-align: left;}
+	.pos .popups .modal-dialog .global_note_popup .footer,.pos .sh_signature_modal_dialog .order_exchange_popup .footer.sh_signature_footer,.pos .popups .modal-dialog .popup.line_note_popup .footer{display: block;}
+	.pos .popups .modal-dialog .popup.line_note_popup, .pos .popups .modal-dialog .popup.global_note_popup{height: 376px;max-height: 376px;}
+	.pos .sh_signature_modal_dialog .order_return_popup .footer.sh_signature_footer .sh_same_product_checkbox{float: unset !important;}
+	.pos .sh_lbl_modal_dialog .label_popup #label_value,.pos .modal-dialog .create_note_popup .note_body textarea#textarea_note{width: 92% !important;}
+	.pos .popups .sh_cash_in_out_option_modal_dialog .closing_balance_popup .footer.sh_closing_footer .closing_right_button .button{margin-right: 5px;}
+	.pos .sh_cash_in_out_option_modal_dialog .sh_payment_popup .main_div_sh_payment .main_div_sh_payment_footer .sh_lbl{font-size: 14px;}
+	.pos .popups .modal-dialog.sh_loyalty_point_popup .sh_main_body .sh_loyalty_mthd #payment_method_selection{width: 62px;}
+	.pos .ticket-screen.screen .orders .header-row .col{align-items: center;}
+	.pos .rightpane-header .breadcrumbs .breadcrumb .breadcrumb-button.breadcrumb-home{padding: 10px 12px;margin-top: 2px;}
+	.pos .popups .modal-dialog .popup.sh_whatsapp_popup .main-body{padding: 12px !important;}
+	.pos .popups .modal-dialog .popup.sh_whatsapp_popup .sh_whatsapp_msg textarea.wp_message{width: 70% !important;font-size: 14px;}
+	.pos .popups .modal-dialog .popup.sh_whatsapp_popup .sh_whatsapp_number > div{width: 56%;}
+	.pos .popups .modal-dialog .popup.sh_whatsapp_popup{height: 403px;max-height: 403px;}
+}
+.pos .pos-content .ticket-screen.screen .controls,.pos .pos-content .ticket-screen.screen .controls .buttons button.highlight{margin-right: 0px;}
+.pos .pos-content .ticket-screen.screen .screen-content ul.fields{z-index: 1;}
+.pos .sh_order_list .td_cancel_fronted_order .tool.sh_cncl_del_tool::after{width: 8em;}
+.pos .pos-content .splitbill-screen .order .orderline.selected .info-list em{font-size: 16px;}
+.pos .receipt-screen.screen .pos-receipt-container > div.pos-receipt{font-size: 15px;}
+.pos .orderlist-screen.screen .top-content.sh_top_content .sh_return_order_button,.pos .orderlist-screen.screen .top-content.sh_top_content button.button.sh_paid_order,
+.pos .orderlist-screen.screen .top-content.sh_top_content button.button.sh_posted_order,
+.pos .orderlist-screen.screen .top-content.sh_top_content button.button.sh_invoiced_order{border-color: $sh_pos_primary_color !important;
+    color: $sh_pos_primary_color !important;
+    background: #fff;
+    border-width: 2px;
+    // border-radius: 0;
+    // border-top-left-radius: 10px;
+    // border-bottom-right-radius: 10px;
+    transition: all 0.4s;}
+
+	.pos
+    .popups
+    .modal-dialog
+    .popup.close-pos-popup
+    .footer
+    .button:not(:last-child):hover,
+    .pos .orderlist-screen.screen .top-content.sh_top_content .button.sh_return_order_button:hover,
+    .pos .orderlist-screen.screen .top-content.sh_top_content button.button.sh_paid_order:hover,
+    .pos .orderlist-screen.screen .top-content.sh_top_content button.button.sh_posted_order:hover,
+    .pos .orderlist-screen.screen .top-content.sh_top_content button.button.sh_invoiced_order:hover,
+    .pos .orderlist-screen.screen .top-content.sh_top_content .button.sh_return_order_button.highlight,
+    .pos .orderlist-screen.screen .top-content.sh_top_content button.button.sh_paid_order.highlight,
+    .pos .orderlist-screen.screen .top-content.sh_top_content button.button.sh_posted_order.highlight,
+    .pos .orderlist-screen.screen .top-content.sh_top_content button.button.sh_invoiced_order.highlight {
+    background: $sh_pos_primary_color !important;
+    color: #fff !important;
+  }
+@media only screen and (max-width: 992px){
+	.pos .orderlist-screen.screen .top-content.sh_top_content .sh_return_order_button svg{margin-left: 0px;}
+}
+.pos .popups .modal-dialog .popup-number.popup-password {height: 400px;}
+
+.pos .loader .loader-feedback .message {
+	color: white;
+	text-indent: 0px !important;
+}
+
+.pos .product .product-img .price-tag.sh_has_variant{left: -8px;top: 10px;right: auto;background: $sh_pos_primary_color;padding: 3px 8px;font-weight: bold;font-size: 13px;line-height: 14px;z-index: 1;}
+.pos .sh_pos_variant_popup .sh_product_variants_popup .sh_modal_heading_alternative_product{background: $sh_pos_primary_color;color: #fff;}
+.pos .popups .modal-dialog.sh_pos_variant_popup .popup.sh_product_variants_popup:not(.sh_morethan_15_variants):not(.sh_lessthan_8_variants) main.main .product_alternative_list.sh_no_variant{max-height: 325px !important;height: 325px;}
+.pos .popups .modal-dialog.sh_pos_variant_popup .popup.sh_product_variants_popup:not(.sh_morethan_15_variants):not(.sh_lessthan_8_variants) main.main.sh_both_product{overflow: unset;height: 296px;max-height: 296px;}
+.pos .sh_pos_variant_popup .sh_product_variants_popup .sh_modal_heading_alternative_product{position: sticky;top: 0;z-index: 2;}
+.pos .popups .modal-dialog.sh_pos_variant_popup main.main.sh_both_product{overflow: unset;}
+.pos .popups .modal-dialog.sh_pos_variant_popup .popup.sh_product_variants_popup .main.sh_both_product .product-list.sh_have_alternative_product{height: 154px;max-height: 154px;}
+.pos .popups .modal-dialog.sh_pos_variant_popup .popup.sh_product_variants_popup:not(.sh_morethan_15_variants):not(.sh_lessthan_8_variants) main.main.sh_no_variant_main{overflow: unset !important;}
+.pos .popups .modal-dialog.sh_pos_variant_popup .popup.sh_product_variants_popup:not(.sh_morethan_15_variants):not(.sh_lessthan_8_variants) main.main.sh_no_variant_main .product_alternative_list.sh_no_variant{overflow: auto !important;height: 234px !important;max-height: 234px !important;}
+
+.pos .popups .sh_attribute_name_and_value .highlight {
+    background-color: $sh_pos_primary_color !important;color: #fff !important;
+}
+
+@media only screen and (max-width: 992px){
+	.pos .popups .sh_pos_variant_popup .product{width: 140px;}
+	.pos .pos-content .orderlist-screen.screen .screen-content .top-content.sh_top_content{width: 100%;overflow: auto;}
+	.pos .pos-content .orderlist-screen.screen .screen-content .top-content.sh_top_content::-webkit-scrollbar{height: 0px;width: 0px;}
+}
+@media only screen and (max-width: 767.98px){
+	.pos .sh_pos_variant_popup .sh_product_variants_popup .sh_header_right_searchbox > input{width: 22% !important;}
+	.pos .popups .modal-dialog.sh_pos_variant_popup .popup.sh_product_variants_popup .main.sh_both_product .product-list.sh_have_alternative_product{height: 170px !important;max-height: 170px !important;}
+	.pos .pos-content .orderlist-screen.screen .screen-content .top-content.sh_top_content button.button{height: auto !important;}
+}
+
+.pos .pos-content .orderlist-screen.screen .screen-content .top-content.sh_top_content .button.return_order_button.sh_return_order_button .order_return{fill: $sh_pos_primary_color;}
+.pos .pos-content .orderlist-screen.screen .screen-content .top-content.sh_top_content .button.return_order_button.sh_return_order_button:hover .order_return,
+.pos .pos-content .orderlist-screen.screen .screen-content .top-content.sh_top_content .button.return_order_button.sh_return_order_button.highlight .order_return{fill: #fff;}
+
+.pos .popups .sh_pos_purchasr_order .footer button.click_ok{
+	height:47px !important;
+	background:$sh_pos_primary_color !important; 
+	color: #fff !important
+}
+ 
+.pos .pos-content .leftpane .subpads .numpad.sh_product_numpad br{display: none !important;}
+  

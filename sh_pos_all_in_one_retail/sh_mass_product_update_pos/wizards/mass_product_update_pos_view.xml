@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Mass Product Update POS Wizard From View -->
+    <record id="sh_mass_product_update_pos_wizard_form" model="ir.ui.view">
+        <field name="name">sh.mass.product.update.pos.wizard.form</field>
+        <field name="model">sh.mass.product.update.pos.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Mass Product Update Pos">
+                <group>
+                    <group>
+                        <field name="name" />
+                        <field name="product_category" attrs="{'invisible':[('name','=',False)],'required':[('name','=',True)]}" />
+                        <field name="pos_categ_id" />
+                        <field name="update_categ_id" attrs="{'invisible':[('pos_categ_id','=',False)],'required':[('pos_categ_id','=',True)]}" />
+                        <field name="overwrite" attrs="{'invisible':[('pos_categ_id','=',False)]}" />
+                    </group>
+                </group>
+                <h6>Product Lines:</h6>
+                <field name="product_lines">
+                    <tree>
+                        <field name="name" />
+                        <field name="categ_id" />
+                        <field name="pos_categ_id" />
+                    </tree>
+                </field>
+
+                <footer>
+                    <button name="update_pos_category" string="Update" type="object" class="btn-primary" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Mass Product Update POS Wizard Action -->
+    <record id="sh_mass_product_update_pos_wizard_action" model="ir.actions.act_window">
+        <field name="name">Mass Product Update POS Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sh.mass.product.update.pos.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sh_mass_product_update_pos_wizard_form" />
+        <field name="target">new</field>
+    </record>
+
+    <!-- Mass Product Update POS Wizard Action Menu -->
+    <record id="sh_mass_product_update_pos_wizard_action_new" model="ir.actions.act_window">
+        <field name="name">Mass Product Update</field>
+        <field name="res_model">sh.mass.product.update.pos.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sh_mass_product_update_pos_wizard_form" />
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="product.model_product_template" />
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>

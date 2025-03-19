@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'purchase'), ('name', '=', 'email_template_edi_purchase_done')]"/>
+            </function>
+            <value eval="{'noupdate': False}"/>
+        </function>
+
+        <record id="purchase.email_template_edi_purchase_done" model="mail.template">
+            <field name="additional_partners">${object.partner_id.child_ids.ids}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Dear ${object.partner_id.name}
+        % if object.partner_id.parent_id:
+            (${object.partner_id.parent_id.name})
+        % endif
+        <br/><br/>
+        Here is in attachment a purchase order <strong>${object.name}</strong>
+        % if object.partner_ref:
+            with reference: ${object.partner_ref}
+        % endif
+        amounting in <strong>${format_amount(object.amount_total, object.currency_id)}</strong>
+        from ${object.company_id.name}.
+        <br/><br/>
+        % if object.date_planned:
+            The receipt is expected 2 days after this purchase order is sent.
+            <br/><br/>
+            Please deliver to the address below
+            <br/>
+            ${object.picking_type_id.warehouse_id.partner_id.street or object.picking_type_id.warehouse_id.partner_id.display_name}
+        % endif
+    </p>
+</div></field>
+        </record>
+
+    </data>
+</odoo>

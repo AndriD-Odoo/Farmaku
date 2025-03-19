@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+
+        <record id="report_hbt_view_search" model="ir.ui.view">
+            <field name="name">report.hbt.search</field>
+            <field name="model">report.hbt</field>
+            <field name="arch" type="xml">
+                <search string="Report HBT">
+                    <field name="default_code"/>
+                    <field name="barcode"/>
+                    <field name="name"/>
+                    <field name="brand_id"/>
+                    <field name="categ_id"/>
+                    <field name="uom_po_id"/>
+                    <field name="factor_inv"/>
+                    <field name="cost"/>
+                    <field name="discount"/>
+                    <field name="lst_price"/>
+                    <field name="margin"/>
+                    <field name="partner_id"/>
+                    <field name="order_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="report_hbt_view_tree" model="ir.ui.view">
+            <field name="name">report.hbt.tree</field>
+            <field name="model">report.hbt</field>
+            <field name="arch" type="xml">
+                <tree string="Report HBT" create="false" edit="false" delete="false">
+                    <field name="default_code" readonly="1"/>
+                    <field name="barcode" readonly="1"/>
+                    <field name="name" readonly="1"/>
+                    <field name="brand_id" readonly="1"/>
+                    <field name="categ_id" readonly="1"/>
+                    <field name="uom_po_id" readonly="1"/>
+                    <field name="factor_inv" readonly="1"/>
+                    <field name="cost" readonly="1" sum="Total Cost"/>
+                    <field name="discount" readonly="1"/>
+                    <field name="lst_price" readonly="1" sum="Total Sales Price"/>
+                    <field name="margin" readonly="1" sum="Total Margin"/>
+                    <field name="partner_id" readonly="1"/>
+                    <field name="order_id" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

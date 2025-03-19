@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_report_wizard_all,stock_report_wizard all,model_stock_report_wizard,base.group_user,1,1,1,1
+access_stock_movement_report_wizard_all,stock_movement_report_wizard all,model_stock_movement_report_wizard,base.group_user,1,1,1,1
+access_orderpoint_report_wizard_all,orderpoint_report_wizard all,model_orderpoint_report_wizard,base.group_user,1,1,1,1
+access_stock_rule_all,stock_rule all,stock.model_stock_rule,base.group_user,1,1,0,0
+access_stock_picking_box_all,stock_picking_box all,model_stock_picking_box,base.group_user,1,1,1,1
+access_stock_picking_box_line_all,stock_picking_box_line all,model_stock_picking_box_line,base.group_user,1,1,1,1
+access_stock_picking_box_detail_all,stock_picking_box_detail all,model_stock_picking_box_detail,base.group_user,1,1,1,1
+access_stock_report_all_all,stock_report_all all,model_stock_report_all,base.group_user,1,1,1,1

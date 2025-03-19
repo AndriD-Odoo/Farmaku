@@ -1,0 +1,16 @@
+<odoo>
+    <data>  
+        <record id="model_uom_write_master_uom" model="ir.actions.server">
+            <field name="name">Write Master UoM</field>
+            <field name="model_id" ref="uom.model_uom_uom"/>
+            <field name="binding_model_id" ref="uom.model_uom_uom"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+for rec in records:
+    if rec:
+        rec.action_write_uom()
+            </field>
+        </record>
+    </data>
+</odoo>

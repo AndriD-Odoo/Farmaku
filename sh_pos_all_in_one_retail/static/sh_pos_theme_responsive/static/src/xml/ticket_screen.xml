@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-name="TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('controls')]" position="replace">
+			<div class="controls">
+				<SearchBar config="searchBarConfig" placeholder="'Search Tickets...'" />
+                <div class="buttons">
+                    <button class="discard" t-on-click="trigger('close-screen')">
+	                    <t t-if="!env.isMobile">
+	                    	Discard
+                    	</t>
+                    	<t t-else="">
+                    		<i class="fa fa-undo"></i>
+                    	</t>
+                    </button>
+                    <button t-if="showNewTicketButton" class="highlight" t-on-click="createNewOrder">
+                    	<t t-if="!env.isMobile">
+                    		New Order
+                    	</t>
+                    	<t t-else="">
+                    		<i class="fa fa-plus"></i>
+                    	</t>
+                    </button>
+                </div>
+            </div>
+		</xpath>
+	</t>
+</templates>

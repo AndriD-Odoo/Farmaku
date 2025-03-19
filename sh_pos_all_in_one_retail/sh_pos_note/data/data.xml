@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Sequences for Order note -->
+    <record id="seq_order_note" model="ir.sequence">
+        <field name="name">Note</field>
+        <field name="code">sh.pos.note</field>
+        <field name="prefix">NOTE</field>
+        <field name="padding">3</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

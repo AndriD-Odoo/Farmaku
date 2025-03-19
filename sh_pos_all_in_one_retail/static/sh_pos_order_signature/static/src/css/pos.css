@@ -1,0 +1,159 @@
+div.only_sign {
+    height: 282px !important;
+}
+div.not_date {
+    height: 345px !important;
+}
+div.not_name {
+    height: 350px !important;
+}
+div.not_name_padding {
+    padding-top: 9px !important;
+}
+.main_div_signature {
+    font-weight: bold;
+    font-size: 16px;
+}
+.signature_name_date {
+    text-align: center;
+    padding-top: 15px !important;
+}
+#sh_name {
+    width: 222px;
+}
+.date_div {
+    margin-top: 10px;
+}
+#sh_date {
+    width: 222px;
+    margin-left: 8px;
+}
+.signature_name_date .name_div input {
+    margin-left: 10px !important;
+    font-size: 16px !important;
+}
+.signature_name_date .date_div input {
+    margin-left: 15px !important;
+    font-size: 16px !important;
+}
+.signature_detail_div #signature canvas.jSignature {
+    height: 110px !important;
+    width: 56% !important;
+    background: #fff !important;
+    box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset !important;
+}
+.sh_signature_footer .button.confirm,
+.sh_signature_footer .button.cancel,
+.sh_signature_footer .button.clear {
+    font-size: 15px !important;
+}
+.sh_signature_popup .title {
+    margin-bottom: 25px !important;
+}
+.pos-receipt-container .sh_receipt_sign,
+.pos-receipt-container .sh_receipt_sign_name,
+.pos-receipt-container .sh_receipt_sign_date {
+    text-align: center !important;
+}
+.pos-receipt-container .sh_receipt_sign {
+    height: 90px !important;
+    background: #fff !important;
+    box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset !important;
+    width: 55%;
+    margin: 0px auto !important;
+    margin-top: 15px !important;
+    margin-bottom: 12px !important;
+}
+.pos-receipt-container .sh_receipt_sign img {
+    height: 80px !important;
+    width: 150px !important;
+}
+
+.sh_signature_popup {
+    width: 500px !important;
+    height: 400px !important;
+}
+.sh_signature_footer {
+    position: absolute !important;
+    bottom: 0 !important;
+}
+
+.pos-receipt .pos-receipt-order-data {
+    text-align: center;
+    font-size: 16px !important;
+    margin-top: 12px !important;
+}
+
+@media only screen and (max-width: 1024px) {
+    .sh_signature_popup {
+        top: 35% !important;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .pos .popup.sh_signature_popup .sh_signature_footer .button {
+        width: 80px !important;
+    }
+    .sh_signature_modal_dialog {
+        padding: 0px !important;
+    }
+    .sh_signature_popup .title {
+        margin-bottom: 15px !important;
+    }
+}
+@media only screen and (max-width: 576px) and (min-width: 411px) {
+    .signature_detail_div #signature canvas.jSignature {
+        width: 94% !important;
+    }
+    .sh_signature_main_body {
+        padding: 10px !important;
+    }
+    .signature_name_date .name_div #sh_name,
+    .signature_name_date .date_div #sh_date {
+        width: 224px !important;
+    }
+}
+@media only screen and (max-width: 375px) and (min-width: 361px) {
+    .signature_detail_div #signature canvas.jSignature {
+        width: 92% !important;
+    }
+    .sh_signature_main_body {
+        padding: 10px !important;
+    }
+    .signature_name_date .name_div #sh_name,
+    .signature_name_date .date_div #sh_date {
+        width: 193px !important;
+    }
+}
+@media only screen and (max-width: 360px) and (min-width: 321px) {
+    .signature_detail_div #signature canvas.jSignature {
+        width: 92% !important;
+    }
+    .sh_signature_main_body {
+        padding: 10px !important;
+    }
+    .signature_name_date .name_div #sh_name,
+    .signature_name_date .date_div #sh_date {
+        width: 180px !important;
+    }
+}
+@media only screen and (max-width: 320px) {
+    .signature_detail_div #signature canvas.jSignature {
+        width: 92% !important;
+    }
+    .sh_signature_main_body {
+        padding: 10px !important;
+    }
+    .signature_name_date .name_div #sh_name,
+    .signature_name_date .date_div #sh_date {
+        width: 149px !important;
+    }
+    .sh_signature_popup .title {
+        margin-bottom: 15px !important;
+    }
+    .pos .popup.sh_signature_popup .sh_signature_footer .button {
+        width: 68px !important;
+    }
+    .sh_signature_popup {
+        top: 45% !important;
+    }
+}

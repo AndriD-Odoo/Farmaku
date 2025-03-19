@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="QuickPrintButton" owl="1">
+        <div class="control-button" t-on-click="trigger('click-print-receipt')">
+            <a style="display: flex;" class="btn btn-primary">
+        		<div class="sh_icon_img" style="display: flex;align-items: center;margin-right: 10px;">
+                	<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117.02 121"><title>Print receipt</title><path d="M116,69H24s-7,0-8,8v38s-1,8,10,8v10h88V123h3s6-1,6-7V77S124,69,116,69Zm-8,59H31v-5h77Zm10-13.93a3.93,3.93,0,0,1-3.93,3.93H24.93A3.93,3.93,0,0,1,21,114.07V77.93A3.93,3.93,0,0,1,24.93,74h89.14A3.93,3.93,0,0,1,118,77.93Z" transform="translate(-15.98 -12)"/><path d="M84,84V99h24V84Zm19,10H89V89h14Z" transform="translate(-15.98 -12)"/><path d="M31,65V25s1-12,13-13h74s14,0,15,15c0,0-1,13-13,14h-7V36h7s6,0,8-9c0,0,0-10-10-10,0,0-8,0-10,9V65h-5V26s0-6,4-9H45s-7,0-9,9V65Z" transform="translate(-15.98 -12)"/><rect x="32.02" y="14" width="48" height="5"/><rect x="30.02" y="28" width="29" height="5"/><rect x="68.02" y="28" width="10" height="5"/><rect x="68.02" y="38" width="10" height="5"/><rect x="68.02" y="48" width="10" height="5"/><rect x="30.02" y="38" width="19" height="5"/><rect x="30.02" y="48" width="24" height="5"/></svg>
+                </div>
+                <div class="sh_text_span">
+               		<span class="sh_control_btn_span">Print Receipt</span>
+               	</div>
+        	</a>
+        </div>
+    </t>
+    <t t-name="ShBillScreen" owl="1">
+        <div class="receipt-screen screen">
+            <div class="screen-content">
+                <div class="top-content">
+                    <span class="button back" t-on-click="confirm">
+                        <i class="fa fa-angle-double-left"></i>
+                        <span></span>
+                        <span>Back</span>
+                    </span>
+                    <div class="top-content-center">
+                        <h1>Bill Printing</h1>
+                    </div>
+                    <span class="button next highlight" t-on-click="confirm">
+                        <span>Ok</span>
+                        <span></span>
+                        <i class="fa fa-angle-double-right"></i>
+                    </span>
+                </div>
+                <div class="centered-content">
+                    <div class="button print" t-on-click="printReceipt">
+                        <i class="fa fa-print"></i>
+                        <span></span>
+                        <span>Print</span>
+                    </div>
+                    <div class="pos-receipt-container">
+                        <OrderReceipt order="currentOrder" isBill="true" t-ref="order-receipt" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

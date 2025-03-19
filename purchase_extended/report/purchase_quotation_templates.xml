@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_purchasequotation_document" inherit_id="purchase.report_purchasequotation_document">
+            <xpath expr="//div[@t-field='o.dest_address_id']" position="after">
+                <span><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="o.company_id.vat"/></span>
+                <br/>
+                <span>SIA</span>: <span t-field="o.picking_type_id.warehouse_id.sia"/>
+            </xpath>
+            <xpath expr="//th[@name='th_description']" position="attributes">
+                <attribute name="class">text-center</attribute>
+            </xpath>
+            <xpath expr="//th[@name='th_quantity']" position="attributes">
+                <attribute name="class">text-center</attribute>
+            </xpath>
+            <xpath expr="//th[@name='th_expected_date']" position="replace"/>
+            <xpath expr="//t[@t-if='not order_line.display_type']/td[2]" position="replace"/>
+        </template>
+
+        <template id="report_purchasequotation_document2" inherit_id="purchase_stock.report_purchasequotation_document">
+            <xpath expr="//div[@t-if='o.picking_type_id and o.picking_type_id.warehouse_id']" position="after">
+                <span><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="o.company_id.vat"/></span>
+                <br/>
+                <span>SIA</span>: <span t-field="o.picking_type_id.warehouse_id.sia"/>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

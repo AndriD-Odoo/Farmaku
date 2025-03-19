@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_wizard,sale_wizard,model_sale_wizard,base.group_user,1,1,1,1
+access_notif_import,notif_import,model_notif_import,base.group_user,1,1,1,1
+access_status_mkp,status_mkp,model_status_mkp,base.group_user,1,1,1,1
+access_notif_import_line,notif_import_line,model_notif_import_line,base.group_user,1,1,1,1
+access_shop_name_conf,shop_name_conf,model_shop_name_conf,base.group_user,1,1,1,1

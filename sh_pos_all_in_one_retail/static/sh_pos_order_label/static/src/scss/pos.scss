@@ -1,0 +1,43 @@
+.line_label {
+    margin: 6px 0px 6px 0px !important;    
+    text-align: center;    
+    margin: 0px;
+    float: left;
+}
+.line_label span {    
+    padding: 0 10px;
+    font-size: 14px;
+}
+.pos-receipt-container .line_label{
+	line-height: 0.1em;
+    margin: 0px;
+    float: left;
+    border-bottom: 1px solid #000;
+    text-align: center;
+    margin: 6px 0px 6px 0px !important;
+    width:100%;
+}
+.pos-receipt-container .line_label span{
+	background: #fff;
+	padding: 0 10px;
+    font-size: 14px;
+}
+@media only screen and (max-width: 767.98px) {
+    .sh_lbl_modal_dialog .label_popup {
+        max-width: 320px !important;
+    }
+    .sh_lbl_modal_dialog {
+        padding: 10px 0px;
+    }
+}
+.sh_lbl_modal_dialog .label_popup #label_value {
+    font-size: 15px;
+    resize: none;
+    width: 70%;
+}
+.label_item {
+    padding: 5px;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+}

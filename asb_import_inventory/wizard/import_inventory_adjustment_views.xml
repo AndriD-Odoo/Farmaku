@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="act_import_inventory_adjustment" model="ir.actions.act_window">
+        <field name="name">Import Inventory Adjustment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">import.inventory.adjustment</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_import_inventory_adjustment" model="ir.ui.view">
+        <field name="name">import.inventory.adjustment</field>
+        <field name="model">import.inventory.adjustment</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form string="Import Inventory Adjustment" version="7.0">
+                <p>
+                    <field name="name" invisible="1" />
+                        Klik tombol di bawah untuk import data Inventory Adjustment.
+                </p>
+                <footer>
+                    <button string="Import" name="confirm_button" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_import" string="Import" parent="stock.menu_stock_config_settings" groups="stock.group_stock_manager" sequence="99"/>
+    <menuitem id="menu_import_inventory_adjustment" parent="menu_import" name="Import Inventory Adjustments" action="act_import_inventory_adjustment"/>
+
+</odoo>

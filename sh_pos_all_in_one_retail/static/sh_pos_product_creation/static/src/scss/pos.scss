@@ -1,0 +1,322 @@
+.pos .popup .product-title{
+	text-align:center;
+}
+.pos .popup .pos_product_footer{
+	width:100%;
+}
+
+.create_product_popup{
+text-align:left !important;
+// padding:0px 20px !important;
+height:auto;
+padding-bottom:0px !important;
+}
+
+.create_product_popup label{display: block;margin-bottom: 10px;}
+.create_product_popup input.name{
+	width: 100%!important;
+	min-height:35px;
+	height:35px;
+	background-color: #E0E0E0;
+ }
+ .create_product_popup .checkbox{
+ display:inline !important;
+ }
+ .create_product_popup .checkbox .checkbox-item{
+	width:70% !important;
+	margin-left:97px;
+	margin-bottom:0px;
+}
+ .create_product_popup label{
+ 	display:inline !important;font-size: 15px;
+ }
+.create_product_popup input.sold,
+.create_product_popup input.purchase {
+	width: 17px !important;
+	height: 17px !important;
+	min-height: auto !important;
+	margin: 20px 0;
+	vertical-align: middle;
+	margin-right: 20px;   
+	margin-left: 5px;
+	min-height:35px;
+	height:35px;
+	display:inline!important;
+}
+.create_product_popup label:nth-child(5),.create_product_popup label:nth-child(7){display: inline !important;}
+.create_product_popup .produc_type{
+    width: 100% !important;
+    margin-bottom: 10px;
+    font-size:15px;
+    min-height:35px !important;
+	height:35px !important;
+	border-color: #ccc;
+    background: #fff;border-radius: 3px;
+	/*background-color: #E0E0E0;*/
+}
+.create_product_popup #product_category{
+    min-height:35px !important;
+	height:35px !important;
+    width: 100% !important;
+    margin-bottom: 10px;
+    font-size:15px;
+    border-color: #ccc;
+    background: #fff;border-radius: 3px;
+	/*background-color: #E0E0E0;*/
+
+}
+.create_product_popup #product_category:focus-visible,.create_product_popup #product_category:focus,
+.create_product_popup .produc_type:focus-visible,.create_product_popup .produc_type:focus{outline: 0px;}
+
+.create_product_popup .pos_category{
+	min-height:35px !important;
+	height:35px !important;
+    width: 100% !important;
+    margin-bottom:0px;
+    font-size:15px;
+    border-color: #ccc;
+    background: #fff;border-radius: 3px;
+}
+.create_product_popup .pos_category:focus-visible{outline: none;}
+.create_product_popup .reference{
+	width:100% !important;
+	margin-bottom:10px !important;
+	min-height:35px !important;
+	height:35px !important;
+}
+.create_product_popup .barcode{
+	width:100% !important;
+	margin-bottom:10px !important;
+	min-height:35px !important;
+	height:35px !important;
+}
+.create_product_popup #price{
+	width:100% !important;
+	margin-bottom:10px !important;
+	min-height:35px !important;
+	height:35px !important;
+}
+.create_product_popup #cost{
+	width:100% !important;
+	margin-bottom:10px !important;
+	min-height:35px !important;
+	height:35px !important;
+}
+.create_product_popup .note{
+	width:96% !important;
+	min-height:35px !important;
+	height:35px !important;
+}
+.create_product_popup .cancel{
+// width:30% !important;
+}
+.create_product_popup .Create{
+// width:30% !important;
+}
+.create_product_popup .button{
+right:50px;
+}
+.create_product_popup .product-item{
+	display:flex;
+	justify-content:space-between;
+
+
+}
+.create_product_popup .product-item > div{
+width:49%;
+}
+.create_product_popup .pos-cat{
+	display:flex;
+	justify-content:space-between;
+} 
+.create_product_popup .pos-cat > div{
+width:49% !important;
+}
+.create_product_popup .pos-cat .cat-create{
+ display:flex;
+ margin-top:21px;
+}
+.create_product_popup .pos-cat .cat-create .category_name{
+	height: 35px !important;
+    min-height: 35px !important;
+    font-size: 15px;
+    border-right:1px solid transparent;
+}
+.create_product_popup .pos-cat .cat-create #add_category{
+	/*border-left-radius: 2px solid transparent;*/
+	font-size:15px;
+	color:white;
+	/*background:rgba(00,00,00,0.5);*/
+	display:none;
+}
+.create_product_popup .internal-ref{
+	display:flex;
+	justify-content:space-between;
+	margin-top:10px;
+}
+.create_product_popup .internal-ref > div{
+width:49% !important;
+}
+.create_product_popup .sale-cost{
+	display:flex;
+	justify-content:space-between;
+}
+.create_product_popup .sale-cost div{
+width:49% !important;
+}
+
+@media screen and (max-width:550px){					
+
+	.create_product_popup{
+	text-align:left !important;
+	}
+	 .create_product_popup .checkbox{
+	 display:block!important;
+	 }
+	.create_product_popup .checkbox .checkbox-item{
+		 width:100% !important;
+		 margin-left:0px;
+		 margin-bottom:0px;
+		 margin-top:0px !important;
+		 display:block;
+	 }
+	 .create_product_popup input.sold, .create_product_popup input.purchase{
+		 margin: 10px 0;
+	 }
+	 .create_product_popup .produc_type{
+		width: 100% !important;
+		margin-bottom: 10px;
+		margin:5px 0px 0px 0px;
+		font-size:15px;
+		min-height:35px !important;
+		height:35px !important;
+		border-color: #ccc;
+	    /* background-color:#E0E0E0;*/
+	}
+	.create_product_popup .product_category{
+		min-height:35px !important;
+		height:35px !important;
+		width: 100% !important;
+		margin-bottom: 10px;
+		margin:5px 0px 0px 0px;
+		font-size:15px;
+		border-color: #ccc;
+	    /* background-color:#E0E0E0;*/
+	
+	}
+	.create_product_popup .pos_category{
+		min-height:35px !important;
+		height:35px !important;
+		width: 100% !important;
+		margin-bottom:0px;
+		font-size:15px;
+		border-color: #ccc;
+		background: #fff;
+		margin:5px 0px 0px 0px;
+	}
+	.create_product_popup .reference{
+		width:100% !important;
+		margin-bottom:10px !important;
+		min-height:35px !important;
+		height:35px !important;
+		margin:5px 0px 0px 0px;
+	}
+	.create_product_popup .barcode{
+		width:100% !important;
+		margin-bottom:10px !important;
+		min-height:35px !important;
+		height:35px !important;
+		margin:5px 0px 0px 0px;
+	}
+	.create_product_popup .price{
+		width:100% !important;
+		margin-bottom:10px !important;
+		min-height:35px !important;
+		height:35px !important;
+		margin:5px 0px 0px 0px;
+	}
+	.create_product_popup .cost{
+		width:100% !important;
+		margin-bottom:10px !important;
+		min-height:35px !important;
+		height:35px !important;
+		margin:5px 0px 0px 0px;
+	}
+	.create_product_popup .note{
+		width:93% !important;
+		min-height:35px !important;
+		height:35px !important;
+		margin:5px 0px 0px 0px;
+	}
+	 .create_product_popup .product-item{
+		display:block;
+	
+	}
+	.create_product_popup .product-item > div{
+	width:100%;
+	margin-bottom:10px;
+	}
+	.create_product_popup .pos-cat{
+		display:block;
+	} 
+	.create_product_popup .pos-cat > div{
+	width:100% !important;
+	}
+	.create_product_popup .pos-cat .cat-create .category_name{
+		height: 35px !important;
+		min-height: 35px !important;
+		font-size: 15px;
+		border-right:1px solid transparent;
+		width:100% !important;
+	}
+	.create_product_popup .internal-ref{
+		display:block;
+	}
+	.create_product_popup .internal-ref > div{
+	width:100% !important;
+	}
+	.create_product_popup .sale-cost{
+		display:block;
+	}
+	.create_product_popup .sale-cost> div{
+	width:100% !important;
+	}
+	.popups .modal-dialog{
+	padding:0 !important;
+	}
+}
+
+.pos-topheader .pos-rightheader button.create_product{font-size: 15px;
+	color: $sh_pos_primary_color !important;
+	align-items: center;
+	margin: 8px 0px;
+	vertical-align: middle;
+	background-color: #fff !important;
+}
+	
+	.pos .popup .pos_product_footer .button{margin: 12px 12px 12px 0px !important;font-size: 15px !important;}	
+
+
+
+
+
+
+
+.create_product_popup .barcode_content_part #sh_add_barcode{
+	color: $sh_pos_primary_color !important;;
+}
+.sh_create_product_popup .barcode_content_part .action_barcode .sh_remove_barcode, .sh_create_product_popup .barcode_content_part .sh_save_barcode{
+	display: none;
+	color: $sh_pos_primary_color !important;
+}
+.sh_create_product_popup .barcode_content_part {margin-top: 10px;}
+.sh_create_product_popup .barcode_content_part .sh_barcode_ids .sh_barcode_data{font-size: 14px;border: 1px solid #ccc;padding: 2px 4px;}
+@if $sh_pos_button_style=="style_1" {
+	.sh_create_product_popup .barcode_content_part .sh_barcode_ids .sh_barcode_data{border-radius: 5px;}
+}
+@if $sh_pos_button_style=="style_2"{
+	.sh_create_product_popup .barcode_content_part .sh_barcode_ids .sh_barcode_data{border-radius: 10px 0px 10px 0px;}
+}
+@if $sh_pos_button_style=="style_3" {
+	.sh_create_product_popup .barcode_content_part .sh_barcode_ids .sh_barcode_data{border-radius: 0px;}
+}

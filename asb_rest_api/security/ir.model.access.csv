@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cancel_reason,access_cancel_reason,model_cancel_reason,base.group_user,1,1,1,1
+access_product_rule_sale,access_product_rule_sale,model_product_rule_sale,base.group_user,1,1,1,1
+access_log_import_pharmacyproduct,access_log_import_pharmacyproduct,model_log_import_pharmacyproduct,base.group_user,1,1,1,1
+access_sync_pharmacies_wizard,access_sync_pharmacies_wizard,model_sync_pharmacies_wizard,base.group_user,1,1,1,1
+access_connector_farmaku,access_connector_farmaku,model_connector_farmaku,base.group_user,1,1,1,1
+access_cancel_reason_wizard,access_cancel_reason_wizard,model_cancel_reason_wizard,base.group_user,1,1,1,1
+access_import_failed_order_wizard_all,access_import_failed_order_wizard all,model_import_failed_order_wizard,base.group_user,1,1,1,1
+access_sync_stock_log_all,access_sync_stock_log,model_sync_stock_log,base.group_user,1,1,1,1
+access_product_composition_line_all,access_product_composition_line,model_product_composition_line,base.group_user,1,1,1,1

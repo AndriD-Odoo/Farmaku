@@ -1,0 +1,6 @@
+.pos .subwindow .subwindow-container-fix {
+    overflow-x: auto !important;
+}
+.inner_data_table_row {
+	display: none;
+}

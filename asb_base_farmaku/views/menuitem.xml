@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+        <menuitem 
+            id="menu_farmaku"
+            name="Farmaku"
+            parent="stock.menu_stock_root"
+        />
+
+        <menuitem 
+            id="menu_master_farmaku"
+            name="Master Farmaku"
+            parent="menu_farmaku"
+        />
+
+        <menuitem 
+            id="menu_product_farmaku"
+            name="Product Farmaku"
+            parent="menu_farmaku"
+        />
+
+        <!-- <menuitem 
+            id="menu_master_farmaku"
+            name="Master Farmaku"
+            parent="stock.menu_stock_config_settings"
+        />
+
+        <menuitem 
+            id="menu_product_farmaku"
+            name="Product Farmaku"
+            parent="stock.menu_stock_inventory_control"
+        /> -->
+
+    </data>
+</odoo>

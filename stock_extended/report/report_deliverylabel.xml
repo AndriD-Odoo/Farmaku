@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_deliverylabel_document">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+            <t t-if="not company">
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+            <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+
+            <div class="page">
+                <div class="oe_structure"/>
+                <div style="font-size: 14px !important;" t-attf-class="article o_report_layout_boxed o_company_#{company.id}_layout" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                    <table class="table table-sm o_main_table m-0 table-borderless border border-right-0 border-left-0 border-top-0 border-bottom-0">
+                        <br/>
+                        <tr>
+                            <td class="text-left">
+                                <strong><span style="font-size:30px;"><span t-field="o.name"/></span></strong>
+                            </td>
+                            <td class="text-right">
+                                <strong><span style="font-size:15px;"><span t-field="box_line.name"/></span></strong>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        <table class="table table-sm o_main_table" style="border-collapse:collapse; border:none;">
+                            <tr style="border-top: 1px solid black; border-bottom: 1px solid black;">
+                                <td colspan="2" style="border:none;">
+                                    From:
+                                    <div>
+                                        <strong><span t-field="o.company_id"/>, <span t-field="o.picking_type_id.warehouse_id"/></strong>
+                                    </div>
+                                    <div t-if="o.picking_type_id.warehouse_id">
+                                        <div t-field="o.picking_type_id.warehouse_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                    </div>
+                                    <br t-else=""/>
+                                    <span t-if="o.picking_type_id.warehouse_id.sia">SIA: <span t-field="o.picking_type_id.warehouse_id.sia"/></span>
+                                    <br t-if="o.picking_type_id.warehouse_id.sia"/>
+                                    <span>PIC</span>: <span t-field="o.sender_pic_id.name"/> <span t-field="o.sender_pic_id.phone"/>
+                                    <br t-if="o.sender_pic_id.email"/>
+                                    <span t-field="o.sender_pic_id.email"/>
+                                </td>
+                            </tr>
+                            <tr style="border-top: 1px solid black; border-bottom: 1px solid black;">
+                                <td colspan="2" style="border:none;">
+                                    To:
+                                    <div><strong><span t-field="o.partner_id"/></strong></div>
+                                    <div t-field="o.partner_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                    <span t-if="o.partner_id.vat"><t t-esc="o.company_id.country_id.vat_label or 'NPWP'"/>: <span t-field="o.partner_id.vat"/></span>
+                                    <br t-if="o.partner_id.vat"/>
+                                    <span>PIC</span>: <span t-field="o.receiver_pic_id.name"/> <span t-field="o.receiver_pic_id.phone"/>
+                                    <br t-if="o.receiver_pic_id.email"/>
+                                    <span t-field="o.receiver_pic_id.email"/>
+                                </td>
+                            </tr>
+                            <tr colspan="2" style="border-top: 1px solid black; border-bottom: 1px solid black;">
+                                <td style="border:none;">
+                                    No. Resi: <span t-field="o.carrier_tracking_ref"/>
+                                    <br/>
+                                    Courier: <span t-field="o.shipping_service_name"/>
+                                </td>
+                            </tr>
+                            <tr style="border-top: 1px solid black;">
+                                <td style="border-top: 1px solid black; width:60%;">
+                                    <strong>Total Produk: </strong><span t-esc="box_line.item_count"/>
+                                </td>
+                                <td style="border-top: 1px solid black; width:40%;">
+                                    <strong>Total Units: </strong><span t-esc="box_line.qty"/>
+                                </td>
+                            </tr>
+                            <t t-set="total_splitted" t-value="len(box_line.get_splitted_item_details())"/>
+                            <t t-set="current_splitted" t-value="0"/>
+                            <t t-foreach="box_line.get_splitted_item_details()" t-as="item_details" class="table table-sm o_main_table" style="border-collapse:collapse; border:none; margin-top='0px'; page-break-inside: avoid;">
+                                <t t-set="current_splitted" t-value="current_splitted + 1"/>
+                                <!-- hanya tampilkan 3 product -->
+                                <tr t-if="current_splitted == 1" style="border-top: 1px solid black; border-bottom: 1px solid black;">
+                                    <td style="border-top: 1px solid black;" class="text-center">
+                                        <strong>Product</strong>
+                                    </td>
+                                    <td style="border-top: 1px solid black;" class="text-center">
+                                        <strong>Qty</strong>
+                                    </td>
+                                </tr>
+                                <t t-set="current_row" t-value="0"/>
+                                <!-- hanya tampilkan 3 product -->
+                                <t t-if="current_splitted == 1" t-foreach="item_details" t-as="item_detail">
+                                    <t t-set="current_row" t-value="current_row + 1"/>
+                                    <tr>
+                                        <td style="border:none;">
+                                            <span t-field="item_detail.name"/>
+                                            <br t-if="current_row % 3 == 0 and current_splitted != total_splitted"/>
+                                            <span t-if="current_row % 3 == 0 and current_splitted != total_splitted">.....</span>
+                                        </td>
+                                        <td style="border:none;" class="text-right">
+                                            <span t-field="item_detail.qty"/>
+                                            <span t-field="item_detail.uom_id.name" groups="uom.group_uom"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="oe_structure"/>
+            </div>
+        </template>
+
+        <template id="report_deliverylabel">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-foreach="o.box_ids.lines" t-as="box_line">
+                        <t t-call="stock_extended.report_deliverylabel_document" t-lang="o.partner_id.lang"/>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="paperformat_delivery_label" model="report.paperformat">
+            <field name="name">Delivery Label</field>
+            <field name="default" eval="False" />
+            <field name="format">custom</field>
+            <field name="page_height">150</field>
+            <field name="page_width">100</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_report_deliverylabel" model="ir.actions.report">
+            <field name="name">Delivery Label</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">stock_extended.report_deliverylabel</field>
+            <field name="report_file">stock_extended.report_deliverylabel</field>
+            <field name="print_report_name">'Delivery Label - %s - %s' % (object.partner_id.name or '', object.name)</field>
+            <field name="binding_model_id" ref="model_stock_picking"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="paperformat_delivery_label"/>
+        </record>
+
+    </data>
+</odoo>

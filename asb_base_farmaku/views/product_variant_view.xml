@@ -1,0 +1,172 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_variant_tree">
+            <field name="name">product.variant.tree</field>
+            <field name="model">product.variant</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_variant_form">
+            <field name="name">product.variant.form</field>
+            <field name="model">product.variant</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_variant_action">
+            <field name="name">Product Variant</field>
+            <field name="res_model">product.variant</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_product_variant"
+            name="Product Variant"
+            parent="menu_product_farmaku"
+            action="product_variant_action"
+        />
+
+        <record model="ir.ui.view" id="product_group_tree">
+            <field name="name">product.group.tree</field>
+            <field name="model">product.group</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="product_variant1_id"/>
+                    <field name="product_variant2_id"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_group_form">
+            <field name="name">product.group.form</field>
+            <field name="model">product.group</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_variant1_id"/>
+                            <field name="product_variant2_id"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_group_action">
+            <field name="name">Product Group</field>
+            <field name="res_model">product.group</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_product_group"
+            name="Product Group"
+            parent="menu_product_farmaku"
+            action="product_group_action"
+        />
+
+        <record model="ir.ui.view" id="product_variant_group_tree">
+            <field name="name">product.variant.group.tree</field>
+            <field name="model">product.variant.group</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="product_group_id"/>
+                    <field name="product_variant_id"/>
+                    <field name="alias"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_variant_group_form">
+            <field name="name">product.variant.group.form</field>
+            <field name="model">product.variant.group</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="product_group_id"/>
+                            <field name="product_variant_id"/>
+                            <field name="alias"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_variant_group_action">
+            <field name="name">Product Variant Group</field>
+            <field name="res_model">product.variant.group</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_product_variant_group"
+            name="Product Variant Group"
+            parent="menu_product_farmaku"
+            action="product_variant_group_action"
+        />
+    </data>
+</odoo>

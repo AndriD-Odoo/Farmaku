@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_product_switch_view_config" model="ir.ui.view">
+        <field name="name">pos.config.settings.product.switch.view</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='accounting_section']" position="after">
+            	<h2 style="text-align:center;border-bottom: 1px solid #ccc;padding-bottom: 6px;margin-bottom: 20px;">Retail Features</h2>
+                <h3>Product Switch View</h3>
+                <div class="row mt16 o_settings_container">
+                    <div id="category_reference" class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_pos_switch_view" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_pos_switch_view" />
+
+                            <div class="content-group mt16" attrs="{'invisible': [('sh_pos_switch_view','!=',True)]}">
+                                <div class="text-muted">
+                                    Tick which detail want to display in List View
+                                </div>
+                                <field name="sh_display_product_name" style="width: 4%;" />
+                                <label for="sh_display_product_name" style="font-weight: normal;" /><br />
+
+                                <field name="sh_display_product_price" style="width: 4%;" />
+                                <label for="sh_display_product_price" style="font-weight: normal;" /><br />
+
+                                <field name="sh_display_product_code" style="width: 4%;" />
+                                <label for="sh_display_product_code" style="font-weight: normal;" /><br />
+
+                                <field name="sh_display_product_type" style="width: 4%;" />
+                                <label for="sh_display_product_type" style="font-weight: normal;" /><br />
+
+                                <field name="sh_display_product_onhand" style="width: 4%;" />
+                                <label for="sh_display_product_onhand" style="font-weight: normal;" /><br />
+
+                                <field name="sh_display_product_forecasted" style="width: 4%;" />
+                                <label for="sh_display_product_forecasted" style="font-weight: normal;" /><br />
+
+                                <field name="sh_display_product_uom" style="width: 4%;" />
+                                <label for="sh_display_product_uom" style="font-weight: normal;" /><br />
+
+                                <field name="sh_display_product_image" style="width: 4%;" />
+                                <label for="sh_display_product_image" style="font-weight: normal;" /><br />
+
+                                <field name="sh_product_image_size" attrs="{'invisible': [('sh_display_product_image','!=',True)]}" widget="radio"/>
+                                <!-- <label for="sh_product_image_size" style="font-weight: normal;" attrs="{'invisible': [('sh_display_product_image','!=',True)]}"/><br /> -->
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div id="category_reference" class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('sh_pos_switch_view','!=',True)]}">
+                        <div class="o_setting_left_pane">
+                            <!-- <field name="sh_pos_switch_view" /> -->
+                        </div>
+                        <div class="o_setting_right_pane">
+
+                            <label for="sh_default_view" /><br/>
+                        	<field name="sh_default_view" widget="radio"/>
+                        </div>
+                    </div>
+                    <!-- <div id="category_reference" class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('sh_pos_switch_view','!=',True)]}">
+                        <div class="o_setting_left_pane">
+                            
+                        </div>
+                        <div class="o_setting_right_pane">
+
+                            <field name="sh_display_product_name"/>
+                            <label for="sh_display_product_name" />
+
+                            <field name="sh_display_product_image"/>
+                            <label for="sh_display_product_image" />
+
+                            <field name="sh_product_image_size" attrs="{'invisible': [('sh_display_product_image','!=',True)]}"/>
+                            <label for="sh_product_image_size" widget="radio" attrs="{'invisible': [('sh_display_product_image','!=',True)]}"/>
+
+                            <field name="sh_display_product_price"/>
+                            <label for="sh_display_product_price" />
+
+                            <field name="sh_display_product_code"/>
+                            <label for="sh_display_product_code" />
+
+                            <field name="sh_display_product_type"/>
+                            <label for="sh_display_product_type" />
+
+                            <field name="sh_display_product_onhand"/>
+                            <label for="sh_display_product_onhand" />
+
+                            <field name="sh_display_product_uom"/>
+                            <label for="sh_display_product_uom" />
+                        </div>
+                    </div> -->
+                </div>
+            </xpath>
+        </field>
+    </record>
+    
+     <!-- <record id="sh_pos_retail_details" model="ir.ui.view">
+        <field name="name">pos.config.settings.product.create.details</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='accounting_section']" position="after">
+                <h2 style="text-align:center;border-bottom: 1px solid #ccc;padding-bottom: 6px;margin-bottom: 20px;">Retail Features</h2>
+            </xpath>
+        </field>
+   </record> -->
+</odoo>

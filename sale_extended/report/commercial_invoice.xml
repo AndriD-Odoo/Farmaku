@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_commercial_invoice_document" inherit_id="account_extended.report_commercial_invoice_document">
+            <xpath expr="//table[3]/tr[3]/td[@rowspan='2']" position="attributes">
+                <attribute name="rowspan">3</attribute>
+            </xpath>
+            <xpath expr="//table[3]/tr[4]" position="replace">
+                <tr style="border-right: 1px solid black;">
+                    <td style="width:4%"/>
+                    <td style="border-left: 1px solid black; border-top: 1px solid black;">
+                        <strong>Totals</strong>
+                    </td>
+                    <td style="border-top: 1px solid black;" class="text-right">
+                        <strong><span t-field="o.amount_total"
+                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></strong>
+                    </td>
+                </tr>
+            </xpath>
+            <xpath expr="//table[3]/tr[4]" position="after">
+                <tr style="border-right: 1px solid black;">
+                    <td style="width:4%"/>
+                    <td style="border-left: 1px solid black; border-bottom: 1px solid black;">
+                        DPP Total
+                    </td>
+                    <td style="border-bottom: 1px solid black;" class="text-right">
+                        <span t-field="o.dpp_total"
+                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                    </td>
+                </tr>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

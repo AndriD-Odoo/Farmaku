@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    
+    <t t-name="ReceiptScreen" t-inherit="point_of_sale.ReceiptScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('next')]" position="replace">
+        	<t t-if="env.pos.cash_in_out_receipt or env.pos.cash_in_out_statement_receipt">
+        		<div class="button next" t-att-class="{ highlight: !locked }"
+                     t-on-click="receiptDone">
+                     Close <i class="fa fa-times" aria-hidden="true"></i>
+                 </div>
+        	</t>
+        	<t t-else="">
+        		<div class="button next" t-att-class="{ highlight: !locked }"
+                     t-on-click="orderDone">
+                     New Order <i class="fa fa-angle-double-right"></i>
+                 </div>
+        	</t>
+        </xpath>
+        <xpath expr="//div[hasclass('pos-receipt-container')]" position="replace">
+        	<div class="pos-receipt-container">
+        		<t t-if="env.pos.cash_in_out_receipt">
+        			<CashInOutReceipt t-ref="order-receipt"/>
+	        	</t>
+	        	<t t-elif="env.pos.cash_in_out_statement_receipt">
+        			<CashInOutStatementReceipt t-ref="order-receipt"/>
+	        	</t>
+	        	<t t-else="">
+	        		<OrderReceipt order="currentOrder" t-ref="order-receipt" />
+	        	</t>
+        	</div>
+        	
+        </xpath>
+    </t>
+    
+    <t t-name="CashInOutStatementReceipt" owl="1">
+    	<div class="pos-receipt sh_pos_statement_receipt">
+    		<t t-if="env.pos.company">
+	            <div class="pos-receipt-contact">
+	            	<t t-if="env.pos.company.name">
+	                 	<t t-esc="env.pos.company.name" /><br/>
+	    			</t>
+	            	<t t-if="env.pos.company.phone">
+	            		Phone : <t t-esc="env.pos.company.phone"/><br/>
+	            	</t>
+	            	<t t-if="env.pos.company.email">
+	            		Email : <t t-esc="env.pos.company.email"/>
+	            	</t>
+	            </div>
+    		</t>
+    		<t t-if="env.pos.user and env.pos.user.name">
+    			<div class="pos-receipt-contact">
+    				User : <t t-esc="env.pos.user.name"/>
+    			</div>
+    		</t>
+    		
+            <br /><br />
+            <t t-if="env.pos.db.display_cash_in_out_statement and env.pos.db.display_cash_in_out_statement.length > 0">
+            	<t t-set="credit_total" t-value="0"/>
+                <t t-set="debit_total" t-value="0"/>
+            	<table class="sh_in_out_statement_table">
+            		<thead>
+            			<tr>
+            				<th style="width: 23%;">Reason</th>
+            				<th style="width: 25%;">Credit</th>
+            				<th style="width: 25%;">Debit</th>
+            				<th style="width: 27%;">Date</th>
+            			</tr>
+            		</thead>
+            		<tbody>
+            			<t t-foreach="env.pos.db.display_cash_in_out_statement" t-as="each_statement">
+            				<tr>
+            					<td>
+            						<t t-if="each_statement and each_statement.sh_reason">
+            							<t t-esc="each_statement.sh_reason"/>
+            						</t>
+            					</td>
+            					<td>
+            						<t t-if="each_statement and each_statement.sh_transaction_type and each_statement.sh_transaction_type == 'cash_in'">
+            							<t t-esc="env.pos.format_currency(each_statement.sh_amount)"/>
+            							<t t-set="credit_total" t-value="credit_total + each_statement.sh_amount"/>
+            						</t>
+            						<t t-else="">
+            							-
+            						</t>
+            					</td>
+            					<td>
+            						<t t-if="each_statement and each_statement.sh_transaction_type and each_statement.sh_transaction_type == 'cash_out'">
+            							<t t-esc="env.pos.format_currency(each_statement.sh_amount)"/>
+            							<t t-set="debit_total" t-value="debit_total + each_statement.sh_amount"/>
+            						</t>
+            						<t t-else="">
+            							-
+            						</t>
+            					</td>
+            					<td>
+            						<t t-if="each_statement and each_statement.sh_date">
+            							<t t-esc="each_statement.sh_date.split(' ')[0]"/>
+            						</t>
+            					</td>
+            				</tr>
+            			</t>
+            			</tbody>
+            			<tfoot>
+            				<tr>
+	            				<td>
+	            					Total
+	            				</td>
+	            				<td>
+	            					<t t-esc="env.pos.format_currency(credit_total)"></t>
+	            				</td>
+	            				<td>
+	            					<t t-esc="env.pos.format_currency(debit_total)"></t>
+	            				</td>
+	            				<td></td>
+	            			</tr>
+            			</tfoot>
+            	</table>
+            </t>
+            <t t-if="env.pos.config.sh_signature_part_receipt">
+       			<div class="sh_cash_in_out_receipt_signature">
+       			</div>
+       			<div class="sh_signature_lbl">
+       				Signature
+       			</div>
+       		</t>
+    	</div>
+    </t>
+    
+    <t t-name="CashInOutReceipt" owl="1">
+        <div class="pos-receipt">
+       		<t t-if="env.pos.company and env.pos.company.name">
+       			<div class="sh_company_name">
+        			<t t-esc="env.pos.company.name"/>
+       			</div>
+       			<div class="sh_company_phone">
+       				<span class="sh_company_phone_lbl">
+       					Phone :
+       				</span>
+       				<span class="sh_company_phone_data">
+       					<t t-esc="env.pos.company.phone"/>
+       				</span>
+       			</div>
+       		</t>
+       		<t t-if="env.pos.get_cashier() and env.pos.get_cashier().name">
+       			<div class="sh_cashier_name">
+       				<span class="sh_cashier_name_lbl">
+       					Cashier :
+       				</span>
+       				<span class="sh_cashier_name_data">
+       					<t t-esc="env.pos.get_cashier().name"/>
+       				</span>
+       			</div>
+       		</t>
+       		<t t-if="env.pos.cash_in_out_options">
+       			<div class="sh_cash_in_operation">
+       				<span class="sh_cash_in_operation_lbl">
+       					Operation :
+       				</span>
+       				<span class="sh_cash_in_operation_data">
+       					<t t-if="env.pos.cash_in_out_options == 'cash_in'">
+       						Put Money In
+       					</t>
+       					<t t-elif="env.pos.cash_in_out_options == 'cash_out'">
+       						Put Money Out
+       					</t>
+       				</span>
+       			</div>
+       		</t>
+       		<t t-if="env.pos.get('selectedData')">
+       			<t t-if="env.pos.get('selectedData').reason">
+       				<div class="sh_cash_in_out_purpose">
+       					<span class="sh_cash_in_out_purpose_lbl">
+       						Purpose :
+       					</span>
+       					<span class="sh_cash_in_out_purpose_data">
+       						<t t-esc="env.pos.get('selectedData').reason"/>
+       					</span>
+       				</div>
+       			</t>
+       			<t t-if="env.pos.get('selectedData').amount">
+       				<div class="sh_cash_in_out_amount">
+       					<span class="sh_cash_in_out_amount_lbl">
+       						Amount :
+       					</span>
+       					<span class="sh_cash_in_out_amount_data">
+       						<t t-esc="env.pos.get('selectedData').amount"/>
+       					</span>
+       				</div>
+       			</t>
+       		</t>
+       		<t t-if="env.pos.config.sh_signature_part_receipt">
+       			<div class="sh_cash_in_out_receipt_signature">
+       			</div>
+       			<div class="sh_signature_lbl">
+       				Signature
+       			</div>
+       		</t>
+        </div>
+    </t>
+    
+</templates>

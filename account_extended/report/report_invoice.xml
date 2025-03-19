@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+            <xpath expr="//t[@t-if='len(payments_vals) &gt; 0']/tr" position="attributes">
+                <attribute name="class">border-black o_total</attribute>
+            </xpath>
+            <xpath expr="//th[@name='th_taxes']" position="replace"/>
+            <xpath expr="//t[@name='account_invoice_line_accountable']/td[5]" position="replace"/>
+            <xpath expr="//t[@t-foreach='o.amount_by_group']" position="replace">
+                <tr class="border-black o_subtotal" style="">
+                    <td>Taxes</td>
+                    <td class="text-right">
+                        <span t-field="o.amount_tax"/>
+                    </td>
+                </tr>
+            </xpath>
+        </template>
+    
+    </data>
+</odoo>

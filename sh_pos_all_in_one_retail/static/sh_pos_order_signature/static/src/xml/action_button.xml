@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="AddSignatureButton" owl="1">
+        <div class="control-button"  t-on-click="trigger('click-add-signature')">
+            <a style="display: flex;align-items: center;" class="btn btn-primary">
+            	<div class="sh_icon_img" style="margin-right: 10px;">
+                	<!-- <img src="/sh_pos_all_in_one_retail/static/src/img/signature.png" alt="Warehouse" style="height:18px;width:18px;" /> -->
+                	<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 123.78 94.01"><path d="M129,56H114a2.94,2.94,0,0,0-3,3v4h-7L78,51,88,37c2-3,0-5,0-5L75,23c-3-2-5,1-5,1L57,43c-5-3-10,0-10,0s-9,4-12,5-6,5-6,5L9.5,83.5C4,98,18,100,18,100l-2,12c0,6,5,4,5,4l11-6c6,9,16,2,16,2,6,4,11,2,11,2a10.85,10.85,0,0,0,8-8v-4c23,11,44,0,44,0v8c0,4,3,4,3,4h16a2,2,0,0,0,2-2V59A2.94,2.94,0,0,0,129,56ZM74,31l6,4-5,7-6-4ZM66,43l6,4L51,78H41ZM17,92s-3-2-1-5L36,55l14-6h3L22,92S19,94,17,92Zm15,10-7,4,1-8,2-3s2,4,6,4Zm13,3s-3,4-7,1l4-6h3Zm14-1s0,3-4,3a2.94,2.94,0,0,1-3-3v-4h7Zm52-10s-23,13-47-1H38s-4,0-4-4c0,0,1-4,4-4H62s12,0,18-8c0,0,2-2,0-5,0,0-3-3-6,0,0,0-3,7-15,6L74,57l29,13h8Zm15,13h-8V63h8Z" transform="translate(-8.22 -22.31)"></path></svg>
+                </div>
+                <div class="sh_text_span">
+                	<span class="sh_control_btn_span">Signature</span>
+                </div>
+            </a>
+        </div>
+    </t>
+</templates>

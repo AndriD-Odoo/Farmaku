@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="cash_in_out_point_of_sale_assets" name="sh_pos_cash_in_out assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_cash_in_out/static/src/js/action_button.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_cash_in_out/static/src/js/popup.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_cash_in_out/static/src/js/models.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_cash_in_out/static/src/js/screen.js" />
+            <script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_cash_in_out/static/src/js/db.js" />
+            <link rel="stylesheet" href="/sh_pos_all_in_one_retail/static/sh_pos_cash_in_out/static/src/css/pos.css" />
+        </xpath>
+    </template>
+</odoo>

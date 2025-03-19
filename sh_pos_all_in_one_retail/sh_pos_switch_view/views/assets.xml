@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<template id="switch_view_point_of_sale_assets" name="pos_reprint_custom assets" inherit_id="point_of_sale.assets">
+		<xpath expr="." position="inside">
+			<script type="text/javascript" src="/sh_pos_all_in_one_retail/static/sh_pos_switch_view/static/src/js/pos.js" />
+			<link rel="stylesheet" href="/sh_pos_all_in_one_retail/static/sh_pos_switch_view/static/src/scss/pos.scss" />
+		</xpath>
+	</template>
+</odoo>

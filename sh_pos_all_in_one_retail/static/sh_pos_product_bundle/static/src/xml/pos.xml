@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductBundlePopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-textinput sh_cart_product_bundle_popup" style="font-size: 16px; width: 600px; height: 450px;">
+                <header class="title">
+                    <t t-esc="props.title" />
+                </header>
+                <div class="main-body touch-scrollable scrollable-y">
+                    <t t-raw="props.body" />
+                </div>
+                <footer class="footer">
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+    <t t-name="ProductBundleQtyPopup" owl="1">
+        <div class="modal-dialog" role="dialog">
+            <div class="popup popup-textinput sh_product_bundle_popup" style="font-size: 16px; width: 500px; max-width: 500px;height: 435px; max-height: 435px;">
+                <header class="title">
+                    Product Bundle
+                </header>
+                <div class="main-body touch-scrollable scrollable-y" style="max-height: 309px;height: 309px;">
+                    <div style="display: inline-flex;">
+                        <span>Quantity : <input style="margin-top: 5px;" type="text" id="product_qty" value="1" t-on-change="captureChange" /></span>
+                        <span style="margin-left: 10px;">Price : <input type="text" id="product_price" t-att-value="props.price" /></span>
+                    </div>
+                    <br /><br />
+                    <center style="margin-bottom:10px;">Bundle Products</center>
+                    <t t-raw="props.body" />
+                </div>
+
+                <footer class="footer">
+                    <div class="button confirm" style="background: black; color: white;" t-on-click="confirm">Add To Cart</div>
+                    <div class="button cancel" t-on-click="cancel">Close</div>
+                </footer>
+            </div>
+        </div>
+    </t>
+</templates>

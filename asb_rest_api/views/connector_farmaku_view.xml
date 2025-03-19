@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_connector_farmaku_form">
+        <field name="model">connector.farmaku</field>
+        <field name="arch" type="xml">
+            <form string="Connector Farmaku" edit="false" create="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="url"/>
+                            <field name="request_method"/>
+                            <field name="request_time"/>
+                            <field name="response_time"/>
+                            <field name="is_request_body"/>
+                        </group>
+                        <group>
+                            <button name="action_download_header" type="object" icon="fa-download" class="oe_link"
+                                string="Download Header" />
+                            <field name="header_filename" string="Header"/>
+                            <button name="action_download_request" type="object" icon="fa-download" class="oe_link"
+                                attrs="{'invisible':[('is_request_body','=',False)]}" string="Download Request" />
+                            <field name="request_filename" string="Request"/>
+                            <button name="action_download_response" type="object" icon="fa-download" class="oe_link"
+                                string="Download Response" />
+                            <field name="response_filename"/>
+                            <field name="status_code" string="Response"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_connector_farmaku_tree">
+        <field name="model">connector.farmaku</field>
+        <field name="arch" type="xml">
+            <tree string="Connector Farmaku" edit="false" create="false">
+                <field name="url"/>
+                <field name="request_method"/>
+                <field name="request_time"/>
+                <button name="action_download_header" type="object" icon="fa-download" class="oe_link"
+					string="Download Header" />
+				<field name="header_filename" string="Header" />
+                <field name="is_request_body" invisible="1"/>
+                <button name="action_download_request" type="object" icon="fa-download" class="oe_link"
+					attrs="{'invisible':[('is_request_body','=',False)]}" string="Download Request" />
+				<field name="request_filename" string="Request" />
+                <field name="response_time"/>
+                <button name="action_download_response" type="object" icon="fa-download" class="oe_link"
+					string="Download Response" />
+				<field name="response_filename" string="Response" />
+                <field name="status_code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="connector_farmaku_action" model="ir.actions.act_window">
+        <field name="name">Connector Farmaku Log</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">connector.farmaku</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="submenu_connector_farmaku" name="Connector Farmaku Log" parent="base.menu_ir_property" action="connector_farmaku_action"/>
+
+</odoo>

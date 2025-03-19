@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_deliveryslip_document">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+            <t t-if="not company">
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+            <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                <t t-call="base_extended.company_header"/>
+            </div>
+            <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+
+            <div class="page">
+                <div class="oe_structure"/>
+                <div style="font-size: 14px !important;" t-attf-class="article o_report_layout_boxed o_company_#{company.id}_layout" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                    <table class="table table-sm o_main_table m-0 table-borderless border border-right-0 border-left-0 border-top-0 border-bottom-0">
+                        <tr>
+                            <td class="text-right" colspan="2" id="doc_date">
+                                <span style="font-size:10px;" t-field="o.create_date" t-options="{'widget': 'date'}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left" id="doc_title">
+                                <strong><span style="font-size: 30px;">Delivery Slip</span></strong>
+                            </td>
+                            <td class="text-right" id="doc_number">
+                                <strong><span style="font-size:30px;"><span t-field="o.name"/></span></strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right" colspan="2" id="doc_ref">
+                                <span t-if="o.origin" style="font-size:10px;">Reference: <span t-field="o.origin"/></span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="margin-top:5px;">
+                        <table class="table table-sm o_main_table" style="border-collapse:collapse; border:none; margin-top:5px; margin-bottom:5px;">
+                            <tr style="border:none;">
+                                <td style="border:none; width:50%;">
+                                    From: <strong><span t-field="o.company_id"/>, <span t-field="o.picking_type_id.warehouse_id"/></strong>
+                                    <div t-if="o.picking_type_id.warehouse_id">
+                                        <div t-field="o.picking_type_id.warehouse_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                    </div>
+                                    <br t-else=""/>
+                                    <span t-if="o.picking_type_id.warehouse_id.sia">SIA: <span t-field="o.picking_type_id.warehouse_id.sia"/></span>
+                                    <br t-if="o.picking_type_id.warehouse_id.sia"/>
+                                    <span>PIC</span>: <span t-field="o.sender_pic_id.name"/> <span t-field="o.sender_pic_id.phone"/> <span t-field="o.sender_pic_id.email"/>
+                                </td>
+                                <td style="border:none;">
+                                    To: <strong><span t-field="o.partner_id"/></strong>
+                                    <div t-field="o.partner_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                    <span t-if="o.partner_id.vat"><t t-esc="o.company_id.country_id.vat_label or 'NPWP'"/>: <span t-field="o.partner_id.vat"/></span>
+                                    <br t-if="o.partner_id.vat"/>
+                                    <span>PIC</span>: <span t-field="o.receiver_pic_id.name"/> <span t-field="o.receiver_pic_id.phone"/> <span t-field="o.receiver_pic_id.email"/>
+                                </td>
+                            </tr>
+                            <tr style="border-top: 1px solid black;">
+                                <td style="border-top: 1px solid black;">
+                                    <strong>Courier Name:</strong> <span t-field="o.courier_name" class="m-0"/>
+                                </td>
+                                <td style="border-top: 1px solid black;">
+                                    <strong>Delivery Service:</strong> <span t-field="o.shipping_service_name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border:none;">
+                                    <strong>License Plate:</strong> <span t-field="o.driver_plate_number" class="m-0"/>
+                                </td>
+                                <td style="border:none;">
+                                    <strong>Airwaybill No:</strong> <span t-if="o.airway_bill" t-field="o.airway_bill" class="m-0"/><span t-else="" t-field="o.carrier_tracking_ref" class="m-0"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <table class="table table-sm o_main_table">
+                        <thead>
+                            <tr>
+                                <th name="th_box" class="text-center"><strong>Box No.</strong></th>
+                                <th name="th_product_count" class="text-center"><strong>Jumlah SKU</strong></th>
+                                <th name="th_product_qty" class="text-center"><strong>Units Qty</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="box_total" t-value="0"/>
+                            <t t-set="product_count_total" t-value="0"/>
+                            <t t-set="product_qty_total" t-value="0"/>
+                            <t t-set="row_total" t-value="len(o.box_ids.lines)"/>
+                            <t t-set="row_blank" t-value="16 - row_total"/>
+                            <t t-foreach="o.box_ids.lines" t-as="box_line">
+                                <t t-set="box_total" t-value="box_total + 1"/>
+                                <t t-set="product_count_total" t-value="product_count_total + box_line.item_count"/>
+                                <t t-set="product_qty_total" t-value="product_qty_total + box_line.qty"/>
+                                <tr>
+                                    <td name="td_box" class="text-center">
+                                        <span t-field="box_line.name"/>
+                                    </td>
+                                    <td class="text-center" name="td_product_count">
+                                        <span t-field="box_line.item_count"/>
+                                    </td>
+                                    <td class="text-center" name="td_product_qty">
+                                        <span t-field="box_line.qty"/>
+                                    </td>
+                                </tr>
+                            </t>
+                            <t t-if="row_blank > 0" t-foreach="range(row_blank)" t-as="x">
+                                <tr>
+                                    <td colspan="3">
+                                        <![CDATA[&nbsp;]]>
+                                    </td>
+                                </tr>
+                            </t>
+                            <tr style="border-top: 1px solid black; border-bottom: 1px solid black;">
+                                <td class="text-center" style="border-top: 1px solid black;">
+                                    <strong><span>Total Box: </span><span t-esc="box_total"/></strong>
+                                </td>
+                                <td class="text-center" style="border-top: 1px solid black;">
+                                    <strong><span>Total Products: </span><span t-esc="product_count_total"/></strong>
+                                </td>
+                                <td class="text-center" style="border-top: 1px solid black;">
+                                    <strong><span>Total Units: </span><span t-esc="product_qty_total"/></strong>
+                                </td>
+                            </tr>
+                            <tr style="border-top: 1px solid black; border-bottom: 1px solid black;">
+                                <td class="text-center">
+                                    <strong><span>Sender</span></strong>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>____________________</span>
+                                </td>
+                                <td class="text-center">
+                                    <strong><span>Courier</span></strong>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>____________________</span>
+                                </td>
+                                <td class="text-center" name="td_product_qty">
+                                    <strong><span>Receiver</span></strong>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>____________________</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="oe_structure"/>
+            </div>
+        </template>
+
+        <template id="report_deliveryslip">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="stock_extended.report_deliveryslip_document" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+        <record id="stock.action_report_delivery" model="ir.actions.report">
+            <field name="name">Delivery Slip</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">stock_extended.report_deliveryslip</field>
+            <field name="report_file">stock_extended.report_deliveryslip</field>
+            <field name="print_report_name">'Delivery Slip - %s - %s' % (object.partner_id.name or '', object.name)</field>
+            <field name="binding_model_id" ref="model_stock_picking"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="base_extended.paperformat_farmaku"/>
+        </record>
+
+    </data>
+</odoo>

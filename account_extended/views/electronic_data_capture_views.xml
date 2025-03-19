@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="electronic_data_capture_view_search" model="ir.ui.view">
+            <field name="name">electronic.data.capture.search</field>
+            <field name="model">electronic.data.capture</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="electronic_data_capture_view_tree" model="ir.ui.view">
+            <field name="name">electronic.data.capture.tree</field>
+            <field name="model">electronic.data.capture</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="electronic_data_capture_action" model="ir.actions.act_window">
+            <field name="name">EDC</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">electronic.data.capture</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="menu_electronic_data_capture" parent="account.account_banks_menu" action="electronic_data_capture_action" sequence="2"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_team_partner_bank_all,crm_team_partner_bank_all,model_crm_team_partner_bank,base.group_user,1,1,1,1
+access_rafaksi_all,rafaksi_all,model_rafaksi,base.group_user,1,1,1,1
+access_rafaksi_wizard_all,rafaksi_wizard_all,model_rafaksi_wizard,base.group_user,1,1,1,1

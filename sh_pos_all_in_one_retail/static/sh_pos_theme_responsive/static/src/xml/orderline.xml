@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//span[hasclass('product-name')]" position="before">
+        	<t t-if="env.pos.pos_theme_settings_data and env.pos.pos_theme_settings_data[0] and env.pos.pos_theme_settings_data[0].sh_image_display_in_cart">
+	            <span class="span_product_image">
+	                <img t-att-src="imageUrl(props.line.get_product())" class="cart_product_image" t-att-alt="props.line.get_full_product_name()" />
+	            </span>
+	         </t>
+        </xpath>
+        <xpath expr="//ul[hasclass('info-list')]" position="after">
+       		<ul class="sh_orderline_icons" t-att-class="addedClasses">
+	       		<t t-if="env.pos.config.enable_product_bundle and props.line.get_product().sh_is_bundle">
+	                <li class="product-bundle-icon" t-on-click="trigger('click-product-bundle-icon',props.line.get_product())">
+	                    <!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
+	                    <!-- <img src="/sh_pos_all_in_one_retail/static/src/img/bundle.png" alt="Bundle" style="height:16px;width:16px;" /> -->
+	                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114 106.5"><polygon points="37.5 8 55.5 0 110.5 23 91.5 31 37.5 8"></polygon><polygon points="4.5 21 22.5 13 77.5 36 58.5 44 4.5 21"></polygon><polygon points="0 25.5 55 48.5 55 106.5 0 84.5 0 25.5"></polygon><polygon points="60 48.5 79 40.5 79 56.5 94 50.5 94 35.5 114 26.5 114 85.5 60 106.5 60 48.5"></polygon></svg>
+	                </li>
+	            </t>
+	            <t t-if="env.pos.config.use_pricelist">
+	            	<li class="span_pricelist_icon" t-on-click="trigger('click-pricelist-icon',props.line.get_product())">
+		                <!-- <img src="/sh_pos_all_in_one_retail/static/src/img/pricelist.png" style="width: 16px;" class="pricelist_icon" /> -->
+		                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 117"><path d="M70.5,12A58.5,58.5,0,1,0,129,70.5,58.5,58.5,0,0,0,70.5,12ZM89,89s-3,10-14,11v9H66v-9s-9,1-17-9l6-7s18,14,24,1c0,0,3-6-7-9,0,0-18-4-21-15,0,0-6-18,15-22V30h9v9s9,0,14,7l-5,9S71,43,62,53c0,0-4,6,4,9l15,7S95,75,89,89Z" transform="translate(-12 -12)"></path></svg>
+		            </li>
+	            </t>
+	            <t t-if="env.pos.config.sh_display_stock">
+	                <li class="product-image-icon" t-on-click="trigger('click-product-image-icon',props.line.get_product())">
+	                    <!-- <i class="fa fa-building-o" aria-hidden="true"></i> -->
+	                    <!-- <img src="/sh_pos_all_in_one_retail/static/src/img/warehouse.png" alt="Warehouse" style="height:15px;width:15px;" /> -->
+	                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 122"><path d="M100,62V25L70,9,40,26l-.5,35.5L10,77v37l31,17,29-16,31,16,29-17V76ZM40,91,15,78,41,65,66,77Zm28,21L42,127V94L68,79ZM44,27,70,13,95,25,70,39ZM72,42,97,28V61L72,74ZM99,91,74,78,99,65l25,12Zm27,22-25,14V94l25-14Z" transform="translate(-10 -9)"></path></svg>
+	                </li>
+	            </t>
+	            <t t-if="env.pos.config.enable_orderline_note">
+		            <li class="span_note_icon" t-on-click="trigger('click-note-icon',props.line.get_product())">
+		               <!-- <span class="fa fa-file-text-o" style="font-size: 16px;"></span> -->
+		               <!-- <img src="/sh_pos_all_in_one_retail/static/src/img/notes.png" alt="Warehouse" style="height:15px;width:15px;" /> -->
+		               <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 117.53"><rect y="111.53" width="116" height="6" rx="3"></rect><polygon points="8.5 99.03 13.5 74.03 63.5 24.03 83.5 44.03 33.5 94.03 8.5 99.03"></polygon><path d="M85,25,96,14s10-8,20,2c0,0,7,8,1,17L105,45Z" transform="translate(-11.5 -10.97)"></path></svg>
+		            </li>
+	            </t>
+	            <t t-if="env.pos.config.sh_apply_both_discount and env.pos.config.sh_line_discount_or_custom_discount == 'custom_discount' and env.pos.config.enable_custom_discount">
+	                <li class="span_discount_icon" t-on-click="trigger('click-discount-icon',props.line.get_product())">
+	                    <!-- <img src="/sh_pos_all_in_one_retail/static/src/img/discount.png" style="width: 18px; height: 18px; margin-right: 5px;" class="discount_icon" /> -->
+	                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80.22 80.78"><title>discount</title><rect x="20.64" y="62.3" width="94.02" height="11.73" rx="5.87" transform="translate(-56.28 40.15) rotate(-45.28)"/><path d="M45.31,28.11A17.5,17.5,0,1,0,62.89,45.52,17.5,17.5,0,0,0,45.31,28.11Zm.11,23a5.5,5.5,0,1,1,5.47-5.53A5.5,5.5,0,0,1,45.42,51.11Z" transform="translate(-27.89 -28.11)"/><path d="M90.53,73.89a17.5,17.5,0,1,0,17.58,17.42A17.5,17.5,0,0,0,90.53,73.89Zm.11,23a5.5,5.5,0,1,1,5.47-5.53A5.5,5.5,0,0,1,90.64,96.89Z" transform="translate(-27.89 -28.11)"/></svg>
+	                    
+	                </li>
+	            </t>
+	       		<t t-if="env.pos.config.sh_remove_single_item">
+	       			<li class="span_delete_icon" t-on-click="trigger('click-remove-line-icon',props.line.get_product())">
+		                <i class="fa fa-trash-o" aria-hidden="true"></i>
+		            </li>
+	       		</t>
+       			
+	            
+       		</ul>	
+            
+        </xpath>
+    </t>
+</templates>

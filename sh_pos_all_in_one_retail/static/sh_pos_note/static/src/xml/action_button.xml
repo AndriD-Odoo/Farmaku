@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="GlobalNoteButton" owl="1">
+        <div class="control-button sh_global_btn_control_button" t-on-click="trigger('click-global-note')">
+            <a style="display: flex;" class="btn btn-primary">
+                <div class="sh_icon_img" style="display: flex;align-items: center;margin-right: 10px;">
+                	<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 124.83 98.58"><path d="M27.5,110.5h59c10-1,10-11,10-11v-10l6-6c4,0,3,4,3,4v16c-3,14-17,16-17,16h-63c-18-3-18-19-18-19v-61c1-15,16-18,16-18h66c6,1,6,4,6,4l-6,6a10,10,0,0,0-4-1h-59c-10,1-10,10-10,10v60C18.5,109.5,27.5,110.5,27.5,110.5ZM119,55,72,102l-20-1V81L99,34ZM77,87,66,76l-8,8v4h7v7h4ZM99.72,47.28a1.81,1.81,0,0,0-2.56-2.56L73.22,68.66a1.81,1.81,0,0,0,2.56,2.56ZM123,50l8-8c3-3,0-7,0-7L119,23a6,6,0,0,0-8-1l-8,8Z" transform="translate(-7.5 -20.92)"></path></svg>
+                </div>
+                <div class="sh_text_span">
+               		<span class="sh_control_btn_span">Global Note</span>
+               	</div>
+            </a>
+        </div>
+    </t>
+
+    <t t-name="AllNoteButton" owl="1">
+        <div class="control-button" t-on-click="trigger('click-all-note-list')">
+            <a style="display: flex;" class="btn btn-primary">
+            	<div class="sh_icon_img" style="display: flex;align-items: center;margin-right: 10px;">
+                	<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 116 121.55"><path d="M20,117V51s0-13,14-14H96l4-9H34S12,29,11,51v82s0,5,4,1l18-18H77s30,1,41-29c0,0,3,1,2-37l-8,17s3,36-32,40H38a12,12,0,0,0-12,4Z" transform="translate(-11 -14)"></path><rect x="25" y="38" width="13" height="5"></rect><rect x="25" y="54" width="50" height="5"></rect><rect x="25" y="70" width="33" height="5"></rect><rect x="63" y="70" width="22" height="5"></rect><polygon points="77 43 43 43 43 38 79 38 77 43"></polygon><path d="M114,14,95,57,94,74c0,3,2,1,2,1l12-13,19-42ZM99.51,66.7l-2.67-1,1.08-8.64,7.94,3.53Z" transform="translate(-11 -14)"></path></svg>
+                </div>
+                <div class="sh_text_span">
+                	<span class="sh_control_btn_span">Note Screen</span>
+                </div>
+            </a>
+        </div>
+    </t>
+</templates>

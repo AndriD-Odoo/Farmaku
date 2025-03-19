@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- SLIDE.CHANNEL.TAG -->
+    <record id="sh_product_tag_search" model="ir.ui.view">
+        <field name="name">sh.product.tag.search</field>
+        <field name="model">sh.product.tag</field>
+        <field name="arch" type="xml">
+            <search string="Product Tags">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="sh_product_tag_form" model="ir.ui.view">
+        <field name="name">sh.product.tag.form</field>
+        <field name="model">sh.product.tag</field>
+        <field name="arch" type="xml">
+            <form string="Product Tag">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        
+                    </group>
+                    <group name="sh_product_tags_common_fields">
+                    	<group>
+                    	    <field name="sequence"/>
+                    		<field name="color" widget="color_picker"/>
+                    	</group>
+                    </group>
+                    <label for="product_ids" string="Products: "/>
+                    <field name="product_ids"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sh_product_tag_tree" model="ir.ui.view">
+        <field name="name">sh.product.tag.tree</field>
+        <field name="model">sh.product.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Product Tags">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="color" widget="color_picker"/>
+                 <field name="product_ids"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="sh_product_tag_action" model="ir.actions.act_window">
+        <field name="name">Product Tags</field>
+        <field name="res_model">sh.product.tag</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create new tags for your product
+            </p><p>
+            Create tags that fit your business to better manage and track your products.
+            </p>
+        </field>
+                
+    </record>
+    
+	
+    <!-- <menuitem id="sh_product_tag_menu" 
+    name="Product Tags" 
+    action="sh_product_tag_action" 
+    parent="sale.product_menu_catalog" groups="base.group_user" /> -->
+    
+	<menuitem id="sh_pos_product_tag_menu" 
+    name="Product Tags" 
+    action="sh_product_tag_action" 
+    parent="point_of_sale.pos_config_menu_catalog" groups="base.group_user" />
+	
+
+</odoo>

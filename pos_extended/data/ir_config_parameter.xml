@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="order_send_pos_data_endpoint" model="ir.config_parameter">
+            <field name="key">farmaku_send_pos_data_endpoint</field>
+            <field name="value">v1/Orders/POS</field>
+        </record>
+
+    </data>
+</odoo>

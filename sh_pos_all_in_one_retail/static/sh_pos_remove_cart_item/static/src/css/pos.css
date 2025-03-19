@@ -1,0 +1,26 @@
+
+.pos .order .orderline .sh_price_with_icon .price {
+    float: unset !important;
+}
+.sh_price_with_icon {
+    display: inline-flex;
+    width: 30%;
+    text-align: right;
+    justify-content: flex-end;
+}
+@media only screen and (max-width: 576px) and (min-width: 361px) {
+    .sh_price_with_icon {
+        width: 40% !important;
+    }
+    .pos .order .orderline .product-name {
+        width: 60% !important;
+    }
+}
+@media only screen and (max-width: 360px) {
+    .sh_price_with_icon {
+        width: 50% !important;
+    }
+    .pos .order .orderline .product-name {
+        width: 50% !important;
+    }
+}

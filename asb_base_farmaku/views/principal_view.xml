@@ -1,0 +1,131 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="principal_tree">
+            <field name="name">principal.tree</field>
+            <field name="model">principal.principal</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="address_note"/>
+                    <field name="province"/>
+                    <field name="city"/>
+                    <field name="district"/>
+                    <field name="zipcode"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="principal_form">
+            <field name="name">principal.form</field>
+            <field name="model">principal.principal</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="address"/>
+                            <field name="address_note"/>
+                            <field name="province"/>
+                            <field name="city"/>
+                            <field name="district"/>
+                            <field name="zipcode"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="principal_action">
+            <field name="name">Principal</field>
+            <field name="res_model">principal.principal</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_principal"
+            name="Principal"
+            parent="menu_master_farmaku"
+            action="principal_action"
+        />
+
+        <record model="ir.ui.view" id="principal_pic_tree">
+            <field name="name">principal.pic.tree</field>
+            <field name="model">principal.pic</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="principal_id"/>
+                    <field name="pic_name"/>
+                    <field name="pic_phone"/>
+                    <field name="pic_email"/>
+                    <field name="pic_title"/>
+                    <field name="pic_note"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                    <field name="active"/>
+                    <field name="is_deleted"/>
+                    <field name="db_note"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="principal_pic_form">
+            <field name="name">principal.pic.form</field>
+            <field name="model">principal.pic</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="principal_id"/>
+                            <field name="pic_name"/>
+                            <field name="pic_phone"/>
+                            <field name="pic_email"/>
+                            <field name="pic_title"/>
+                            <field name="pic_note"/>
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                            <field name="active"/>
+                            <field name="is_deleted"/>
+                            <field name="db_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="principal_pic_action">
+            <field name="name">Principal PIC</field>
+            <field name="res_model">principal.pic</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="submenu_principal_pic"
+            name="Principal PIC"
+            parent="menu_master_farmaku"
+            action="principal_pic_action"
+        />
+    </data>
+</odoo>

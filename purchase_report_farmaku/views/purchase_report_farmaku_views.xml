@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+
+        <record id="purchase_report_farmaku_tracking_view_search" model="ir.ui.view">
+            <field name="name">purchase.report.farmaku.search</field>
+            <field name="model">purchase.report.farmaku</field>
+            <field name="arch" type="xml">
+                <search string="Purchase Tracking">
+                    <field name="order_id"/>
+                    <field name="partner_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="representative_user_id"/>
+                    <field name="create_date"/>
+                    <field name="confirm_date"/>
+                    <field name="approve_date"/>
+                    <field name="receipt_date"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="purchase_report_farmaku_tracking_view_tree" model="ir.ui.view">
+            <field name="name">purchase.report.farmaku.tree</field>
+            <field name="model">purchase.report.farmaku</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Tracking" create="false" edit="false" delete="false">
+                    <field name="order_id"/>
+                    <field name="partner_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="representative_user_id"/>
+                    <field name="create_date"/>
+                    <field name="confirm_date"/>
+                    <field name="approve_date"/>
+                    <field name="receipt_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="purchase_report_farmaku_change_view_search" model="ir.ui.view">
+            <field name="name">purchase.report.farmaku.search</field>
+            <field name="model">purchase.report.farmaku</field>
+            <field name="arch" type="xml">
+                <search string="Purchase Change Price">
+                    <field name="product_id"/>
+                    <field name="order_id" string="PO Reference (Lama)"/>
+                    <field name="create_date" string="Created Date (Lama)"/>
+                    <field name="receipt_date" string="Receipt Date (Lama)"/>
+                    <field name="price_unit" string="Unit Price (Lama)"/>
+                    <field name="partner_id" string="Vendor (Lama)"/>
+                    <field name="new_order_id"/>
+                    <field name="new_create_date"/>
+                    <field name="new_receipt_date"/>
+                    <field name="new_price_unit"/>
+                    <field name="new_partner_id"/>
+                    <field name="price_diff"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="purchase_report_farmaku_change_view_tree" model="ir.ui.view">
+            <field name="name">purchase.report.farmaku.tree</field>
+            <field name="model">purchase.report.farmaku</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Change Price" create="false" edit="false" delete="false">
+                    <field name="product_id"/>
+                    <field name="order_id" string="PO Reference (Lama)"/>
+                    <field name="create_date" string="Created Date (Lama)"/>
+                    <field name="receipt_date" string="Receipt Date (Lama)"/>
+                    <field name="price_unit" string="Unit Price (Lama)"/>
+                    <field name="partner_id" string="Vendor (Lama)"/>
+                    <field name="new_order_id"/>
+                    <field name="new_create_date"/>
+                    <field name="new_receipt_date"/>
+                    <field name="new_price_unit"/>
+                    <field name="new_partner_id"/>
+                    <field name="price_diff" sum="Total Selisih"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

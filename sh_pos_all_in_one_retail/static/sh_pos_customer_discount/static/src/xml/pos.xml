@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id='template' xml:space="preserve">
+    <t t-name='ClientDetailsEdit' t-inherit='point_of_sale.ClientDetailsEdit' t-inherit-mode="extension" owl='1'>
+        <xpath expr='//input[@name="phone"]' position='after'>
+            <div class='client-detail' t-if='env.pos.config.sh_enable_customer_discount'>
+                <input name="sh_customer_discount" id='sh_customer_discount' t-att-value="props.partner.sh_customer_discount || Discount" class="sh_customer_discount" placeholder="Discount"/>
+            </div>
+        </xpath>
+    </t>
+</templates>

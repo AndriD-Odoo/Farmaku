@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="import_failed_order_wizard_view_form" model="ir.ui.view">
+        <field name="name">import.failed.order.wizard.view</field>
+        <field name="model">import.failed.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Failed Order">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" invisible="1"/>
+                            <field name="file" filename="name" widget="binary"/>
+                            <field name="is_validate_picking"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <footer>
+                        <button name="button_import" type="object" string="Import" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_import_failed_order_wizard" model="ir.actions.act_window">
+        <field name="name">Import Failed Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">import.failed.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="import_failed_order_menu"
+        name="Import Failed Orders"
+        parent="farmaku_sub_menu"
+        action="action_import_failed_order_wizard"/>
+
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sync_stock_log_view_search" model="ir.ui.view">
+            <field name="name">sync.stock.log.search</field>
+            <field name="model">sync.stock.log</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="date"/>
+                    <field name="warehouse_code"/>
+                    <field name="product_code"/>
+                    <field name="action"/>
+                    <field name="qty"/>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="sync_stock_log_view_tree" model="ir.ui.view">
+            <field name="name">sync.stock.log.tree</field>
+            <field name="model">sync.stock.log</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="date"/>
+                    <field name="warehouse_code"/>
+                    <field name="product_code"/>
+                    <field name="action"/>
+                    <field name="qty"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sync_stock_log_action" model="ir.actions.act_window">
+            <field name="name">Sync Stock Log</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sync.stock.log</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="sync_stock_log_menu" parent="stock.menu_warehouse_report" action="sync_stock_log_action" sequence="170"/>
+
+    </data>
+</odoo>

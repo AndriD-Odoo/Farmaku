@@ -1,0 +1,410 @@
+.coupon_code {
+  margin-left: 1px !important;
+  font-size: 13px;
+}
+.leftpane .sh_left_line .sh_border_bottom {
+  border-bottom: 2px solid #6ec89b !important;
+  margin-top: 6px !important;
+}
+.leftpane .sh_left_line {
+  float: left !important;
+  border-top: 0px !important;
+  margin-bottom: 5px;
+}
+.leftpane .sh_total_sec {
+  background: rgba(110, 200, 155, 0.31);
+  color: #6ec89b;
+}
+.leftpane .sh_leftpane_loyalty_line {
+  float: unset !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+.leftpane .sh_leftpane_loyalty_line .entry.total {
+  margin-left: 15px !important;
+  margin-right: 15px !important;
+}
+.leftpane .sh_leftpane_loyalty_line .entry .subentry {
+  text-align: right !important;
+}
+.gift_selection {
+  display: none;
+}
+.gift_selection.show {
+  display: block;
+}
+.cpn_for_customer {
+  display: none;
+}
+.cpn_for_customer.show {
+  display: block;
+}
+
+.o_action_manager .pos *::-webkit-scrollbar-thumb {
+  background: #8c8b8b;
+}
+.screen.payment-screen .screen-content .left-content.pc40 {
+  right: 72% !important;
+}
+.screen.payment-screen .screen-content .right-content.pc60 {
+  left: 28% !important;
+}
+.screen.payment-screen
+  .screen-content
+  .right-content.pc60
+  .paymentlines-container
+  .paymentlines
+  .delete-button
+  .fa.fa-times-circle {
+  font-size: 20px;
+}
+.screen.payment-screen
+  .screen-content
+  .right-content.pc60
+  .paymentlines-container {
+  overflow: auto !important;
+}
+.modal-dialog.sh_loyalty_point_popup .popup {
+  width: 500px !important;
+  max-width: 500px !important;
+}
+.modal-dialog.sh_loyalty_point_popup .title {
+  padding: 15px;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.modal-dialog.sh_loyalty_point_popup .sh_total_points,
+.modal-dialog.sh_loyalty_point_popup .sh_span_loyalty_mthd {
+  font-size: 16px;
+  padding: 3px 15px;
+  margin: 0px 2px;
+}
+.modal-dialog.sh_loyalty_point_popup .sh_loyalty_mthd #payment_method_selection,
+.modal-dialog.sh_loyalty_point_popup
+  .sh_loyalty_mthd
+  #payment_method_selection:focus {
+  color: #555;
+  padding: 0px 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background: #ffffff;
+  outline: none;
+}
+.modal-dialog.sh_loyalty_point_popup .d-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.modal-dialog.sh_loyalty_point_popup .sh_popup_input_box {
+  min-height: 35px;
+  padding: 8px 10px;
+  font-size: 18px;
+  width: 75%;
+}
+.modal-dialog.sh_loyalty_point_popup .popup-numpad {
+  margin: 7px auto;
+}
+.modal-dialog.sh_loyalty_point_popup .popup-numpad button {
+  height: 40px;
+  width: 40px;
+  min-width: 40px;
+}
+.modal-dialog.sh_loyalty_point_popup .sh_loyalty_point_popup_footer .button {
+  font-size: 15px;
+}
+
+.modal-dialog.sh_reward_popup .popup {
+  width: 500px !important;
+  max-width: 500px !important;
+}
+.modal-dialog.sh_reward_popup .title {
+  padding: 15px;
+  font-size: 18px;
+  margin-bottom: 8px !important;
+}
+.modal-dialog.sh_reward_popup .sh_label_radio {
+  display: inline-block;
+}
+.modal-dialog.sh_reward_popup .sh_label_radio .sh_rd_input {
+  min-height: 15px;
+  box-shadow: none;
+  width: auto;
+  margin: 0px 5px;
+}
+.modal-dialog.sh_reward_popup .sh_label_radio .sh_rd_lbl {
+  font-size: 15px;
+  vertical-align: text-top;
+  line-height: 23px;
+}
+.modal-dialog.sh_reward_popup .sh_label_radio .sh_rd_input:focus,
+.modal-dialog.sh_reward_popup .sh_label_radio .sh_rd_input.active {
+  box-shadow: none;
+}
+.modal-dialog.sh_reward_popup .sh_reward_popup_selection {
+  margin: 10px 0px;
+}
+.modal-dialog.sh_reward_popup .sh_reward_popup_selection .gift_selection,
+.modal-dialog.sh_reward_popup .sh_reward_popup_selection .gift_selection:focus {
+  margin: 0px auto;
+  background: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: #555;
+  outline: none;
+}
+.modal-dialog.sh_reward_popup .sh_reward_popup_footer .button {
+  font-size: 15px;
+}
+
+.modal-dialog.sh_manage_coupon_popup .popup {
+  width: 500px !important;
+  max-width: 500px !important;
+}
+.modal-dialog.sh_manage_coupon_popup .title {
+  padding: 15px;
+  font-size: 18px;
+}
+.modal-dialog.sh_manage_coupon_popup .sh_d-flex {
+  display: flex;
+  padding: 12px 0px;
+}
+.modal-dialog.sh_manage_coupon_popup .create_coupon,
+.modal-dialog.sh_manage_coupon_popup .redeem_coupon {
+  width: 50%;
+  cursor: pointer;
+}
+.modal-dialog.sh_manage_coupon_popup .create_coupon .box.create_coupon_box {
+  border: 1px solid #ccc;
+  margin: 5px 5px 5px 15px;
+}
+.modal-dialog.sh_manage_coupon_popup .redeem_coupon .box.redeem_coupon_box {
+  border: 1px solid #ccc;
+  margin: 5px 15px 5px 5px;
+}
+.modal-dialog.sh_manage_coupon_popup .create_coupon .box.create_coupon_box img {
+  height: 100px;
+}
+.modal-dialog.sh_manage_coupon_popup .redeem_coupon .box.redeem_coupon_box img {
+  height: 86px;
+  margin-top: 14px;
+}
+.modal-dialog.sh_manage_coupon_popup .create_coupon .box.create_coupon_box h5,
+.modal-dialog.sh_manage_coupon_popup .redeem_coupon .box.redeem_coupon_box h5 {
+  margin: 10px 5px 13px 5px;
+  color: #7f7c7c;
+}
+.modal-dialog.sh_manage_coupon_popup .sh_manage_coupon_popup_footer .button {
+  font-size: 15px;
+}
+
+.modal-dialog.sh_redeem_coupon_popup .popup {
+  width: 500px !important;
+  max-width: 500px !important;
+}
+.modal-dialog.sh_redeem_coupon_popup .title {
+  padding: 15px;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+.modal-dialog.sh_redeem_coupon_popup .voucher_name h5 {
+  margin: 10px;
+}
+.modal-dialog.sh_redeem_coupon_popup .voucher_name .coupon_name {
+  font-size: 16px;
+}
+.modal-dialog.sh_redeem_coupon_popup .voucher_name {
+  padding-bottom: 18px;
+}
+.modal-dialog.sh_redeem_coupon_popup .sh_redeem_coupon_popup_footer .button {
+  font-size: 15px;
+}
+
+.modal-dialog.sh_create_coupon_popup .popup {
+  width: 500px !important;
+  max-width: 500px !important;
+}
+.modal-dialog.sh_create_coupon_popup .title {
+  padding: 15px;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.modal-dialog.sh_create_coupon_popup .sh_flex {
+  display: flex;
+  padding-bottom: 16px;
+}
+.modal-dialog.sh_create_coupon_popup .create_coupon_left,
+.modal-dialog.sh_create_coupon_popup .create_coupon_right {
+  width: 50%;
+}
+.modal-dialog.sh_create_coupon_popup .create_coupon_left .cpn_lbl,
+.modal-dialog.sh_create_coupon_popup .create_coupon_right .cpn_lbl {
+  font-size: 15px;
+  display: block;
+}
+.modal-dialog.sh_create_coupon_popup .create_coupon_left input[type="text"],
+.modal-dialog.sh_create_coupon_popup .create_coupon_left input[type="date"],
+.modal-dialog.sh_create_coupon_popup .create_coupon_right input[type="text"],
+.modal-dialog.sh_create_coupon_popup .create_coupon_right input[type="date"] {
+  border-radius: 3px;
+  font-size: 15px;
+  padding: 8px 10px;
+  min-height: 35px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+.modal-dialog.sh_create_coupon_popup .create_coupon_right input[type="radio"],
+.modal-dialog.sh_create_coupon_popup
+  .create_coupon_right
+  input[type="radio"]:focus {
+  min-height: 18px;
+  box-shadow: none;
+  width: 8% !important;
+}
+.modal-dialog.sh_create_coupon_popup .create_coupon_right .cpn_vlue_type select,
+.modal-dialog.sh_create_coupon_popup .create_coupon_left .cpn_for select,
+.modal-dialog.sh_create_coupon_popup
+  .create_coupon_right
+  .cpn_for_customer
+  select {
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: #555;
+  outline: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.modal-dialog.sh_create_coupon_popup
+  .create_coupon_right
+  .cpn_type
+  .cpn_crt_amt_validtion
+  .cpn_type_cpn_lbl,
+.modal-dialog.sh_create_coupon_popup
+  .create_coupon_right
+  .cpn_type
+  .cpn_partial_redeemption
+  .cpn_type_cpn_lbl {
+  vertical-align: text-top;
+  font-size: 15.5px;
+  font-weight: normal;
+  line-height: 20px;
+}
+.modal-dialog.sh_create_coupon_popup .create_coupon_right .cpn_type .mt3 {
+  margin-top: 3px;
+}
+.modal-dialog.sh_create_coupon_popup
+  .create_coupon_right
+  .cpn_type
+  .cpn_partial_redeemption {
+  margin-right: 19px;
+}
+.modal-dialog.sh_create_coupon_popup .sh_redeem_coupon_popup_footer .button {
+  font-size: 15px;
+}
+
+.subwindow
+  .subwindow-container
+  .clientlist-screen.screen
+  .subwindow-container-fix.scrollable-y {
+  overflow: unset !important;
+}
+.subwindow
+  .subwindow-container
+  .clientlist-screen.screen
+  .subwindow-container-fix.scrollable-y
+  .client-list {
+  overflow: auto !important;
+}
+
+@media only screen and (max-width: 767.98px) {
+  .modal-dialog.sh_loyalty_point_popup .popup,
+  .modal-dialog.sh_reward_popup .popup,
+  .modal-dialog.sh_manage_coupon_popup .popup,
+  .modal-dialog.sh_redeem_coupon_popup .popup,
+  .modal-dialog.sh_create_coupon_popup .popup {
+    width: 350px !important;
+    max-width: 350px !important;
+  }
+  .modal-dialog.sh_loyalty_point_popup,
+  .modal-dialog.sh_reward_popup,
+  .modal-dialog.sh_manage_coupon_popup,
+  .modal-dialog.sh_redeem_coupon_popup,
+  .modal-dialog.sh_create_coupon_popup {
+    padding: 0px !important;
+  }
+  .modal-dialog.sh_manage_coupon_popup .create_coupon .box.create_coupon_box h5,
+  .modal-dialog.sh_manage_coupon_popup
+    .redeem_coupon
+    .box.redeem_coupon_box
+    h5 {
+    font-size: 12px !important;
+  }
+  .modal-dialog.sh_create_coupon_popup .create_coupon_left,
+  .modal-dialog.sh_create_coupon_popup .create_coupon_right {
+    width: 47% !important;
+    padding: 0px 5px;
+  }
+  .modal-dialog.sh_create_coupon_popup
+    .create_coupon_right
+    .cpn_for_customer
+    select {
+    width: 80% !important;
+  }
+  .modal-dialog.sh_create_coupon_popup .create_coupon_left .cpn_lbl,
+  .modal-dialog.sh_create_coupon_popup .create_coupon_right .cpn_lbl {
+    font-size: 13px !important;
+  }
+  .modal-dialog.sh_create_coupon_popup
+    .create_coupon_right
+    .cpn_type
+    .cpn_crt_amt_validtion
+    .cpn_type_cpn_lbl,
+  .modal-dialog.sh_create_coupon_popup
+    .create_coupon_right
+    .cpn_type
+    .cpn_partial_redeemption
+    .cpn_type_cpn_lbl {
+    font-size: 13px !important;
+  }
+  .modal-dialog.sh_loyalty_point_popup .sh_total_points,
+  .modal-dialog.sh_loyalty_point_popup .sh_span_loyalty_mthd {
+    font-size: 14px !important;
+    padding: 3px 6px !important;
+  }
+  .modal-dialog.sh_create_coupon_popup .create_coupon_left input[type="text"],
+  .modal-dialog.sh_create_coupon_popup .create_coupon_left input[type="date"],
+  .modal-dialog.sh_create_coupon_popup .create_coupon_right input[type="text"],
+  .modal-dialog.sh_create_coupon_popup .create_coupon_right input[type="date"],
+  .modal-dialog.sh_create_coupon_popup
+    .create_coupon_right
+    .cpn_vlue_type
+    select,
+  .modal-dialog.sh_create_coupon_popup .create_coupon_left .cpn_for select,
+  .modal-dialog.sh_create_coupon_popup
+    .create_coupon_right
+    .cpn_for_customer
+    select {
+    width: 100% !important;
+    padding: 8px 10px !important;
+  }
+  .modal-dialog.sh_loyalty_point_popup .d-flex {
+    align-items: baseline !important;
+  }
+}
+.modal-dialog.sh_manage_coupon_popup .sh_single_manage_coupon .sh_d-flex {
+  justify-content: center;
+}
+.modal-dialog.sh_manage_coupon_popup
+  .sh_single_manage_coupon
+  .sh_d-flex
+  .create_coupon
+  .create_coupon_box,
+.modal-dialog.sh_manage_coupon_popup
+  .sh_single_manage_coupon
+  .sh_d-flex
+  .redeem_coupon
+  .redeem_coupon_box {
+  margin: 0;
+}

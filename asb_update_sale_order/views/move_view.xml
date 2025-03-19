@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="account_move_farmaku_inherit_form_marketplace">
+      <field name="name">account.move.farmaku.inherit.form.marketplace</field>
+      <field name="model">account.move</field>
+      <field name="inherit_id" ref="account.view_move_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook" position="inside">
+            <page string="Marketplace Info" name="farmaku_info_group">
+              <group>
+                <group>
+                  <field name="sale_id"/>
+                  <field name="shop_name" readonly="1"/>
+                  <field name="period" readonly="1"/>
+                  <field name="farmaku_order_mkp" readonly="1"/>
+                  <field name="invoice_mkp" readonly="1"/>
+                </group>
+              </group>
+            </page>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

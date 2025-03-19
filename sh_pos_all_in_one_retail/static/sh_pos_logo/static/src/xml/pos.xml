@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//img[hasclass('pos-receipt-logo')]" position="replace">
+            <t t-if="env.pos.config.sh_pos_logo">
+                <img t-att-src="receipt.receipt_logo_url" alt="Logo" class="pos-receipt-logo" />
+            </t>
+            <t t-else="">
+                <t t-if="env.pos.company and env.pos.company.sh_pos_global_logo">
+                    <img class="pos-receipt-logo" t-att-src="receipt.receipt_global_logo_url" alt="Logo" />
+                </t>
+                <t t-else="">
+                    <img class="pos-receipt-logo" t-att-src="receipt.company.logo" alt="Logo" />
+                </t>
+            </t>
+        </xpath>
+    </t>
+
+    <t t-extend="Chrome" t-inherit="point_of_sale.Chrome" t-inherit-mode="extension">
+        <xpath expr="//img[hasclass('pos-logo')]" position="replace">
+            <t t-if="env.pos and env.pos.config and env.pos.config.sh_pos_header_logo and env.pos.get_order()">
+                <img t-att-src="env.pos.get_order().get_header_logo_url(env.pos.config.id)" alt="Logo" class="pos-logo" />
+            </t>
+            <t t-else="">
+                <t t-if="env.pos and env.pos.company and env.pos.company.sh_pos_global_header_logo and env.pos.get_order()">
+                    <img t-att-src="env.pos.get_order().get_global_header_logo_url(env.pos.company.id)" alt="Logo" class="pos-logo" />
+                </t>
+                <t t-else="">
+                    <img class="pos-logo" t-on-click="trigger('toggle-debug-widget')" src="/point_of_sale/static/src/img/logo.png" alt="Logo" />
+                </t>
+            </t>
+        </xpath>
+    </t>
+</templates>

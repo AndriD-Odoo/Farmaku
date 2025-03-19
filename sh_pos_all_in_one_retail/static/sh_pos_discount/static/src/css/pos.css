@@ -1,0 +1,51 @@
+.discount_receipt {
+    margin-left: 33px;
+    color: #a0a0a0;
+}
+.discount_table thead {
+    background: #e4e2e2;
+}
+.discount_icon {
+    width: 15px;
+}
+
+.sh_product_discount_popup .discount_table tbody td {
+    font-weight: normal !important;
+}
+.sh_product_discount_popup .discount_table {
+    border-top: 1px solid #ccc !important;
+    border-bottom: 1px solid #ccc !important;
+}
+.sh_product_discount_popup .discount_table thead {
+    border: 1px solid #ccc !important;
+}
+.sh_product_discount_popup .sh_discount_main_table {
+    max-height: 237px !important;
+}
+.sh_product_discount_popup .discount_table th,
+.sh_product_discount_popup .discount_table td {
+    padding: 8px 12px !important;
+}
+.sh_product_discount_popup .discount_table th {
+    font-size: 14px !important;
+}
+
+.popup.popup-text.popup-lg.product-configurator-popup.sh_product_discount_popup {
+    font-size: 16px !important;
+    width: 500px !important;
+    height: 350px !important;
+    max-height: 350px !important;
+}
+.footer.sh_discount_footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100% !important;
+    height: 60px !important;
+    border-top: solid 1px rgba(60, 60, 60, 0.1) !important;
+}
+@media only screen and (max-width: 576px) {
+    .sh_modal_discount {
+        padding: 0px !important;
+    }
+}

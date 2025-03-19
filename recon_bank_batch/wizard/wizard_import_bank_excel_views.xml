@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_wizard_import_bank_excel_form_view" model="ir.ui.view">
+            <field name="name">wizard.import.bank.excel.form.view</field>
+            <field name="model">wizard.import.bank.excel</field>
+            <field name="arch" type="xml">
+                <form string="Wizard Import Bank Excel">
+                    <sheet>
+                        <group>
+                            <field name="inv_excel_file" required="1"/>
+                        </group>
+                        <footer>
+                            <button string="Import Bank Excel" name="action_read_excel" icon="fa-file-excel-o" type="object" class="oe_highlight"/>
+                            <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_wizard_import_bank_excel" model="ir.actions.act_window">
+            <field name="name">Wizard Import Bank Excel</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.import.bank.excel</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="recon_bank_batch.view_wizard_import_bank_excel_form_view"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_pos_config_settings_customer_order_history_pos_note" model="ir.ui.view">
+        <field name="name">pos.config.settings.pos.order.history</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='accounting_section']" position="after">
+                <h3>Enable Customer Order History</h3>
+                <div class="row mt16 o_settings_container sh_config_customer_order_history">
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_customer_order_history" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_customer_order_history" />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
